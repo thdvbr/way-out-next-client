@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const sanityConfig = {
   // Find your project ID and dataset in `sanity.json` in your studio project
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
