@@ -12,7 +12,7 @@ const serializers = {
           return (
             <span
               style={{
-                fontFamily: 'Averia Serif Libre',
+                fontFamily: 'Averia Serif Regular',
                 fontSize: '1.2em',
                 fontWeight: 500,
                 lineHeight: '1.5em',

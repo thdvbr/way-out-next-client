@@ -3,16 +3,20 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
 
 @font-face {
-  font-family: 'Averia Serif Libre', cursive;
-  src: url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
+  font-family: 'Averia Serif Regular';
+  src: url(../assets/typography/AveriaSerif-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Averia Serif Bold Italic';
+  src: url(../assets/typography/AveriaSerif-BoldItalic.ttf);
 }
 
 @font-face {
   font-family: 'Agrandir';
-  src: url(../assets/typography/Agrandir-Tight.otf);
+  src: url(../assets/typography/Agrandir-Regular.otf);
 }
 
 @font-face {

@@ -16,3 +16,7 @@
   text-align: justify;
   letter-spacing: 1.5px;
 }
+
+html {
+  @apply font-main;
+}
