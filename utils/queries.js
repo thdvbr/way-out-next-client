@@ -2,10 +2,14 @@ const postFields = `
   _id,
   name,
   title,
-  date,
-  excerpt,
+  subtitle,
+  publishedAt,
+  credits,
   mainImage,
   body,
+  artistLink,
+  "subCategory": subCategory->title,
+  "mainCategory": mainCategory->title,
   "slug": slug.current,
 `;
 

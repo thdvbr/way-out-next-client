@@ -36,8 +36,11 @@ export const Post = ({ data = {}, preview }) => {
       <article>
         <PostHeader
           title={post.title}
+          subtitle={post.subtitle}
           mainImage={post.mainImage}
-          date={post.date}
+          subCategory={post.subCategory}
+          publishedAt={post.publishedAt}
+          credits={post.credits}
         />
         <PostBody body={post.body} />
       </article>
