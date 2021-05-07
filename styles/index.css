@@ -3,3 +3,19 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
+
+@font-face {
+  font-family: 'Averia Serif Libre', cursive;
+  src: url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
+}
+
+@font-face {
+  font-family: 'Agrandir';
+  src: url(../assets/typography/Agrandir-Tight.otf);
+}
+
+@font-face {
+  font-family: 'OPTIArtCraft';
+  src: url(../assets/typography/OPTIArtCraft-Bold.otf);
+}

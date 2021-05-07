@@ -14,8 +14,8 @@ import { usePreviewSubscription } from '../../utils/sanity';
 import SectionSeparator from '../../components/section-separator';
 import ReadMore from '../../components/read-more';
 
+
 export const Post = ({ data = {}, preview }) => {
-  // console.log(preview);
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
