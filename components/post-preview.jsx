@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import MainImage from './main-image';
+import PreviewImage from './preview-image';
 
-const PostPreview = ({ title, subtitle, mainImage, slug }) => (
+const PostPreview = ({ title, subtitle, previewImage, slug }) => (
   <>
     <div className="mb-5">
-      <MainImage slug={slug} title={title} image={mainImage} />
+      <PreviewImage slug={slug} title={title} image={previewImage} />
     </div>
     <h3 className="mb-3">
       <Link as={`/posts/${slug}`} href="/posts/[slug]">

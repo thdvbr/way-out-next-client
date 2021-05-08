@@ -6,6 +6,7 @@ const postFields = `
   publishedAt,
   credits,
   mainImage,
+  previewImage,
   body,
   artistLink,
   "subCategory": subCategory->title,

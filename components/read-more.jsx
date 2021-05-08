@@ -12,7 +12,7 @@ const ReadMore = ({ posts }) => {
             key={post.slug}
             title={post.title}
             subtitle={post.subtitle}
-            mainImage={post.mainImage}
+            previewImage={post.previewImage}
             slug={post.slug}
           />
         ))}
