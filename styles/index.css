@@ -4,6 +4,8 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
+/* typography */
+
 @font-face {
   font-family: 'Averia Serif Regular';
   src: url(../assets/typography/AveriaSerif-Regular.ttf);
@@ -15,11 +17,110 @@
 }
 
 @font-face {
+  font-family: 'Averia Serif Light Italic';
+  src: url(../assets/typography/AveriaSerif-LightItalic.ttf);
+}
+
+@font-face {
+  font-family: 'Averia Serif Bold';
+  src: url(../assets/typography/AveriaSerif-Bold.ttf);
+}
+
+@font-face {
   font-family: 'Agrandir';
   src: url(../assets/typography/Agrandir-Regular.otf);
 }
 
 @font-face {
+  font-family: 'Agrandir Narrow';
+  src: url(../assets/typography/Agrandir-Narrow.otf);
+}
+
+@font-face {
   font-family: 'OPTIArtCraft';
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
+}
+
+.typo-toolbar {
+  font-family: OPTIArtCraft;
+  font-size: 1.0625rem;
+  line-height: 1.25rem;
+}
+
+.typo-home-preview-title {
+  font-family: OPTIArtCraft;
+  font-size: 1.3125rem;
+  line-height: 1.5625rem;
+  letter-spacing: 1%;
+}
+
+.typo-home-preview-subtitle {
+  font-family: Averia Serif Regular;
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+}
+.typo-preview-title {
+  font-family: Averia Serif Bold;
+  font-size: 1.406rem;
+  line-height: 1.625rem;
+}
+
+.typo-preview-subtitle {
+  font-family: Averia Serif Light Italic;
+  font-size: 1.156rem;
+  line-height: 1.3125rem;
+}
+
+.typo-post-title,
+.typo-more-to-read,
+.typo-section-title {
+  font-family: OPTIArtCraft;
+  font-size: 2.625rem;
+  line-height: 3.125rem;
+}
+
+.typo-post-subtitle {
+  font-family: Averia Serif Bold Italic;
+  font-size: 2.688rem;
+  line-height: 3.313rem;
+}
+
+.typo-post-header,
+.typo-post-artist-link {
+  font-family: Agrandir;
+  font-size: 1.063rem;
+  line-height: 1.063rem;
+}
+
+.typo-post-intro {
+  font-family: OPTIArtCraft;
+  font-size: 1.375rem;
+  line-height: 1.625rem;
+}
+
+.typo-interviewer {
+  font-family: Agrandir Narrow;
+  font-style: bold;
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+
+.typo-post-question {
+  font-family: Agrandir Narrow;
+  font-size: 1.313rem;
+  line-height: 1.313rem;
+}
+
+.typo-post-main {
+  font-family: Averia Serif Regular;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.typo-share-link {
+  font-family: OPTIArtCraft;
+  text-decoration: underline;
+  font-size: 1rem;
+  line-height: 1.188rem;
 }

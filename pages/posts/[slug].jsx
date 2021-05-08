@@ -13,6 +13,7 @@ import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import SectionSeparator from '../../components/section-separator';
 import ReadMore from '../../components/read-more';
+import ArtistLink from '../../components/artist-link';
 
 
 export const Post = ({ data = {}, preview }) => {
@@ -33,6 +34,7 @@ export const Post = ({ data = {}, preview }) => {
   return (
     <>
       <Toolbar />
+      <SectionSeparator />
       <article>
         <PostHeader
           title={post.title}
@@ -43,8 +45,8 @@ export const Post = ({ data = {}, preview }) => {
           credits={post.credits}
         />
         <PostBody body={post.body} />
+        {post.artistLink && <ArtistLink artistLink={post.artistLink}/>}
       </article>
-      <SectionSeparator />
       {morePosts.length > 0 && <ReadMore posts={morePosts} />}
     </>
   );

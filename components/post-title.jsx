@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function PostTitle({ children }) {
   return (
-    <h1 className="text-6xl md:text-7xl lg:text-8xl font-title tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-      {children}
+    <h1 className="typo-post-title text-center mx-96">
+      {children};
     </h1>
   );
 }

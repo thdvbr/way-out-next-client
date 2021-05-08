@@ -11,40 +11,28 @@ const serializers = {
         case 'main':
           return (
             <span
-              style={{
-                fontFamily: 'Averia Serif Regular',
-                fontSize: '1.2em',
-                fontWeight: 500,
-                lineHeight: '1.5em',
-              }}>
-              {props.children}
+              className="typo-post-main tracking-wider">
               <br />
+              {props.children}
               <br />
             </span>
           );
         case 'secondary':
           return (
             <span
-              style={{
-                fontFamily: 'Agrandir',
-                fontSize: '1.313em',
-                fontWeight: 400,
-                lineHeight: '1.315em',
-              }}>
-              {props.children}
+              className="typo-post-question tracking-wider">
               <br />
+              {props.children}
               <br />
             </span>
           );
         case 'intro':
           return (
             <span
-              style={{
-                fontFamily: 'OPTIArtCraft',
-                fontSize: '1.375em',
-                lineHeight: '1.625em',
-              }}>
-              {props.children} <br />
+              className="typo-post-intro tracking-wider">
+              {props.children} 
+              <br />
+              <br />
               <br />
             </span>
           );
@@ -57,7 +45,7 @@ const serializers = {
 const { projectId, dataset } = sanityConfig;
 export default function PostBody({ body }) {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="mx-64">
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}

@@ -7,7 +7,7 @@ module.exports = {
         secondary : ['Agrandir'],
         title : ['OPTIArtCraft'],
         subtitle: ['Averia Serif Bold Italic']
-      }
+      },
   },
   variants: {
     extend: {},

@@ -15,11 +15,11 @@ const PostHeader = ({
   <>
     <PostTitle>{title}</PostTitle>
     <PostSubtitle>{subtitle}</PostSubtitle>
-    <div className="mb-8 md:mb-16 sm:mx-0">
+    <div className="mx-28">
       <MainImage title={title} image={mainImage} />
     </div>
-    <div className="mb-6 text-lg font-secondary">
-      <p>{subCategory}</p>
+    <div className=" my-8 text-center typo-post-header tracking-wider">
+      <p className="underline">{subCategory}</p>
       <span>Published on: </span>
       <Date dateString={publishedAt} />
       { credits && <p>{credits}</p> }
