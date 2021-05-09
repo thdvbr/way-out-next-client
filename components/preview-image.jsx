@@ -2,13 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { urlForImage } from '../utils/sanity';
 
-const PreviewImage = ({ title, slug, image: source }) => {
+const PreviewImage = ({ title, slug, image: source, width, height }) => {
   const image = source ? (
     <img
-      width={300}
-      height={300}
-      alt={`Preview Image for ${title}`}
-      src={urlForImage(source).height(300).width(300).url()}
+      width={width}
+      height={height}
+      className="thumbnail-border"
+      alt={`Thumbnail for ${title}`}
+      src={urlForImage(source).width(width).height(height).url()}
     />
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
