@@ -12,9 +12,9 @@ import {
 import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import SectionSeparator from '../../components/section-separator';
-import ReadMore from '../../components/read-more';
+import RelatedPosts from '../../components/related-posts';
 import ArtistLink from '../../components/artist-link';
-
+import Layout from '../../components/layout';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -33,21 +33,23 @@ export const Post = ({ data = {}, preview }) => {
 
   return (
     <>
-      <Toolbar />
-      <SectionSeparator />
-      <article>
-        <PostHeader
-          title={post.title}
-          subtitle={post.subtitle}
-          mainImage={post.mainImage}
-          subCategory={post.subCategory}
-          publishedAt={post.publishedAt}
-          credits={post.credits}
-        />
-        <PostBody body={post.body} />
-        {post.artistLink && <ArtistLink artistLink={post.artistLink}/>}
-      </article>
-      {morePosts.length > 0 && <ReadMore posts={morePosts} />}
+      <Layout preview={preview}>
+        <Toolbar />
+        <SectionSeparator />
+        <article>
+          <PostHeader
+            title={post.title}
+            subtitle={post.subtitle}
+            mainImage={post.mainImage}
+            subCategory={post.subCategory}
+            publishedAt={post.publishedAt}
+            credits={post.credits}
+          />
+          <PostBody body={post.body} />
+          {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+        </article>
+        {morePosts.length > 0 && <RelatedPosts posts={morePosts} />}
+      </Layout>
     </>
   );
 };
