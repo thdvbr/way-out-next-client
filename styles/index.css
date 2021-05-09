@@ -47,29 +47,36 @@
   line-height: 1.25rem;
 }
 
-.typo-home-preview-title {
+.typo-main-preview-title {
   font-family: OPTIArtCraft;
   font-size: 1.3125rem;
   line-height: 1.5625rem;
   letter-spacing: 1%;
 }
 
-.typo-home-preview-subtitle {
+.typo-main-preview-subtitle {
   font-family: Averia Serif Regular;
   font-style: italic;
   font-size: 1.125rem;
   line-height: 1.375rem;
 }
-.typo-preview-title {
+.typo-related-preview-title {
   font-family: Averia Serif Bold;
   font-size: 1.406rem;
   line-height: 1.625rem;
 }
 
-.typo-preview-subtitle {
+.typo-related-preview-subtitle {
   font-family: Averia Serif Light Italic;
   font-size: 1.156rem;
   line-height: 1.3125rem;
+}
+
+.typo-related-preview-sub-category {
+  font-family: Agrandir Narrow;
+  font-size: 0.85rem;
+  line-height: 0.86rem;
+  color: #8a7536;
 }
 
 .typo-post-title,
@@ -123,4 +130,32 @@
   text-decoration: underline;
   font-size: 1rem;
   line-height: 1.188rem;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 30px;
+}
+
+.thumbnail-border {
+  border: 2px solid black;
+}
+
+.related-article-deco {
+  border: 1px solid black;
+  width: 40px;
 }
