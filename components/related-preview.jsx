@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PreviewImage from './preview-image';
 
-const PostRelatedPreview = ({
+const RelatedPreview = ({
   title,
   subtitle,
   subCategory,
@@ -34,4 +34,4 @@ const PostRelatedPreview = ({
   </div>
 );
 
-export default PostRelatedPreview;
+export default RelatedPreview;

@@ -1,12 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-import Container from '../components/container';
-import HeroPost from '../components/hero-post';
-import { Toolbar } from '../components/toolbar';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
-import MasonryGrid from '../components/masonry-grid';
-import Layout from '../components/layout';
+import { Container, HeroPost, Toolbar, PreviewGrid, Layout } from '../components';
 
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
@@ -31,7 +27,7 @@ export const Index = ({ allPosts, preview }) => {
               slug={heroPost.slug}
             />
           )}
-          {morePosts && <MasonryGrid posts={morePosts} />}
+          {morePosts && <PreviewGrid posts={morePosts} />}
         </Container>
       </Layout>
     </>

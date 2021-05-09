@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export const Toolbar = () => (
+const Toolbar = () => (
   <div className="mx-28 flex justify-between typo-toolbar my-3">
     <div>search</div>
     <div>Stuff We Like</div>
@@ -13,3 +13,5 @@ export const Toolbar = () => (
     </Link>
   </div>
 );
+
+export default Toolbar;

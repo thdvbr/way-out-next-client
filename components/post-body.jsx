@@ -43,6 +43,7 @@ const serializers = {
   },
 };
 const { projectId, dataset } = sanityConfig;
+
 export default function PostBody({ body }) {
   return (
     <div className="mx-64">

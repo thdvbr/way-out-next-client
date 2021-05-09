@@ -1,9 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import PostHeader from '../../components/post-header';
-import PostBody from '../../components/post-body';
-import { Toolbar } from '../../components/toolbar';
 import {
   sanityClient,
   getClient,
@@ -11,10 +8,7 @@ import {
 } from '../../utils/sanity.server';
 import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
-import SectionSeparator from '../../components/section-separator';
-import RelatedPosts from '../../components/related-posts';
-import ArtistLink from '../../components/artist-link';
-import Layout from '../../components/layout';
+import { PostHeader, PostBody, Toolbar, Layout, ArtistLink, RelatedPosts, SectionSeparator } from '../../components';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();

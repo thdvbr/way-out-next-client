@@ -2,7 +2,7 @@ import React from 'react';
 import Masonry from 'react-masonry-css';
 import PreviewMain from './preview-main';
 
-const MasonryGrid = ({ posts }) => (
+const PreviewGrid = ({ posts }) => (
   <Masonry
     breakpointCols={4}
     className="my-masonry-grid"
@@ -19,4 +19,4 @@ const MasonryGrid = ({ posts }) => (
   </Masonry>
 );
 
-export default MasonryGrid;
+export default PreviewGrid;
