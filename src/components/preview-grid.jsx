@@ -6,7 +6,8 @@ const PreviewGrid = ({ posts }) => (
   <Masonry
     breakpointCols={4}
     className="my-masonry-grid"
-    columnClassName="my-masonry-grid_column">
+    columnClassName="my-masonry-grid_column"
+  >
     {posts.map((post) => (
       <PreviewMain
         key={post.slug}

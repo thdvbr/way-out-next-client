@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint --color --ext .js --ext .jsx ./src",
+    "lint --fix": "eslint --color --ext .js --ext .jsx ./src --fix"
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",

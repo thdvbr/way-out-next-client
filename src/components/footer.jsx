@@ -1,4 +1,5 @@
-import Container from './container'
+import React from 'react';
+import Container from './container';
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
               Read Documentation
             </a>
             <a
-              href={`https://github.com/vercel/next.js/tree/canary/example`}
+              href="https://github.com/vercel/next.js/tree/canary/example"
               className="mx-3 font-bold hover:underline"
             >
               View on GitHub
@@ -25,5 +26,5 @@ export default function Footer() {
         </div>
       </Container>
     </footer>
-  )
+  );
 }

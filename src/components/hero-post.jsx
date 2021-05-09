@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import MainImage from './main-image';
 
-const HeroPost = ({ category, mainImage, title, subtitle, slug }) => (
+const HeroPost = ({
+  category, mainImage, title, subtitle, slug,
+}) => (
   <section>
     <div className="mb-8 md:mb-16">
       <MainImage slug={slug} title={title} image={mainImage} />

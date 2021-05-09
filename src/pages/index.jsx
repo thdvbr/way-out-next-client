@@ -2,7 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
-import { Container, HeroPost, Toolbar, PreviewGrid, Layout } from '../components';
+import {
+  Container, HeroPost, Toolbar, PreviewGrid, Layout,
+} from '../components';
 
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];

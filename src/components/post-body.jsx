@@ -11,7 +11,8 @@ const serializers = {
         case 'main':
           return (
             <span
-              className="typo-post-main tracking-wider">
+              className="typo-post-main tracking-wider"
+            >
               <br />
               {props.children}
               <br />
@@ -20,7 +21,8 @@ const serializers = {
         case 'secondary':
           return (
             <span
-              className="typo-post-question tracking-wider">
+              className="typo-post-question tracking-wider"
+            >
               <br />
               {props.children}
               <br />
@@ -29,8 +31,9 @@ const serializers = {
         case 'intro':
           return (
             <span
-              className="typo-post-intro tracking-wider">
-              {props.children} 
+              className="typo-post-intro tracking-wider"
+            >
+              {props.children}
               <br />
               <br />
               <br />

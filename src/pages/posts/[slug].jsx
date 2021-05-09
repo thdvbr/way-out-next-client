@@ -8,7 +8,9 @@ import {
 } from '../../utils/sanity.server';
 import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
-import { PostHeader, PostBody, Toolbar, Layout, ArtistLink, RelatedPosts, SectionSeparator } from '../../components';
+import {
+  PostHeader, PostBody, Toolbar, Layout, ArtistLink, RelatedPosts, SectionSeparator,
+} from '../../components';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
