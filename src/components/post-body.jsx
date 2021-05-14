@@ -43,10 +43,12 @@ const serializers = {
         return null;
       }
       return (
-        <>
-          <img alt="post img" src={urlForImage(node.asset).url()} />
-          {node.caption && <p>{node.caption}</p>}
-        </>
+        <div className="flex justify-center">
+          <div className="flex-col">
+            <img alt="post img" src={urlForImage(node.asset).url()} />
+            {node.caption && <p>{node.caption}</p>}
+          </div>
+        </div>
       );
     },
   },
