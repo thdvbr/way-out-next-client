@@ -1,47 +1,53 @@
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { sanityConfig } from '../utils/config';
+import { urlForImage } from '../utils/sanity';
 
 const serializers = {
   types: {
-    block(props) {
-      switch (props.node.style) {
+    block: ({ node, children }) => {
+      switch (node.style) {
         case 'h1':
-          return <h1>{props.children}</h1>;
+          return <h1>{children}</h1>;
         case 'main':
           return (
-            <span
-              className="typo-post-main tracking-wider"
-            >
+            <span className="typo-post-main tracking-wider">
               <br />
-              {props.children}
+              {children}
               <br />
             </span>
           );
         case 'secondary':
           return (
-            <span
-              className="typo-post-question tracking-wider"
-            >
+            <span className="typo-post-question tracking-wider">
               <br />
-              {props.children}
+              {children}
               <br />
             </span>
           );
         case 'intro':
           return (
-            <span
-              className="typo-post-intro tracking-wider"
-            >
-              {props.children}
+            <span className="typo-post-intro tracking-wider">
+              {children}
               <br />
               <br />
               <br />
             </span>
           );
         default:
-          return <p>{props.children}</p>;
+          return <p>{children}</p>;
       }
+    },
+    image: ({ node }) => {
+      if (!node || !node.asset || !node.asset._ref) {
+        return null;
+      }
+      return (
+        <>
+          <img alt="post img" src={urlForImage(node.asset).url()} />
+          {node.caption && <p>{node.caption}</p>}
+        </>
+      );
     },
   },
 };
