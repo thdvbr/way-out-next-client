@@ -2,9 +2,15 @@ import React from 'react';
 import Masonry from 'react-masonry-css';
 import PreviewMain from './preview-main';
 
+const breakpointColumnsObj = {
+  default: 4,
+  768: 3,
+  576: 1
+};
+
 const PreviewGrid = ({ posts }) => (
   <Masonry
-    breakpointCols={4}
+    breakpointCols={breakpointColumnsObj}
     className="my-masonry-grid"
     columnClassName="my-masonry-grid_column"
   >
