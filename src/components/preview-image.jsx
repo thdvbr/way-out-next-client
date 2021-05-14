@@ -9,7 +9,7 @@ const PreviewImage = ({
     <img
       width={width}
       height={height}
-      className="thumbnail-border"
+      className="thumbnail-border preview-img-purple"
       alt={`Thumbnail for ${title}`}
       src={urlForImage(source).width(width).height(height).url()}
     />
