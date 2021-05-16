@@ -14,9 +14,22 @@ const postFields = `
   "slug": slug.current,
 `;
 
+const postPreviewFields = `
+_id,
+name,
+title,
+subtitle,
+publishedAt,
+mainImage,
+previewImage,
+"subCategory": subCategory->title,
+"mainCategory": mainCategory->title,
+"slug": slug.current,
+`;
+
 export const indexQuery = `
 *[_type == "post"] | order(date desc, _updatedAt desc) {
-  ${postFields}
+  ${postPreviewFields}
 }`;
 
 export const postQuery = `
@@ -25,7 +38,7 @@ export const postQuery = `
     ${postFields}
   },
   "morePosts": *[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc) | [0...4] {
-    ${postFields}
+    ${postPreviewFields}
   }
 }`;
 
@@ -38,3 +51,13 @@ export const postBySlugQuery = `
   ${postFields}
 }
 `;
+
+export const interviewsQuery = `
+*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) {
+  ${postPreviewFields}
+}`;
+
+export const stuffWeLikeQuery = `
+*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) {
+  ${postPreviewFields}
+}`;
