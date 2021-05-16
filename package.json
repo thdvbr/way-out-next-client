@@ -16,6 +16,7 @@
     "autoprefixer": "^10.2.5",
     "classnames": "^2.3.1",
     "date-fns": "^2.21.2",
+    "framer-motion": "^4.1.16",
     "next": "10.2.0",
     "next-sanity": "^0.1.12",
     "postcss": "^8.2.13",
