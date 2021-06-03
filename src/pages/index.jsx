@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Breakpoint, BreakpointProvider } from 'react-socks';
+import { setDefaultBreakpoints, Breakpoint, BreakpointProvider } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
@@ -11,6 +11,13 @@ import {
   Layout,
 } from '../components';
 
+setDefaultBreakpoints([
+  { xs: 0 },
+  { s: 500 },
+  { m: 768 },
+  { l: 1366 },
+  { xl: 1920 },
+]);
 
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
@@ -28,10 +35,11 @@ export const Index = ({ allPosts, preview }) => {
           </Head>
           <Container>
             <Toolbar />
-            <Breakpoint customQuery="(max-width: 575px)">
+            {/* TODO: WHATS THE BREAKPOINT HERE? */}
+            <Breakpoint xs only>
               <PreviewGrid posts={allPosts} />
             </Breakpoint>
-            <Breakpoint customQuery="(min-width: 576px)">
+            <Breakpoint s up>
               {heroPost && (
                 <HeroPost
                   title={heroPost.title}

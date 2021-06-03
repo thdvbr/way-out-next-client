@@ -5,7 +5,7 @@ import PreviewMain from './preview-main';
 const breakpointColumnsObj = {
   default: 4,
   768: 3,
-  576: 1
+  499: 1,
 };
 
 const PreviewGrid = ({ posts }) => (
