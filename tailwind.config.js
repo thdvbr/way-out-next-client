@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],
       'main-bold': ['Averia Serif Bold'],
+      'main-light-italic': ['Averia Serif Light Italic'],
       secondary: ['Agrandir Narrow'],
       title: ['OPTIArtCraft'],
       subtitle: ['Averia Serif Bold Italic'],
