@@ -21,7 +21,7 @@ const RelatedItem = ({
     </div>
     <div className="flex justify-between items-center">
       <span className="preview-main-deco">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <span className="font-secondary text-9 leading-snug tracking-wider" style={{color: '#8a7536' }}>
+      <span className="font-secondary text-9 leading-snug tracking-wider" style={{ color: '#8a7536' }}>
         {subCategory}
       </span>
     </div>
