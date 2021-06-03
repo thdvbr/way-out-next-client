@@ -10,6 +10,13 @@
       "plugin:react-hooks/recommended",
       "airbnb"
     ],
+    "rules": {
+        "arrow-body-style": "off",
+        "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+        "react/prop-types": 0,
+        "no-underscore-dangle" : 0
+    },
+
     "env": {
       "browser": true,
       "commonjs": true,

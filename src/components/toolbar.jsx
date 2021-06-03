@@ -2,8 +2,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-export const Toolbar = () => (
-  <div className="mx-28 flex justify-between typo-toolbar my-3">
+const Toolbar = () => (
+  <div className="flex justify-between font-title text-13.5 sm:text-15 lg:text-17 my-3">
     <div>search</div>
     <div>Stuff We Like</div>
     <div>Interviews</div>
@@ -13,3 +13,5 @@ export const Toolbar = () => (
     </Link>
   </div>
 );
+
+export default Toolbar;

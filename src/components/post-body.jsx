@@ -1,51 +1,63 @@
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { sanityConfig } from '../utils/config';
+import { urlForImage } from '../utils/sanity';
 
 const serializers = {
   types: {
-    block(props) {
-      switch (props.node.style) {
+    block: ({ node, children }) => {
+      switch (node.style) {
         case 'h1':
-          return <h1>{props.children}</h1>;
+          return <h1>{children}</h1>;
         case 'main':
           return (
-            <span
-              className="typo-post-main tracking-wider">
+            <span className="font-main text-17 leading-4 tracking-wide">
               <br />
-              {props.children}
+              {children}
               <br />
             </span>
           );
         case 'secondary':
           return (
-            <span
-              className="typo-post-question tracking-wider">
+            <span className="font-secondary text-18 leading-3 tracking-wider">
               <br />
-              {props.children}
+              {children}
               <br />
             </span>
           );
         case 'intro':
           return (
-            <span
-              className="typo-post-intro tracking-wider">
-              {props.children} 
+            <span className="font-title text-17 leading-3 tracking-wider">
+              {children}
               <br />
               <br />
               <br />
             </span>
           );
         default:
-          return <p>{props.children}</p>;
+          return <p>{children}</p>;
       }
+    },
+    image: ({ node }) => {
+      if (!node || !node.asset || !node.asset._ref) {
+        return null;
+      }
+      return (
+        <div className="flex justify-center">
+          <div className="flex-col">
+            <img alt="post img" src={urlForImage(node.asset).url()} />
+            {node.caption && <p>{node.caption}</p>}
+          </div>
+        </div>
+      );
     },
   },
 };
 const { projectId, dataset } = sanityConfig;
+
 export default function PostBody({ body }) {
   return (
-    <div className="mx-64">
+    <div className="mx-6">
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}
