@@ -3,8 +3,8 @@ import BlockContent from '@sanity/block-content-to-react';
 
 const ArtistLink = ({ artistLink }) => {
   return (
-    <div className="typo-post-artist-link text-center my-12 tracking-wider">
-      <p className="typo-post-question">More About the Artist</p>
+    <div className="font-agrandir text-center my-12 tracking-wider">
+      <p className="font-secondary text-17 font-bold">More About the Artist</p>
       <br />
       <BlockContent blocks={artistLink} />
     </div>

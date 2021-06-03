@@ -2,15 +2,51 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-      fontFamily: {
-        main : ['Averia Serif Regular', 'sans-serif'],
-        secondary : ['Agrandir'],
-        title : ['OPTIArtCraft'],
-        subtitle: ['Averia Serif Bold Italic']
-      },
+    fontFamily: {
+      main: ['Averia Serif Regular', 'sans-serif'],
+      'main-bold': ['Averia Serif Bold'],
+      secondary: ['Agrandir Narrow'],
+      title: ['OPTIArtCraft'],
+      subtitle: ['Averia Serif Bold Italic'],
+      agrandir: ['Agrandir'],
+    },
+    screens: {
+      sm: '500px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1366px',
+    },
+    fontSize: {
+      8.5: '0.531rem',
+      9: '0.563rem',
+      10: '0.625rem',
+      11: '0.688rem',
+      11.5: '0.719rem',
+      12: '0.75rem',
+      13: '0.813rem',
+      13.5: '0.844rem',
+      14: '0.875rem',
+      15: '0.938rem',
+      16: '1rem',
+      17: '1.063rem',
+      17.25: '1.078rem',
+      18: '1.125rem',
+      18.5: '1.156rem',
+      19: '1.188rem',
+      20: '1.25rem',
+      20.5: '1.281rem',
+      21: '1.313rem',
+      22: '1.375rem',
+      22.5: '1.406rem',
+      24: '1.5rem',
+      27: '1.688rem',
+      28: '1.75rem',
+      42: '2.625rem',
+      43: '2.688rem',
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};

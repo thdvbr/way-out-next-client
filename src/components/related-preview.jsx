@@ -9,27 +9,27 @@ const RelatedPreview = ({
   previewImage,
   slug,
 }) => (
-  <div className="flex flex-col">
-    <div className="mb-4">
+  <div className="px-2 w-52 md:w-64">
+    <div className="mb-0">
       <PreviewImage
         slug={slug}
         title={title}
         image={previewImage}
-        width="261"
-        height="249"
+        width="200"
+        height="200"
       />
     </div>
     <div className="flex justify-between items-center">
-      <hr className="related-article-deco" />
-      <p className="typo-related-preview-sub-category tracking-wider">
+      <span className="preview-main-deco">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span className="font-secondary text-9 leading-snug tracking-wider" style={{color: '#8a7536' }}>
         {subCategory}
-      </p>
+      </span>
     </div>
-    <div className="max-w-xs my-8">
+    <div className="max-w-xs my-3">
       <Link as={`/posts/${slug}`} href="/posts/[slug]">
-        <a className="hover:underline typo-related-preview-title">{title}</a>
+        <a className="hover:underline font-main-bold text-15 leading-none">{title}</a>
       </Link>
-      <p className="typo-related-preview-subtitle">{subtitle}</p>
+      <p className="font-main-light-italic text-15">{subtitle}</p>
     </div>
   </div>
 );

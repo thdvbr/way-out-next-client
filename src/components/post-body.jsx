@@ -11,7 +11,7 @@ const serializers = {
           return <h1>{children}</h1>;
         case 'main':
           return (
-            <span className="typo-post-main tracking-wider">
+            <span className="font-main text-17 leading-4 tracking-wide">
               <br />
               {children}
               <br />
@@ -19,7 +19,7 @@ const serializers = {
           );
         case 'secondary':
           return (
-            <span className="typo-post-question tracking-wider">
+            <span className="font-secondary text-18 leading-3 tracking-wider">
               <br />
               {children}
               <br />
@@ -27,7 +27,7 @@ const serializers = {
           );
         case 'intro':
           return (
-            <span className="typo-post-intro tracking-wider">
+            <span className="font-title text-17 leading-3 tracking-wider">
               {children}
               <br />
               <br />
@@ -57,7 +57,7 @@ const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body }) {
   return (
-    <div className="mx-64">
+    <div className="mx-6">
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}
