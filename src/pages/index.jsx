@@ -45,7 +45,6 @@ export const Index = ({ allPosts, preview }) => {
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
                   mainImage={heroPost.mainImage}
-                  mainCategory={heroPost.mainCategory}
                   slug={heroPost.slug}
                 />
               )}

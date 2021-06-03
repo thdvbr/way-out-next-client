@@ -3,7 +3,7 @@ import Link from 'next/link';
 import MainImage from './main-image';
 
 const HeroPost = ({
-  category, mainImage, title, subtitle, slug,
+  mainImage, title, subtitle, slug,
 }) => (
   <section>
     <div className="mb-8 md:mb-16">
