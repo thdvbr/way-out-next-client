@@ -41,12 +41,6 @@
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
 }
 
-.typo-toolbar {
-  font-family: OPTIArtCraft;
-  font-size: 1.0625rem;
-  line-height: 1.25rem;
-}
-
 .typo-main-preview-title {
   font-family: OPTIArtCraft;
   font-size: 1.3125rem;

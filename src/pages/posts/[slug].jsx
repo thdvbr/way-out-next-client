@@ -9,7 +9,7 @@ import {
 import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
-  PostHeader, PostBody, Toolbar, Layout, ArtistLink, RelatedGrid, SectionSeparator,
+  PostHeader, PostBody, Navbar, Layout, ArtistLink, RelatedGrid, SectionSeparator,
 } from '../../components';
 
 export const Post = ({ data = {}, preview }) => {
@@ -30,7 +30,7 @@ export const Post = ({ data = {}, preview }) => {
   return (
     <>
       <Layout preview={preview}>
-        <Toolbar />
+        <Navbar />
         <SectionSeparator />
         <article>
           <PostHeader

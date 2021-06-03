@@ -6,7 +6,7 @@ import { indexQuery } from '../utils/queries';
 import {
   Container,
   HeroPost,
-  Toolbar,
+  Navbar,
   MasonryGrid,
   Layout,
 } from '../components';
@@ -34,7 +34,7 @@ export const Index = ({ allPosts, preview }) => {
             />
           </Head>
           <Container>
-            <Toolbar />
+            <Navbar />
             {/* TODO: WHATS THE BREAKPOINT HERE? */}
             <Breakpoint xs only>
               <MasonryGrid posts={allPosts} />

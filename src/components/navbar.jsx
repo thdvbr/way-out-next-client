@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Toolbar = () => (
+const Navbar = () => (
   <div className="flex justify-between font-title text-13.5 sm:text-15 lg:text-17 my-3">
     <div>search</div>
     <div>Stuff We Like</div>
@@ -14,4 +14,4 @@ const Toolbar = () => (
   </div>
 );
 
-export default Toolbar;
+export default Navbar;
