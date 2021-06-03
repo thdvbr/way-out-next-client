@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import PreviewImage from './preview-image';
+import Thumbnail from './thumbnail';
 
-const RelatedPreview = ({
+const RelatedItem = ({
   title,
   subtitle,
   subCategory,
@@ -11,7 +11,7 @@ const RelatedPreview = ({
 }) => (
   <div className="px-2 w-52 md:w-64">
     <div className="mb-0">
-      <PreviewImage
+      <Thumbnail
         slug={slug}
         title={title}
         image={previewImage}
@@ -34,4 +34,4 @@ const RelatedPreview = ({
   </div>
 );
 
-export default RelatedPreview;
+export default RelatedItem;

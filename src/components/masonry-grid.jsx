@@ -1,6 +1,6 @@
 import React from 'react';
 import Masonry from 'react-masonry-css';
-import PreviewMain from './preview-main';
+import MasonryItem from './masonry-item';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -8,14 +8,14 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const PreviewGrid = ({ posts }) => (
+const MasonryGrid = ({ posts }) => (
   <Masonry
     breakpointCols={breakpointColumnsObj}
     className="my-masonry-grid"
     columnClassName="my-masonry-grid_column"
   >
     {posts.map((post) => (
-      <PreviewMain
+      <MasonryItem
         key={post.slug}
         title={post.title}
         subtitle={post.subtitle}
@@ -26,4 +26,4 @@ const PreviewGrid = ({ posts }) => (
   </Masonry>
 );
 
-export default PreviewGrid;
+export default MasonryGrid;

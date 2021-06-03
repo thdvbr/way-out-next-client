@@ -6,16 +6,16 @@ import Footer from './footer';
 import HeroPost from './hero-post';
 import Layout from './layout';
 import MainImage from './main-image';
-import PreviewGrid from './preview-grid';
+import MasonryGrid from './masonry-grid';
 import Meta from './meta';
 import PostBody from './post-body';
 import PostHeader from './post-header';
-import RelatedPreview from './related-preview';
+import RelatedItem from './related-item';
 import PostSubtitle from './post-subtitle';
 import PostTitle from './post-title';
-import PreviewImage from './preview-image';
-import PreviewMain from './preview-main';
-import RelatedPosts from './related-posts';
+import Thumbnail from './thumbnail';
+import MasonryItem from './masonry-item';
+import RelatedGrid from './related-grid';
 import SectionSeparator from './section-separator';
 import Toolbar from './toolbar';
 
@@ -28,16 +28,16 @@ export {
   HeroPost,
   Layout,
   MainImage,
-  PreviewGrid,
+  MasonryGrid,
   Meta,
   PostBody,
   PostHeader,
-  RelatedPreview,
+  RelatedItem,
   PostSubtitle,
   PostTitle,
-  PreviewImage,
-  PreviewMain,
-  RelatedPosts,
+  Thumbnail,
+  MasonryItem,
+  RelatedGrid,
   SectionSeparator,
   Toolbar,
 };

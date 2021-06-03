@@ -7,7 +7,7 @@ import {
   Container,
   HeroPost,
   Toolbar,
-  PreviewGrid,
+  MasonryGrid,
   Layout,
 } from '../components';
 
@@ -37,7 +37,7 @@ export const Index = ({ allPosts, preview }) => {
             <Toolbar />
             {/* TODO: WHATS THE BREAKPOINT HERE? */}
             <Breakpoint xs only>
-              <PreviewGrid posts={allPosts} />
+              <MasonryGrid posts={allPosts} />
             </Breakpoint>
             <Breakpoint s up>
               {heroPost && (
@@ -48,7 +48,7 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              {morePosts && <PreviewGrid posts={morePosts} />}
+              {morePosts && <MasonryGrid posts={morePosts} />}
             </Breakpoint>
           </Container>
         </Layout>

@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import PreviewImage from './preview-image';
+import Thumbnail from './thumbnail';
 
-const PreviewMain = ({
+const MasonryItem = ({
   title, subtitle, previewImage, slug,
 }) => (
   <div className="p-2 preview-block">
     <div className="mb-4">
-      <PreviewImage slug={slug} title={title} image={previewImage} />
+      <Thumbnail slug={slug} title={title} image={previewImage} />
     </div>
     <div className="max-w-xl md:max-w-xs my-6">
       <Link as={`/posts/${slug}`} href="/posts/[slug]">
@@ -24,4 +24,4 @@ const PreviewMain = ({
   </div>
 );
 
-export default PreviewMain;
+export default MasonryItem;

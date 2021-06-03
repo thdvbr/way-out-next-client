@@ -5,7 +5,7 @@ import { urlForImage } from '../utils/sanity';
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const PreviewImage = ({ title, slug, image: source, width, height }) => {
+const Thumbnail = ({ title, slug, image: source, width, height }) => {
   const image = source ? (
     <div
       className="thumbnail-border preview-img-purple"
@@ -35,4 +35,4 @@ const PreviewImage = ({ title, slug, image: source, width, height }) => {
   );
 };
 
-export default PreviewImage;
+export default Thumbnail;
