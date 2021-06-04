@@ -18,6 +18,7 @@ import MasonryItem from './masonry-item';
 import RelatedGrid from './related-grid';
 import SectionSeparator from './section-separator';
 import Navbar from './navbar';
+import HeroSvg from './hero-svg';
 
 export {
   AlertPreview,
@@ -40,4 +41,5 @@ export {
   RelatedGrid,
   SectionSeparator,
   Navbar,
+  HeroSvg,
 };
