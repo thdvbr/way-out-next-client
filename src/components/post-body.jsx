@@ -19,7 +19,7 @@ const serializers = {
           );
         case 'secondary':
           return (
-            <span className="font-secondary text-18 leading-3 tracking-wider">
+            <span className="font-secondary text-18 leading-3">
               <br />
               {children}
               <br />
