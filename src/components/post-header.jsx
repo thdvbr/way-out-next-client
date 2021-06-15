@@ -18,7 +18,7 @@ const PostHeader = ({
     <div className="mx-auto">
       <MainImage title={title} image={mainImage} />
     </div>
-    <div className="mx-14 my-8 text-center font-agrandir text-14 leading-5 tracking-wider">
+    <div className="mx-14 my-8 text-center font-agrandir text-19 leading-6 tracking-wider">
       <p className="underline">{subCategory}</p>
       <span>Published on: </span>
       <Date dateString={publishedAt} />
