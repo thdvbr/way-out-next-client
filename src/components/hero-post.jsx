@@ -4,7 +4,9 @@ import MainImage from './main-image';
 import HeroSvg from './hero-svg';
 
 // TODO: Fix sizing on hero svg and image
-const HeroPost = ({ mainImage, title, subtitle, slug }) => (
+const HeroPost = ({
+  mainImage, title, subtitle, slug,
+}) => (
   <section>
     <div className="mb-8 md:mb-16 flex border-2 border-black">
       <div className="max-h-full w-1/3 relative">
@@ -17,7 +19,8 @@ const HeroPost = ({ mainImage, title, subtitle, slug }) => (
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
           <span className="font-subtitle text-25 leading-7">
-            &nbsp;&nbsp;&nbsp;{subtitle}
+            &nbsp;&nbsp;&nbsp;
+            {subtitle}
           </span>
         </div>
         <HeroSvg />

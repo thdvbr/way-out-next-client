@@ -45,7 +45,7 @@ export const Post = ({ data = {}, preview }) => {
           <Breakpoint s up>
             <NavbarDesktop />
             <SectionSeparator />
-          </Breakpoint> 
+          </Breakpoint>
           <article>
             <PostHeader
               title={post.title}

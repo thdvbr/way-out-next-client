@@ -9,7 +9,8 @@ const HeroSvg = () => {
       viewBox="0 0 365 404"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <rect
         x="365"
         width="404"
@@ -22,7 +23,8 @@ const HeroSvg = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0"
             transform="translate(0.000300961 -0.47274) scale(0.000957096 0.00106197)"
