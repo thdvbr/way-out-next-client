@@ -3,11 +3,10 @@ import React from 'react';
 const HeroSvg = () => {
   return (
     <svg
-      reserveAspectRatio="none"
+      preserveAspectRatio="none"
+      width="100%"
+      height="100%"
       viewBox="0 0 365 404"
-      //   width="365"
-      //   height="404"
-      //   viewBox="0 0 365 404"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink">
