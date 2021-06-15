@@ -11,7 +11,7 @@ const serializers = {
           return <h1>{children}</h1>;
         case 'main':
           return (
-            <span className="font-main text-17 leading-4 tracking-wide">
+            <span className="font-main text-23 leading-7 tracking-wide">
               <br />
               {children}
               <br />
@@ -19,7 +19,7 @@ const serializers = {
           );
         case 'secondary':
           return (
-            <span className="font-secondary text-18 leading-3 tracking-wider">
+            <span className="font-secondary text-24 leading-6">
               <br />
               {children}
               <br />
@@ -27,7 +27,7 @@ const serializers = {
           );
         case 'intro':
           return (
-            <span className="font-title text-17 leading-3 tracking-wider">
+            <span className="font-title text-23 leading-7 tracking-wider">
               {children}
               <br />
               <br />

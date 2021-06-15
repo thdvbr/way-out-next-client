@@ -6,9 +6,10 @@ import { indexQuery } from '../utils/queries';
 import {
   Container,
   HeroPost,
-  Toolbar,
+  NavbarMobile,
   MasonryGrid,
   Layout,
+  NavbarDesktop,
 } from '../components';
 
 setDefaultBreakpoints([
@@ -34,12 +35,12 @@ export const Index = ({ allPosts, preview }) => {
             />
           </Head>
           <Container>
-            <Toolbar />
-            {/* TODO: WHATS THE BREAKPOINT HERE? */}
             <Breakpoint xs only>
+              <NavbarMobile />
               <MasonryGrid posts={allPosts} />
             </Breakpoint>
             <Breakpoint s up>
+              <NavbarDesktop />
               {heroPost && (
                 <HeroPost
                   title={heroPost.title}

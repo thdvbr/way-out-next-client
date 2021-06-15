@@ -21,15 +21,15 @@ const RelatedItem = ({
     </div>
     <div className="flex justify-between items-center">
       <span className="preview-main-deco">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <span className="font-secondary text-9 leading-snug tracking-wider" style={{ color: '#8a7536' }}>
+      <span className="font-secondary text-11 leading-snug tracking-wider" style={{ color: '#8a7536' }}>
         {subCategory}
       </span>
     </div>
     <div className="max-w-xs my-3">
       <Link as={`/posts/${slug}`} href="/posts/[slug]">
-        <a className="hover:underline font-main-bold text-15 leading-none">{title}</a>
+        <a className="hover:underline font-main-bold text-18 leading-snug">{title}</a>
       </Link>
-      <p className="font-main-light-italic text-15">{subtitle}</p>
+      <p className="font-main-light-italic text-18 leading-snug">{subtitle}</p>
     </div>
   </div>
 );

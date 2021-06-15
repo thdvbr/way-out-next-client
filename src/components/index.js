@@ -17,7 +17,9 @@ import Thumbnail from './thumbnail';
 import MasonryItem from './masonry-item';
 import RelatedGrid from './related-grid';
 import SectionSeparator from './section-separator';
-import Toolbar from './toolbar';
+import NavbarMobile from './navbar-mobile';
+import HeroSvg from './hero-svg';
+import NavbarDesktop from './navbar-desktop';
 
 export {
   AlertPreview,
@@ -39,5 +41,7 @@ export {
   MasonryItem,
   RelatedGrid,
   SectionSeparator,
-  Toolbar,
+  NavbarMobile,
+  HeroSvg,
+  NavbarDesktop,
 };

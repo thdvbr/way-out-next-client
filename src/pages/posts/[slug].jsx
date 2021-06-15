@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Breakpoint, BreakpointProvider } from 'react-socks';
 import ErrorPage from 'next/error';
 import {
   sanityClient,
@@ -9,7 +10,14 @@ import {
 import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
-  PostHeader, PostBody, Toolbar, Layout, ArtistLink, RelatedGrid, SectionSeparator,
+  PostHeader,
+  PostBody,
+  NavbarMobile,
+  NavbarDesktop,
+  Layout,
+  ArtistLink,
+  RelatedGrid,
+  SectionSeparator,
 } from '../../components';
 
 export const Post = ({ data = {}, preview }) => {
@@ -29,23 +37,30 @@ export const Post = ({ data = {}, preview }) => {
 
   return (
     <>
-      <Layout preview={preview}>
-        <Toolbar />
-        <SectionSeparator />
-        <article>
-          <PostHeader
-            title={post.title}
-            subtitle={post.subtitle}
-            mainImage={post.mainImage}
-            subCategory={post.subCategory}
-            publishedAt={post.publishedAt}
-            credits={post.credits}
-          />
-          <PostBody body={post.body} />
-          {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
-        </article>
-        {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
-      </Layout>
+      <BreakpointProvider>
+        <Layout preview={preview}>
+          <Breakpoint xs only>
+            <NavbarMobile />
+          </Breakpoint>
+          <Breakpoint s up>
+            <NavbarDesktop />
+            <SectionSeparator />
+          </Breakpoint>
+          <article>
+            <PostHeader
+              title={post.title}
+              subtitle={post.subtitle}
+              mainImage={post.mainImage}
+              subCategory={post.subCategory}
+              publishedAt={post.publishedAt}
+              credits={post.credits}
+            />
+            <PostBody body={post.body} />
+            {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+          </article>
+          {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
+        </Layout>
+      </BreakpointProvider>
     </>
   );
 };
