@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import {
   setDefaultBreakpoints,
   Breakpoint,
   BreakpointProvider,
 } from 'react-socks';
+import { useAppContext } from '../context/state';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
@@ -14,7 +15,6 @@ import {
   MasonryGrid,
   Layout,
   NavbarDesktop,
-  SearchBar,
 } from '../components';
 
 setDefaultBreakpoints([
@@ -26,21 +26,7 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, preview }) => {
-  const [query, setQuery] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
-
-  const searchEndpoint = (searchQuery) => `/api/search?q=${searchQuery}`;
-
-  const handleSearch = (query) => {
-    setQuery(query);
-    if (query.length) {
-      fetch(searchEndpoint(query))
-        .then((res) => res.json())
-        .then((res) => setSearchResult(res.results));
-    } else {
-      setSearchResult([]);
-    }
-  };
+  const { query, searchResult } = useAppContext();
 
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
@@ -60,12 +46,11 @@ export const Index = ({ allPosts, preview }) => {
             <Breakpoint xs only>
               <NavbarMobile />
               <MasonryGrid
-                posts={!searchResult.length ? allPosts : searchResult}
+                posts={!query.length ? allPosts : searchResult}
               />
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              <SearchBar onSearch={handleSearch} />
               {!query.length && heroPost && (
                 <HeroPost
                   title={heroPost.title}
