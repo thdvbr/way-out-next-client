@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { setDefaultBreakpoints, Breakpoint, BreakpointProvider } from 'react-socks';
+import {
+  setDefaultBreakpoints,
+  Breakpoint,
+  BreakpointProvider,
+} from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
@@ -10,6 +14,7 @@ import {
   MasonryGrid,
   Layout,
   NavbarDesktop,
+  SearchBar,
 } from '../components';
 
 setDefaultBreakpoints([
@@ -21,8 +26,25 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, preview }) => {
+  const [query, setQuery] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+
+  const searchEndpoint = (searchQuery) => `/api/search?q=${searchQuery}`;
+
+  const handleSearch = (query) => {
+    setQuery(query);
+    if (query.length) {
+      fetch(searchEndpoint(query))
+        .then((res) => res.json())
+        .then((res) => setSearchResult(res.results));
+    } else {
+      setSearchResult([]);
+    }
+  };
+
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
+
   return (
     <>
       <BreakpointProvider>
@@ -37,11 +59,14 @@ export const Index = ({ allPosts, preview }) => {
           <Container>
             <Breakpoint xs only>
               <NavbarMobile />
-              <MasonryGrid posts={allPosts} />
+              <MasonryGrid
+                posts={!searchResult.length ? allPosts : searchResult}
+              />
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              {heroPost && (
+              <SearchBar onSearch={handleSearch} />
+              {!query.length && heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -49,7 +74,11 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              {morePosts && <MasonryGrid posts={morePosts} />}
+              <MasonryGrid
+                posts={
+                  !query.length && morePosts ? morePosts : searchResult
+                }
+              />
             </Breakpoint>
           </Container>
         </Layout>
