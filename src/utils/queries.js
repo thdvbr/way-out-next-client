@@ -61,3 +61,8 @@ export const stuffWeLikeQuery = `
 *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) {
   ${postPreviewFields}
 }`;
+
+export const searchQuery = `
+*[_type == "post" && [title, subtitle, body[].children[].text ] match [$searchTerm]] {
+  ${postPreviewFields}
+}`;
