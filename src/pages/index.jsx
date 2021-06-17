@@ -5,7 +5,6 @@ import {
   Breakpoint,
   BreakpointProvider,
 } from 'react-socks';
-import { useAppContext } from '../context/state';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
@@ -26,8 +25,6 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, preview }) => {
-  const { query, searchResult } = useAppContext();
-
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
 
@@ -45,13 +42,11 @@ export const Index = ({ allPosts, preview }) => {
           <Container>
             <Breakpoint xs only>
               <NavbarMobile />
-              <MasonryGrid
-                posts={!query.length ? allPosts : searchResult}
-              />
+              <MasonryGrid posts={allPosts && allPosts} />
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              {!query.length && heroPost && (
+              {heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -59,11 +54,7 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              <MasonryGrid
-                posts={
-                  !query.length && morePosts ? morePosts : searchResult
-                }
-              />
+              <MasonryGrid posts={morePosts && morePosts} />
             </Breakpoint>
           </Container>
         </Layout>

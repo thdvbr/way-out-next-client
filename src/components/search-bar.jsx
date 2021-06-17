@@ -9,7 +9,7 @@ const SearchBar = ({ onSearch }) => {
       onSubmit={(e) => {
         e.preventDefault();
         onSearch(value);
-        router.push('/');
+        router.push('/search');
       }}>
       <input
         type="text"
