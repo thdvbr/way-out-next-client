@@ -20,6 +20,7 @@ import SectionSeparator from './section-separator';
 import NavbarMobile from './navbar-mobile';
 import HeroSvg from './hero-svg';
 import NavbarDesktop from './navbar-desktop';
+import SearchBar from './search-bar';
 
 export {
   AlertPreview,
@@ -44,4 +45,5 @@ export {
   NavbarMobile,
   HeroSvg,
   NavbarDesktop,
+  SearchBar,
 };
