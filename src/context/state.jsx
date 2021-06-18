@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
@@ -21,6 +23,7 @@ export function AppWrapper({ children }) {
         .then((res) => setSearchResult(res.results));
     } else {
       setSearchResult([]);
+      router.push('/');
     }
   };
   return (
