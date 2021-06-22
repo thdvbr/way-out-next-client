@@ -1,6 +1,8 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Breakpoint, BreakpointProvider } from 'react-socks';
+import { motion } from 'framer-motion';
 import ErrorPage from 'next/error';
 import {
   sanityClient,
@@ -19,6 +21,7 @@ import {
   RelatedGrid,
   SectionSeparator,
 } from '../../components';
+import { useAppContext } from '../../context/state';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -30,37 +33,53 @@ export const Post = ({ data = {}, preview }) => {
     initialData: data,
     enabled: preview && slug,
   });
+  const {
+    setQuery,
+    searchResult,
+    setSearchResult,
+    searchIsOpen,
+    setSearchIsOpen,
+  } = useAppContext();
+  useEffect(() => {
+    return searchIsOpen && setSearchIsOpen(false);
+  }, []);
+
+  // flushing state. do we need this?
+  useEffect(() => {
+    return searchResult && setQuery('') && setSearchResult([]);
+  }, []);
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
-
   return (
     <>
-      <BreakpointProvider>
-        <Layout preview={preview}>
-          <Breakpoint xs only>
-            <NavbarMobile />
-          </Breakpoint>
-          <Breakpoint s up>
-            <NavbarDesktop />
-            <SectionSeparator />
-          </Breakpoint>
-          <article>
-            <PostHeader
-              title={post.title}
-              subtitle={post.subtitle}
-              mainImage={post.mainImage}
-              subCategory={post.subCategory}
-              publishedAt={post.publishedAt}
-              credits={post.credits}
-            />
-            <PostBody body={post.body} />
-            {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
-          </article>
-          {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
-        </Layout>
-      </BreakpointProvider>
+      <motion.div initial="exit" animate="enter" exit="exit">
+        <BreakpointProvider>
+          <Layout preview={preview}>
+            <Breakpoint xs only>
+              <NavbarMobile />
+            </Breakpoint>
+            <Breakpoint s up>
+              <NavbarDesktop />
+              <SectionSeparator />
+            </Breakpoint>
+            <article>
+              <PostHeader
+                title={post.title}
+                subtitle={post.subtitle}
+                mainImage={post.mainImage}
+                subCategory={post.subCategory}
+                publishedAt={post.publishedAt}
+                credits={post.credits}
+              />
+              <PostBody body={post.body} />
+              {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+            </article>
+            {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
+          </Layout>
+        </BreakpointProvider>
+      </motion.div>
     </>
   );
 };
