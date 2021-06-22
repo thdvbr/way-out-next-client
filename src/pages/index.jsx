@@ -15,6 +15,7 @@ import {
   Layout,
   NavbarDesktop,
 } from '../components';
+import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
   { xs: 0 },
@@ -27,7 +28,8 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-
+  const { query, searchResult } = useAppContext();
+  // TODO: search result when theres no result?
   return (
     <>
       <BreakpointProvider>
@@ -42,11 +44,11 @@ export const Index = ({ allPosts, preview }) => {
           <Container>
             <Breakpoint xs only>
               <NavbarMobile />
-              <MasonryGrid posts={allPosts && allPosts} />
+              <MasonryGrid posts={!query ? allPosts : searchResult} />
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              {heroPost && (
+              {!query && heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -54,8 +56,9 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              <MasonryGrid posts={morePosts && morePosts} />
+              <MasonryGrid posts={!query ? morePosts : searchResult} />
             </Breakpoint>
+            {!searchResult.length && <span> no result </span>}
           </Container>
         </Layout>
       </BreakpointProvider>

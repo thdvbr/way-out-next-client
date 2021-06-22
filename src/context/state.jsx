@@ -29,9 +29,15 @@ export function AppWrapper({ children }) {
   return (
     <AppContext.Provider
       value={{
-        query, searchResult, handleSearch, searchIsOpen, handleSearchOpen
-      }}
-    >
+        query,
+        setQuery,
+        searchResult,
+        handleSearch,
+        searchIsOpen,
+        setSearchIsOpen,
+        handleSearchOpen,
+        setSearchResult,
+      }}>
       {children}
     </AppContext.Provider>
   );
