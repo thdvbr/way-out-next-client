@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useAppContext } from '../context/state';
 import SearchBar from './search-bar';
@@ -33,9 +34,9 @@ const NavbarDesktop = () => {
           </a>
         </Link>
       </nav>
-      <div className={`${searchIsOpen ? 'absolute' : 'hidden'}`}>
+      <motion.div className={`${searchIsOpen ? 'flex' : 'hidden'} w-full`}>
         <SearchBar onSearch={handleSearch} />
-      </div>
+      </motion.div>
     </div>
   );
 };
