@@ -6,12 +6,15 @@ const SearchBar = ({ onSearch }) => {
   const [value, setValue] = useState('');
   return (
     <form
+      className="w-full"
       onSubmit={(e) => {
         e.preventDefault();
         onSearch(value);
-        router.push('/search');
+        router.push('/');
       }}>
       <input
+        style={{ backgroundColor: 'yellow' }}
+        className="py-3.5 border-black border-2 font-main w-full text-center rounded-xl sm:rounded-none sm:text-left"
         type="text"
         placeholder="Search"
         value={value}
