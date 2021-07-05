@@ -8,6 +8,8 @@ export function AppWrapper({ children }) {
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
@@ -18,10 +20,18 @@ export function AppWrapper({ children }) {
   const handleSearch = (query) => {
     setQuery(query);
     if (query.length) {
+      setIsLoading(true);
+      setErrorMsg('');
       fetch(searchEndpoint(query))
         .then((res) => res.json())
-        .then((res) => setSearchResult(res.results));
+        .then((res) => {
+          setSearchResult(res.results);
+          res.results.length === 0 ? setErrorMsg('Not Found') : setErrorMsg('');
+          setIsLoading(false);
+        })
     } else {
+      setIsLoading(false);
+      setErrorMsg('');
       setSearchResult([]);
       router.push('/');
     }
@@ -37,6 +47,8 @@ export function AppWrapper({ children }) {
         setSearchIsOpen,
         handleSearchOpen,
         setSearchResult,
+        isLoading,
+        errorMsg
       }}>
       {children}
     </AppContext.Provider>
