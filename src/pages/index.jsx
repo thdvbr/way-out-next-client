@@ -1,6 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import { setDefaultBreakpoints, Breakpoint, BreakpointProvider } from 'react-socks';
+import {
+  setDefaultBreakpoints,
+  Breakpoint,
+  BreakpointProvider,
+} from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
@@ -11,6 +15,7 @@ import {
   Layout,
   NavbarDesktop,
 } from '../components';
+import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
   { xs: 0 },
@@ -23,6 +28,9 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
+  const { query, searchResult, isLoading, errorMsg } = useAppContext();
+  // TODO: search result when theres no result? 
+  // needs to wait until searchResult is returned.
   return (
     <>
       <BreakpointProvider>
@@ -37,11 +45,11 @@ export const Index = ({ allPosts, preview }) => {
           <Container>
             <Breakpoint xs only>
               <NavbarMobile />
-              <MasonryGrid posts={allPosts} />
+              <MasonryGrid posts={!query ? allPosts : searchResult} />
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              {heroPost && (
+              {!query && heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -49,8 +57,10 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              {morePosts && <MasonryGrid posts={morePosts} />}
+              <MasonryGrid posts={!query ? morePosts : searchResult} />
             </Breakpoint>
+            {isLoading && <span>... Loading</span> }
+            {errorMsg && <span>{errorMsg}</span>}
           </Container>
         </Layout>
       </BreakpointProvider>
