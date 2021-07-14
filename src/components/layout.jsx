@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Meta from './meta';
 
 const variants = {
-  opened: { x: -645 },
+  opened: { x: "-17vw" },
   closed: { x: 0}
 }
 export default function Layout({ preview, children }) {
@@ -17,7 +17,7 @@ export default function Layout({ preview, children }) {
       <div className="min-h-screen">
         {preview && <AlertPreview />}
         <motion.div initial={false} variants={variants} animate={infoIsOpen ? 'opened' : 'closed'} transition={{ type: "spring", duration: 1 }}>
-          <main style={{ "left": infoIsOpen && "-645px"}} className="relative w-screen inset-0 mx-5 sm:mx-8 md:mx-10 lg:mx-20 xl:mx-24 z-0">{children}</main>
+          <main className="w-screen inset-0 z-0">{children}</main>
           </motion.div>
       </div>
       <Footer />
