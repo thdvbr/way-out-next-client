@@ -14,6 +14,7 @@ import {
   MasonryGrid,
   Layout,
   NavbarDesktop,
+  InfoDrawer,
 } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -28,7 +29,7 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { query, searchResult, isLoading, errorMsg } = useAppContext();
+  const { query, searchResult, isLoading, errorMsg, infoIsOpen } = useAppContext();
   // TODO: search result when theres no result? 
   // needs to wait until searchResult is returned.
   return (
@@ -49,6 +50,7 @@ export const Index = ({ allPosts, preview }) => {
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
+              <InfoDrawer />
               {!query && heroPost && (
                 <HeroPost
                   title={heroPost.title}
