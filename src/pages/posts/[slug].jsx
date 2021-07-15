@@ -20,7 +20,8 @@ import {
   ArtistLink,
   RelatedGrid,
   SectionSeparator,
-  InfoDrawerWithoutSSR
+  InfoDrawerWithoutSSR,
+  Container,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 
@@ -58,27 +59,29 @@ export const Post = ({ data = {}, preview }) => {
       <motion.div initial="exit" animate="enter" exit="exit">
         <BreakpointProvider>
           <Layout preview={preview}>
-            <Breakpoint xs only>
-              <NavbarMobile />
-            </Breakpoint>
-            <Breakpoint s up>
-              <NavbarDesktop />
-              <InfoDrawerWithoutSSR />
-              <SectionSeparator />
-            </Breakpoint>
-            <article>
-              <PostHeader
-                title={post.title}
-                subtitle={post.subtitle}
-                mainImage={post.mainImage}
-                subCategory={post.subCategory}
-                publishedAt={post.publishedAt}
-                credits={post.credits}
-              />
-              <PostBody body={post.body} />
-              {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
-            </article>
-            {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
+            <Container>
+              <Breakpoint xs only>
+                <NavbarMobile />
+              </Breakpoint>
+              <Breakpoint s up>
+                <NavbarDesktop />
+                <InfoDrawerWithoutSSR />
+                <SectionSeparator />
+              </Breakpoint>
+              <article>
+                <PostHeader
+                  title={post.title}
+                  subtitle={post.subtitle}
+                  mainImage={post.mainImage}
+                  subCategory={post.subCategory}
+                  publishedAt={post.publishedAt}
+                  credits={post.credits}
+                />
+                <PostBody body={post.body} />
+                {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+              </article>
+              {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
+            </Container>
           </Layout>
         </BreakpointProvider>
       </motion.div>
