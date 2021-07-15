@@ -8,17 +8,17 @@ const HeroPost = ({
   mainImage, title, subtitle, slug,
 }) => (
   <section>
-    <div className="mb-8 md:mb-16 flex border-2 border-black">
+    <div className="mb-8 md:mb-6 flex border-2 border-black">
       <div className="max-h-full w-1/3 relative">
         <div className="z-10 absolute text-white bottom-0 pb-8 px-8 ">
           <Link as={`/posts/${slug}`} href="/posts/[slug]">
-            <a className="underline font-title text-30 leading-9">{title}</a>
+            <a className="underline font-title text-30 xl:text-40 leading-9 xl:leading-tight ">{title}</a>
           </Link>
           <br />
           <span className="hero-deco">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
-          <span className="font-subtitle text-25 leading-7">
+          <span className="font-subtitle text-25 leading-7 xl:text-33 xl:leading-tight">
             &nbsp;&nbsp;&nbsp;
             {subtitle}
           </span>

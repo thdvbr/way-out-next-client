@@ -15,6 +15,7 @@ import {
   Layout,
   NavbarDesktop,
   InfoDrawerWithoutSSR,
+  SectionSeparator,
 } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -50,6 +51,7 @@ export const Index = ({ allPosts, preview }) => {
               <MasonryGrid posts={!query ? allPosts : searchResult} />
             </Breakpoint>
             <Breakpoint s up>
+              <SectionSeparator />
               <NavbarDesktop />
               <InfoDrawerWithoutSSR />
               {!query && heroPost && (
