@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdClose } from 'react-icons/md';
+// import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
-import InfoSvg from './info-svg';
 
 // TODO: Use text from CMS;
 // TODO: Sign up form?
 
+const useCustomMouse = () => {
+  const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+
+  useEffect(() => {
+    const handle = (e) => {
+      setMousePosition({ x: e.layerX, y: e.layerY })
+    }
+    window.addEventListener("mousemove", handle)
+    return () => window.removeEventListener("mousemove", handle)
+  });
+
+  return mousePosition;
+}
+
 const InfoDrawer = () => {
   const { infoIsOpen, setInfoIsOpen } = useAppContext();
+  const { x, y } = useCustomMouse();
+  // const target = useRef(null);
+  // const mouse = useMouse(target, {
+  //     fps: 60,
+  //     enterDelay: 100,
+  //     leaveDelay: 100,
+  // });
 
   return (
     <AnimatePresence>
@@ -25,8 +46,8 @@ const InfoDrawer = () => {
             transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
             className="fixed info-box top-0 w-full h-screen z-10"
             style={{ right: '-17vw' }}>
-            <InfoSvg />
-            <div className="absolute z-20 top-0 p-5">
+            <div className="absolute z-20 top-0 p-5 radial-gradient" style={{ background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`}}>
+              {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-0 right-0 p-3 ">
                 <button
                   type="button"
@@ -37,7 +58,7 @@ const InfoDrawer = () => {
               <div className="p-10">
                 <h1 className="lg:text-22.5 font-title">About</h1>
                 <br />
-                <div className="pr-32">
+                <div className="pr-20">
                   <h2 className="lg-text-19 font-secondary">
                     Way Out is an online magazine, initiated with the intention
                     of tracking an ever expanding network of artists.

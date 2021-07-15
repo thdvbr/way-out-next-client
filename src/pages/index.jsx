@@ -14,9 +14,10 @@ import {
   MasonryGrid,
   Layout,
   NavbarDesktop,
-  InfoDrawer,
+  InfoDrawerWithoutSSR,
 } from '../components';
 import { useAppContext } from '../context/state';
+
 
 setDefaultBreakpoints([
   { xs: 0 },
@@ -50,7 +51,7 @@ export const Index = ({ allPosts, preview }) => {
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              <InfoDrawer />
+              <InfoDrawerWithoutSSR />
               {!query && heroPost && (
                 <HeroPost
                   title={heroPost.title}

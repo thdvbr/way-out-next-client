@@ -20,7 +20,7 @@ import {
   ArtistLink,
   RelatedGrid,
   SectionSeparator,
-  InfoDrawer
+  InfoDrawerWithoutSSR
 } from '../../components';
 import { useAppContext } from '../../context/state';
 
@@ -63,7 +63,7 @@ export const Post = ({ data = {}, preview }) => {
             </Breakpoint>
             <Breakpoint s up>
               <NavbarDesktop />
-              <InfoDrawer />
+              <InfoDrawerWithoutSSR />
               <SectionSeparator />
             </Breakpoint>
             <article>
