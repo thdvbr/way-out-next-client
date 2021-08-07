@@ -77,7 +77,9 @@ export const Post = ({ data = {}, preview }) => {
                   publishedAt={post.publishedAt}
                   credits={post.credits}
                 />
-                <PostBody body={post.body} />
+                <div className="xl:px-60">
+                  <PostBody body={post.body} />
+                  </div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
               {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
