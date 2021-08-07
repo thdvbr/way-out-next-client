@@ -27,7 +27,7 @@ export function AppWrapper({ children }) {
         .then((res) => res.json())
         .then((res) => {
           setSearchResult(res.results);
-          res.results.length === 0 ? setErrorMsg('Not Found') : setErrorMsg('');
+          res.results.length === 0 ? setErrorMsg('Nothing Found') : setErrorMsg('');
           setIsLoading(false);
         })
     } else {

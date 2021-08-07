@@ -64,8 +64,10 @@ export const Index = ({ allPosts, preview }) => {
               )}
               <MasonryGrid posts={!query ? morePosts : searchResult} />
             </Breakpoint>
+            <div className="font-title flex justify-center text-24">
             {isLoading && <span>... Loading</span> }
             {errorMsg && <span>{errorMsg}</span>}
+            </div>
           </Container>
         </Layout>
       </BreakpointProvider>
