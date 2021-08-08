@@ -41,6 +41,10 @@
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
@@ -115,7 +119,6 @@
   box-sizing: border-box;
   border-radius: 0px;
   max-height: 975.57px;
-  max-width: 30vw;
 }
 
 .radial-gradient {
