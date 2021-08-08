@@ -6,7 +6,13 @@ import SearchBar from './search-bar';
 import { useAppContext } from '../context/state';
 
 const NavbarMobile = () => {
-  const { handleSearch, handleSearchOpen, searchIsOpen } = useAppContext();
+  const {
+    handleSearch,
+    handleSearchOpen,
+    searchIsOpen,
+    infoIsOpen,
+    setInfoIsOpen,
+  } = useAppContext();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -20,9 +26,22 @@ const NavbarMobile = () => {
           <span className="self-center">Search</span>
         </button>
         <div className="self-center flex justify-center w-7/12">
-          {!searchIsOpen ? <Logo /> : <motion.div animate={{ x: 0 }} initial={{ x: -30 }} transition={{ ease: 'easeOut', duration: 0.7 }} className="w-full"><SearchBar onSearch={handleSearch} /></motion.div>}
-          </div>
-        <button type="button" onClick={handleClick} className="sm:hidden pb-8 pt-4">
+          {!searchIsOpen ? (
+            <Logo />
+          ) : (
+            <motion.div
+              animate={{ x: 0 }}
+              initial={{ x: -30 }}
+              transition={{ ease: 'easeOut', duration: 0.7 }}
+              className="w-full">
+              <SearchBar onSearch={handleSearch} />
+            </motion.div>
+          )}
+        </div>
+        <button
+          type="button"
+          onClick={handleClick}
+          className="sm:hidden pb-8 pt-4">
           <span>Menu</span>
         </button>
         <div
@@ -45,11 +64,12 @@ const NavbarMobile = () => {
                 Radio
               </a>
             </Link>
-            <Link href="/">
-              <a href="/info" className="py-4">
-                Info
-              </a>
-            </Link>
+            <button
+              className="py-4 text-left"
+              type="button"
+              onClick={() => setInfoIsOpen(!infoIsOpen)}>
+              <span>Info</span>
+            </button>
           </div>
         </div>
       </nav>

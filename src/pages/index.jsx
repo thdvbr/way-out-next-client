@@ -48,6 +48,7 @@ export const Index = ({ allPosts, preview }) => {
           <Container>
             <Breakpoint xs only>
               <NavbarMobile />
+              <InfoDrawerWithoutSSR />
               <MasonryGrid posts={!query ? allPosts : searchResult} />
             </Breakpoint>
             <Breakpoint s up>

@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
@@ -12,16 +13,17 @@ const useCustomMouse = () => {
 
   useEffect(() => {
     const handle = (e) => {
-      setMousePosition({ x: e.layerX, y: e.layerY })
-    }
-    window.addEventListener("mousemove", handle)
-    return () => window.removeEventListener("mousemove", handle)
+      setMousePosition({ x: e.layerX, y: e.layerY });
+    };
+    window.addEventListener('mousemove', handle);
+    return () => window.removeEventListener('mousemove', handle);
   });
 
   return mousePosition;
-}
+};
 
 const InfoDrawer = () => {
+  const width = useCurrentWidth();
   const { infoIsOpen, setInfoIsOpen } = useAppContext();
   const { x, y } = useCustomMouse();
   // const target = useRef(null);
@@ -43,10 +45,18 @@ const InfoDrawer = () => {
             exit={{
               x: '100%',
             }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-            className="fixed info-box top-0 w-full h-screen z-10"
-            style={{ right: '-17vw' }}>
-            <div className="absolute z-20 top-0 p-5 radial-gradient" style={{ background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`}}>
+            transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
+            className="fixed info-box top-0 w-full h-screen z-30"
+            style={
+              width > 500
+                ? { right: '-17vw', maxWidth: '30vw' }
+                : { right: 0, maxWidth: '100vw' }
+            }>
+            <div
+              className="absolute top-0 p-5 radial-gradient"
+              style={{
+                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
+              }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-0 right-0 p-3 ">
                 <button
@@ -56,22 +66,26 @@ const InfoDrawer = () => {
                 </button>
               </div>
               <div className="p-10">
-                <h1 className="lg:text-22.5 font-title">About</h1>
+                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
+                  About
+                </h1>
                 <br />
                 <div className="pr-20">
-                  <h2 className="lg-text-19 font-secondary">
+                  <h2 className="leading-none lg:text-19 font-secondary">
                     Way Out is an online magazine, initiated with the intention
                     of tracking an ever expanding network of artists.
                   </h2>
                   <br />
-                  <h2 className="lg-text-19 font-secondary">
+                  <h2 className="leading-none lg:text-19 font-secondary">
                     We believe thatconversation is the purest form of
                     communication and best vehicle for the transfer of
                     information.
                   </h2>
                   <br />
                 </div>
-                <h1 className="lg:text-22.5 font-title">Staff</h1>
+                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
+                  Staff
+                </h1>
                 <br />
                 <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
                   <div>staff1</div>
@@ -93,13 +107,17 @@ const InfoDrawer = () => {
                   <div>staff17</div>
                 </div>
                 <br />
-                <h1 className="lg:text-22.5 font-title">Contact</h1>
+                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
+                  Contact
+                </h1>
                 <br />
                 <h2 className="lg:text-16 font-agrandir">
                   marissa@wayoutmagazine.com
                 </h2>
                 <br />
-                <h1 className="lg:text-22.5 font-title">Join</h1>
+                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
+                  Join
+                </h1>
               </div>
             </div>
           </motion.div>
