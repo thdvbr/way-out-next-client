@@ -10,6 +10,7 @@ export function AppWrapper({ children }) {
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [infoIsOpen, setInfoIsOpen] = useState(false);
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
@@ -26,7 +27,7 @@ export function AppWrapper({ children }) {
         .then((res) => res.json())
         .then((res) => {
           setSearchResult(res.results);
-          res.results.length === 0 ? setErrorMsg('Not Found') : setErrorMsg('');
+          res.results.length === 0 ? setErrorMsg('Nothing Found') : setErrorMsg('');
           setIsLoading(false);
         })
     } else {
@@ -36,6 +37,7 @@ export function AppWrapper({ children }) {
       router.push('/');
     }
   };
+
   return (
     <AppContext.Provider
       value={{
@@ -48,7 +50,9 @@ export function AppWrapper({ children }) {
         handleSearchOpen,
         setSearchResult,
         isLoading,
-        errorMsg
+        errorMsg,
+        infoIsOpen,
+        setInfoIsOpen,
       }}>
       {children}
     </AppContext.Provider>

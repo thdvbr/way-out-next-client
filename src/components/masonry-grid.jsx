@@ -32,7 +32,7 @@ const MasonryGrid = ({ posts }) => (
     variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
     <Masonry
       breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid"
+      className="my-masonry-grid mt-4"
       columnClassName="my-masonry-grid_column">
       {posts.map((post) => (
         <motion.div key={post.slug} variants={postVariants}>

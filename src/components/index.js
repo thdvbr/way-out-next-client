@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import AlertPreview from './alert-preview';
 import ArtistLink from './artist-link';
 import Container from './container';
@@ -21,6 +22,11 @@ import NavbarMobile from './navbar-mobile';
 import HeroSvg from './hero-svg';
 import NavbarDesktop from './navbar-desktop';
 import SearchBar from './search-bar';
+
+const InfoDrawerWithoutSSR = dynamic(
+  () => import('./info-drawer'),
+  { ssr: false }
+);
 
 export {
   AlertPreview,
@@ -46,4 +52,5 @@ export {
   HeroSvg,
   NavbarDesktop,
   SearchBar,
+  InfoDrawerWithoutSSR,
 };

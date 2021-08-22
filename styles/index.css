@@ -41,106 +41,8 @@
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
 }
 
-.typo-main-preview-title {
-  font-family: OPTIArtCraft;
-  font-size: 1.3125rem;
-  line-height: 1.5625rem;
-  letter-spacing: 1%;
-}
-
-.typo-main-preview-title-mobile {
-  font-family: OPTIArtCraft;
-  font-size: 1.406rem;
-  line-height: 1.719rem;
-  letter-spacing: 1%;
-}
-
-.typo-main-preview-subtitle-mobile {
-  font-family: Averia Serif Regular;
-  font-style: italic;
-  font-size: 1.406rem;
-  line-height: 1.75rem;
-  color: #515151;
-}
-
-.typo-main-preview-subtitle {
-  font-family: Averia Serif Regular;
-  font-style: italic;
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-  color: #515151;
-}
-
-.typo-related-preview-title {
-  font-family: Averia Serif Bold;
-  font-size: 1.406rem;
-  line-height: 1.625rem;
-}
-
-.typo-related-preview-subtitle {
-  font-family: Averia Serif Light Italic;
-  font-size: 1.156rem;
-  line-height: 1.3125rem;
-}
-
-.typo-related-preview-sub-category {
-  font-family: Agrandir Narrow;
-  font-size: 0.85rem;
-  line-height: 0.86rem;
-  color: #8a7536;
-}
-
-.typo-post-title,
-.typo-more-to-read,
-.typo-section-title {
-  font-family: OPTIArtCraft;
-  font-size: 2.625rem;
-  line-height: 3.125rem;
-}
-
-.typo-post-subtitle {
-  font-family: Averia Serif Bold Italic;
-  font-size: 2.688rem;
-  line-height: 3.313rem;
-}
-
-.typo-post-header,
-.typo-post-artist-link {
-  font-family: Agrandir;
-  font-size: 1.063rem;
-  line-height: 1.063rem;
-}
-
-.typo-post-intro {
-  font-family: OPTIArtCraft;
-  font-size: 1.375rem;
-  line-height: 1.625rem;
-}
-
-.typo-interviewer {
-  font-family: Agrandir Narrow;
-  font-style: bold;
-  font-size: 1.25rem;
-  line-height: 1.25rem;
-}
-
-.typo-post-question {
-  font-family: Agrandir Narrow;
-  font-size: 1.313rem;
-  line-height: 1.313rem;
-}
-
-.typo-post-main {
-  font-family: Averia Serif Regular;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-}
-
-.typo-share-link {
-  font-family: OPTIArtCraft;
-  text-decoration: underline;
-  font-size: 1rem;
-  line-height: 1.188rem;
+body {
+  overflow-x: hidden;
 }
 
 .my-masonry-grid {
@@ -193,6 +95,14 @@
   }
 }
 
+.related-preview-block:hover {
+  background: #ffff00;
+  box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
+  transform: rotate(2deg);
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+}
+
 .width-200 {
   width: 200px;
 }
@@ -202,4 +112,62 @@
   border: 1.5px solid #000000;
   box-sizing: border-box;
   background: #ffffff;
+}
+
+.info-box {
+  /* background: linear-gradient(180deg, #c4c4c4 24.78%, #ffff00 100%); */
+  box-sizing: border-box;
+  border-radius: 0px;
+  max-height: 975.57px;
+}
+
+.radial-gradient {
+  border: 2px solid #000000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #fffe54;
+  background: #e9e9e0;
+}
+
+::selection {
+  color: #fffe54;
+  background: #e9e9e0;
+}
+
+.interviews:hover {
+  color: #4045a8;
+}
+
+.stuff-we-like:hover {
+  color: #8a7536;
+}
+
+.radio:hover {
+  color: #d10000;
+}
+
+.info:hover {
+  color: #93bcd2;
+}
+
+.svg-scale {
+  width: 100%;
+  height: auto;
+}
+
+.search-icon {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 1920px) {
+  .Search-icon {
+    font-size: 26px;
+  }
 }

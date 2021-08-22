@@ -11,7 +11,7 @@ const serializers = {
           return <h1>{children}</h1>;
         case 'main':
           return (
-            <span className="font-main text-23 leading-7 tracking-wide">
+            <span className="font-main-bold leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
               <br />
               {children}
               <br />
@@ -19,7 +19,7 @@ const serializers = {
           );
         case 'secondary':
           return (
-            <span className="font-secondary text-24 leading-6">
+            <span className="font-secondary text-18 leading-none sm:text-24 xl:text-28 lg:text-21 sm:leading-6">
               <br />
               {children}
               <br />
@@ -27,7 +27,7 @@ const serializers = {
           );
         case 'intro':
           return (
-            <span className="font-title text-23 leading-7 tracking-wider">
+            <span className="font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-83">
               {children}
               <br />
               <br />
@@ -46,7 +46,7 @@ const serializers = {
         <div className="flex justify-center">
           <div className="flex-col">
             <img alt="post img" src={urlForImage(node.asset).url()} />
-            {node.caption && <p>{node.caption}</p>}
+            {node.caption && <p className="font-secondary xl:text-16">{node.caption}</p>}
           </div>
         </div>
       );
