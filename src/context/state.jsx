@@ -35,6 +35,7 @@ export function AppWrapper({ children }) {
       setErrorMsg('');
       setSearchResult([]);
       router.push('/');
+      setSearchIsOpen(false);
     }
   };
 
