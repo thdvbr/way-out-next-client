@@ -1,23 +1,32 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { stuffWeLikeQuery } from '../utils/queries';
-import {
-  Container,
-  MasonryGrid,
-  Layout,
-} from '../components';
+import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
-
 export const StuffWeLike = ({ allPosts, preview }) => {
-  const { query, searchResult } = useAppContext();
+  const {
+    query,
+    searchResult,
+    searchIsOpen,
+    setSearchIsOpen,
+    setQuery,
+    setSearchResult,
+  } = useAppContext();
+
+  useEffect(() => {
+    return searchIsOpen && setSearchIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    return searchResult && setQuery('') && setSearchResult([]);
+  }, []);
   return (
     <>
       <Layout preview={preview}>
         <Container>
-          {allPosts && (
-            <MasonryGrid posts={!query ? allPosts : searchResult} />
-          )}
+          {allPosts && <MasonryGrid posts={!query ? allPosts : searchResult} />}
         </Container>
       </Layout>
     </>
