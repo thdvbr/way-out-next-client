@@ -51,17 +51,20 @@ const InfoDrawer = () => {
               width > 500
                 ? { right: '-17vw', maxWidth: '30vw' }
                 : { right: 0, maxWidth: '100vw' }
-            }>
+            }
+          >
             <div
               className="absolute top-0 p-5 radial-gradient"
               style={{
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
-              }}>
+              }}
+            >
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-0 right-0 p-3 ">
                 <button
                   type="button"
-                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}>
+                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}
+                >
                   <MdClose size={32} />
                 </button>
               </div>

@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import Thumbnail from './thumbnail';
 
-const RelatedItem = ({ title, subtitle, subCategory, previewImage, slug }) => {
+const RelatedItem = ({
+  title, subtitle, subCategory, previewImage, slug,
+}) => {
   return (
     <div className="px-2 pt-2 pb-5 w-48 md:w-64 xl:w-96 related-preview-block overflow-auto">
       <div className="mb-0">
@@ -20,7 +22,8 @@ const RelatedItem = ({ title, subtitle, subCategory, previewImage, slug }) => {
         </span>
         <span
           className="font-secondary text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-9 leading-snug"
-          style={{ color: '#8a7536' }}>
+          style={{ color: '#8a7536' }}
+        >
           {subCategory}
         </span>
       </div>

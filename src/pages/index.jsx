@@ -19,7 +19,6 @@ import {
 } from '../components';
 import { useAppContext } from '../context/state';
 
-
 setDefaultBreakpoints([
   { xs: 0 },
   { s: 500 },
@@ -31,8 +30,10 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { query, searchResult, isLoading, errorMsg, infoIsOpen } = useAppContext();
-  // TODO: search result when theres no result? 
+  const {
+    query, searchResult, isLoading, errorMsg, infoIsOpen,
+  } = useAppContext();
+  // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
@@ -66,8 +67,8 @@ export const Index = ({ allPosts, preview }) => {
               <MasonryGrid posts={!query ? morePosts : searchResult} />
             </Breakpoint>
             <div className="font-title flex justify-center text-24">
-            {isLoading && <span>... Loading</span> }
-            {errorMsg && <span>{errorMsg}</span>}
+              {isLoading && <span>... Loading</span> }
+              {errorMsg && <span>{errorMsg}</span>}
             </div>
           </Container>
         </Layout>

@@ -2,14 +2,15 @@ import React from 'react';
 
 const InfoSvg = () => {
   return (
-      <svg
+    <svg
       preserveAspectRatio="none"
       width="100%"
       height="100%"
       viewBox="0 0 646 976"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <rect
         x="1.22868"
         y="1.22868"
@@ -18,13 +19,14 @@ const InfoSvg = () => {
         fill="url(#pattern1)"
         stroke="black"
         strokeWidth="2.45736"
-          />
+      />
       <defs>
         <pattern
           id="pattern1"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image1"
             transform="translate(-0.00573251) scale(0.0019266 0.00127389)"

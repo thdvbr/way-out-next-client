@@ -10,9 +10,9 @@ const HeroPost = ({
   <section>
     <div className="mb-8 md:mb-6 flex border-2 border-black max-h-full">
       <div className="max-h-full w-1/3 relative">
-      <div className="z-0">
+        <div className="z-0">
           <HeroSvg />
-          </div>
+        </div>
         <div className="z-10 absolute text-white bottom-0 pb-8 px-8 ">
           <Link as={`/posts/${slug}`} href="/posts/[slug]">
             <a className="underline font-title text-30 xl:text-40 leading-9 xl:leading-tight ">{title}</a>

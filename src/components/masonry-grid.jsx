@@ -29,11 +29,13 @@ const MasonryGrid = ({ posts }) => (
     initial="initial"
     animate="enter"
     exit="exit"
-    variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
+    variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+  >
     <Masonry
       breakpointCols={breakpointColumnsObj}
       className="my-masonry-grid mt-4"
-      columnClassName="my-masonry-grid_column">
+      columnClassName="my-masonry-grid_column"
+    >
       {posts.map((post) => (
         <motion.div key={post.slug} variants={postVariants}>
           <MasonryItem

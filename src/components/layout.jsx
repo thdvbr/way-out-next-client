@@ -21,7 +21,8 @@ export default function Layout({ preview, children }) {
           initial={false}
           variants={variants}
           animate={infoIsOpen ? 'opened' : 'closed'}
-          transition={{ type: 'spring', duration: 1 }}>
+          transition={{ type: 'spring', duration: 1 }}
+        >
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>

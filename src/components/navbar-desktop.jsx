@@ -6,7 +6,9 @@ import { useAppContext } from '../context/state';
 import SearchBar from './search-bar';
 
 const NavbarDesktop = () => {
-  const { handleSearch, handleSearchOpen, searchIsOpen, infoIsOpen, setInfoIsOpen } = useAppContext();
+  const {
+    handleSearch, handleSearchOpen, searchIsOpen, infoIsOpen, setInfoIsOpen,
+  } = useAppContext();
 
   return (
     <div className="sticky top-0 z-20 font-title sm:text-15 lg:text-17 xl:text-22.5">
@@ -30,7 +32,7 @@ const NavbarDesktop = () => {
           </a>
         </Link>
         <button type="button" onClick={() => setInfoIsOpen(!infoIsOpen)} className="sm:flex-auto sm:py-0 info">
-            <span className="sm:float-right">Info</span>
+          <span className="sm:float-right">Info</span>
         </button>
       </nav>
       <motion.div className={`${searchIsOpen ? 'flex' : 'hidden'} w-full`}>

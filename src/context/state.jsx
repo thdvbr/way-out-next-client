@@ -29,7 +29,7 @@ export function AppWrapper({ children }) {
           setSearchResult(res.results);
           res.results.length === 0 ? setErrorMsg('Nothing Found') : setErrorMsg('');
           setIsLoading(false);
-        })
+        });
     } else {
       setIsLoading(false);
       setErrorMsg('');
@@ -53,7 +53,8 @@ export function AppWrapper({ children }) {
         errorMsg,
         infoIsOpen,
         setInfoIsOpen,
-      }}>
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
