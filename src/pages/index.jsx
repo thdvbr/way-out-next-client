@@ -1,22 +1,11 @@
 import React from 'react';
-import Head from 'next/head';
 import {
   setDefaultBreakpoints,
   Breakpoint,
-  BreakpointProvider,
 } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
-import {
-  Container,
-  HeroPost,
-  NavbarMobile,
-  MasonryGrid,
-  Layout,
-  NavbarDesktop,
-  InfoDrawerWithoutSSR,
-  SectionSeparator,
-} from '../components';
+import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
@@ -30,49 +19,34 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const {
-    query, searchResult, isLoading, errorMsg, infoIsOpen,
-  } = useAppContext();
+  const { query, searchResult, isLoading, errorMsg, infoIsOpen } =
+    useAppContext();
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
-      <BreakpointProvider>
-        <Layout preview={preview}>
-          <Head>
-            <title>Way Out Mag</title>
-            <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width"
-            />
-          </Head>
-          <Container>
-            <Breakpoint xs only>
-              <NavbarMobile />
-              <InfoDrawerWithoutSSR />
-              <MasonryGrid posts={!query ? allPosts : searchResult} />
-            </Breakpoint>
-            <Breakpoint s up>
-              <SectionSeparator />
-              <NavbarDesktop />
-              <InfoDrawerWithoutSSR />
-              {!query && heroPost && (
-                <HeroPost
-                  title={heroPost.title}
-                  subtitle={heroPost.subtitle}
-                  mainImage={heroPost.mainImage}
-                  slug={heroPost.slug}
-                />
-              )}
-              <MasonryGrid posts={!query ? morePosts : searchResult} />
-            </Breakpoint>
-            <div className="font-title flex justify-center text-24">
-              {isLoading && <span>... Loading</span> }
-              {errorMsg && <span>{errorMsg}</span>}
-            </div>
-          </Container>
-        </Layout>
-      </BreakpointProvider>
+      <Layout preview={preview}>
+        <Container>
+          <Breakpoint xs only>
+            <MasonryGrid posts={!query ? allPosts : searchResult} />
+          </Breakpoint>
+          <Breakpoint s up>
+            {!query && heroPost && (
+              <HeroPost
+                title={heroPost.title}
+                subtitle={heroPost.subtitle}
+                mainImage={heroPost.mainImage}
+                slug={heroPost.slug}
+              />
+            )}
+            <MasonryGrid posts={!query ? morePosts : searchResult} />
+          </Breakpoint>
+          <div className="font-title flex justify-center text-24">
+            {isLoading && <span>... Loading</span>}
+            {errorMsg && <span>{errorMsg}</span>}
+          </div>
+        </Container>
+      </Layout>
     </>
   );
 };
