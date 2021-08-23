@@ -79,10 +79,23 @@ body {
   color: #515151;
 }
 
-.hero-deco {
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
-  color: white;
+.logo-container {
+  width: 7em;
+}
+
+.line {
+  border: 1px solid black;
+  width: 25%;
+}
+
+.hero-line {
+  border: 1px solid white;
+  width: 25%;
+}
+
+.related-line {
+  border: 1px solid black;
+  width: 20%;
 }
 
 @media only screen and (min-width: 500px) {

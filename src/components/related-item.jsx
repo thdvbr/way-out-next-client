@@ -17,9 +17,7 @@ const RelatedItem = ({
         />
       </div>
       <div className="flex justify-between items-center">
-        <span className="preview-main-deco">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
+      <hr className="related-line float-left" />
         <span
           className="font-secondary text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-9 leading-snug"
           style={{ color: '#8a7536' }}
