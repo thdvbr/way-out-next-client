@@ -29,12 +29,13 @@ export function AppWrapper({ children }) {
           setSearchResult(res.results);
           res.results.length === 0 ? setErrorMsg('Nothing Found') : setErrorMsg('');
           setIsLoading(false);
-        })
+        });
     } else {
       setIsLoading(false);
       setErrorMsg('');
       setSearchResult([]);
       router.push('/');
+      setSearchIsOpen(false);
     }
   };
 
@@ -53,7 +54,8 @@ export function AppWrapper({ children }) {
         errorMsg,
         infoIsOpen,
         setInfoIsOpen,
-      }}>
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

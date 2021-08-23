@@ -5,7 +5,7 @@ import PostSubtitle from './post-subtitle';
 import MainImage from './main-image';
 import Date from './date';
 
-let easing = [0.175, 0.85, 0.42, 0.96];
+const easing = [0.175, 0.85, 0.42, 0.96];
 const textVariants = {
   exit: { y: 100, opacity: 0, transition: { duration: 0.5, ease: easing } },
   enter: {

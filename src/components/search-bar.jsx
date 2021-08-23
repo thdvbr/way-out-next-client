@@ -11,7 +11,8 @@ const SearchBar = ({ onSearch }) => {
         e.preventDefault();
         onSearch(value);
         router.push('/');
-      }}>
+      }}
+    >
       <input
         style={{ backgroundColor: 'yellow' }}
         className="py-3.5 sm:pl-4 border-black border-2 font-main w-full text-center rounded sm:rounded-none sm:text-left"

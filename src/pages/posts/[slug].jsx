@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Breakpoint, BreakpointProvider } from 'react-socks';
 import { motion } from 'framer-motion';
 import ErrorPage from 'next/error';
 import {
@@ -14,13 +13,9 @@ import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
   PostBody,
-  NavbarMobile,
-  NavbarDesktop,
   Layout,
   ArtistLink,
   RelatedGrid,
-  SectionSeparator,
-  InfoDrawerWithoutSSR,
   Container,
 } from '../../components';
 import { useAppContext } from '../../context/state';
@@ -57,17 +52,9 @@ export const Post = ({ data = {}, preview }) => {
   return (
     <>
       <motion.div initial="exit" animate="enter" exit="exit">
-        <BreakpointProvider>
-          <Layout preview={preview}>
-            <Container>
-              <Breakpoint xs only>
-                <NavbarMobile />
-              </Breakpoint>
-              <Breakpoint s up>
-                <NavbarDesktop />
-                <InfoDrawerWithoutSSR />
-                <SectionSeparator />
-              </Breakpoint>
+        <Layout preview={preview}>
+          <Container>
+            {post && (
               <article>
                 <PostHeader
                   title={post.title}
@@ -79,13 +66,13 @@ export const Post = ({ data = {}, preview }) => {
                 />
                 <div className="xl:px-60">
                   <PostBody body={post.body} />
-                  </div>
+                </div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
-              {morePosts.length > 0 && <RelatedGrid posts={morePosts} />}
-            </Container>
-          </Layout>
-        </BreakpointProvider>
+            )}
+            {morePosts && <RelatedGrid posts={morePosts} />}
+          </Container>
+        </Layout>
       </motion.div>
     </>
   );

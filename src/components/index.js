@@ -25,7 +25,7 @@ import SearchBar from './search-bar';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
-  { ssr: false }
+  { ssr: false },
 );
 
 export {

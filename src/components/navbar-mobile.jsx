@@ -20,8 +20,8 @@ const NavbarMobile = () => {
   };
 
   return (
-    <div className="sticky top-0 z-10 font-title text-18">
-      <nav className="sticky top-0 z-10 bg-white flex relative flex-wrap justify-between">
+    <div className="font-title text-18">
+      <nav className="bg-white flex relative flex-wrap justify-between">
         <button type="button" onClick={handleSearchOpen} className="pb-8 pt-4">
           <span className="self-center">Search</span>
         </button>
@@ -33,7 +33,8 @@ const NavbarMobile = () => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full">
+              className="w-full"
+            >
               <SearchBar onSearch={handleSearch} />
             </motion.div>
           )}
@@ -41,12 +42,14 @@ const NavbarMobile = () => {
         <button
           type="button"
           onClick={handleClick}
-          className="sm:hidden pb-8 pt-4">
+          className="sm:hidden pb-8 pt-4"
+        >
           <span>Menu</span>
         </button>
         <div
           className={`${menuIsOpen ? 'absolute' : 'hidden'} -right-8`}
-          style={{ bottom: '-15rem' }}>
+          style={{ bottom: '-15rem' }}
+        >
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
             <Link href="/interviews">
@@ -67,7 +70,8 @@ const NavbarMobile = () => {
             <button
               className="py-4 text-left"
               type="button"
-              onClick={() => setInfoIsOpen(!infoIsOpen)}>
+              onClick={() => setInfoIsOpen(!infoIsOpen)}
+            >
               <span>Info</span>
             </button>
           </div>

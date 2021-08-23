@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { urlForImage } from '../utils/sanity';
 
-// TODO: Find out how to fill in the height of the container? 
+// TODO: Find out how to fill in the height of the container?
 const HeroImage = ({ title, slug, image: source }) => {
   const image = source ? (
-      <img
-          className="svg-scale"
+    <img
+      className="svg-scale"
       width={2000}
       alt={`Hero Image for ${title}`}
       src={urlForImage(source).height(1107).width(2000).url()}
