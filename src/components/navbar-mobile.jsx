@@ -20,8 +20,8 @@ const NavbarMobile = () => {
   };
 
   return (
-    <div className="sticky top-0 z-10 font-title text-18">
-      <nav className="sticky top-0 z-10 bg-white flex relative flex-wrap justify-between">
+    <div className="font-title text-18">
+      <nav className="bg-white flex relative flex-wrap justify-between">
         <button type="button" onClick={handleSearchOpen} className="pb-8 pt-4">
           <span className="self-center">Search</span>
         </button>

@@ -13,6 +13,7 @@ import {
   SectionSeparator,
   Container,
 } from './index';
+import Header from './header';
 
 export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
@@ -38,17 +39,20 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Container>
-            <Breakpoint xs only>
-              <NavbarMobile />
-              <InfoDrawerWithoutSSR />
-            </Breakpoint>
-            <Breakpoint s up>
-              <NavbarDesktop />
-              <SectionSeparator />
-              <InfoDrawerWithoutSSR />
-            </Breakpoint>
-          </Container>
+          <div className="sticky top-0 z-30 bg-white">
+            <Container>
+              <Breakpoint xs only>
+                <NavbarMobile />
+                <InfoDrawerWithoutSSR />
+              </Breakpoint>
+              <Breakpoint s up>
+                <Header />
+                <SectionSeparator />
+                <NavbarDesktop />
+                <InfoDrawerWithoutSSR />
+              </Breakpoint>
+            </Container>
+          </div>
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
