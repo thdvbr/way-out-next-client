@@ -33,7 +33,7 @@ const MasonryGrid = ({ posts }) => (
   >
     <Masonry
       breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid mt-4"
+      className="my-masonry-grid"
       columnClassName="my-masonry-grid_column"
     >
       {posts.map((post) => (
