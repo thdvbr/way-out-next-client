@@ -18,13 +18,19 @@ const MainImage = ({ title, slug, image: source }) => {
     },
   };
   const image = source ? (
-    <motion.img
-      variants={imageVariants}
-      width={2000}
-      height={1000}
-      alt={`Cover Image for ${title}`}
-      src={urlForImage(source).height(1000).width(2000).url()}
-    />
+    <>
+      <motion.img
+        variants={imageVariants}
+        width={2000}
+        height={1000}
+        alt={`Cover Image for ${title}`}
+        src={urlForImage(source).height(1000).width(2000).url()}
+      />
+      <div className="main-image-caption my-1 font-secondary text-10 sm:text-16">
+        {source.caption}
+      </div>
+      <hr />
+    </>
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );

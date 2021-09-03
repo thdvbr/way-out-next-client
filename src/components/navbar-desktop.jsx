@@ -12,26 +12,26 @@ const NavbarDesktop = () => {
 
   return (
     <div className="font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav className="bg-white py-3 flex relative flex-wrap justify-between sm:w-full">
+      <nav className="py-3 flex relative flex-wrap justify-between sm:w-full">
         <button type="button" onClick={handleSearchOpen} className="sm:w-1/5 search">
           <span className="sm:float-left"><FiSearch className="search-icon" /></span>
         </button>
         <Link href="/interviews">
-          <a href="/interviews" className="sm:flex-auto sm:py-0 interviews">
+          <a href="/interviews" className="sm:flex-auto sm:py-0 interviews w-1/5">
             Interviews
           </a>
         </Link>
         <Link href="/stuff-we-like">
-          <a href="/stuff-we-like" className="sm:flex-auto sm:py-0 stuff-we-like">
+          <a href="/stuff-we-like" className="sm:flex-auto sm:py-0 stuff-we-like w-1/5">
             <span className="flex justify-center">Stuff We Like</span>
           </a>
         </Link>
         <Link href="/">
-          <a href="/radio" className="sm:flex-auto sm:py-0 radio">
+          <a href="/radio" className="sm:flex-auto sm:py-0 radio w-1/5">
             <span className="sm:float-right">Radio</span>
           </a>
         </Link>
-        <button type="button" onClick={() => setInfoIsOpen(!infoIsOpen)} className="sm:flex-auto sm:py-0 info">
+        <button type="button" onClick={() => setInfoIsOpen(!infoIsOpen)} className="sm:flex-auto sm:py-0 info w-1/5">
           <span className="sm:float-right">Info</span>
         </button>
       </nav>

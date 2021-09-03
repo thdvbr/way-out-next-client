@@ -2,9 +2,9 @@ import React from 'react';
 import RelatedItem from './related-item';
 
 const RelatedGrid = ({ posts }) => (
-  <section className="mx-6 md:mx-28 xl:mx-0">
-    <h2 className="font-title text-24 sm:text-40 text-center mb-16 xl:text-55 lg:text-42">More to read</h2>
-    <div className="grid grid-cols-2 grid-rows-2 gap-6 justify-items-center sm:flex sm:justify-between xl:gap-12">
+  <section className="mt-14 mx-4 px-4 sm:mx-0 mb-10">
+    <h2 className="font-title text-37 sm:text-40 xl:text-55 lg:text-42 text-center mb-6 md:mb-16">More to read</h2>
+    <div className="grid grid-cols-2 grid-rows-2 sm:gap-6 justify-items-center sm:flex sm:justify-between xl:gap-12">
       {posts.map((post) => (
         <RelatedItem
           key={post.slug}

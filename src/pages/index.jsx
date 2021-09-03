@@ -5,7 +5,9 @@ import {
 } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
-import { Container, HeroPost, MasonryGrid, Layout } from '../components';
+import {
+  Container, HeroPost, MasonryGrid, Layout,
+} from '../components';
 import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
@@ -19,8 +21,9 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { query, searchResult, isLoading, errorMsg } =
-    useAppContext();
+  const {
+    query, searchResult, isLoading, errorMsg,
+  } = useAppContext();
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
@@ -28,7 +31,9 @@ export const Index = ({ allPosts, preview }) => {
       <Layout preview={preview}>
         <Container>
           <Breakpoint xs only>
-            <MasonryGrid posts={!query ? allPosts : searchResult} />
+            <div className="px-3">
+              <MasonryGrid posts={!query ? allPosts : searchResult} />
+            </div>
           </Breakpoint>
           <Breakpoint s up>
             {!query && heroPost && (

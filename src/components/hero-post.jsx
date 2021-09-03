@@ -15,13 +15,13 @@ const HeroPost = ({
         </div>
         <div className="z-10 absolute text-white bottom-0 pb-8 px-8 ">
           <Link as={`/posts/${slug}`} href="/posts/[slug]">
-            <a className="underline font-title text-30 xl:text-40 leading-9 xl:leading-tight ">{title}</a>
+            <a className="underline font-title text-20 xl:text-40 leading-9 xl:leading-tight ">
+              {title}
+            </a>
           </Link>
           <br />
-          <span className="hero-deco">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
-          <span className="font-subtitle text-25 leading-7 xl:text-33 xl:leading-tight">
+          <hr className="hero-line float-left transform translate-y-5" />
+          <span className="font-subtitle text-20 leading-7 xl:text-33 xl:leading-tight">
             &nbsp;&nbsp;&nbsp;
             {subtitle}
           </span>

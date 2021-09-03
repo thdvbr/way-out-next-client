@@ -17,6 +17,7 @@ import {
   ArtistLink,
   RelatedGrid,
   Container,
+  SectionSeparator,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 
@@ -55,6 +56,8 @@ export const Post = ({ data = {}, preview }) => {
         <Layout preview={preview}>
           <Container>
             {post && (
+              <>
+              {/* <SectionSeparator /> */}
               <article>
                 <PostHeader
                   title={post.title}
@@ -64,11 +67,12 @@ export const Post = ({ data = {}, preview }) => {
                   publishedAt={post.publishedAt}
                   credits={post.credits}
                 />
-                <div className="xl:px-60">
+                <div className="xl:px-60 lg:px-40 md:px-24 px-2">
                   <PostBody body={post.body} />
                 </div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
-              </article>
+                </article>
+                </>
             )}
             {morePosts && <RelatedGrid posts={morePosts} />}
           </Container>
