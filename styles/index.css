@@ -200,6 +200,6 @@ body {
   width: 7em;
 }
 
-.info-open {
+.no-scroll {
   overflow-y: hidden;
 }
