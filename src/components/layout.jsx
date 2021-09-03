@@ -4,6 +4,7 @@ import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
 import AlertPreview from './alert-preview';
 import Footer from './footer';
+import LogoGold from './logo-gold-svg';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
@@ -22,11 +23,11 @@ export default function Layout({ preview, children }) {
     closed: { x: 0 },
   };
   const { infoIsOpen } = useAppContext();
+  // if yOffset === 0 && color: gold 
   return (
     <>
       {/* <Meta /> */}
-      <div
-        className="min-h-screen">
+      <div className="min-h-screen">
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
@@ -40,17 +41,22 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <div className="sticky top-0 z-30 py-3">
+          <Breakpoint s up>
+            <Container>
+              <Header />
+              <SectionSeparator />
+              <InfoDrawerWithoutSSR />
+            </Container>
+          </Breakpoint>
+          <div className="sticky top-0 z-30">
             <Container>
               <Breakpoint xs only>
                 <NavbarMobile />
                 <InfoDrawerWithoutSSR />
               </Breakpoint>
               <Breakpoint s up>
-                <Header />
-                <SectionSeparator />
                 <NavbarDesktop />
-                <InfoDrawerWithoutSSR />
+                <LogoGold />
               </Breakpoint>
             </Container>
           </div>

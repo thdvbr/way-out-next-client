@@ -7,11 +7,11 @@ import SearchBar from './search-bar';
 
 const NavbarDesktop = () => {
   const {
-    handleSearch, handleSearchOpen, searchIsOpen, infoIsOpen, setInfoIsOpen,
+    handleSearch, handleSearchOpen, searchIsOpen, infoIsOpen, setInfoIsOpen, isTop
   } = useAppContext();
 
   return (
-    <div className="font-title sm:text-15 lg:text-17 xl:text-22.5">
+    <div style={{color: isTop && '#8A7536' }} className="sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
       <nav className="py-3 flex relative flex-wrap justify-between sm:w-full">
         <button type="button" onClick={handleSearchOpen} className="sm:w-1/5 search">
           <span className="sm:float-left"><FiSearch className="search-icon" /></span>

@@ -37,6 +37,8 @@ export const Post = ({ data = {}, preview }) => {
     setSearchResult,
     searchIsOpen,
     setSearchIsOpen,
+    isTop,
+    setIsTop
   } = useAppContext();
   useEffect(() => {
     return searchIsOpen && setSearchIsOpen(false);
@@ -46,6 +48,15 @@ export const Post = ({ data = {}, preview }) => {
   useEffect(() => {
     return searchResult && setQuery('') && setSearchResult([]);
   }, []);
+
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      const isOnTop = window.scrollY > 100;
+      if (isTop !== isOnTop) {
+        setIsTop(isOnTop);
+      }
+    })
+  })
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
