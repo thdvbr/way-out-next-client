@@ -6,6 +6,7 @@ import Date from './date';
 import Footer from './footer';
 import HeroPost from './hero-post';
 import Layout from './layout';
+import PostLayout from './post-layout';
 import MainImage from './main-image';
 import MasonryGrid from './masonry-grid';
 import Meta from './meta';
@@ -22,6 +23,9 @@ import NavbarMobile from './navbar-mobile';
 import HeroSvg from './hero-svg';
 import NavbarDesktop from './navbar-desktop';
 import SearchBar from './search-bar';
+import LogoGold from './logo-gold-svg';
+import Logo from './logo-svg';
+import HeaderGold from './header-gold';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -53,4 +57,8 @@ export {
   NavbarDesktop,
   SearchBar,
   InfoDrawerWithoutSSR,
+  PostLayout,
+  LogoGold,
+  Logo,
+  HeaderGold
 };

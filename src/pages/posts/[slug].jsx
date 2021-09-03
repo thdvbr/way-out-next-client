@@ -13,7 +13,7 @@ import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
   PostBody,
-  Layout,
+  PostLayout,
   ArtistLink,
   RelatedGrid,
   Container,
@@ -38,7 +38,7 @@ export const Post = ({ data = {}, preview }) => {
     searchIsOpen,
     setSearchIsOpen,
     isTop,
-    setIsTop
+    setIsTop,
   } = useAppContext();
   useEffect(() => {
     return searchIsOpen && setSearchIsOpen(false);
@@ -55,8 +55,9 @@ export const Post = ({ data = {}, preview }) => {
       if (isTop !== isOnTop) {
         setIsTop(isOnTop);
       }
-    })
-  })
+    });
+  });
+
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
@@ -64,30 +65,32 @@ export const Post = ({ data = {}, preview }) => {
   return (
     <>
       <motion.div initial="exit" animate="enter" exit="exit">
-        <Layout preview={preview}>
+        <PostLayout preview={preview}>
           <Container>
             {post && (
               <>
-              {/* <SectionSeparator /> */}
-              <article>
-                <PostHeader
-                  title={post.title}
-                  subtitle={post.subtitle}
-                  mainImage={post.mainImage}
-                  subCategory={post.subCategory}
-                  publishedAt={post.publishedAt}
-                  credits={post.credits}
-                />
-                <div className="xl:px-60 lg:px-40 md:px-24 px-2">
-                  <PostBody body={post.body} />
-                </div>
-                {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+                {/* <SectionSeparator /> */}
+                <article>
+                  <PostHeader
+                    title={post.title}
+                    subtitle={post.subtitle}
+                    mainImage={post.mainImage}
+                    subCategory={post.subCategory}
+                    publishedAt={post.publishedAt}
+                    credits={post.credits}
+                  />
+                  <div className="xl:px-60 lg:px-40 md:px-24 px-2">
+                    <PostBody body={post.body} />
+                  </div>
+                  {post.artistLink && (
+                    <ArtistLink artistLink={post.artistLink} />
+                  )}
                 </article>
-                </>
+              </>
             )}
             {morePosts && <RelatedGrid posts={morePosts} />}
           </Container>
-        </Layout>
+        </PostLayout>
       </motion.div>
     </>
   );
