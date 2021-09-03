@@ -33,6 +33,15 @@ const InfoDrawer = () => {
   //     leaveDelay: 100,
   // });
 
+  // TODO: OVERFLOW-Y DISABLE WHEN INFO IS OPEN
+  // useEffect(() => {
+  //   document.body.classList.add('info-open');
+  
+  //   return function cleanup() {
+  //     document.body.classList.remove('info-open');
+  //   };
+  // }, []);
+
   return (
     <AnimatePresence>
       {infoIsOpen && (
@@ -49,7 +58,7 @@ const InfoDrawer = () => {
             className="fixed info-box top-0 w-full h-screen z-30"
             style={
               width > 500
-                ? { right: '-17vw', maxWidth: '30vw' }
+                ? { right: '-30vw', maxWidth: '39vw' }
                 : { right: 0, maxWidth: '100vw' }
             }
           >

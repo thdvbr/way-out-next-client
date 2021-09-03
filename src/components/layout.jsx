@@ -18,14 +18,15 @@ import Header from './header';
 export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
   const variants = {
-    opened: { x: width > 500 ? '-17vw' : 0 },
+    opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
   const { infoIsOpen } = useAppContext();
   return (
     <>
       {/* <Meta /> */}
-      <div className="min-h-screen">
+      <div
+        className="min-h-screen">
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
@@ -39,7 +40,7 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <div className="sticky top-0 z-30 bg-white">
+          <div className="sticky top-0 z-30 py-3">
             <Container>
               <Breakpoint xs only>
                 <NavbarMobile />
@@ -56,7 +57,9 @@ export default function Layout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
-      <Footer />
+      <Breakpoint s up>
+        <Footer />
+      </Breakpoint>
     </>
   );
 }

@@ -46,7 +46,12 @@ const serializers = {
         <div className="flex justify-center">
           <div className="flex-col">
             <img alt="post img" src={urlForImage(node.asset).url()} />
-            {node.caption && <><p className="font-secondary my-1 text-10 sm:text-16">{node.caption}</p><hr className="border-black"/></>}
+            {node.caption && (
+            <>
+              <p className="font-secondary my-1 text-10 sm:text-16">{node.caption}</p>
+              <hr className="border-black" />
+            </>
+            )}
           </div>
         </div>
       );

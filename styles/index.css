@@ -79,10 +79,6 @@ body {
   color: #515151;
 }
 
-.logo-container {
-  width: 7em;
-}
-
 .line {
   border: 1px solid black;
   width: 25%;
@@ -172,6 +168,9 @@ body {
 .info:hover {
   color: #93bcd2;
 }
+.info:focus {
+  color: #93bcd2;
+}
 
 .svg-scale {
   width: 100%;
@@ -186,4 +185,21 @@ body {
   .Search-icon {
     font-size: 26px;
   }
+}
+
+@media only screen and (max-width: 500px) {
+  /* body {
+    overflow-x: hidden;
+  } */
+  .logo-container {
+    width: 4.5em;
+  }
+}
+
+.logo-container {
+  width: 7em;
+}
+
+.info-open {
+  overflow-y: hidden;
 }

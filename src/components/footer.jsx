@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { renderToStaticMarkup } from 'react-dom/server';
 import FooterSvg from './footer-svg';
-import { renderToStaticMarkup } from "react-dom/server";
 import { useAppContext } from '../context/state';
 
 export default function Footer() {
@@ -15,7 +15,8 @@ export default function Footer() {
         className="flex flex-row text-white py-5 xl:text-15 text-12 font-title"
         style={{
           backgroundImage: `url("data:image/svg+xml,${svgString}")`,
-        }}>
+        }}
+      >
         <div className="w-1/3 flex flex-row justify-evenly items-center underline">
           <Link href="/interviews">
             <a href="/interviews">
@@ -34,7 +35,8 @@ export default function Footer() {
           </Link>
           <button
             type="button"
-            onClick={() => setInfoIsOpen(!infoIsOpen)}>
+            onClick={() => setInfoIsOpen(!infoIsOpen)}
+          >
             <span>Info</span>
           </button>
         </div>
