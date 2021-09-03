@@ -21,7 +21,7 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen } = useAppContext();
+  const { infoIsOpen, isTop } = useAppContext();
 
   return (
     <>
@@ -54,7 +54,9 @@ export default function PostLayout({ preview, children }) {
                 <InfoDrawerWithoutSSR />
               </Breakpoint>
               <Breakpoint s up>
-                <NavbarDesktop />
+                <div style={{ color: isTop && '#8A7536' }}>
+                  <NavbarDesktop />
+                </div>
               </Breakpoint>
             </Container>
           </div>
