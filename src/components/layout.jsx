@@ -40,11 +40,15 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
+          <div className="sticky top-0 z-30">
+            <Container>
+              <Breakpoint xs only>
+                <NavbarMobile />
+                <InfoDrawerWithoutSSR />
+              </Breakpoint>
+            </Container>
+          </div>
           <Container>
-            <Breakpoint xs only>
-              <NavbarMobile />
-              <InfoDrawerWithoutSSR />
-            </Breakpoint>
             <Breakpoint s up>
               <Header />
               <SectionSeparator />
@@ -52,6 +56,7 @@ export default function Layout({ preview, children }) {
               <NavbarDesktop />
             </Breakpoint>
           </Container>
+
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>

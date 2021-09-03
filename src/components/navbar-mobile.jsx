@@ -48,7 +48,7 @@ const NavbarMobile = () => {
         </button>
         <div
           className={`${menuIsOpen ? 'absolute' : 'hidden'} -right-8`}
-          style={{ bottom: '-15.9rem' }}
+          style={{ bottom: '-15.2rem' }}
         >
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
