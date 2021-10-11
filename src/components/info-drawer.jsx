@@ -32,11 +32,17 @@ const InfoDrawer = () => {
   //     enterDelay: 100,
   //     leaveDelay: 100,
   // });
-
+  const moveToTop = () => {
+    document.body.classList.add('no-scroll');
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+  }
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
     infoIsOpen
-      ? document.body.classList.add('no-scroll')
+      ? moveToTop()
       : document.body.classList.remove('no-scroll');
   }, [infoIsOpen]);
 
@@ -47,7 +53,7 @@ const InfoDrawer = () => {
           <motion.div
             initial={{ x: '100%' }}
             animate={{
-              x: 0,
+              x: 0 
             }}
             exit={{
               x: '100%',
