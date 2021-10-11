@@ -14,9 +14,11 @@ export default function HeaderGold() {
       <div className="flex relative flex-wrap justify-between pt-16 mb-24 font-main xl:text-22.5 lg:text-17 md:text-17">
         <span>Donate</span>
         <span>Join</span>
-        <div className="flex absolute left-0 right-0 justify-center z-40">
+        <motion.div
+            whileHover={{ scale: 1.1 , dropShadow: "0px 0px 4px gray"}}
+            className="flex absolute left-0 right-0 justify-center z-40">
           <Logo />
-        </div>
+        </motion.div>
         <motion.div
           style={{ scale: scale, opacity: opacity }}
           className="flex fixed left-0 right-0 justify-center">

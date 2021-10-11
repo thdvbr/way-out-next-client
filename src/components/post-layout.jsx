@@ -47,6 +47,7 @@ export default function PostLayout({ preview, children }) {
               <InfoDrawerWithoutSSR />
             </Container>
           </Breakpoint>
+          
           <div className="sticky top-0 z-30">
             <Container>
               <Breakpoint xs only>
