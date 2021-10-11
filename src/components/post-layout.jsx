@@ -12,17 +12,17 @@ import {
   NavbarDesktop,
   SectionSeparator,
   Container,
+  HeaderGold,
 } from './index';
-import Header from './header';
 
-export default function Layout({ preview, children }) {
+export default function PostLayout({ preview, children }) {
   const width = useCurrentWidth();
   const variants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen } = useAppContext();
-  // if yOffset === 0 && color: gold
+  const { infoIsOpen, isTop } = useAppContext();
+
   return (
     <>
       {/* <Meta /> */}
@@ -40,23 +40,27 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
+          <Breakpoint s up>
+            <Container>
+              <HeaderGold />
+              <SectionSeparator />
+              <InfoDrawerWithoutSSR />
+            </Container>
+          </Breakpoint>
+          
           <div className="sticky top-0 z-30">
             <Container>
               <Breakpoint xs only>
                 <NavbarMobile />
                 <InfoDrawerWithoutSSR />
               </Breakpoint>
+              <Breakpoint s up>
+                <div style={{ color: isTop && '#8A7536' }}>
+                  <NavbarDesktop />
+                </div>
+              </Breakpoint>
             </Container>
           </div>
-          <Container>
-            <Breakpoint s up>
-              <Header />
-              <SectionSeparator />
-              <InfoDrawerWithoutSSR />
-              <NavbarDesktop />
-            </Breakpoint>
-          </Container>
-
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>

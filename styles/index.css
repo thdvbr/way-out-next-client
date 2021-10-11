@@ -192,14 +192,16 @@ body {
     overflow-x: hidden;
   } */
   .logo-container {
-    width: 4.5em;
+    width: 4em;
   }
 }
 
-.logo-container {
-  width: 7em;
+@media only screen and (min-width: 501px) {
+  .logo-container {
+    width: 7em;
+  }
 }
 
-.info-open {
+.no-scroll {
   overflow-y: hidden;
 }

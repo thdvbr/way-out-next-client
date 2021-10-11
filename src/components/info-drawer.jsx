@@ -33,14 +33,12 @@ const InfoDrawer = () => {
   //     leaveDelay: 100,
   // });
 
-  // TODO: OVERFLOW-Y DISABLE WHEN INFO IS OPEN
-  // useEffect(() => {
-  //   document.body.classList.add('info-open');
-  
-  //   return function cleanup() {
-  //     document.body.classList.remove('info-open');
-  //   };
-  // }, []);
+  // TODO: what to do when user opens info drawer in the middle of the screen?
+  useEffect(() => {
+    infoIsOpen
+      ? document.body.classList.add('no-scroll')
+      : document.body.classList.remove('no-scroll');
+  }, [infoIsOpen]);
 
   return (
     <AnimatePresence>
@@ -60,20 +58,17 @@ const InfoDrawer = () => {
               width > 500
                 ? { right: '-30vw', maxWidth: '39vw' }
                 : { right: 0, maxWidth: '100vw' }
-            }
-          >
+            }>
             <div
               className="absolute top-0 p-5 radial-gradient"
               style={{
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
-              }}
-            >
+              }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-0 right-0 p-3 ">
                 <button
                   type="button"
-                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}
-                >
+                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}>
                   <MdClose size={32} />
                 </button>
               </div>
