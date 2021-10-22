@@ -14,8 +14,9 @@ module.exports = {
     screens: {
       sm: '500px',
       md: '768px',
-      lg: '1024px',
-      xl: '1366px',
+      ml: '1024px',
+      lg: '1280px',
+      xl: '1536px',
     },
     borderWidth: {
       DEFAULT: '1px',

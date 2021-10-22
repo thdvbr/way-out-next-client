@@ -15,7 +15,7 @@ setDefaultBreakpoints([
   { s: 500 },
   { m: 768 },
   { l: 1366 },
-  { xl: 1920 },
+  { xl: 1536 },
 ]);
 
 export const Index = ({ allPosts, preview }) => {
