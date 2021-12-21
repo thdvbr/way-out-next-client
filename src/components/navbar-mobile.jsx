@@ -51,7 +51,11 @@ const NavbarMobile = () => {
         </button>
         <div className="self-center flex justify-center w-7/12">
           {!searchIsOpen ? (
+            <Link href="/">
+            <a href="/">
             <Logo />
+            </a>
+            </Link>
           ) : (
             <motion.div
               animate={{ x: 0 }}
