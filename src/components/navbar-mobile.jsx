@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Logo from './logo-svg';
 import SearchBar from './search-bar';
 import { useAppContext } from '../context/state';
+import { debounce } from '../utils/helpers';
 
 const NavbarMobile = () => {
   const {
@@ -13,24 +14,34 @@ const NavbarMobile = () => {
     infoIsOpen,
     setInfoIsOpen,
   } = useAppContext();
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [show, setShow] = useState(false);
-  const [scrollAmount, setScrollAmount] = useState(0);
+  // const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const handleClick = () => {
-    setMenuIsOpen(!menuIsOpen);
+    // setMenuIsOpen(!menuIsOpen);
+    setVisible(!visible);
   };
 
-  const controlNavbar = () => {
-    if (window.scrollY > 10) {
-      setShow(false);
-    } else {
-      setShow(true);
+  const handleScroll = debounce(() => {
+    const currentScrollPos = window.pageYOffset;
+    if (currentScrollPos > prevScrollPos) {
+      setVisible(false);
     }
-  }
+    // Q: Show menu when scrolling up or no? 
+    // setVisible(
+    //   (prevScrollPos > currentScrollPos
+    //     && prevScrollPos - currentScrollPos > 70)
+    // );
+    setPrevScrollPos(currentScrollPos);
+  }, 100);
+
   useEffect(() => {
-    window.addEventListener('scroll', controlNavbar);
-  }, [])
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [prevScrollPos, visible, handleScroll]);
 
   return (
     <div className="font-title text-15">
@@ -46,8 +57,7 @@ const NavbarMobile = () => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full"
-            >
+              className="w-full">
               <SearchBar onSearch={handleSearch} />
             </motion.div>
           )}
@@ -55,14 +65,14 @@ const NavbarMobile = () => {
         <button
           type="button"
           onClick={handleClick}
-          className="sm:hidden pb-8 pt-4"
-        >
+          className="sm:hidden pb-8 pt-4">
           <span>Menu</span>
         </button>
         <div
-          className={`${menuIsOpen && show ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.9rem' }}
-        >
+          className={`${
+            visible ? 'absolute' : 'hidden'
+          } -right-4`}
+          style={{ bottom: '-13.7rem' }}>
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
             <Link href="/interviews">
@@ -83,8 +93,7 @@ const NavbarMobile = () => {
             <button
               className="py-4 text-left"
               type="button"
-              onClick={() => setInfoIsOpen(!infoIsOpen)}
-            >
+              onClick={() => setInfoIsOpen(!infoIsOpen)}>
               <span>Info</span>
             </button>
           </div>
