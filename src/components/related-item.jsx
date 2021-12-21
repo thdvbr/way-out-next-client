@@ -6,7 +6,7 @@ const RelatedItem = ({
   title, subtitle, subCategory, previewImage, slug,
 }) => {
   return (
-    <div className="px-2 pt-2 pb-5 w-48 md:w-64 xl:w-96 related-preview-block overflow-auto">
+    <div className="px-3 pt-2 pb-5 w-40 md:w-64 xl:w-96 related-preview-block overflow-auto">
       <div className="mb-0">
         <Thumbnail
           slug={slug}
@@ -19,7 +19,7 @@ const RelatedItem = ({
       <div className="flex justify-between items-center">
         <hr className="related-line float-left" />
         <span
-          className="font-secondary text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-9 leading-snug"
+          className="my-1 font-secondary text-9 sm:text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-9 leading-snug"
           style={{ color: '#8a7536' }}
         >
           {subCategory}
@@ -27,11 +27,12 @@ const RelatedItem = ({
       </div>
       <div className="max-w-xs sm:mr-8">
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a className="hover:underline font-main-bold text-18 leading-snug xl:text-29.5 lg:text-22.5 xl:leading-9 lg:leading-6">
+          {/* TODO: leading doesnt work here why?? */}
+          <a className="hover:underline font-main-bold text-15 leading-none sm:text-18 xl:text-29.5 lg:text-22.5 xl:leading-9 lg:leading-6">
             {title}
           </a>
         </Link>
-        <p className="font-main-light-italic text-18 leading-snug xl:text-25.5 xl:leading-8 lg:text-18.5 lg:leading-5">
+        <p className="font-main-light-italic text-15 sm:text-18 leading-5 xl:text-25.5 xl:leading-8 lg:text-18.5 lg:leading-5">
           {subtitle}
         </p>
       </div>

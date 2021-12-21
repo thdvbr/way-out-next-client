@@ -38,7 +38,7 @@ const NavbarDesktop = () => {
           <Link href="/stuff-we-like">
             <a
               href="/stuff-we-like"
-              className="sm:py-0 stuff-we-like sm:float-left">
+              className="sm:py-0 stuff-we-like">
               Stuff We Like
             </a>
           </Link>

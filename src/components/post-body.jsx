@@ -62,7 +62,7 @@ const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body }) {
   return (
-    <div className="mx-6">
+    <div className="mx-3">
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}

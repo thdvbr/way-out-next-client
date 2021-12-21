@@ -42,14 +42,14 @@ export default function Layout({ preview, children }) {
           </Head>
           <div className="sticky top-0 z-30">
             <Container>
-              <Breakpoint xs only>
+              <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
                 <InfoDrawerWithoutSSR />
               </Breakpoint>
             </Container>
           </div>
           <Container>
-            <Breakpoint s up>
+            <Breakpoint customQuery="(min-width: 500px)">
               <Header />
               <SectionSeparator />
               <InfoDrawerWithoutSSR />

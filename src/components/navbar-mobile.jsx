@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Logo from './logo-svg';
@@ -14,13 +14,26 @@ const NavbarMobile = () => {
     setInfoIsOpen,
   } = useAppContext();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [scrollAmount, setScrollAmount] = useState(0);
 
   const handleClick = () => {
     setMenuIsOpen(!menuIsOpen);
   };
 
+  const controlNavbar = () => {
+    if (window.scrollY > 10) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar);
+  }, [])
+
   return (
-    <div className="font-title text-18">
+    <div className="font-title text-15">
       <nav className="bg-white flex relative flex-wrap justify-between">
         <button type="button" onClick={handleSearchOpen} className="pb-8 pt-4">
           <span className="self-center">Search</span>
@@ -47,8 +60,8 @@ const NavbarMobile = () => {
           <span>Menu</span>
         </button>
         <div
-          className={`${menuIsOpen ? 'absolute' : 'hidden'} -right-8`}
-          style={{ bottom: '-15.2rem' }}
+          className={`${menuIsOpen && show ? 'absolute' : 'hidden'} -right-4`}
+          style={{ bottom: '-13.9rem' }}
         >
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">

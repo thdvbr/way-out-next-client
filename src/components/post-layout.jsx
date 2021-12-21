@@ -40,7 +40,7 @@ export default function PostLayout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Breakpoint s up>
+          <Breakpoint customQuery="(min-width: 500px)">
             <Container>
               <HeaderGold />
               <SectionSeparator />
@@ -50,11 +50,11 @@ export default function PostLayout({ preview, children }) {
           
           <div className="sticky top-0 z-30">
             <Container>
-              <Breakpoint xs only>
+              <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
                 <InfoDrawerWithoutSSR />
               </Breakpoint>
-              <Breakpoint s up>
+              <Breakpoint customQuery="(min-width: 500px)">
                 <div style={{ color: isTop && '#8A7536' }}>
                   <NavbarDesktop />
                 </div>
@@ -64,7 +64,7 @@ export default function PostLayout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
-      <Breakpoint s up>
+      <Breakpoint customQuery="(min-width: 500px)">
         <Footer />
       </Breakpoint>
     </>

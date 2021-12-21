@@ -30,12 +30,12 @@ export const Index = ({ allPosts, preview }) => {
     <>
       <Layout preview={preview}>
         <Container>
-          <Breakpoint xs only>
+          <Breakpoint customQuery="(min-width: 500px)">
             <div className="px-3">
               <MasonryGrid posts={!query ? allPosts : searchResult} />
             </div>
           </Breakpoint>
-          <Breakpoint s up>
+          <Breakpoint customQuery="(min-width: 500px)">
             {!query && heroPost && (
               <HeroPost
                 title={heroPost.title}
