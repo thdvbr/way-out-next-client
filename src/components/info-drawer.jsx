@@ -93,40 +93,44 @@ const InfoDrawer = ({ pages, preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box top-0 w-full h-96 z-30"
+            className="fixed info-box top-0 w-full h-full z-30"
             style={
               width > 500
                 ? { right: '-30vw', maxWidth: '35vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             <div
-              className="absolute top-0 p-5 radial-gradient"
+              className="absolute top-0 p-5 radial-gradient h-1/2"
               style={{
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-0 right-0 p-3 ">
+              <div className="absolute top-4 right-6 p-3 ">
                 <button
                   type="button"
                   onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-10 flex">
-                <div className="w-1/2">
+              <div className="p-6 flex">
+                <div className="w-3/5">
+                  <br />
+                  <span className="br"></span> 
                   {aboutIsOpen && <Content body={about.body} />}
                   {contactIsOpen && <Content body={contact.body} />}
                 </div>
-                <div className="w-1/2">
+                <div className="w-2/5">
                   <div className="text-20 lg:text-24 font-title text-right">
+                    <br />
+                    <span className="br"></span> 
                     <button type="button" onClick={toggleAbout}>
-                      About
+                      {about.title}
                     </button>
-                    <br />
+                    <span className="br"></span> 
                     <button type="button" onClick={toggleContact}>
-                      Contact
+                      {contact.title}
                     </button>
-                    <br />
+                    <span className="br"></span> 
                     <button type="button" onClick={toggleStaff}>Staff</button>
                   </div>
                 </div>
