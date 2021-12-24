@@ -168,10 +168,13 @@ body {
 .info:hover {
   color: #93bcd2;
 }
-.info:focus {
+/* .info:focus {
+  color: #93bcd2;
+} */
+
+.info-color {
   color: #93bcd2;
 }
-
 .svg-scale {
   width: 100%;
   height: auto;

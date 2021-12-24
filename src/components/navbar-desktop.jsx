@@ -36,9 +36,7 @@ const NavbarDesktop = () => {
         </div>
         <div>
           <Link href="/stuff-we-like">
-            <a
-              href="/stuff-we-like"
-              className="sm:py-0 stuff-we-like">
+            <a href="/stuff-we-like" className="sm:py-0 stuff-we-like">
               Stuff We Like
             </a>
           </Link>
@@ -55,7 +53,9 @@ const NavbarDesktop = () => {
         <button
           type="button"
           onClick={() => setInfoIsOpen(!infoIsOpen)}
-          className="sm:py-0 info sm:float-left inline-block">
+          className={`sm:py-0 sm:float-left inline-block ${
+            infoIsOpen ? 'info-color' : 'info'
+          }`}>
           <span className="sm:float-left">Info</span>
         </button>
       </nav>

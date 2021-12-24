@@ -7,7 +7,7 @@ import { MdClose } from 'react-icons/md';
 import { sanityClient, getClient, overlayDrafts } from '../utils/sanity.server';
 import { pageQuery, pageSlugsQuery } from '../utils/queries';
 import { usePreviewSubscription } from '../utils/sanity';
-import { About } from './index';
+import { Content } from './index';
 
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
@@ -30,14 +30,38 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ pages, preview }) => {
-  const { about, contact } = pages
-
+  const { about, contact } = pages;
   const width = useCurrentWidth();
   const { infoIsOpen, setInfoIsOpen } = useAppContext();
   const { x, y } = useCustomMouse();
   const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const [contactIsOpen, setContactIsOpen] = useState(false);
   const [staffIsOpen, setStaffIsOpen] = useState(false);
+
+  const toggleAbout = () => {
+    contactIsOpen && toggleContact();
+    staffIsOpen && toggleStaff();
+    setAboutIsOpen(!aboutIsOpen);
+  };
+
+  const toggleContact = () => {
+    aboutIsOpen && toggleAbout();
+    staffIsOpen && toggleStaff();
+    setContactIsOpen(!contactIsOpen);
+  };
+
+  const toggleStaff = () => {
+    aboutIsOpen && toggleAbout();
+    contactIsOpen && toggleContact();
+    setStaffIsOpen(!staffIsOpen);
+  }
+
+  const toggleInfo = () => {
+    aboutIsOpen && toggleAbout();
+    contactIsOpen && toggleContact();
+    staffIsOpen && toggleStaff();
+    setInfoIsOpen(!infoIsOpen);
+  }
   // const target = useRef(null);
   // const mouse = useMouse(target, {
   //     fps: 60,
@@ -84,27 +108,26 @@ const InfoDrawer = ({ pages, preview }) => {
               <div className="absolute top-0 right-0 p-3 ">
                 <button
                   type="button"
-                  onClick={() => setInfoIsOpen(!infoIsOpen)}>
+                  onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
               <div className="p-10 flex">
                 <div className="w-1/2">
-                  <div>
-                    {aboutIsOpen && <About body={about.body} /> }
-                  </div>
+                  {aboutIsOpen && <Content body={about.body} />}
+                  {contactIsOpen && <Content body={contact.body} />}
                 </div>
                 <div className="w-1/2">
                   <div className="text-20 lg:text-24 font-title text-right">
-                    <button
-                      type="button"
-                      onClick={() => setAboutIsOpen(!aboutIsOpen)}>
+                    <button type="button" onClick={toggleAbout}>
                       About
                     </button>
                     <br />
-                    <button>Contact</button>
+                    <button type="button" onClick={toggleContact}>
+                      Contact
+                    </button>
                     <br />
-                    <button>Staff</button>
+                    <button type="button" onClick={toggleStaff}>Staff</button>
                   </div>
                 </div>
                 {/* <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
@@ -145,7 +168,7 @@ const InfoDrawer = ({ pages, preview }) => {
               opacity: 0,
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-            onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}
+            onClick={toggleInfo}
             className="bg-transparent px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
           />
         </>

@@ -60,9 +60,9 @@ const serializers = {
 };
 const { projectId, dataset } = sanityConfig;
 
-export default function About({ body }) {
+export default function Content({ body }) {
   return (
-    <div className="mx-3">
+    <div>
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}

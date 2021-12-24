@@ -27,7 +27,7 @@ import LogoGold from './logo-gold-svg';
 import Logo from './logo-svg';
 import HeaderGold from './header-gold';
 import InfoDrawer from './info-drawer';
-import About from './about';
+import Content from './content';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -64,5 +64,5 @@ export {
   Logo,
   HeaderGold,
   InfoDrawer,
-  About
+  Content
 };
