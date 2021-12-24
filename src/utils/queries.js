@@ -27,6 +27,28 @@ previewImage,
 "slug": slug.current,
 `;
 
+const pageFields = `
+_id,
+name,
+title,
+body,
+"slug": slug.current,
+`;
+
+export const pageQuery = `
+{ "about": *[_type == "page" && title == "About"][0] {
+  ${pageFields}
+},
+  "contact": *[_type == "page" && title == "Contact"][0] {
+    ${pageFields}
+  }
+}
+`;
+
+export const pageSlugsQuery = `
+*[_type == "page" && defined(slug.current)][].slug.current
+`;
+
 export const indexQuery = `
 *[_type == "post"] | order(date desc, _updatedAt desc) {
   ${postPreviewFields}

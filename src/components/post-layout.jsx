@@ -7,7 +7,7 @@ import Footer from './footer';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
-  InfoDrawerWithoutSSR,
+  InfoDrawer,
   NavbarMobile,
   NavbarDesktop,
   SectionSeparator,
@@ -44,7 +44,7 @@ export default function PostLayout({ preview, children }) {
             <Container>
               <HeaderGold />
               <SectionSeparator />
-              <InfoDrawerWithoutSSR />
+              <InfoDrawer />
             </Container>
           </Breakpoint>
           
@@ -52,7 +52,7 @@ export default function PostLayout({ preview, children }) {
             <Container>
               <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                <InfoDrawerWithoutSSR />
+                <InfoDrawer />
               </Breakpoint>
               <Breakpoint customQuery="(min-width: 500px)">
                 <div style={{ color: isTop && '#8A7536' }}>

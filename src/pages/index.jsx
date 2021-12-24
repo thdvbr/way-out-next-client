@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  setDefaultBreakpoints,
-  Breakpoint,
-} from 'react-socks';
+import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { indexQuery } from '../utils/queries';
-import {
-  Container, HeroPost, MasonryGrid, Layout,
-} from '../components';
+import { indexQuery, pageQuery } from '../utils/queries';
+import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
@@ -18,33 +13,33 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, preview }) => {
+export const Index = ({ allPosts, pages, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const {
-    query, searchResult, isLoading, errorMsg,
-  } = useAppContext();
+  const { query, searchResult, isLoading, errorMsg } = useAppContext();
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} pages={pages}>
         <Container>
           <Breakpoint customQuery="(max-width: 500px)">
-            <div className="px-3">
+            <div>
               <MasonryGrid posts={!query ? allPosts : searchResult} />
             </div>
           </Breakpoint>
           <Breakpoint customQuery="(min-width: 500px)">
-            {!query && heroPost && (
-              <HeroPost
-                title={heroPost.title}
-                subtitle={heroPost.subtitle}
-                mainImage={heroPost.mainImage}
-                slug={heroPost.slug}
-              />
-            )}
-            <MasonryGrid posts={!query ? morePosts : searchResult} />
+            <div>
+              {!query && heroPost && (
+                <HeroPost
+                  title={heroPost.title}
+                  subtitle={heroPost.subtitle}
+                  mainImage={heroPost.mainImage}
+                  slug={heroPost.slug}
+                />
+              )}
+              <MasonryGrid posts={!query ? morePosts : searchResult} />
+            </div>
           </Breakpoint>
           <div className="font-title flex justify-center text-24">
             {isLoading && <span>... Loading</span>}
@@ -58,8 +53,9 @@ export const Index = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
+  const pages = await getClient(preview).fetch(pageQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, pages, preview },
   };
 };
 

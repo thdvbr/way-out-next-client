@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
+import { sanityClient, getClient, overlayDrafts } from '../utils/sanity.server';
+import { pageQuery, pageSlugsQuery } from '../utils/queries';
+import { usePreviewSubscription } from '../utils/sanity';
+import { About } from './index';
+
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
 
@@ -22,10 +29,15 @@ const useCustomMouse = () => {
   return mousePosition;
 };
 
-const InfoDrawer = () => {
+const InfoDrawer = ({ pages, preview }) => {
+  const { about, contact } = pages
+
   const width = useCurrentWidth();
   const { infoIsOpen, setInfoIsOpen } = useAppContext();
   const { x, y } = useCustomMouse();
+  const [aboutIsOpen, setAboutIsOpen] = useState(false);
+  const [contactIsOpen, setContactIsOpen] = useState(false);
+  const [staffIsOpen, setStaffIsOpen] = useState(false);
   // const target = useRef(null);
   // const mouse = useMouse(target, {
   //     fps: 60,
@@ -36,14 +48,12 @@ const InfoDrawer = () => {
     document.body.classList.add('no-scroll');
     window.scrollTo({
       top: 0,
-      behavior: 'instant'
+      behavior: 'instant',
     });
-  }
+  };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
-    infoIsOpen
-      ? moveToTop()
-      : document.body.classList.remove('no-scroll');
+    infoIsOpen ? moveToTop() : document.body.classList.remove('no-scroll');
   }, [infoIsOpen]);
 
   return (
@@ -53,16 +63,16 @@ const InfoDrawer = () => {
           <motion.div
             initial={{ x: '100%' }}
             animate={{
-              x: 0 
+              x: 0,
             }}
             exit={{
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box top-0 w-full h-screen z-30"
+            className="fixed info-box top-0 w-full h-96 z-30"
             style={
               width > 500
-                ? { right: '-30vw', maxWidth: '39vw' }
+                ? { right: '-30vw', maxWidth: '35vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             <div
@@ -74,33 +84,30 @@ const InfoDrawer = () => {
               <div className="absolute top-0 right-0 p-3 ">
                 <button
                   type="button"
-                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}>
+                  onClick={() => setInfoIsOpen(!infoIsOpen)}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-10">
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  About
-                </h1>
-                <br />
-                <div className="pr-20">
-                  <h2 className="leading-none lg:text-19 font-secondary">
-                    Way Out is an online magazine, initiated with the intention
-                    of tracking an ever expanding network of artists.
-                  </h2>
-                  <br />
-                  <h2 className="leading-none lg:text-19 font-secondary">
-                    We believe thatconversation is the purest form of
-                    communication and best vehicle for the transfer of
-                    information.
-                  </h2>
-                  <br />
+              <div className="p-10 flex">
+                <div className="w-1/2">
+                  <div>
+                    {aboutIsOpen && <About body={about.body} /> }
+                  </div>
                 </div>
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Staff
-                </h1>
-                <br />
-                <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
+                <div className="w-1/2">
+                  <div className="text-20 lg:text-24 font-title text-right">
+                    <button
+                      type="button"
+                      onClick={() => setAboutIsOpen(!aboutIsOpen)}>
+                      About
+                    </button>
+                    <br />
+                    <button>Contact</button>
+                    <br />
+                    <button>Staff</button>
+                  </div>
+                </div>
+                {/* <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
                   <div>staff1</div>
                   <div>staff2</div>
                   <div>staff3</div>
@@ -118,19 +125,14 @@ const InfoDrawer = () => {
                   <div>staff15</div>
                   <div>staff16</div>
                   <div>staff17</div>
-                </div>
-                <br />
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Contact
-                </h1>
+                </div> */}
+                {/* <br />
+
                 <br />
                 <h2 className="lg:text-16 font-agrandir">
                   marissa@wayoutmagazine.com
                 </h2>
-                <br />
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Join
-                </h1>
+                <br /> */}
               </div>
             </div>
           </motion.div>

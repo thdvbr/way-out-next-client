@@ -7,7 +7,7 @@ import Footer from './footer';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
-  InfoDrawerWithoutSSR,
+  InfoDrawer,
   NavbarMobile,
   NavbarDesktop,
   SectionSeparator,
@@ -15,7 +15,7 @@ import {
 } from './index';
 import Header from './header';
 
-export default function Layout({ preview, children }) {
+export default function Layout({ preview, children, pages }) {
   const width = useCurrentWidth();
   const variants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -44,7 +44,7 @@ export default function Layout({ preview, children }) {
             <Container>
               <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                <InfoDrawerWithoutSSR />
+                {pages && <InfoDrawer pages={pages} />}
               </Breakpoint>
             </Container>
           </div>
@@ -52,7 +52,7 @@ export default function Layout({ preview, children }) {
             <Breakpoint customQuery="(min-width: 500px)">
               <Header />
               <SectionSeparator />
-              <InfoDrawerWithoutSSR />
+              {pages && <InfoDrawer pages={pages} />}
               <NavbarDesktop />
             </Breakpoint>
           </Container>
