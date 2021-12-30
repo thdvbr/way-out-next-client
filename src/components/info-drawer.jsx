@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
-import { sanityClient, getClient, overlayDrafts } from '../utils/sanity.server';
-import { pageQuery, pageSlugsQuery } from '../utils/queries';
-import { usePreviewSubscription } from '../utils/sanity';
-import { Content } from './index';
+import { Content, Staff } from './index';
 
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
@@ -29,7 +24,7 @@ const useCustomMouse = () => {
   return mousePosition;
 };
 
-const InfoDrawer = ({ pages, preview }) => {
+const InfoDrawer = ({ pages, staffs, preview }) => {
   const { about, contact } = pages;
   const width = useCurrentWidth();
   const { infoIsOpen, setInfoIsOpen } = useAppContext();
@@ -54,14 +49,14 @@ const InfoDrawer = ({ pages, preview }) => {
     aboutIsOpen && toggleAbout();
     contactIsOpen && toggleContact();
     setStaffIsOpen(!staffIsOpen);
-  }
+  };
 
   const toggleInfo = () => {
     aboutIsOpen && toggleAbout();
     contactIsOpen && toggleContact();
     staffIsOpen && toggleStaff();
     setInfoIsOpen(!infoIsOpen);
-  }
+  };
   // const target = useRef(null);
   // const mouse = useMouse(target, {
   //     fps: 60,
@@ -106,60 +101,43 @@ const InfoDrawer = ({ pages, preview }) => {
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-4 right-6 p-3 ">
-                <button
-                  type="button"
-                  onClick={toggleInfo}>
+                <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
               <div className="p-6 flex">
-                <div className="w-3/5">
+                <div className="w-8/12">
                   <br />
-                  <span className="br"></span> 
+                  <span className="br"></span>
                   {aboutIsOpen && <Content body={about.body} />}
                   {contactIsOpen && <Content body={contact.body} />}
+                  {staffIsOpen && (
+                    <div className="grid grid-flow-row grid-cols-2 gap-4">
+                      {staffs.map((staff) => (
+                        <div key={staff._id} >
+                        <Staff name={staff.staffName} role={staff.role} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="w-2/5">
+                <div className="w-4/12">
                   <div className="text-20 lg:text-24 font-title text-right">
                     <br />
-                    <span className="br"></span> 
+                    <span className="br"></span>
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
-                    <span className="br"></span> 
+                    <span className="br"></span>
                     <button type="button" onClick={toggleContact}>
                       {contact.title}
                     </button>
-                    <span className="br"></span> 
-                    <button type="button" onClick={toggleStaff}>Staff</button>
+                    <span className="br"></span>
+                    <button type="button" onClick={toggleStaff}>
+                      Staff
+                    </button>
                   </div>
                 </div>
-                {/* <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
-                  <div>staff1</div>
-                  <div>staff2</div>
-                  <div>staff3</div>
-                  <div>staff4</div>
-                  <div>staff5</div>
-                  <div>staff6</div>
-                  <div>staff7</div>
-                  <div>staff8</div>
-                  <div>staff9</div>
-                  <div>staff10</div>
-                  <div>staff11</div>
-                  <div>staff12</div>
-                  <div>staff13</div>
-                  <div>staff14</div>
-                  <div>staff15</div>
-                  <div>staff16</div>
-                  <div>staff17</div>
-                </div> */}
-                {/* <br />
-
-                <br />
-                <h2 className="lg:text-16 font-agrandir">
-                  marissa@wayoutmagazine.com
-                </h2>
-                <br /> */}
               </div>
             </div>
           </motion.div>

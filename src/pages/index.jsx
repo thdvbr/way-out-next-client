@@ -1,7 +1,7 @@
 import React from 'react';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { indexQuery, pageQuery } from '../utils/queries';
+import { indexQuery, pageQuery, staffQuery } from '../utils/queries';
 import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -13,15 +13,16 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, pages, preview }) => {
+export const Index = ({ allPosts, pages, staffs, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const { query, searchResult, isLoading, errorMsg } = useAppContext();
+  console.log("staff", staffs);
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
-      <Layout preview={preview} pages={pages}>
+      <Layout preview={preview} pages={pages} staffs={staffs}>
         <Container>
           <Breakpoint customQuery="(max-width: 500px)">
             <div>
@@ -54,8 +55,9 @@ export const Index = ({ allPosts, pages, preview }) => {
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
   const pages = await getClient(preview).fetch(pageQuery);
+  const staffs = await getClient(preview).fetch(staffQuery);
   return {
-    props: { allPosts, pages, preview },
+    props: { allPosts, pages, staffs, preview },
   };
 };
 

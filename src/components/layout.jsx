@@ -15,13 +15,14 @@ import {
 } from './index';
 import Header from './header';
 
-export default function Layout({ preview, children, pages }) {
+export default function Layout({ preview, children, pages, staffs }) {
   const width = useCurrentWidth();
   const variants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
   const { infoIsOpen } = useAppContext();
+
   // if yOffset === 0 && color: gold
   return (
     <>
@@ -44,7 +45,7 @@ export default function Layout({ preview, children, pages }) {
             <Container>
               <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                {pages && <InfoDrawer pages={pages} />}
+                {pages && <InfoDrawer pages={pages} staffs={staffs} />}
               </Breakpoint>
             </Container>
           </div>
@@ -52,7 +53,7 @@ export default function Layout({ preview, children, pages }) {
             <Breakpoint customQuery="(min-width: 500px)">
               <Header />
               <SectionSeparator />
-              {pages && <InfoDrawer pages={pages} />}
+              {pages && <InfoDrawer pages={pages} staffs={staffs} />}
               <NavbarDesktop />
             </Breakpoint>
           </Container>
