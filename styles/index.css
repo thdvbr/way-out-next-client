@@ -41,6 +41,11 @@
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
 }
 
+@font-face {
+  font-family: 'CopenhagenGrotesk';
+  src: url(../assets/typography/CopenhagenGrotesk.otf);
+}
+
 body {
   overflow-x: hidden;
 }

@@ -20,11 +20,18 @@ const serializers = {
         case 'secondary':
           return (
             <span className="font-secondary text-18 leading-none">
-              <br />
               {children}
+              <br />
               <br />
             </span>
           );
+        case 'copenhagenGrotesk':
+          return (
+            <span className="font-copenhagen text-11 leading-none">
+            {children}
+            <br />
+          </span>
+          )
         case 'intro':
           return (
             <span className="font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-83">

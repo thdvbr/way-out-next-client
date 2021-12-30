@@ -10,6 +10,7 @@ module.exports = {
       title: ['OPTIArtCraft'],
       subtitle: ['Averia Serif Bold Italic'],
       agrandir: ['Agrandir'],
+      copenhagen: ['CopenhagenGrotesk']
     },
     screens: {
       sm: '500px',
