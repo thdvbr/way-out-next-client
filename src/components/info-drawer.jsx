@@ -105,17 +105,15 @@ const InfoDrawer = ({ pages, staffs, preview }) => {
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-6 flex">
+              <div className="p-6 pt-20 flex">
                 <div className="w-8/12">
-                  <br />
-                  <span className="br"></span>
                   {aboutIsOpen && <Content body={about.body} />}
                   {contactIsOpen && <Content body={contact.body} />}
                   {staffIsOpen && (
                     <div className="grid grid-flow-row grid-cols-2 gap-4">
                       {staffs.map((staff) => (
-                        <div key={staff._id} >
-                        <Staff name={staff.staffName} role={staff.role} />
+                        <div key={staff._id}>
+                          <Staff name={staff.staffName} role={staff.role} />
                         </div>
                       ))}
                     </div>
@@ -123,8 +121,6 @@ const InfoDrawer = ({ pages, staffs, preview }) => {
                 </div>
                 <div className="w-4/12">
                   <div className="text-20 lg:text-24 font-title text-right">
-                    <br />
-                    <span className="br"></span>
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
