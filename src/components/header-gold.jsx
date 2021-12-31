@@ -12,7 +12,7 @@ export default function HeaderGold() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
   return (
     <header>
-      <div className="flex relative flex-wrap justify-between pt-16 mb-24 font-main xl:text-22.5 lg:text-17 md:text-17">
+      <div className="flex relative flex-wrap justify-between pt-16 mb-40 font-main xl:text-22.5 lg:text-17 md:text-17">
         <span>Donate</span>
         <span>Join</span>
         <Link href="/">
