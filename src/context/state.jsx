@@ -12,6 +12,8 @@ export function AppWrapper({ children }) {
   const [errorMsg, setErrorMsg] = useState('');
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
+  const [pagesData, setPagesData] = useState({});
+  const [staffsData, setStaffsData] = useState([]);
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
@@ -56,7 +58,11 @@ export function AppWrapper({ children }) {
         infoIsOpen,
         setInfoIsOpen,
         isTop,
-        setIsTop
+        setIsTop,
+        pagesData,
+        staffsData,
+        setStaffsData,
+        setPagesData
       }}
     >
       {children}

@@ -15,7 +15,7 @@ import {
 } from './index';
 import Header from './header';
 
-export default function Layout({ preview, children, pages, staffs }) {
+export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
   const variants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -45,7 +45,7 @@ export default function Layout({ preview, children, pages, staffs }) {
             <Container>
               <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                {pages && <InfoDrawer pages={pages} staffs={staffs} />}
+                <InfoDrawer />
               </Breakpoint>
             </Container>
           </div>
@@ -53,7 +53,7 @@ export default function Layout({ preview, children, pages, staffs }) {
             <Breakpoint customQuery="(min-width: 500px)">
               <Header />
               <SectionSeparator />
-              {pages && <InfoDrawer pages={pages} staffs={staffs} />}
+              <InfoDrawer />
               <NavbarDesktop />
             </Breakpoint>
           </Container>

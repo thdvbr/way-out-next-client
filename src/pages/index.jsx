@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery, pageQuery, staffQuery } from '../utils/queries';
@@ -16,12 +16,25 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, pages, staffs, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { query, searchResult, isLoading, errorMsg } = useAppContext();
+  const {
+    query,
+    searchResult,
+    isLoading,
+    errorMsg,
+    setStaffsData,
+    setPagesData,
+  } = useAppContext();
+
+  useEffect(() => {
+    setStaffsData(staffs);
+    setPagesData(pages);
+  }, [staffs, pages, setStaffsData, setPagesData]);
+
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
-      <Layout preview={preview} pages={pages} staffs={staffs}>
+      <Layout preview={preview}>
         <Container>
           <Breakpoint customQuery="(max-width: 500px)">
             <div>
