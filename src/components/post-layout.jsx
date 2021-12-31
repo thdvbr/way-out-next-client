@@ -21,7 +21,7 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop } = useAppContext();
+  const { infoIsOpen, isTop, searchIsOpen } = useAppContext();
 
   return (
     <>
@@ -43,11 +43,11 @@ export default function PostLayout({ preview, children }) {
           <Breakpoint customQuery="(min-width: 500px)">
             <Container>
               <HeaderGold />
-              <SectionSeparator />
+              {/* <SectionSeparator /> */}
               <InfoDrawer />
             </Container>
           </Breakpoint>
-          
+
           <div className="sticky top-0 z-30">
             <Container>
               <Breakpoint customQuery="(max-width: 500px)">
@@ -61,6 +61,11 @@ export default function PostLayout({ preview, children }) {
               </Breakpoint>
             </Container>
           </div>
+          <Container>
+            <Breakpoint customQuery="(min-width: 500px)">
+              {!searchIsOpen && <SectionSeparator /> }
+            </Breakpoint>
+          </Container>
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
