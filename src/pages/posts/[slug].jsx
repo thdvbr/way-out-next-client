@@ -8,7 +8,7 @@ import {
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import { postQuery, postSlugsQuery } from '../../utils/queries';
+import { postQuery, postSlugsQuery, pageQuery, staffQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
@@ -25,7 +25,7 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts },
+    data: { post, morePosts, staffs, pages },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -39,7 +39,15 @@ export const Post = ({ data = {}, preview }) => {
     setSearchIsOpen,
     isTop,
     setIsTop,
+    setStaffsData,
+    setPagesData,
   } = useAppContext();
+
+  useEffect(() => {
+    setStaffsData(staffs);
+    setPagesData(pages);
+  }, [staffs, pages, setStaffsData, setPagesData]);
+
   useEffect(() => {
     return searchIsOpen && setSearchIsOpen(false);
   }, []);
@@ -79,7 +87,7 @@ export const Post = ({ data = {}, preview }) => {
                     publishedAt={post.publishedAt}
                     credits={post.credits}
                   />
-                  <div className="xl:px-60 lg:px-40 md:px-24 px-2">
+                  <div className="xl:px-36 lg:px-28 md:px-24 px-2">
                     <PostBody body={post.body} />
                   </div>
                   {post.artistLink && (
@@ -100,6 +108,8 @@ export async function getStaticProps({ params, preview = false }) {
   const { post, morePosts } = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   });
+  const pages = await getClient(preview).fetch(pageQuery);
+  const staffs = await getClient(preview).fetch(staffQuery);
 
   return {
     props: {
@@ -107,6 +117,8 @@ export async function getStaticProps({ params, preview = false }) {
       data: {
         post,
         morePosts: overlayDrafts(morePosts),
+        staffs,
+        pages
       },
     },
   };

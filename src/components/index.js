@@ -26,6 +26,9 @@ import SearchBar from './search-bar';
 import LogoGold from './logo-gold-svg';
 import Logo from './logo-svg';
 import HeaderGold from './header-gold';
+import InfoDrawer from './info-drawer';
+import Staff from './staff';
+import Content from './content';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -60,5 +63,8 @@ export {
   PostLayout,
   LogoGold,
   Logo,
-  HeaderGold
+  HeaderGold,
+  InfoDrawer,
+  Content,
+  Staff
 };

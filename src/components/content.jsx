@@ -19,12 +19,19 @@ const serializers = {
           );
         case 'secondary':
           return (
-            <span className="font-secondary text-18 leading-none sm:text-24 xl:text-28 lg:text-21 sm:leading-6">
-              <br />
+            <span className="font-secondary text-18 leading-none">
               {children}
+              <br />
               <br />
             </span>
           );
+        case 'copenhagenGrotesk':
+          return (
+            <span className="font-copenhagen text-11 leading-none">
+            {children}
+            <br />
+          </span>
+          )
         case 'intro':
           return (
             <span className="font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-83">
@@ -60,9 +67,9 @@ const serializers = {
 };
 const { projectId, dataset } = sanityConfig;
 
-export default function PostBody({ body }) {
+export default function Content({ body }) {
   return (
-    <div className="mx-3">
+    <div>
       {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
       <BlockContent
         blocks={body}

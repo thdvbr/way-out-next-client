@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PostTitle from './post-title';
 import PostSubtitle from './post-subtitle';
 import MainImage from './main-image';
@@ -25,11 +25,10 @@ const PostHeader = ({
   credits,
   subCategory,
 }) => {
-  const { scrollYProgress } = useViewportScroll();
+
 // returns where Y is in a range, from 0 to 1
 // second array [0,1] = where our start and end of scroll is
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+
 
   return (
     <>
@@ -37,9 +36,9 @@ const PostHeader = ({
         <PostTitle>{title}</PostTitle>
         <PostSubtitle>{subtitle}</PostSubtitle>
       </motion.div>
-      <motion.div style={{ opacity: opacity, scale: scale }} className="mx-auto">
+      <div className="mx-auto">
         <MainImage title={title} image={mainImage} />
-      </motion.div>
+      </div>
       <div className="mx-14 my-8 text-center font-agrandir text-14 leading-5 sm:text-19 xl:text-22.5 lg:text-17 sm:leading-6 tracking-wider">
         <p className="underline">{subCategory}</p>
         <span>Published on: </span>

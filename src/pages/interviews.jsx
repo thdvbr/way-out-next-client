@@ -42,6 +42,8 @@ export const Interviews = ({ allPosts, preview }) => {
   );
 };
 
+// TODO: Think about what to do with staffs and pages fetching on interviews/ stuff-we-like.
+
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
     await getClient(preview).fetch(interviewsQuery),

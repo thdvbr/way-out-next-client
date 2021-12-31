@@ -7,7 +7,7 @@ import Footer from './footer';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
-  InfoDrawerWithoutSSR,
+  InfoDrawer,
   NavbarMobile,
   NavbarDesktop,
   SectionSeparator,
@@ -22,6 +22,7 @@ export default function Layout({ preview, children }) {
     closed: { x: 0 },
   };
   const { infoIsOpen } = useAppContext();
+
   // if yOffset === 0 && color: gold
   return (
     <>
@@ -42,17 +43,17 @@ export default function Layout({ preview, children }) {
           </Head>
           <div className="sticky top-0 z-30">
             <Container>
-              <Breakpoint xs only>
+              <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                <InfoDrawerWithoutSSR />
+                <InfoDrawer />
               </Breakpoint>
             </Container>
           </div>
           <Container>
-            <Breakpoint s up>
+            <Breakpoint customQuery="(min-width: 500px)">
               <Header />
               <SectionSeparator />
-              <InfoDrawerWithoutSSR />
+              <InfoDrawer />
               <NavbarDesktop />
             </Breakpoint>
           </Container>

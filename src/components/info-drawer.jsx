@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
+import { Content, Staff } from './index';
+
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
 
@@ -22,22 +24,56 @@ const useCustomMouse = () => {
   return mousePosition;
 };
 
-const InfoDrawer = () => {
+const InfoDrawer = ({ preview }) => {
+
   const width = useCurrentWidth();
-  const { infoIsOpen, setInfoIsOpen } = useAppContext();
+  const { infoIsOpen, setInfoIsOpen, pagesData, staffsData } = useAppContext();
+  const { about, contact } = pagesData;
   const { x, y } = useCustomMouse();
+  const [aboutIsOpen, setAboutIsOpen] = useState(false);
+  const [contactIsOpen, setContactIsOpen] = useState(false);
+  const [staffIsOpen, setStaffIsOpen] = useState(false);
+
+  const toggleAbout = () => {
+    contactIsOpen && toggleContact();
+    staffIsOpen && toggleStaff();
+    setAboutIsOpen(!aboutIsOpen);
+  };
+
+  const toggleContact = () => {
+    aboutIsOpen && toggleAbout();
+    staffIsOpen && toggleStaff();
+    setContactIsOpen(!contactIsOpen);
+  };
+
+  const toggleStaff = () => {
+    aboutIsOpen && toggleAbout();
+    contactIsOpen && toggleContact();
+    setStaffIsOpen(!staffIsOpen);
+  };
+
+  const toggleInfo = () => {
+    aboutIsOpen && toggleAbout();
+    contactIsOpen && toggleContact();
+    staffIsOpen && toggleStaff();
+    setInfoIsOpen(!infoIsOpen);
+  };
   // const target = useRef(null);
   // const mouse = useMouse(target, {
   //     fps: 60,
   //     enterDelay: 100,
   //     leaveDelay: 100,
   // });
-
+  const moveToTop = () => {
+    document.body.classList.add('no-scroll');
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
-    infoIsOpen
-      ? document.body.classList.add('no-scroll')
-      : document.body.classList.remove('no-scroll');
+    infoIsOpen ? moveToTop() : document.body.classList.remove('no-scroll');
   }, [infoIsOpen]);
 
   return (
@@ -53,10 +89,10 @@ const InfoDrawer = () => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box top-0 w-full h-screen z-30"
+            className="fixed info-box top-0 w-full h-full z-40"
             style={
               width > 500
-                ? { right: '-30vw', maxWidth: '39vw' }
+                ? { right: '-30vw', maxWidth: '35vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             <div
@@ -65,66 +101,40 @@ const InfoDrawer = () => {
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-0 right-0 p-3 ">
-                <button
-                  type="button"
-                  onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}>
+              <div className="absolute top-2 sm:top-4 right-2 sm:right-6 p-3 ">
+                <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-10">
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  About
-                </h1>
-                <br />
-                <div className="pr-20">
-                  <h2 className="leading-none lg:text-19 font-secondary">
-                    Way Out is an online magazine, initiated with the intention
-                    of tracking an ever expanding network of artists.
-                  </h2>
-                  <br />
-                  <h2 className="leading-none lg:text-19 font-secondary">
-                    We believe thatconversation is the purest form of
-                    communication and best vehicle for the transfer of
-                    information.
-                  </h2>
-                  <br />
+              <div className="p-2 sm:p-6 pt-20 sm:pt-24 flex">
+                <div className="w-8/12">
+                  {aboutIsOpen && <Content body={about.body} />}
+                  {contactIsOpen && <Content body={contact.body} />}
+                  {staffIsOpen && (
+                    <div className="grid grid-flow-row grid-cols-2 gap-4">
+                      {staffsData.map((staff) => (
+                        <div key={staff._id}>
+                          <Staff name={staff.staffName} role={staff.role} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Staff
-                </h1>
-                <br />
-                <div className="grid grid-flow-col grid-cols-3 grid-rows-6 gap-4">
-                  <div>staff1</div>
-                  <div>staff2</div>
-                  <div>staff3</div>
-                  <div>staff4</div>
-                  <div>staff5</div>
-                  <div>staff6</div>
-                  <div>staff7</div>
-                  <div>staff8</div>
-                  <div>staff9</div>
-                  <div>staff10</div>
-                  <div>staff11</div>
-                  <div>staff12</div>
-                  <div>staff13</div>
-                  <div>staff14</div>
-                  <div>staff15</div>
-                  <div>staff16</div>
-                  <div>staff17</div>
+                <div className="w-4/12">
+                  <div className="text-23 lg:text-25 font-title text-right">
+                    <button type="button" onClick={toggleAbout}>
+                      {about.title}
+                    </button>
+                    <span className="br"></span>
+                    <button type="button" onClick={toggleContact}>
+                      {contact.title}
+                    </button>
+                    <span className="br"></span>
+                    <button type="button" onClick={toggleStaff}>
+                      Staff
+                    </button>
+                  </div>
                 </div>
-                <br />
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Contact
-                </h1>
-                <br />
-                <h2 className="lg:text-16 font-agrandir">
-                  marissa@wayoutmagazine.com
-                </h2>
-                <br />
-                <h1 className="text-24 sm:text-28 lg:text-22.5 font-title">
-                  Join
-                </h1>
               </div>
             </div>
           </motion.div>
@@ -137,7 +147,7 @@ const InfoDrawer = () => {
               opacity: 0,
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-            onClick={() => setInfoIsOpen((infoIsOpen) => !infoIsOpen)}
+            onClick={toggleInfo}
             className="bg-transparent px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
           />
         </>

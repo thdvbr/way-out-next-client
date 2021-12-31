@@ -1,13 +1,8 @@
-import React from 'react';
-import {
-  setDefaultBreakpoints,
-  Breakpoint,
-} from 'react-socks';
+import React, { useEffect } from 'react';
+import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { indexQuery } from '../utils/queries';
-import {
-  Container, HeroPost, MasonryGrid, Layout,
-} from '../components';
+import { indexQuery, pageQuery, staffQuery } from '../utils/queries';
+import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
@@ -15,36 +10,49 @@ setDefaultBreakpoints([
   { s: 500 },
   { m: 768 },
   { l: 1366 },
-  { xl: 1920 },
+  { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, preview }) => {
+export const Index = ({ allPosts, pages, staffs, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const {
-    query, searchResult, isLoading, errorMsg,
+    query,
+    searchResult,
+    isLoading,
+    errorMsg,
+    setStaffsData,
+    setPagesData,
   } = useAppContext();
+
+  useEffect(() => {
+    setStaffsData(staffs);
+    setPagesData(pages);
+  }, [staffs, pages, setStaffsData, setPagesData]);
+
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
       <Layout preview={preview}>
         <Container>
-          <Breakpoint xs only>
-            <div className="px-3">
+          <Breakpoint customQuery="(max-width: 500px)">
+            <div>
               <MasonryGrid posts={!query ? allPosts : searchResult} />
             </div>
           </Breakpoint>
-          <Breakpoint s up>
-            {!query && heroPost && (
-              <HeroPost
-                title={heroPost.title}
-                subtitle={heroPost.subtitle}
-                mainImage={heroPost.mainImage}
-                slug={heroPost.slug}
-              />
-            )}
-            <MasonryGrid posts={!query ? morePosts : searchResult} />
+          <Breakpoint customQuery="(min-width: 500px)">
+            <div>
+              {!query && heroPost && (
+                <HeroPost
+                  title={heroPost.title}
+                  subtitle={heroPost.subtitle}
+                  mainImage={heroPost.mainImage}
+                  slug={heroPost.slug}
+                />
+              )}
+              <MasonryGrid posts={!query ? morePosts : searchResult} />
+            </div>
           </Breakpoint>
           <div className="font-title flex justify-center text-24">
             {isLoading && <span>... Loading</span>}
@@ -58,8 +66,10 @@ export const Index = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
+  const pages = await getClient(preview).fetch(pageQuery);
+  const staffs = await getClient(preview).fetch(staffQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, pages, staffs, preview },
   };
 };
 

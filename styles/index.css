@@ -41,6 +41,11 @@
   src: url(../assets/typography/OPTIArtCraft-Bold.otf);
 }
 
+@font-face {
+  font-family: 'CopenhagenGrotesk';
+  src: url(../assets/typography/CopenhagenGrotesk.otf);
+}
+
 body {
   overflow-x: hidden;
 }
@@ -134,12 +139,18 @@ body {
 }
 
 .radial-gradient {
-  border: 2px solid #000000;
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 80%;
   top: 0px;
   left: 0px;
+  box-shadow: -4px 4px 14px 2px rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 500px) {
+  .radial-gradient {
+    height: 100%;
+  }
 }
 
 ::-moz-selection {
@@ -168,10 +179,13 @@ body {
 .info:hover {
   color: #93bcd2;
 }
-.info:focus {
+/* .info:focus {
+  color: #93bcd2;
+} */
+
+.info-color {
   color: #93bcd2;
 }
-
 .svg-scale {
   width: 100%;
   height: auto;
@@ -204,4 +218,13 @@ body {
 
 .no-scroll {
   overflow-y: hidden;
+}
+
+button:focus {
+  outline: none;
+}
+
+.br {
+  display: block;
+  margin-bottom: 0.6em;
 }

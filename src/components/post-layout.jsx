@@ -7,7 +7,7 @@ import Footer from './footer';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
-  InfoDrawerWithoutSSR,
+  InfoDrawer,
   NavbarMobile,
   NavbarDesktop,
   SectionSeparator,
@@ -21,7 +21,7 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop } = useAppContext();
+  const { infoIsOpen, isTop, searchIsOpen } = useAppContext();
 
   return (
     <>
@@ -40,31 +40,36 @@ export default function PostLayout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Breakpoint s up>
+          <Breakpoint customQuery="(min-width: 500px)">
             <Container>
               <HeaderGold />
-              <SectionSeparator />
-              <InfoDrawerWithoutSSR />
+              {/* <SectionSeparator /> */}
+              <InfoDrawer />
             </Container>
           </Breakpoint>
-          
+
           <div className="sticky top-0 z-30">
             <Container>
-              <Breakpoint xs only>
+              <Breakpoint customQuery="(max-width: 500px)">
                 <NavbarMobile />
-                <InfoDrawerWithoutSSR />
+                <InfoDrawer />
               </Breakpoint>
-              <Breakpoint s up>
+              <Breakpoint customQuery="(min-width: 500px)">
                 <div style={{ color: isTop && '#8A7536' }}>
                   <NavbarDesktop />
                 </div>
               </Breakpoint>
             </Container>
           </div>
+          <Container>
+            <Breakpoint customQuery="(min-width: 500px)">
+              {!searchIsOpen && <SectionSeparator /> }
+            </Breakpoint>
+          </Container>
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
-      <Breakpoint s up>
+      <Breakpoint customQuery="(min-width: 500px)">
         <Footer />
       </Breakpoint>
     </>

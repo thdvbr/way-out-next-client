@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Logo from './logo-svg';
 import LogoGold from './logo-gold-svg';
@@ -11,14 +12,17 @@ export default function HeaderGold() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
   return (
     <header>
-      <div className="flex relative flex-wrap justify-between pt-16 mb-24 font-main xl:text-22.5 lg:text-17 md:text-17">
+      <div className="flex relative flex-wrap justify-between pt-16 mb-40 font-main xl:text-22.5 lg:text-17 md:text-17">
         <span>Donate</span>
         <span>Join</span>
-        <motion.div
-            whileHover={{ scale: 1.1 , dropShadow: "0px 0px 4px gray"}}
+        <Link href="/">
+          <motion.a
+            href="/"
+            whileHover={{ scale: 1.1, dropShadow: '0px 0px 4px gray' }}
             className="flex absolute left-0 right-0 justify-center z-40">
-          <Logo />
-        </motion.div>
+            <Logo />
+          </motion.a>
+        </Link>
         <motion.div
           style={{ scale: scale, opacity: opacity }}
           className="flex fixed left-0 right-0 justify-center">

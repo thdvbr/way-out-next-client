@@ -1,16 +1,32 @@
 import React from 'react';
 import Link from 'next/link';
-import { urlForImage } from '../utils/sanity';
+import { useNextSanityImage } from 'next-sanity-image';
+import Image from 'next/image';
+import { sanityClient } from '../utils/sanity.server';
+
 
 // TODO: Find out how to fill in the height of the container?
 const HeroImage = ({ title, slug, image: source }) => {
+  const myCustomImageBuilder = (imageUrlBuilder) => {
+    return imageUrlBuilder.width(2000).height(1107);
+  };
+
+  const imageProps = useNextSanityImage(sanityClient, source, {
+    blurUpImageWidth: 124,
+    blurUpImageQuality: 40,
+    blurUpAmount: 200,
+    imageBuilder: myCustomImageBuilder,
+  });
+
   const image = source ? (
-    <img
-      className="svg-scale"
-      width={2000}
-      alt={`Hero Image for ${title}`}
-      src={urlForImage(source).height(1107).width(2000).url()}
-    />
+    <div className="svg-scale">
+      <Image
+        {...imageProps}
+        alt={`Hero Image for ${title}`}
+        sizes="(max-width: 2000px) 100vw, auto"
+        layout="responsive"
+      />
+    </div>
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );

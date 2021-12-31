@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { urlForImage } from '../utils/sanity';
+import { useNextSanityImage } from 'next-sanity-image';
+import Image from 'next/image';
+import { sanityClient } from '../utils/sanity.server';
 
 const MainImage = ({ title, slug, image: source }) => {
   const easing = [0.175, 0.85, 0.42, 0.96];
@@ -17,15 +19,30 @@ const MainImage = ({ title, slug, image: source }) => {
       },
     },
   };
+
+  const myCustomImageBuilder = (imageUrlBuilder, options) => {
+    return imageUrlBuilder.width(
+      options.width || Math.min(options.originalImageDimensions.width, 800)
+    );
+  };
+
+  const imageProps = useNextSanityImage(sanityClient, source, {
+    blurUpImageWidth: 124,
+    blurUpImageQuality: 40,
+    blurUpAmount: 200,
+    imageBuilder: myCustomImageBuilder,
+  });
+
   const image = source ? (
     <>
-      <motion.img
-        variants={imageVariants}
-        width={2000}
-        height={1000}
-        alt={`Cover Image for ${title}`}
-        src={urlForImage(source).height(1000).width(2000).url()}
-      />
+      <motion.div variants={imageVariants}>
+        <Image
+          {...imageProps}
+          alt={`Cover Image for ${title}`}
+          sizes="(max-width: 2000px) 100vw, auto"
+          layout="responsive"
+        />
+      </motion.div>
       <div className="main-image-caption my-1 font-secondary text-10 sm:text-16">
         {source.caption}
       </div>
