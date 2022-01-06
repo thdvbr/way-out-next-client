@@ -18,24 +18,25 @@ import Header from './header';
 
 export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
-  const variants = {
+  const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen } = useAppContext();
+  const { infoIsOpen, joinIsOpen } = useAppContext();
 
+  const joinVariants = {
+    opened: { y: '-10vh' },
+    closed: { y: 0 },
+  };
   // if yOffset === 0 && color: gold
   return (
     <>
       {/* <Meta /> */}
-      <Breakpoint s up>
-        <Subscribe />
-      </Breakpoint>
       <div className="min-h-screen">
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
-          variants={variants}
+          variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
           transition={{ type: 'spring', duration: 1 }}>
           <Head>
@@ -53,17 +54,25 @@ export default function Layout({ preview, children }) {
               </Breakpoint>
             </Container>
           </div>
-          <Breakpoint customQuery="(min-width: 500px)"></Breakpoint>
-          <Container>
-            <Breakpoint customQuery="(min-width: 500px)">
-              <Header />
-              <SectionSeparator />
-              <InfoDrawer />
-              <NavbarDesktop />
-            </Breakpoint>
-          </Container>
 
-          <main className="w-screen inset-0 z-0">{children}</main>
+          <motion.div
+            initial={false}
+            variants={joinVariants}
+            animate={joinIsOpen ? 'opened' : 'closed'}
+            transition={{ type: 'spring', duration: 1 }}>
+            <Breakpoint customQuery="(min-width: 500px)">
+              <Subscribe />
+            </Breakpoint>
+            <Container>
+              <Breakpoint customQuery="(min-width: 500px)">
+                <Header />
+                <SectionSeparator />
+                <InfoDrawer />
+                <NavbarDesktop />
+              </Breakpoint>
+            </Container>
+            <main className="w-screen inset-0 z-0">{children}</main>
+          </motion.div>
         </motion.div>
       </div>
     </>
