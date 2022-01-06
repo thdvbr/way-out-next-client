@@ -228,3 +228,14 @@ button:focus {
   display: block;
   margin-bottom: 0.6em;
 }
+
+.subscribe-input {
+  border: 0px solid #000000;
+  border-bottom-width: 2px;
+  background-color: transparent;
+  width: 60vw;
+}
+
+*:focus {
+  outline: none;
+}

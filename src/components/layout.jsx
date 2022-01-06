@@ -12,6 +12,7 @@ import {
   NavbarDesktop,
   SectionSeparator,
   Container,
+  Subscribe,
 } from './index';
 import Header from './header';
 
@@ -27,6 +28,9 @@ export default function Layout({ preview, children }) {
   return (
     <>
       {/* <Meta /> */}
+      <Breakpoint s up>
+        <Subscribe />
+      </Breakpoint>
       <div className="min-h-screen">
         {preview && <AlertPreview />}
         <motion.div
@@ -49,6 +53,7 @@ export default function Layout({ preview, children }) {
               </Breakpoint>
             </Container>
           </div>
+          <Breakpoint customQuery="(min-width: 500px)"></Breakpoint>
           <Container>
             <Breakpoint customQuery="(min-width: 500px)">
               <Header />
@@ -61,9 +66,6 @@ export default function Layout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
         </motion.div>
       </div>
-      <Breakpoint s up>
-        <Footer />
-      </Breakpoint>
     </>
   );
 }
