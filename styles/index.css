@@ -56,6 +56,9 @@ body {
   display: flex;
   margin-left: -15px; /* gutter size offset */
   width: auto;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .my-masonry-grid_column {
   background-clip: padding-box;
