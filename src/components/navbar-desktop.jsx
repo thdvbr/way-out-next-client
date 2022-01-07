@@ -12,6 +12,7 @@ const NavbarDesktop = () => {
     searchIsOpen,
     infoIsOpen,
     setInfoIsOpen,
+    setJoinIsOpen,
   } = useAppContext();
 
   return (
@@ -52,7 +53,10 @@ const NavbarDesktop = () => {
         </div>
         <button
           type="button"
-          onClick={() => setInfoIsOpen(!infoIsOpen)}
+          onClick={() => {
+            setInfoIsOpen(!infoIsOpen);
+            setJoinIsOpen(false);
+          }}
           className={`sm:py-0 sm:float-left inline-block ${
             infoIsOpen ? 'info-color' : 'info'
           }`}>

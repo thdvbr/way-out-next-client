@@ -89,7 +89,7 @@ const InfoDrawer = ({ preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box top-0 w-full h-full z-40"
+            className="fixed info-box w-full h-full z-40"
             style={
               width > 500
                 ? { right: '-30vw', maxWidth: '35vw' }

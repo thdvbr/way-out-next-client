@@ -6,12 +6,18 @@ import { useAppContext } from '../context/state';
 // hyperlink for donate? and join goes to..?
 
 export default function Header() {
-  const { joinIsOpen, setJoinIsOpen } = useAppContext();
+  const { joinIsOpen, setJoinIsOpen, setInfoIsOpen } = useAppContext();
   return (
     <header>
       <div className="flex relative flex-wrap justify-between pt-16 mb-40 font-main xl:text-22.5 lg:text-17 md:text-17">
         <span className="z-50">Donate</span>
-        <button type="button" onClick={() => setJoinIsOpen(!joinIsOpen)} className="z-50">
+        <button
+          type="button"
+          onClick={() => {
+            setJoinIsOpen(!joinIsOpen);
+            setInfoIsOpen(false);
+          }}
+          className="z-50">
           Join
         </button>
         <Link href="/">
