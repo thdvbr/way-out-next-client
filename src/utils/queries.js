@@ -57,13 +57,12 @@ export const staffQuery = `
   ${staffFields}
 }`;
 
-
 export const pageSlugsQuery = `
 *[_type == "page" && defined(slug.current)][].slug.current
 `;
 
 export const indexQuery = `
-*[_type == "post"] | order(date desc, _updatedAt desc) {
+*[_type == "post"] | order(date desc, _updatedAt desc) | [0...5] {
   ${postPreviewFields}
 }`;
 
@@ -88,12 +87,12 @@ export const postBySlugQuery = `
 `;
 
 export const interviewsQuery = `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) {
+*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc)  | [0...5] {
   ${postPreviewFields}
 }`;
 
 export const stuffWeLikeQuery = `
-*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) {
+*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [0...5]  {
   ${postPreviewFields}
 }`;
 
@@ -101,3 +100,41 @@ export const searchQuery = `
 *[_type == "post" && [title, subtitle, body[].children[].text ] match [$searchTerm]] {
   ${postPreviewFields}
 }`;
+
+const moreInterviewsQuery = (posts) => {
+  return `
+*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
+    posts.length
+  }...${posts.length + 4}] {
+  ${postPreviewFields}
+}`;
+};
+
+const moreStuffWeLikeQuery = (posts) => {
+  return `
+  *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [${
+    posts.length
+  }...${posts.length + 4}] {
+      ${postPreviewFields}
+  }`;
+};
+
+const moreAllPostsQuery = (posts) => {
+  return `
+  *[_type == "post"] | order(date desc, _updatedAt desc) | [${
+    posts.length + 1
+  }...${posts.length + 5}] {
+    ${postPreviewFields}
+  }`;
+};
+
+export const getMoreQuery = (type, posts) => {
+  switch (type) {
+    case 'stuffWeLike':
+      return moreStuffWeLikeQuery(posts);
+    case 'interviews':
+      return moreInterviewsQuery(posts);
+    default:
+      return moreAllPostsQuery(posts);
+  }
+};

@@ -38,7 +38,7 @@ export const Index = ({ allPosts, pages, staffs, preview }) => {
         <Container>
           <Breakpoint customQuery="(max-width: 500px)">
             <div>
-              <MasonryGrid posts={!query ? allPosts : searchResult} />
+              <MasonryGrid data={!query ? allPosts : searchResult} />
             </div>
           </Breakpoint>
           <Breakpoint customQuery="(min-width: 500px)">
@@ -51,7 +51,7 @@ export const Index = ({ allPosts, pages, staffs, preview }) => {
                   slug={heroPost.slug}
                 />
               )}
-              <MasonryGrid posts={!query ? morePosts : searchResult} />
+              <MasonryGrid data={!query ? morePosts : searchResult} />
             </div>
           </Breakpoint>
           <div className="font-title flex justify-center text-24">
