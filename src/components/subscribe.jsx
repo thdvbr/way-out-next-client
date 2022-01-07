@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import { renderToStaticMarkup } from 'react-dom/server';
-import SubscribeSvg from './subscribe-svg';
-const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
+// import { renderToStaticMarkup } from 'react-dom/server';
+// import SubscribeSvg from './subscribe-svg';
+// const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
 
 const Subscribe = () => {
   const input = useRef(null);
@@ -46,7 +46,8 @@ const Subscribe = () => {
   };
 
   return (
-    <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
+    // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
+    <div className="join-search-bg">
       <form
         style={{ height: '80px' }}
         onSubmit={subscribe}
