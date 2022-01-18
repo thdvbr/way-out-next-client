@@ -4,19 +4,17 @@ const HeroSvg = () => {
   return (
     <div className="svg-scale">
       <svg
-        preserveAspectRatio="none"
-        width="100%"
+        // preserveAspectRatio="none"
+        // width="100%"
         height="100%"
-        viewBox="0 0 365 404"
+        viewBox="0 0 404 486"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <rect
-          x="365"
           width="404"
-          height="365"
-          transform="rotate(90 365 0)"
+          height="486"
           fill="url(#pattern0)"
         />
         <defs>
