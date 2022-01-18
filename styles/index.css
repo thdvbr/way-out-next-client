@@ -54,15 +54,15 @@ body {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  margin-left: -15px; /* gutter size offset */
+  margin-left: -20px; /* gutter size offset */
   width: auto;
   padding-top: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 .my-masonry-grid_column {
   background-clip: padding-box;
-  padding-left: 15px; /* gutter size */
+  padding-left: 20px; /* gutter size */
 }
 
 /* Style your items */
@@ -112,6 +112,13 @@ body {
     transform: rotate(2deg);
     -webkit-transition: -webkit-transform 0.3s ease-in;
     transition: transform 0.3s ease-in;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .preview-block:hover .masonry-item-text {
+    padding-left: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 }
 
@@ -208,8 +215,8 @@ body {
   /* body {
     overflow-x: hidden;
   } */
-  .logo-container {
-    width: 4em;
+  .svg-logo-container {
+    width: 4.5em;
   }
   .info-box {
     top: 0;
@@ -218,13 +225,30 @@ body {
 
 @media only screen and (min-width: 501px) {
   .logo-container {
-    width: 7em;
+    width: 10em;
+    height: 9em;
+    content: url(../assets/logos/way_out_vector_transparent-01_.png);
   }
   .info-box {
-    top: 10vh;
+    top: 80px;
+  }
+  .gif {
+    background-image: url(../assets/logos/wayoutgif_alpha04.gif);
+    background-size: 10em 9em;
+    width: 10em;
+    height: 9em;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .gif:hover {
+    opacity: 1;
   }
 }
 
+logo-container:hover {
+  opacity: 0;
+}
 .no-scroll {
   overflow-y: hidden;
 }
@@ -251,4 +275,20 @@ button:focus {
 
 .join-search-bg {
   background-image: url(../assets/background/search_bar_1920px_w.jpg);
+}
+
+.top-80 {
+  top: 80px;
+}
+
+.button-underline {
+  text-decoration: underline;
+  /* display: inline-block; */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+.linebreak {
+  display: block;
+  line-height: 10px;
 }

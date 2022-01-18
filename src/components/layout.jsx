@@ -26,7 +26,7 @@ export default function Layout({ preview, children }) {
 
   const joinVariants = {
     opened: { y: 0 },
-    closed: { y: '-10vh' },
+    closed: { y: '-80px' },
   };
   // if yOffset === 0 && color: gold
   return (
@@ -64,8 +64,10 @@ export default function Layout({ preview, children }) {
               transition={{ type: 'spring', duration: 1 }}>
               <Subscribe />
               <Container>
-                <Header />
-                <SectionSeparator />
+                <div className="px-3">
+                  <Header />
+                  <SectionSeparator />
+                </div>
                 <InfoDrawer />
                 <NavbarDesktop />
               </Container>
