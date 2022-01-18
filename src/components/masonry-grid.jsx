@@ -11,7 +11,7 @@ import {
 
 const breakpointColumnsObj = {
   default: 4,
-  768: 3,
+  1024: 3,
   499: 1,
 };
 const postVariants = {
