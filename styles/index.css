@@ -72,6 +72,13 @@ body {
   margin-bottom: 15px;
 }
 
+@media only screen and (max-width: 500px) {
+  .my-masonry-grid {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}
+
 .thumbnail-border {
   border: 2px solid black;
 }

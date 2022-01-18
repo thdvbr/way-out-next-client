@@ -41,6 +41,7 @@ export const Post = ({ data = {}, preview }) => {
     setIsTop,
     setStaffsData,
     setPagesData,
+    setJoinIsOpen
   } = useAppContext();
 
   useEffect(() => {
@@ -62,6 +63,7 @@ export const Post = ({ data = {}, preview }) => {
       const isOnTop = window.scrollY > 100;
       if (isTop !== isOnTop) {
         setIsTop(isOnTop);
+        setJoinIsOpen(false);
       }
     });
   });
@@ -74,7 +76,7 @@ export const Post = ({ data = {}, preview }) => {
     <>
       <motion.div initial="exit" animate="enter" exit="exit">
         <PostLayout preview={preview}>
-          <Container>
+          <div className="px-3">
             {post && (
               <>
                 {/* <SectionSeparator /> */}
@@ -97,7 +99,7 @@ export const Post = ({ data = {}, preview }) => {
               </>
             )}
             {morePosts && <RelatedGrid posts={morePosts} />}
-          </Container>
+          </div>
         </PostLayout>
       </motion.div>
     </>
