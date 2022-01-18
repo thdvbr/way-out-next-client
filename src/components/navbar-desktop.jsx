@@ -16,7 +16,7 @@ const NavbarDesktop = () => {
   } = useAppContext();
 
   return (
-    <div className="sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
+    <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
       <nav className="py-3 flex relative justify-between sm:w-full">
         <button
           type="button"
