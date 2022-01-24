@@ -15,6 +15,7 @@ import {
   HeaderGold,
   Subscribe,
 } from './index';
+import { joinVariants } from '../utils/animation';
 
 export default function PostLayout({ preview, children }) {
   const width = useCurrentWidth();
@@ -23,12 +24,6 @@ export default function PostLayout({ preview, children }) {
     closed: { x: 0 },
   };
   const { infoIsOpen, isTop, searchIsOpen, joinIsOpen } = useAppContext();
-
-  const joinVariants = {
-    opened: { y: 0 },
-    closed: { y: '-66px' },
-  };
-
   return (
     <>
       {/* <Meta /> */}

@@ -23,54 +23,14 @@ import {
   RelatedGrid,
 } from '../../components';
 import { useAppContext } from '../../context/state';
+import {
+  postHeaderVariants,
+  postBodyVariants,
+  morePostVariants,
+  stagger,
+} from '../../utils/animation';
 
 export const Post = ({ data = {}, preview }) => {
-  const easing = [0.3, 0.85, 0.42, 0.96];
-  const postHeaderVariants = {
-    hidden: { opacity: 0 },
-    enter: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: { delay: 0.1, duration: 1, ease: easing },
-    },
-    exit: { opacity: 0, x: 0, y: -100 },
-  };
-
-  const postBodyVariants = {
-    hidden: { opacity: 0 },
-    enter: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: { delay: 0.3, duration: 1, ease: easing },
-    },
-    exit: { opacity: 0, x: 0, y: -100 },
-  };
-
-  const morePostVariants = {
-    initial: { y: 60, opacity: 0 },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: { delay: 0.4, duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
-    },
-    exit: {
-      y: 100,
-      opacity: 0,
-      transition: { duration: 0.2, ease: [0.48, 0.15, 0.25, 0.96] },
-    },
-  };
-
-  // TODO: dont think this stagger works
-  const stagger = {
-    animate: {
-      transition: {
-        staggerChildren: 0.5,
-      },
-    },
-  };
-
   const router = useRouter();
   const slug = data?.post?.slug;
   const {

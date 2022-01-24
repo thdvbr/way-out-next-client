@@ -15,6 +15,7 @@ import {
   Subscribe,
 } from './index';
 import Header from './header';
+import { joinVariants } from '../utils/animation';
 
 export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
@@ -24,10 +25,6 @@ export default function Layout({ preview, children }) {
   };
   const { infoIsOpen, joinIsOpen } = useAppContext();
 
-  const joinVariants = {
-    opened: { y: 0 },
-    closed: { y: '-66px' },
-  };
   // if yOffset === 0 && color: gold
   return (
     <>
