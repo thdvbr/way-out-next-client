@@ -237,7 +237,7 @@ body {
     content: url(../assets/logos/way_out_vector_transparent-01_.png);
   }
   .info-box {
-    top: 80px;
+    top: 66px;
   }
   .gif {
     background-image: url(../assets/logos/wayoutgif_alpha04.gif);
@@ -251,9 +251,14 @@ body {
   .gif:hover {
     opacity: 1;
   }
+  .logo-gold-container {
+    width: 10em;
+    height: 9em;
+    content: url(../assets/logos/way_out_vector_transparent-gold.png);
+  }
 }
 
-logo-container:hover {
+.logo-container:hover {
   opacity: 0;
 }
 .no-scroll {
@@ -298,4 +303,20 @@ button:focus {
 .linebreak {
   display: block;
   line-height: 10px;
+}
+
+.is-search-visible {
+  transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  max-height: 7rem;
+  opacity: 1;
+}
+
+.header-search {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  -o-transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  overflow: hidden;
 }
