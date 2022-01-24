@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
 import AlertPreview from './alert-preview';
-import Footer from './footer';
+import Header from './header';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
@@ -13,16 +13,17 @@ import {
   SectionSeparator,
   Container,
   HeaderGold,
+  Subscribe,
 } from './index';
+import { joinVariants } from '../utils/animation';
 
 export default function PostLayout({ preview, children }) {
   const width = useCurrentWidth();
-  const variants = {
+  const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop, searchIsOpen } = useAppContext();
-
+  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen } = useAppContext();
   return (
     <>
       {/* <Meta /> */}
@@ -30,7 +31,7 @@ export default function PostLayout({ preview, children }) {
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
-          variants={variants}
+          variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
           transition={{ type: 'spring', duration: 1 }}>
           <Head>
@@ -40,38 +41,44 @@ export default function PostLayout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Breakpoint customQuery="(min-width: 500px)">
-            <Container>
-              <HeaderGold />
-              {/* <SectionSeparator /> */}
-              <InfoDrawer />
-            </Container>
-          </Breakpoint>
-
-          <div className="sticky top-0 z-30">
-            <Container>
-              <Breakpoint customQuery="(max-width: 500px)">
+          <Breakpoint customQuery="(max-width: 500px)">
+            <div className="sticky top-0 z-30">
+              <Container>
                 <NavbarMobile />
                 <InfoDrawer />
-              </Breakpoint>
-              <Breakpoint customQuery="(min-width: 500px)">
-                <div style={{ color: isTop && '#8A7536' }}>
-                  <NavbarDesktop />
+              </Container>
+            </div>
+            <main className="w-screen inset-0 z-0">{children}</main>
+          </Breakpoint>
+          <Breakpoint customQuery="(min-width: 500px)">
+            <motion.div
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'spring', duration: 0.5 }}>
+              <Subscribe />
+
+              <Container>
+                <div className="px-3">
+                  <Header />
                 </div>
-              </Breakpoint>
-            </Container>
-          </div>
-          <Container>
-            <Breakpoint customQuery="(min-width: 500px)">
-              {!searchIsOpen && <SectionSeparator /> }
-            </Breakpoint>
-          </Container>
-          <main className="w-screen inset-0 z-0">{children}</main>
+                <InfoDrawer />
+                <div className="sticky top-80 z-30">
+                  <div style={{ color: isTop && '#8A7536' }}>
+                    <NavbarDesktop />
+                  </div>
+                </div>
+                {!searchIsOpen && (
+                  <div className="px-3">
+                    <SectionSeparator />
+                  </div>
+                )}
+                <main className="inset-0 z-0">{children}</main>
+              </Container>
+            </motion.div>
+          </Breakpoint>
         </motion.div>
       </div>
-      <Breakpoint customQuery="(min-width: 500px)">
-        <Footer />
-      </Breakpoint>
     </>
   );
 }

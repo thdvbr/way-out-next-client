@@ -14,8 +14,7 @@ const SearchBar = ({ onSearch }) => {
       }}
     >
       <input
-        style={{ backgroundColor: 'yellow' }}
-        className="py-3.5 sm:pl-4 border-black border-2 font-main w-full text-center rounded sm:rounded-none sm:text-left"
+        className="join-search-bg py-3.5 sm:pl-4 border-black border-2 font-main w-full text-center rounded sm:rounded-none sm:text-left"
         type="text"
         placeholder="Search"
         value={value}

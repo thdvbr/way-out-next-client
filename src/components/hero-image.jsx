@@ -8,7 +8,7 @@ import { sanityClient } from '../utils/sanity.server';
 // TODO: Find out how to fill in the height of the container?
 const HeroImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
-    return imageUrlBuilder.width(2000).height(1107);
+    return imageUrlBuilder.width(2000).height(1200);
   };
 
   const imageProps = useNextSanityImage(sanityClient, source, {

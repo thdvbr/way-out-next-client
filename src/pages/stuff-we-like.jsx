@@ -26,7 +26,7 @@ export const StuffWeLike = ({ allPosts, preview }) => {
     <>
       <Layout preview={preview}>
         <Container>
-          {allPosts && <MasonryGrid posts={!query ? allPosts : searchResult} />}
+          {allPosts && <MasonryGrid type="stuffWeLike" data={!query ? allPosts : searchResult} />}
         </Container>
       </Layout>
     </>

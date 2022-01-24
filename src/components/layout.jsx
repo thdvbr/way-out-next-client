@@ -12,16 +12,18 @@ import {
   NavbarDesktop,
   SectionSeparator,
   Container,
+  Subscribe,
 } from './index';
 import Header from './header';
+import { joinVariants } from '../utils/animation';
 
 export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
-  const variants = {
+  const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen } = useAppContext();
+  const { infoIsOpen, joinIsOpen } = useAppContext();
 
   // if yOffset === 0 && color: gold
   return (
@@ -31,7 +33,7 @@ export default function Layout({ preview, children }) {
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
-          variants={variants}
+          variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
           transition={{ type: 'spring', duration: 1 }}>
           <Head>
@@ -41,29 +43,36 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <div className="sticky top-0 z-30">
-            <Container>
-              <Breakpoint customQuery="(max-width: 500px)">
+          <Breakpoint customQuery="(max-width: 500px)">
+            <div className="sticky top-0 z-30">
+              <Container>
                 <NavbarMobile />
                 <InfoDrawer />
-              </Breakpoint>
-            </Container>
-          </div>
-          <Container>
-            <Breakpoint customQuery="(min-width: 500px)">
-              <Header />
-              <SectionSeparator />
-              <InfoDrawer />
-              <NavbarDesktop />
-            </Breakpoint>
-          </Container>
-
-          <main className="w-screen inset-0 z-0">{children}</main>
+              </Container>
+            </div>
+            <main className="w-screen inset-0 z-0">{children}</main>
+          </Breakpoint>
+          {/* desktop */}
+          <Breakpoint customQuery="(min-width: 500px)">
+            <motion.div
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'spring', duration: 0.5 }}>
+              <Subscribe />
+              <Container>
+                <div className="px-3">
+                  <Header />
+                  <SectionSeparator />
+                </div>
+                <InfoDrawer />
+                <NavbarDesktop />
+              </Container>
+              <main className="w-screen inset-0 z-0">{children}</main>
+            </motion.div>
+          </Breakpoint>
         </motion.div>
       </div>
-      <Breakpoint s up>
-        <Footer />
-      </Breakpoint>
     </>
   );
 }

@@ -6,7 +6,7 @@ const RelatedItem = ({
   title, subtitle, subCategory, previewImage, slug,
 }) => {
   return (
-    <div className="px-3 pt-2 pb-5 w-40 md:w-64 xl:w-96 related-preview-block overflow-auto">
+    <div className="px-2 pt-2 lg:px-3 lg:pt-3 mb-6 pb-2 w-40 md:w-64 xl:w-96 related-preview-block overflow-auto">
       <div className="mb-0">
         <Thumbnail
           slug={slug}
@@ -25,7 +25,7 @@ const RelatedItem = ({
           {subCategory}
         </span>
       </div>
-      <div className="max-w-xs sm:mr-8">
+      <div className="max-w-xs lg:mr-8">
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
           {/* TODO: leading doesnt work here why?? */}
           <a className="hover:underline font-main-bold text-15 leading-none sm:text-18 xl:text-29.5 lg:text-22.5 xl:leading-9 lg:leading-6">

@@ -6,20 +6,6 @@ import Image from 'next/image';
 import { sanityClient } from '../utils/sanity.server';
 
 const MainImage = ({ title, slug, image: source }) => {
-  const easing = [0.175, 0.85, 0.42, 0.96];
-
-  const imageVariants = {
-    exit: { y: 150, opacity: 0, transition: { duration: 0.5, ease: easing } },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: easing,
-      },
-    },
-  };
-
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder.width(
       options.width || Math.min(options.originalImageDimensions.width, 800)
@@ -35,7 +21,10 @@ const MainImage = ({ title, slug, image: source }) => {
 
   const image = source ? (
     <>
-      <motion.div variants={imageVariants}>
+      <motion.div
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}>
         <Image
           {...imageProps}
           alt={`Cover Image for ${title}`}

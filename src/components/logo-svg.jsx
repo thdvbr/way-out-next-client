@@ -2,7 +2,7 @@ import React from 'react';
 
 const Logo = () => {
   return (
-    <div className="logo-container">
+    <div className="svg-logo-container">
       <svg
         viewBox="0 0 54 41"
         fill="none"

@@ -29,6 +29,7 @@ import HeaderGold from './header-gold';
 import InfoDrawer from './info-drawer';
 import Staff from './staff';
 import Content from './content';
+import Subscribe from './subscribe';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -66,5 +67,6 @@ export {
   HeaderGold,
   InfoDrawer,
   Content,
-  Staff
+  Staff,
+  Subscribe
 };

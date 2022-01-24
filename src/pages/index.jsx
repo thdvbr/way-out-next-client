@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
+import { motion } from 'framer-motion';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery, pageQuery, staffQuery } from '../utils/queries';
 import { Container, HeroPost, MasonryGrid, Layout } from '../components';
@@ -34,32 +35,37 @@ export const Index = ({ allPosts, pages, staffs, preview }) => {
   // needs to wait until searchResult is returned.
   return (
     <>
-      <Layout preview={preview}>
-        <Container>
-          <Breakpoint customQuery="(max-width: 500px)">
-            <div>
-              <MasonryGrid posts={!query ? allPosts : searchResult} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}>
+        <Layout preview={preview}>
+          <Container>
+            <Breakpoint customQuery="(max-width: 500px)">
+              <div>
+                <MasonryGrid data={!query ? allPosts : searchResult} />
+              </div>
+            </Breakpoint>
+            <Breakpoint customQuery="(min-width: 500px)">
+              <div>
+                {!query && heroPost && (
+                  <HeroPost
+                    title={heroPost.title}
+                    subtitle={heroPost.subtitle}
+                    mainImage={heroPost.mainImage}
+                    slug={heroPost.slug}
+                  />
+                )}
+                <MasonryGrid data={!query ? morePosts : searchResult} />
+              </div>
+            </Breakpoint>
+            <div className="font-title flex justify-center text-24">
+              {isLoading && <span>... Loading</span>}
+              {errorMsg && <span>{errorMsg}</span>}
             </div>
-          </Breakpoint>
-          <Breakpoint customQuery="(min-width: 500px)">
-            <div>
-              {!query && heroPost && (
-                <HeroPost
-                  title={heroPost.title}
-                  subtitle={heroPost.subtitle}
-                  mainImage={heroPost.mainImage}
-                  slug={heroPost.slug}
-                />
-              )}
-              <MasonryGrid posts={!query ? morePosts : searchResult} />
-            </div>
-          </Breakpoint>
-          <div className="font-title flex justify-center text-24">
-            {isLoading && <span>... Loading</span>}
-            {errorMsg && <span>{errorMsg}</span>}
-          </div>
-        </Container>
-      </Layout>
+          </Container>
+        </Layout>
+      </motion.div>
     </>
   );
 };

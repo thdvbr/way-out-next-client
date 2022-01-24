@@ -8,7 +8,12 @@ import {
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import { postQuery, postSlugsQuery, pageQuery, staffQuery } from '../../utils/queries';
+import {
+  postQuery,
+  postSlugsQuery,
+  pageQuery,
+  staffQuery,
+} from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
@@ -16,10 +21,14 @@ import {
   PostLayout,
   ArtistLink,
   RelatedGrid,
-  Container,
-  SectionSeparator,
 } from '../../components';
 import { useAppContext } from '../../context/state';
+import {
+  postHeaderVariants,
+  postBodyVariants,
+  morePostVariants,
+  stagger,
+} from '../../utils/animation';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -41,6 +50,7 @@ export const Post = ({ data = {}, preview }) => {
     setIsTop,
     setStaffsData,
     setPagesData,
+    setJoinIsOpen,
   } = useAppContext();
 
   useEffect(() => {
@@ -62,23 +72,30 @@ export const Post = ({ data = {}, preview }) => {
       const isOnTop = window.scrollY > 100;
       if (isTop !== isOnTop) {
         setIsTop(isOnTop);
+        setJoinIsOpen(false);
       }
     });
   });
-
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <>
-      <motion.div initial="exit" animate="enter" exit="exit">
-        <PostLayout preview={preview}>
-          <Container>
-            {post && (
-              <>
-                {/* <SectionSeparator /> */}
-                <article>
+    <motion.div
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
+      <PostLayout preview={preview}>
+        <div className="px-3">
+          {post && (
+            <>
+              {/* <SectionSeparator /> */}
+              <article>
+                <motion.div
+                  variants={postHeaderVariants}
+                  initial="hidden"
+                  animate="enter"
+                  exit="exit">
                   <PostHeader
                     title={post.title}
                     subtitle={post.subtitle}
@@ -87,20 +104,33 @@ export const Post = ({ data = {}, preview }) => {
                     publishedAt={post.publishedAt}
                     credits={post.credits}
                   />
-                  <div className="xl:px-36 lg:px-28 md:px-24 px-2">
-                    <PostBody body={post.body} />
-                  </div>
-                  {post.artistLink && (
-                    <ArtistLink artistLink={post.artistLink} />
-                  )}
-                </article>
-              </>
+                </motion.div>
+                <motion.div
+                  variants={postBodyVariants}
+                  initial="hidden"
+                  animate="enter"
+                  exit="exit"
+                  className="xl:px-36 lg:px-28 md:px-24 px-2">
+                  <PostBody body={post.body} />
+                </motion.div>
+                {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+              </article>
+            </>
+          )}
+          <motion.div variants={stagger}>
+            {morePosts && (
+              <motion.div
+                variants={morePostVariants}
+                initial="initial"
+                animate="enter"
+                exit="exit">
+                <RelatedGrid posts={morePosts} />
+              </motion.div>
             )}
-            {morePosts && <RelatedGrid posts={morePosts} />}
-          </Container>
-        </PostLayout>
-      </motion.div>
-    </>
+          </motion.div>
+        </div>
+      </PostLayout>
+    </motion.div>
   );
 };
 
@@ -118,7 +148,7 @@ export async function getStaticProps({ params, preview = false }) {
         post,
         morePosts: overlayDrafts(morePosts),
         staffs,
-        pages
+        pages,
       },
     },
   };

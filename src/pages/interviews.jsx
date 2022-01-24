@@ -31,7 +31,7 @@ export const Interviews = ({ allPosts, preview }) => {
     <>
       <Layout preview={preview}>
         <Container>
-          {allPosts && <MasonryGrid posts={!query ? allPosts : searchResult} />}
+          {allPosts && <MasonryGrid type="interviews" data={!query ? allPosts : searchResult} />}
           {/* <div className="font-title flex justify-center text-24">
             {isLoading && <span>... Loading</span>}
             {errorMsg && <span>{errorMsg}</span>}
