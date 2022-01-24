@@ -26,7 +26,7 @@ export default function Layout({ preview, children }) {
 
   const joinVariants = {
     opened: { y: 0 },
-    closed: { y: '-80px' },
+    closed: { y: '-66px' },
   };
   // if yOffset === 0 && color: gold
   return (
@@ -61,7 +61,7 @@ export default function Layout({ preview, children }) {
               initial={false}
               variants={joinVariants}
               animate={joinIsOpen ? 'opened' : 'closed'}
-              transition={{ type: 'spring', duration: 1 }}>
+              transition={{ type: 'spring', duration: 0.5 }}>
               <Subscribe />
               <Container>
                 <div className="px-3">
