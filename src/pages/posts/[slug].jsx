@@ -8,7 +8,12 @@ import {
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import { postQuery, postSlugsQuery, pageQuery, staffQuery } from '../../utils/queries';
+import {
+  postQuery,
+  postSlugsQuery,
+  pageQuery,
+  staffQuery,
+} from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
@@ -16,12 +21,56 @@ import {
   PostLayout,
   ArtistLink,
   RelatedGrid,
-  Container,
-  SectionSeparator,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 
 export const Post = ({ data = {}, preview }) => {
+  const easing = [0.3, 0.85, 0.42, 0.96];
+  const postHeaderVariants = {
+    hidden: { opacity: 0 },
+    enter: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { delay: 0.1, duration: 1, ease: easing },
+    },
+    exit: { opacity: 0, x: 0, y: -100 },
+  };
+
+  const postBodyVariants = {
+    hidden: { opacity: 0 },
+    enter: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { delay: 0.3, duration: 1, ease: easing },
+    },
+    exit: { opacity: 0, x: 0, y: -100 },
+  };
+
+  const morePostVariants = {
+    initial: { y: 60, opacity: 0 },
+    enter: {
+      y: 0,
+      opacity: 1,
+      transition: { delay: 0.4, duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
+    },
+    exit: {
+      y: 100,
+      opacity: 0,
+      transition: { duration: 0.2, ease: [0.48, 0.15, 0.25, 0.96] },
+    },
+  };
+
+  // TODO: dont think this stagger works
+  const stagger = {
+    animate: {
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+  };
+
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
@@ -41,7 +90,7 @@ export const Post = ({ data = {}, preview }) => {
     setIsTop,
     setStaffsData,
     setPagesData,
-    setJoinIsOpen
+    setJoinIsOpen,
   } = useAppContext();
 
   useEffect(() => {
@@ -68,19 +117,25 @@ export const Post = ({ data = {}, preview }) => {
     });
   });
 
-
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <>
-      <motion.div initial="exit" animate="enter" exit="exit">
-        <PostLayout preview={preview}>
-          <div className="px-3">
-            {post && (
-              <>
-                {/* <SectionSeparator /> */}
-                <article>
+    <motion.div
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
+      <PostLayout preview={preview}>
+        <div className="px-3">
+          {post && (
+            <>
+              {/* <SectionSeparator /> */}
+              <article>
+                <motion.div
+                  variants={postHeaderVariants}
+                  initial="hidden"
+                  animate="enter"
+                  exit="exit">
                   <PostHeader
                     title={post.title}
                     subtitle={post.subtitle}
@@ -89,20 +144,33 @@ export const Post = ({ data = {}, preview }) => {
                     publishedAt={post.publishedAt}
                     credits={post.credits}
                   />
-                  <div className="xl:px-36 lg:px-28 md:px-24 px-2">
-                    <PostBody body={post.body} />
-                  </div>
-                  {post.artistLink && (
-                    <ArtistLink artistLink={post.artistLink} />
-                  )}
-                </article>
-              </>
+                </motion.div>
+                <motion.div
+                  variants={postBodyVariants}
+                  initial="hidden"
+                  animate="enter"
+                  exit="exit"
+                  className="xl:px-36 lg:px-28 md:px-24 px-2">
+                  <PostBody body={post.body} />
+                </motion.div>
+                {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+              </article>
+            </>
+          )}
+          <motion.div variants={stagger}>
+            {morePosts && (
+              <motion.div
+                variants={morePostVariants}
+                initial="initial"
+                animate="enter"
+                exit="exit">
+                <RelatedGrid posts={morePosts} />
+              </motion.div>
             )}
-            {morePosts && <RelatedGrid posts={morePosts} />}
-          </div>
-        </PostLayout>
-      </motion.div>
-    </>
+          </motion.div>
+        </div>
+      </PostLayout>
+    </motion.div>
   );
 };
 
@@ -120,7 +188,7 @@ export async function getStaticProps({ params, preview = false }) {
         post,
         morePosts: overlayDrafts(morePosts),
         staffs,
-        pages
+        pages,
       },
     },
   };
