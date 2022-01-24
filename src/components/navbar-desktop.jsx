@@ -63,9 +63,10 @@ const NavbarDesktop = () => {
           <span className="sm:float-left">Info</span>
         </button>
       </nav>
-      <motion.div className={`${searchIsOpen ? 'flex' : 'hidden'} w-full`}>
+      <div
+        className={`${searchIsOpen ? 'is-search-visible' : 'header-search'} w-full`}>
         <SearchBar onSearch={handleSearch} />
-      </motion.div>
+      </div>
     </div>
   );
 };
