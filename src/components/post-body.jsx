@@ -3,6 +3,8 @@ import BlockContent from '@sanity/block-content-to-react';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
+import { useAppContext } from '../context/state';
+import { SideAdImage } from './index';
 
 const serializers = {
   types: {
@@ -64,26 +66,34 @@ const serializers = {
 const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body }) {
+  const { adsData } = useAppContext();
+  const sideAds = adsData.filter((ad) => ad.adCategory === 'Side').slice(0, 2);
 
   const [postHeight, setPostHeight] = useState(0);
-  const {height} = useWindowDimensions();
+  const { height } = useWindowDimensions();
   const bodyRef = useRef();
   const getPostBodyHeight = () => {
     const newHeight = bodyRef.current.clientHeight;
     setPostHeight(newHeight);
-  }
+  };
+
   useEffect(() => {
     getPostBodyHeight();
-  }, [body, height])
+  }, [body, height]);
 
   return (
     <>
       <div className="absolute left-0">
         {/* need to wrap each sticky so it pushes up not overlap */}
-        <div style={{ height: `${postHeight / 2}px` }}>
-          <div className="sticky bg-red-300 h-48 top-1/3">1st ad</div>
+        {sideAds.map((ad) => (
+          <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
+            <SideAdImage image={ad.adImage} url={ad.adUrl} />
           </div>
-        { postHeight > 500 && <div style={{ height: `${postHeight / 2}px` }}><div className="sticky bg-blue-300 h-48 top-1/3">2nd ad</div></div>}       
+        ))}
+        {/* <div style={{ height: `${postHeight / 2}px` }}>
+          <div className="sticky bg-red-300 h-48 top-1/3">hello</div>
+          </div>
+        { postHeight > 500 && <div style={{ height: `${postHeight / 2}px` }}><div className="sticky bg-blue-300 h-48 top-1/3">2nd ad</div></div>}        */}
       </div>
       <div className="mx-3" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
