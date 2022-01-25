@@ -13,6 +13,7 @@ import {
   postSlugsQuery,
   pageQuery,
   staffQuery,
+  adQuery
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
@@ -140,6 +141,7 @@ export async function getStaticProps({ params, preview = false }) {
   });
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
+  const ads = await getClient(preview).fetch(adQuery);
 
   return {
     props: {
@@ -149,6 +151,7 @@ export async function getStaticProps({ params, preview = false }) {
         morePosts: overlayDrafts(morePosts),
         staffs,
         pages,
+        ads,
       },
     },
   };
