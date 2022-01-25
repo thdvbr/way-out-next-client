@@ -2,6 +2,11 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      zIndex: {
+        60: '60',
+      },
+    },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],
       'main-bold': ['Averia Serif Bold'],
@@ -10,7 +15,7 @@ module.exports = {
       title: ['OPTIArtCraft'],
       subtitle: ['Averia Serif Bold Italic'],
       agrandir: ['Agrandir'],
-      copenhagen: ['CopenhagenGrotesk']
+      copenhagen: ['CopenhagenGrotesk'],
     },
     screens: {
       sm: '500px',
@@ -21,9 +26,9 @@ module.exports = {
     },
     borderWidth: {
       DEFAULT: '1px',
-      '0': '0',
-      '1.5': '1.5px',
-      '2': '2px',
+      0: '0',
+      1.5: '1.5px',
+      2: '2px',
     },
     fontSize: {
       8.5: '0.531rem',
@@ -66,7 +71,7 @@ module.exports = {
       43: '2.688rem',
       55: '3.438rem',
       55.5: '3.469rem',
-      57: '3.563rem'
+      57: '3.563rem',
     },
   },
   variants: {

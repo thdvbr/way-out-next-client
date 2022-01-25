@@ -80,6 +80,7 @@ const InfoDrawer = ({ preview }) => {
     <AnimatePresence>
       {infoIsOpen && (
         <>
+          {/* TODO: Think about what to do with the width of info box */}
           <motion.div
             initial={{ x: '100%' }}
             animate={{
@@ -89,16 +90,17 @@ const InfoDrawer = ({ preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box w-full h-full z-40"
+            className="fixed info-box w-full h-full z-60"
             style={
               width > 500
-                ? { right: '-30vw', maxWidth: '35vw' }
+                ? { right: '-30vw', maxWidth: '35rem' }
                 : { right: 0, maxWidth: '100vw' }
             }>
+            {/* TODO: Add noise to radial gradiant */}
             <div
               className="absolute top-0 p-5 radial-gradient"
               style={{
-                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4`,
+                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute top-2 sm:top-4 right-2 sm:right-6 p-3 ">
