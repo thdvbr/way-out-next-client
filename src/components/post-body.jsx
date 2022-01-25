@@ -6,7 +6,6 @@ import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
 import { SideAdImage } from './index';
 
-
 const serializers = {
   types: {
     block: ({ node, children }) => {
@@ -71,7 +70,7 @@ export default function PostBody({ body, ads }) {
   const randomSlice1 = _.sample(ads);
 
   const [postHeight, setPostHeight] = useState(0);
-  const { height } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
   const bodyRef = useRef();
   const getPostBodyHeight = () => {
     const newHeight = bodyRef.current.clientHeight;
@@ -84,14 +83,26 @@ export default function PostBody({ body, ads }) {
 
   return (
     <>
-      <div className="absolute left-0">
-        {/* need to wrap each sticky so it pushes up not overlap */}
-        {postHeight > 500 ? randomSlice2.map((ad) => (
-          <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
-            <SideAdImage image={ad.adImage} url={ad.adUrl} />
-          </div>
-        )) : <div style={{ height: `${postHeight / 2}px` }}><SideAdImage image={randomSlice1.adImage} url={randomSlice1.adUrl} /></div>}
-      </div>
+      {width > 500 && (
+        <div className="absolute left-0">
+          {/* need to wrap each sticky so it pushes up not overlap */}
+          {postHeight > 500 ? (
+            randomSlice2.map((ad) => (
+              <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
+                <SideAdImage image={ad.adImage} url={ad.adUrl} />
+              </div>
+            ))
+          ) : (
+            <div style={{ height: `${postHeight / 2}px` }}>
+              <SideAdImage
+                image={randomSlice1.adImage}
+                url={randomSlice1.adUrl}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="mx-3" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
         <span>{postHeight}</span>
