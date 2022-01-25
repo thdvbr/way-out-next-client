@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
+import useWindowDimensions from '../utils/useWindowDimensions';
 import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
 
@@ -47,10 +48,12 @@ const serializers = {
           <div className="flex-col">
             <img alt="post img" src={urlForImage(node.asset).url()} />
             {node.caption && (
-            <>
-              <p className="font-secondary my-1 text-10 sm:text-16">{node.caption}</p>
-              <hr className="border-black" />
-            </>
+              <>
+                <p className="font-secondary my-1 text-10 sm:text-16">
+                  {node.caption}
+                </p>
+                <hr className="border-black" />
+              </>
             )}
           </div>
         </div>
@@ -61,15 +64,37 @@ const serializers = {
 const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body }) {
+
+  const [postHeight, setPostHeight] = useState(0);
+  const {height} = useWindowDimensions();
+  const bodyRef = useRef();
+  const getPostBodyHeight = () => {
+    const newHeight = bodyRef.current.clientHeight;
+    setPostHeight(newHeight);
+  }
+  useEffect(() => {
+    getPostBodyHeight();
+  }, [body, height])
+
   return (
-    <div className="mx-3">
-      {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
-      <BlockContent
-        blocks={body}
-        projectId={projectId}
-        dataset={dataset}
-        serializers={serializers}
-      />
-    </div>
+    <>
+      <div className="absolute left-0">
+        {/* need to wrap each sticky so it pushes up not overlap */}
+        <div style={{ height: `${postHeight / 2}px` }}>
+          <div className="sticky bg-red-300 h-48 top-1/3">1st ad</div>
+          </div>
+        { postHeight > 500 && <div style={{ height: `${postHeight / 2}px` }}><div className="sticky bg-blue-300 h-48 top-1/3">2nd ad</div></div>}       
+      </div>
+      <div className="mx-3" ref={bodyRef}>
+        {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
+        <span>{postHeight}</span>
+        <BlockContent
+          blocks={body}
+          projectId={projectId}
+          dataset={dataset}
+          serializers={serializers}
+        />
+      </div>
+    </>
   );
 }
