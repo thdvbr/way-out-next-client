@@ -4,7 +4,6 @@ import _ from 'lodash';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
-import { useAppContext } from '../context/state';
 import { SideAdImage } from './index';
 
 
@@ -67,9 +66,8 @@ const serializers = {
 };
 const { projectId, dataset } = sanityConfig;
 
-export default function PostBody({ body }) {
-  const { adsData } = useAppContext();
-  const sideAds = adsData.filter((ad) => ad.adCategory === 'Side');
+export default function PostBody({ body, ads }) {
+  const sideAds = ads.filter((ad) => ad.adCategory === 'Side');
   const randomSlice2 = _.sampleSize(sideAds, 2);
   const randomSlice1 = _.sample(sideAds);
 

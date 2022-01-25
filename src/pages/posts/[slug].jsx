@@ -52,14 +52,12 @@ export const Post = ({ data = {}, preview }) => {
     setStaffsData,
     setPagesData,
     setJoinIsOpen,
-    setAdsData,
   } = useAppContext();
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
-    setAdsData(ads);
-  }, [staffs, pages, setStaffsData, setPagesData, ads, setAdsData]);
+  }, [staffs, pages, setStaffsData, setPagesData]);
 
   useEffect(() => {
     return searchIsOpen && setSearchIsOpen(false);
@@ -114,7 +112,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 px-2">
-                  <PostBody body={post.body} />
+                  <PostBody body={post.body} ads={ads}/>
                 </motion.div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
