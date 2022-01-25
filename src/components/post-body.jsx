@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
+import _ from 'lodash';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
 import { useAppContext } from '../context/state';
 import { SideAdImage } from './index';
+
 
 const serializers = {
   types: {
@@ -67,7 +69,9 @@ const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body }) {
   const { adsData } = useAppContext();
-  const sideAds = adsData.filter((ad) => ad.adCategory === 'Side').slice(0, 2);
+  const sideAds = adsData.filter((ad) => ad.adCategory === 'Side');
+  const randomSlice2 = _.sampleSize(sideAds, 2);
+  const randomSlice1 = _.sample(sideAds);
 
   const [postHeight, setPostHeight] = useState(0);
   const { height } = useWindowDimensions();
@@ -85,15 +89,11 @@ export default function PostBody({ body }) {
     <>
       <div className="absolute left-0">
         {/* need to wrap each sticky so it pushes up not overlap */}
-        {sideAds.map((ad) => (
+        {postHeight > 500 ? randomSlice2.map((ad) => (
           <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
             <SideAdImage image={ad.adImage} url={ad.adUrl} />
           </div>
-        ))}
-        {/* <div style={{ height: `${postHeight / 2}px` }}>
-          <div className="sticky bg-red-300 h-48 top-1/3">hello</div>
-          </div>
-        { postHeight > 500 && <div style={{ height: `${postHeight / 2}px` }}><div className="sticky bg-blue-300 h-48 top-1/3">2nd ad</div></div>}        */}
+        )) : <div style={{ height: `${postHeight / 2}px` }}><SideAdImage image={randomSlice1.adImage} url={randomSlice1.adUrl} /></div>}
       </div>
       <div className="mx-3" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
