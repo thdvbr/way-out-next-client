@@ -42,6 +42,17 @@ staffName,
 role
 `;
 
+const adFields = `
+_id,
+adCategory,
+adImage,
+adUrl`;
+
+export const adQuery = `
+*[_type == "ad"]| order(date desc, _updatedAt asc) {
+  ${adFields}
+}`;
+
 export const pageQuery = `
 { "about": *[_type == "page" && title == "About"][0] {
   ${pageFields}
