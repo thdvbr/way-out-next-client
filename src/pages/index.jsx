@@ -14,7 +14,7 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, pages, staffs, preview }) => {
+export const Index = ({ allPosts, pages, staffs, preview, ads }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const {
@@ -24,12 +24,14 @@ export const Index = ({ allPosts, pages, staffs, preview }) => {
     errorMsg,
     setStaffsData,
     setPagesData,
+    setAdsData
   } = useAppContext();
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
-  }, [staffs, pages, setStaffsData, setPagesData]);
+    setAdsData(ads);
+  }, [staffs, pages, setStaffsData, setPagesData, ads, setAdsData]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.

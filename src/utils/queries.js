@@ -44,7 +44,7 @@ role
 
 const adFields = `
 _id,
-adCategory,
+"adCategory": adCategory->title,
 adImage,
 adUrl`;
 

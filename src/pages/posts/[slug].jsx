@@ -35,7 +35,7 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts, staffs, pages },
+    data: { post, morePosts, staffs, pages, ads },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -52,12 +52,14 @@ export const Post = ({ data = {}, preview }) => {
     setStaffsData,
     setPagesData,
     setJoinIsOpen,
+    setAdsData,
   } = useAppContext();
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
-  }, [staffs, pages, setStaffsData, setPagesData]);
+    setAdsData(ads);
+  }, [staffs, pages, setStaffsData, setPagesData, ads, setAdsData]);
 
   useEffect(() => {
     return searchIsOpen && setSearchIsOpen(false);
