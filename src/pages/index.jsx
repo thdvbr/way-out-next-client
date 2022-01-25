@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { indexQuery, pageQuery, staffQuery, adQuery } from '../utils/queries';
+import { indexQuery, pageQuery, staffQuery, bottomAdQuery } from '../utils/queries';
 import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -24,14 +24,12 @@ export const Index = ({ allPosts, pages, staffs, preview, ads }) => {
     errorMsg,
     setStaffsData,
     setPagesData,
-    setAdsData
   } = useAppContext();
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
-    setAdsData(ads);
-  }, [staffs, pages, setStaffsData, setPagesData, ads, setAdsData]);
+  }, [staffs, pages, setStaffsData, setPagesData]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
@@ -76,7 +74,7 @@ export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
-  const ads = await getClient(preview).fetch(adQuery);
+  const ads = await getClient(preview).fetch(bottomAdQuery);
   return {
     props: { allPosts, pages, staffs, ads, preview },
   };

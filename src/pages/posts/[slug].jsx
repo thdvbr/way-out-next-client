@@ -13,7 +13,7 @@ import {
   postSlugsQuery,
   pageQuery,
   staffQuery,
-  adQuery
+  sideAdQuery
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
@@ -141,7 +141,7 @@ export async function getStaticProps({ params, preview = false }) {
   });
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
-  const ads = await getClient(preview).fetch(adQuery);
+  const ads = await getClient(preview).fetch(sideAdQuery);
 
   return {
     props: {

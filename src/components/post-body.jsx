@@ -67,9 +67,8 @@ const serializers = {
 const { projectId, dataset } = sanityConfig;
 
 export default function PostBody({ body, ads }) {
-  const sideAds = ads.filter((ad) => ad.adCategory === 'Side');
-  const randomSlice2 = _.sampleSize(sideAds, 2);
-  const randomSlice1 = _.sample(sideAds);
+  const randomSlice2 = _.sampleSize(ads, 2);
+  const randomSlice1 = _.sample(ads);
 
   const [postHeight, setPostHeight] = useState(0);
   const { height } = useWindowDimensions();

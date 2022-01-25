@@ -48,8 +48,13 @@ _id,
 adImage,
 adUrl`;
 
-export const adQuery = `
-*[_type == "ad"]| order(date desc, _updatedAt asc) {
+export const sideAdQuery = `
+*[_type == "ad" && adCategory->title == "Side" ]| order(date desc, _updatedAt asc) {
+  ${adFields}
+}`;
+
+export const bottomAdQuery = `
+*[_type == "ad" && adCategory->title == "Bottom" ]| order(date desc, _updatedAt asc) {
   ${adFields}
 }`;
 

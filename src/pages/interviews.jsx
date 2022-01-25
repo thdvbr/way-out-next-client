@@ -9,7 +9,6 @@ import { useAppContext } from '../context/state';
 // should search on interview page only search inside of interviews?
 
 
-// TODO: FETCH Staffs and Ads on interviews and stuff we like too? 
 export const Interviews = ({ allPosts, preview }) => {
   const {
     query,
