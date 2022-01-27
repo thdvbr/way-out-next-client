@@ -4,11 +4,6 @@ import imageUrlBuilder from '@sanity/image-url';
 import { sanityClient } from '../utils/sanity.server';
 
 const SideAdImage = ({ image, url }) => {
-  // const { adsData } = useAppContext();
-  // const sideAds = adsData.filter(ad => ad.adCategory === "Side");
-  // console.log(sideAds);
-  // const { adImage } = adsData[0];
-
   const urlFor = (source) => {
     return imageUrlBuilder(sanityClient).image(source);
   };

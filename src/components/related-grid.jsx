@@ -12,7 +12,7 @@ const RelatedGrid = ({ posts }) => (
       <h2 className="font-title text-24 sm:text-40 xl:text-55 lg:text-42 text-center mb-6 md:mb-16">
         More to read
       </h2>
-      <div className="grid grid-cols-2 grid-rows-2 sm:gap-6 justify-items-center sm:flex sm:justify-between xl:gap-12">
+      <div className="grid grid-cols-2 grid-rows-2 sm:gap-2 justify-items-center sm:flex sm:justify-between">
         {posts.map((post) => (
           <RelatedItem
             key={post.slug}

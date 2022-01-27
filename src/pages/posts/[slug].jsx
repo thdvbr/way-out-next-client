@@ -111,7 +111,7 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="xl:px-36 lg:px-28 md:px-24 px-2">
+                  className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
                   <PostBody body={post.body} ads={ads}/>
                 </motion.div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
