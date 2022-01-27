@@ -22,7 +22,7 @@ const MainImage = ({ title, slug, image: source }) => {
   const image = source ? (
     <>
       <motion.div
-        initial={{ x: 60, opacity: 0 }}
+        initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}>
         <Image
