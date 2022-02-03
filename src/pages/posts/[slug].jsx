@@ -35,7 +35,7 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts, staffs, pages, ads },
+    data: { post, morePosts, staffs, pages, sideAds },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -112,7 +112,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} ads={ads}/>
+                  <PostBody body={post.body} ads={sideAds}/>
                 </motion.div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
@@ -141,7 +141,7 @@ export async function getStaticProps({ params, preview = false }) {
   });
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
-  const ads = await getClient(preview).fetch(sideAdQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
 
   return {
     props: {
@@ -151,7 +151,7 @@ export async function getStaticProps({ params, preview = false }) {
         morePosts: overlayDrafts(morePosts),
         staffs,
         pages,
-        ads,
+        sideAds,
       },
     },
   };
