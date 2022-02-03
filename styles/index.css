@@ -72,7 +72,7 @@ body {
   margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 499px) {
   .my-masonry-grid {
     padding-left: 0rem;
     padding-right: 0rem;
@@ -117,8 +117,10 @@ body {
     background-image: url(../assets/background/ylw_bkgd_noise_card_LARGE.jpg);
     box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
     transform: rotate(2deg);
-    -webkit-transition: -webkit-transform 0.3s ease-in;
-    transition: transform 0.3s ease-in;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out,
+      padding-left 0.2s ease-in-out, padding-right 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out, padding-left 0.2s ease-in-out,
+      padding-right 0.2s ease-in-out;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
@@ -164,7 +166,7 @@ body {
   box-shadow: -4px 4px 14px 2px rgba(0, 0, 0, 0.19);
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 499px) {
   .radial-gradient {
     height: 100%;
   }
@@ -218,7 +220,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 499px) {
   /* body {
     overflow-x: hidden;
   } */
@@ -230,14 +232,14 @@ body {
   }
 }
 
-@media only screen and (min-width: 501px) {
+@media only screen and (min-width: 500px) {
   .logo-container {
     width: 10em;
     height: 9em;
     content: url(../assets/logos/way_out_vector_transparent-01_.png);
   }
   .info-box {
-    top: 66px;
+    top: 48px;
   }
   .gif {
     background-image: url(../assets/logos/wayoutgif_alpha04.gif);

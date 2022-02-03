@@ -49,7 +49,7 @@ const Subscribe = () => {
     // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
     <div className="join-search-bg">
       <form
-        style={{ height: '66px' }}
+        style={{ height: '48px' }}
         onSubmit={subscribe}
         className="flex justify-evenly items-center font-title text-center">
         <label htmlFor="email-input" className="w-4/12">{'Join our newsletter'}</label>

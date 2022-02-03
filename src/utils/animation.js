@@ -62,6 +62,6 @@ export const stagger = {
 };
 
 export const joinVariants = {
-  opened: { y: 0 },
-  closed: { y: '-66px' },
+  opened: { y: 0},
+  closed: { y: '-48px'},
 };
