@@ -14,7 +14,7 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, pages, staffs, preview, ads }) => {
+export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const {
@@ -41,9 +41,9 @@ export const Index = ({ allPosts, pages, staffs, preview, ads }) => {
         exit={{ opacity: 0 }}>
         <Layout preview={preview}>
           <Container>
-            <Breakpoint customQuery="(max-width: 500px)">
+            <Breakpoint customQuery="(max-width: 499px)">
               <div>
-                <MasonryGrid data={!query ? allPosts : searchResult} />
+                <MasonryGrid data={!query ? allPosts : searchResult} ads={bottomAds} />
               </div>
             </Breakpoint>
             <Breakpoint customQuery="(min-width: 500px)">
@@ -56,7 +56,7 @@ export const Index = ({ allPosts, pages, staffs, preview, ads }) => {
                     slug={heroPost.slug}
                   />
                 )}
-                <MasonryGrid data={!query ? morePosts : searchResult} />
+                <MasonryGrid data={!query ? morePosts : searchResult} ads={bottomAds} />
               </div>
             </Breakpoint>
             <div className="font-title flex justify-center text-24">
@@ -74,9 +74,9 @@ export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
-  const ads = await getClient(preview).fetch(bottomAdQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
-    props: { allPosts, pages, staffs, ads, preview },
+    props: { allPosts, pages, staffs, bottomAds, preview },
   };
 };
 
