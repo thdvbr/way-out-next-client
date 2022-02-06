@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import ErrorPage from 'next/error';
+import _ from 'lodash';
 import {
   sanityClient,
   getClient,
@@ -13,7 +15,8 @@ import {
   postSlugsQuery,
   pageQuery,
   staffQuery,
-  sideAdQuery
+  sideAdQuery,
+  bottomAdQuery,
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
@@ -22,6 +25,7 @@ import {
   PostLayout,
   ArtistLink,
   RelatedGrid,
+  BottomAdImage,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -35,7 +39,7 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts, staffs, pages, sideAds },
+    data: { post, morePosts, staffs, pages, sideAds, bottomAds },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -53,6 +57,27 @@ export const Post = ({ data = {}, preview }) => {
     setPagesData,
     setJoinIsOpen,
   } = useAppContext();
+
+  const { ref, inView } = useInView();
+  const animation = useAnimation();
+  const randomSlice1 = _.sample(bottomAds);
+
+  useEffect(() => {
+    console.log('use effect hook, inview', inView);
+    if (inView) {
+      animation.start({
+        x: 0,
+        transition: {
+          type: 'spring',
+          duration: 1,
+          bounce: 0.3,
+        },
+      });
+    }
+    if (!inView) {
+      animation.start({ x: '-100vw' });
+    }
+  }, [inView]);
 
   useEffect(() => {
     setStaffsData(staffs);
@@ -83,6 +108,7 @@ export const Post = ({ data = {}, preview }) => {
   }
   return (
     <motion.div
+      // ref={listInnerRef}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}>
@@ -112,7 +138,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} ads={sideAds}/>
+                  <PostBody body={post.body} ads={sideAds} />
                 </motion.div>
                 {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
@@ -131,6 +157,12 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
+      <motion.div
+        className="px-3 mb-16 md:px-8 ml:px-14 lg:px-16 flex justify-center"
+        ref={ref}
+        animate={animation}>
+        <BottomAdImage image={randomSlice1.adImage} url={randomSlice1.adUrl} />
+      </motion.div>
     </motion.div>
   );
 };
@@ -142,6 +174,7 @@ export async function getStaticProps({ params, preview = false }) {
   const pages = await getClient(preview).fetch(pageQuery);
   const staffs = await getClient(preview).fetch(staffQuery);
   const sideAds = await getClient(preview).fetch(sideAdQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
 
   return {
     props: {
@@ -152,6 +185,7 @@ export async function getStaticProps({ params, preview = false }) {
         staffs,
         pages,
         sideAds,
+        bottomAds,
       },
     },
   };
