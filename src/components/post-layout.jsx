@@ -41,7 +41,7 @@ export default function PostLayout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Breakpoint customQuery="(max-width: 500px)">
+          <Breakpoint customQuery="(max-width: 499px)">
             <div className="sticky top-0 z-30">
               <Container>
                 <NavbarMobile />
