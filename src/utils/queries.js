@@ -46,6 +46,7 @@ const adFields = `
 _id,
 "adCategory": adCategory->title,
 adImage,
+adImageMobile,
 adUrl`;
 
 export const sideAdQuery = `
