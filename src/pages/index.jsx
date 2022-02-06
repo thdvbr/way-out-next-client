@@ -1,9 +1,22 @@
 import React, { useEffect } from 'react';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import _ from 'lodash';
+import { useInView } from 'react-intersection-observer';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { indexQuery, pageQuery, staffQuery, bottomAdQuery } from '../utils/queries';
-import { Container, HeroPost, MasonryGrid, Layout } from '../components';
+import {
+  indexQuery,
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+} from '../utils/queries';
+import {
+  Container,
+  HeroPost,
+  MasonryGrid,
+  Layout,
+  BottomAdImage,
+} from '../components';
 import { useAppContext } from '../context/state';
 
 setDefaultBreakpoints([
@@ -25,11 +38,31 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
     setStaffsData,
     setPagesData,
   } = useAppContext();
+  const { ref, inView } = useInView();
+  const animation = useAnimation();
+  const randomSlice1 = _.sample(bottomAds);
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
   }, [staffs, pages, setStaffsData, setPagesData]);
+
+  useEffect(() => {
+    console.log('use effect hook, inview', inView);
+    if (inView) {
+      animation.start({
+        x: 0,
+        transition: {
+          type: 'spring',
+          duration: 1,
+          bounce: 0.3,
+        },
+      });
+    }
+    if (!inView) {
+      animation.start({ x: '-100vw' });
+    }
+  }, [inView]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
@@ -43,7 +76,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
           <Container>
             <Breakpoint customQuery="(max-width: 499px)">
               <div>
-                <MasonryGrid data={!query ? allPosts : searchResult} ads={bottomAds} />
+                <MasonryGrid data={!query ? allPosts : searchResult} />
               </div>
             </Breakpoint>
             <Breakpoint customQuery="(min-width: 500px)">
@@ -56,7 +89,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
                     slug={heroPost.slug}
                   />
                 )}
-                <MasonryGrid data={!query ? morePosts : searchResult} ads={bottomAds} />
+                <MasonryGrid data={!query ? morePosts : searchResult} />
               </div>
             </Breakpoint>
             <div className="font-title flex justify-center text-24">
@@ -65,6 +98,15 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
             </div>
           </Container>
         </Layout>
+        <motion.div
+          className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16 "
+          ref={ref}
+          animate={animation}>
+          <BottomAdImage
+            image={randomSlice1.adImage}
+            url={randomSlice1.adUrl}
+          />
+        </motion.div>
       </motion.div>
     </>
   );

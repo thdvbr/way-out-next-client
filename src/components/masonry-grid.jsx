@@ -8,7 +8,6 @@ import MasonryItem from './masonry-item';
 import { useAppContext } from '../context/state';
 import { getMoreQuery } from '../utils/queries';
 import { cardVariants } from '../utils/animation';
-import { BottomAdImage } from './index';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -16,11 +15,11 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const MasonryGrid = ({ data, type, ads }) => {
+const MasonryGrid = ({ data, type }) => {
   const { query, searchResult } = useAppContext();
   const [posts, setPosts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
-  const randomSlice1 = _.sample(ads);
+
 
   useEffect(() => {
     setPosts(data);
@@ -84,14 +83,6 @@ const MasonryGrid = ({ data, type, ads }) => {
           </Masonry>
         )}
       </motion.div>
-      {!hasMore && (
-        <div className="mt-16">
-          <BottomAdImage
-            image={randomSlice1.adImage}
-            url={randomSlice1.adUrl}
-          />
-        </div>
-      )}
     </>
   );
 };
