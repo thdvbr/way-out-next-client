@@ -18,6 +18,7 @@ import {
   BottomAdImage,
 } from '../components';
 import { useAppContext } from '../context/state';
+import { adVariants } from '../utils/animation';
 
 setDefaultBreakpoints([
   { xs: 0 },
@@ -50,19 +51,12 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
   useEffect(() => {
     console.log('use effect hook, inview', inView);
     if (inView) {
-      animation.start({
-        x: 0,
-        transition: {
-          type: 'spring',
-          duration: 1,
-          bounce: 0.3,
-        },
-      });
+      animation.start('visible');
     }
     if (!inView) {
-      animation.start({ x: '-100vw' });
+      animation.start('hidden');
     }
-  }, [inView]);
+  }, [inView, animation]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
@@ -101,7 +95,10 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
         <motion.div
           className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16 "
           ref={ref}
-          animate={animation}>
+          animate={animation}
+          variants={adVariants}
+          initial="hidden"
+        >
           <BottomAdImage
             image={randomSlice1.adImage}
             url={randomSlice1.adUrl}

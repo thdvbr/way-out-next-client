@@ -12,6 +12,7 @@ const BottomAdImage = ({ image, url }) => {
   const adImage = image && <img src={urlFor(image).width(1360).url()} />;
   return (
     <motion.div
+      className="sm:px-3 xl:px-0"
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.6 }}>

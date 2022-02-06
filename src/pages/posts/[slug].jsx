@@ -33,6 +33,7 @@ import {
   postBodyVariants,
   morePostVariants,
   stagger,
+  adVariants
 } from '../../utils/animation';
 
 export const Post = ({ data = {}, preview }) => {
@@ -65,17 +66,10 @@ export const Post = ({ data = {}, preview }) => {
   useEffect(() => {
     console.log('use effect hook, inview', inView);
     if (inView) {
-      animation.start({
-        x: 0,
-        transition: {
-          type: 'spring',
-          duration: 1,
-          bounce: 0.3,
-        },
-      });
+      animation.start('visible');
     }
     if (!inView) {
-      animation.start({ x: '-100vw' });
+      animation.start('hidden');
     }
   }, [inView]);
 
@@ -158,9 +152,11 @@ export const Post = ({ data = {}, preview }) => {
         </div>
       </PostLayout>
       <motion.div
-        className="px-3 mb-16 md:px-8 ml:px-14 lg:px-16 flex justify-center"
+        className="px-3 mb-16 sm:px-6 md:px-10 ml:px-16 lg:px-20 flex justify-center"
         ref={ref}
-        animate={animation}>
+        animate={animation}
+        variants={adVariants}
+        initial="hidden">
         <BottomAdImage image={randomSlice1.adImage} url={randomSlice1.adUrl} />
       </motion.div>
     </motion.div>
