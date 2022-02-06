@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ErrorPage from 'next/error';
 import _ from 'lodash';
+import { useCurrentWidth } from 'react-socks';
 import {
   sanityClient,
   getClient,
@@ -33,7 +34,7 @@ import {
   postBodyVariants,
   morePostVariants,
   stagger,
-  adVariants
+  adVariants,
 } from '../../utils/animation';
 
 export const Post = ({ data = {}, preview }) => {
@@ -62,9 +63,9 @@ export const Post = ({ data = {}, preview }) => {
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAds);
+  const width = useCurrentWidth();
 
   useEffect(() => {
-    console.log('use effect hook, inview', inView);
     if (inView) {
       animation.start('visible');
     }
@@ -151,14 +152,28 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      <motion.div
-        className="px-3 mb-16 sm:px-6 md:px-10 ml:px-16 lg:px-20 flex justify-center"
-        ref={ref}
-        animate={animation}
-        variants={adVariants}
-        initial="hidden">
-        <BottomAdImage image={randomSlice1.adImage} url={randomSlice1.adUrl} />
-      </motion.div>
+      {bottomAds && (
+        <motion.div
+          className="px-3 mb-16 sm:px-6 md:px-10 ml:px-16 lg:px-20 flex justify-center"
+          ref={ref}
+          animate={animation}
+          variants={adVariants}
+          initial="hidden">
+          {width > 500 ? (
+            <BottomAdImage
+              image={randomSlice1.adImage}
+              url={randomSlice1.adUrl}
+              width={1360}
+            />
+          ) : (
+            <BottomAdImage
+              image={randomSlice1.adImageMobile}
+              url={randomSlice1.adUrl}
+              width={500}
+            />
+          )}
+        </motion.div>
+      )}
     </motion.div>
   );
 };

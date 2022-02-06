@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
-import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
+import {
+  setDefaultBreakpoints,
+  Breakpoint,
+  useCurrentWidth,
+} from 'react-socks';
 import { motion, useAnimation } from 'framer-motion';
 import _ from 'lodash';
 import { useInView } from 'react-intersection-observer';
@@ -42,6 +46,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAds);
+  const width = useCurrentWidth();
 
   useEffect(() => {
     setStaffsData(staffs);
@@ -49,7 +54,6 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
   }, [staffs, pages, setStaffsData, setPagesData]);
 
   useEffect(() => {
-    console.log('use effect hook, inview', inView);
     if (inView) {
       animation.start('visible');
     }
@@ -92,18 +96,28 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
             </div>
           </Container>
         </Layout>
-        <motion.div
-          className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16 "
-          ref={ref}
-          animate={animation}
-          variants={adVariants}
-          initial="hidden"
-        >
-          <BottomAdImage
-            image={randomSlice1.adImage}
-            url={randomSlice1.adUrl}
-          />
-        </motion.div>
+        {bottomAds && (
+          <motion.div
+            className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16 "
+            ref={ref}
+            animate={animation}
+            variants={adVariants}
+            initial="hidden">
+            {width > 500 ? (
+              <BottomAdImage
+                image={randomSlice1.adImage}
+                url={randomSlice1.adUrl}
+                width={1360}
+              />
+            ) : (
+              <BottomAdImage
+                image={randomSlice1.adImageMobile}
+                url={randomSlice1.adUrl}
+                width={500}
+              />
+            )}
+          </motion.div>
+        )}
       </motion.div>
     </>
   );

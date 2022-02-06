@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import imageUrlBuilder from '@sanity/image-url';
 import { sanityClient } from '../utils/sanity.server';
 
-const BottomAdImage = ({ image, url }) => {
+const BottomAdImage = ({ image, url, width }) => {
   const urlFor = (source) => {
     return imageUrlBuilder(sanityClient).image(source);
   };
 
-  const adImage = image && <img src={urlFor(image).width(1360).url()} />;
+  const adImage = image && <img src={urlFor(image).width(width).url()} />;
   return (
     <motion.div
       className="sm:px-3 xl:px-0"

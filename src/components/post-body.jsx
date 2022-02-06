@@ -83,7 +83,7 @@ export default function PostBody({ body, ads }) {
 
   return (
     <>
-      {width > 500 && (
+      {(width > 500 && ads) && (
         <div className="absolute left-0">
           {/* need to wrap each sticky so it pushes up not overlap */}
           {postHeight > 500 ? (
