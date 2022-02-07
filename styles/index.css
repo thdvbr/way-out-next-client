@@ -117,10 +117,8 @@ body {
     background-image: url(../assets/background/ylw_bkgd_noise_card_LARGE.jpg);
     box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
     transform: rotate(2deg);
-    -webkit-transition: -webkit-transform 0.3s ease-in-out,
-      padding-left 0.2s ease-in-out, padding-right 0.2s ease-in-out;
-    transition: transform 0.3s ease-in-out, padding-left 0.2s ease-in-out,
-      padding-right 0.2s ease-in-out;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }

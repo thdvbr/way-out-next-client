@@ -90,15 +90,14 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
                 <MasonryGrid data={!query ? morePosts : searchResult} />
               </div>
             </Breakpoint>
-            <div className="font-title flex justify-center text-24">
+            <div className="font-title flex justify-center py-10 text-24 sm:text-33 ">
               {isLoading && <span>... Loading</span>}
               {errorMsg && <span>{errorMsg}</span>}
             </div>
           </Container>
-        </Layout>
-        {bottomAds && (
+          {bottomAds && (
           <motion.div
-            className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16 "
+            className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16"
             ref={ref}
             animate={animation}
             variants={adVariants}
@@ -118,6 +117,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
             )}
           </motion.div>
         )}
+        </Layout>
       </motion.div>
     </>
   );
