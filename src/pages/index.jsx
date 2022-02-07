@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import {
   setDefaultBreakpoints,
   Breakpoint,
-  useCurrentWidth,
 } from 'react-socks';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import _ from 'lodash';
-import { useInView } from 'react-intersection-observer';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
   indexQuery,
@@ -19,10 +17,9 @@ import {
   HeroPost,
   MasonryGrid,
   Layout,
-  BottomAdImage,
 } from '../components';
 import { useAppContext } from '../context/state';
-import { adVariants } from '../utils/animation';
+
 
 setDefaultBreakpoints([
   { xs: 0 },
@@ -43,24 +40,11 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
     setStaffsData,
     setPagesData,
   } = useAppContext();
-  const { ref, inView } = useInView();
-  const animation = useAnimation();
-  const randomSlice1 = _.sample(bottomAds);
-  const width = useCurrentWidth();
 
   useEffect(() => {
     setStaffsData(staffs);
     setPagesData(pages);
   }, [staffs, pages, setStaffsData, setPagesData]);
-
-  useEffect(() => {
-    if (inView) {
-      animation.start('visible');
-    }
-    if (!inView) {
-      animation.start('hidden');
-    }
-  }, [inView, animation]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
@@ -70,7 +54,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}>
-        <Layout preview={preview}>
+        <Layout preview={preview} bottomAds={bottomAds}>
           <Container>
             <Breakpoint customQuery="(max-width: 499px)">
               <div>
@@ -95,28 +79,6 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
               {errorMsg && <span>{errorMsg}</span>}
             </div>
           </Container>
-          {bottomAds && (
-          <motion.div
-            className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16"
-            ref={ref}
-            animate={animation}
-            variants={adVariants}
-            initial="hidden">
-            {width > 500 ? (
-              <BottomAdImage
-                image={randomSlice1.adImage}
-                url={randomSlice1.adUrl}
-                width={1360}
-              />
-            ) : (
-              <BottomAdImage
-                image={randomSlice1.adImageMobile}
-                url={randomSlice1.adUrl}
-                width={500}
-              />
-            )}
-          </motion.div>
-        )}
         </Layout>
       </motion.div>
     </>
