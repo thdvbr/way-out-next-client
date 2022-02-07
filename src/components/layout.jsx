@@ -44,7 +44,10 @@ export default function Layout({ preview, bottomAds, children }) {
   return (
     <>
       {/* <Meta /> */}
-      <div className="min-h-screen">
+      <motion.div className="min-h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}>
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
@@ -109,7 +112,7 @@ export default function Layout({ preview, bottomAds, children }) {
             </motion.div>
           </Breakpoint>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 }
