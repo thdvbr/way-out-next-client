@@ -30,6 +30,8 @@ import InfoDrawer from './info-drawer';
 import Staff from './staff';
 import Content from './content';
 import Subscribe from './subscribe';
+import SideAdImage from './side-ad-image';
+import BottomAdImage from './bottom-ad-image';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -68,5 +70,7 @@ export {
   InfoDrawer,
   Content,
   Staff,
-  Subscribe
+  Subscribe,
+  SideAdImage,
+  BottomAdImage
 };

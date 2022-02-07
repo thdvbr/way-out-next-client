@@ -65,7 +65,7 @@ export function AppWrapper({ children }) {
         setStaffsData,
         setPagesData,
         joinIsOpen,
-        setJoinIsOpen
+        setJoinIsOpen,
       }}
     >
       {children}

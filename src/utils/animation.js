@@ -63,5 +63,18 @@ export const stagger = {
 
 export const joinVariants = {
   opened: { y: 0 },
-  closed: { y: '-66px' },
+  closed: { y: '-48px' },
+};
+
+export const adVariants = {
+  hidden: { x: '-100vw' },
+  visible: {
+    x: 0,
+    transition: {
+      type: 'spring',
+      duration: 1,
+      bounce: 0.3,
+      delay: 0.3,
+    },
+  },
 };

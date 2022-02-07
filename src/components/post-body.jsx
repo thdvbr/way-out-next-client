@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
+import _ from 'lodash';
+import useWindowDimensions from '../utils/useWindowDimensions';
 import { sanityConfig } from '../utils/config';
 import { urlForImage } from '../utils/sanity';
+import { SideAdImage } from './index';
 
 const serializers = {
   types: {
@@ -47,10 +50,12 @@ const serializers = {
           <div className="flex-col">
             <img alt="post img" src={urlForImage(node.asset).url()} />
             {node.caption && (
-            <>
-              <p className="font-secondary my-1 text-10 sm:text-16">{node.caption}</p>
-              <hr className="border-black" />
-            </>
+              <>
+                <p className="font-secondary my-1 text-10 sm:text-16">
+                  {node.caption}
+                </p>
+                <hr className="border-black" />
+              </>
             )}
           </div>
         </div>
@@ -60,16 +65,54 @@ const serializers = {
 };
 const { projectId, dataset } = sanityConfig;
 
-export default function PostBody({ body }) {
+export default function PostBody({ body, ads }) {
+  const randomSlice2 = _.sampleSize(ads, 2);
+  const randomSlice1 = _.sample(ads);
+
+  const [postHeight, setPostHeight] = useState(0);
+  const { height, width } = useWindowDimensions();
+  const bodyRef = useRef();
+  const getPostBodyHeight = () => {
+    const newHeight = bodyRef.current.clientHeight;
+    setPostHeight(newHeight);
+  };
+
+  useEffect(() => {
+    getPostBodyHeight();
+  }, [body, height]);
+
   return (
-    <div className="mx-3">
-      {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
-      <BlockContent
-        blocks={body}
-        projectId={projectId}
-        dataset={dataset}
-        serializers={serializers}
-      />
-    </div>
+    <>
+      {(width > 500 && ads) && (
+        <div className="absolute left-0">
+          {/* need to wrap each sticky so it pushes up not overlap */}
+          {postHeight > 500 ? (
+            randomSlice2.map((ad) => (
+              <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
+                <SideAdImage image={ad.adImage} url={ad.adUrl} />
+              </div>
+            ))
+          ) : (
+            <div style={{ height: `${postHeight / 2}px` }}>
+              <SideAdImage
+                image={randomSlice1.adImage}
+                url={randomSlice1.adUrl}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="mx-3" ref={bodyRef}>
+        {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
+        <span>{postHeight}</span>
+        <BlockContent
+          blocks={body}
+          projectId={projectId}
+          dataset={dataset}
+          serializers={serializers}
+        />
+      </div>
+    </>
   );
 }

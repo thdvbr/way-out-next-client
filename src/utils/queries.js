@@ -42,6 +42,23 @@ staffName,
 role
 `;
 
+const adFields = `
+_id,
+"adCategory": adCategory->title,
+adImage,
+adImageMobile,
+adUrl`;
+
+export const sideAdQuery = `
+*[_type == "ad" && adCategory->title == "Side" ]| order(date desc, _updatedAt asc) {
+  ${adFields}
+}`;
+
+export const bottomAdQuery = `
+*[_type == "ad" && adCategory->title == "Bottom" ]| order(date desc, _updatedAt asc) {
+  ${adFields}
+}`;
+
 export const pageQuery = `
 { "about": *[_type == "page" && title == "About"][0] {
   ${pageFields}

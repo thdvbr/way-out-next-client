@@ -43,7 +43,7 @@ export default function Layout({ preview, children }) {
               content="initial-scale=1.0, width=device-width"
             />
           </Head>
-          <Breakpoint customQuery="(max-width: 500px)">
+          <Breakpoint customQuery="(max-width: 499px)">
             <div className="sticky top-0 z-30">
               <Container>
                 <NavbarMobile />
@@ -58,7 +58,7 @@ export default function Layout({ preview, children }) {
               initial={false}
               variants={joinVariants}
               animate={joinIsOpen ? 'opened' : 'closed'}
-              transition={{ type: 'spring', duration: 0.5 }}>
+              transition={{ type: 'linear', duration: 0.3 }}>
               <Subscribe />
               <Container>
                 <div className="px-3">
