@@ -18,14 +18,10 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
+export const Index = ({ allPosts, pages, staffs, preview, bottomAds}) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const {
-    query,
-    searchResult,
-    isLoading,
-    errorMsg,
     setStaffsData,
     setPagesData,
   } = useAppContext();
@@ -43,12 +39,12 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
         <Container>
           <Breakpoint customQuery="(max-width: 499px)">
             <div>
-              <MasonryGrid data={!query ? allPosts : searchResult} />
+              <MasonryGrid data={allPosts} />
             </div>
           </Breakpoint>
           <Breakpoint customQuery="(min-width: 500px)">
             <div>
-              {!query && heroPost && (
+              {heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -56,12 +52,10 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
                   slug={heroPost.slug}
                 />
               )}
-              <MasonryGrid data={!query ? morePosts : searchResult} />
+              <MasonryGrid data={morePosts} />
             </div>
           </Breakpoint>
           <div className="font-title flex justify-center py-10 text-24 sm:text-33 ">
-            {isLoading && <span>... Loading</span>}
-            {errorMsg && <span>{errorMsg}</span>}
           </div>
         </Container>
       </Layout>
