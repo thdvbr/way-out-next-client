@@ -27,9 +27,15 @@ export default function Layout({ preview, bottomAds, children }) {
     closed: { x: 0 },
   };
   const { infoIsOpen, joinIsOpen } = useAppContext();
+
   const randomSlice1 = _.sample(bottomAds);
   const { ref, inView } = useInView();
   const animation = useAnimation();
+  // let randomSlice1;
+  // useEffect(() => {
+  //   randomSlice1 = _.sample(bottomAds);
+  //   console.log(randomSlice1);
+  // }, [])
 
   useEffect(() => {
     if (inView) {
@@ -44,7 +50,8 @@ export default function Layout({ preview, bottomAds, children }) {
   return (
     <>
       {/* <Meta /> */}
-      <motion.div className="min-h-screen"
+      <motion.div
+        className="min-h-screen"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}>
@@ -87,7 +94,7 @@ export default function Layout({ preview, bottomAds, children }) {
                 <NavbarDesktop />
               </Container>
               <main className="w-screen inset-0 z-0">{children}</main>
-              {bottomAds && (
+              {randomSlice1 && (
                 <motion.div
                   className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16"
                   ref={ref}

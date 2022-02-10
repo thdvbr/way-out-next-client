@@ -1,32 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { stuffWeLikeQuery } from '../utils/queries';
+import { stuffWeLikeQuery, bottomAdQuery } from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
-import { useAppContext } from '../context/state';
 
-export const StuffWeLike = ({ allPosts, preview }) => {
-  const {
-    query,
-    searchResult,
-    searchIsOpen,
-    setSearchIsOpen,
-    setQuery,
-    setSearchResult,
-  } = useAppContext();
-
-  useEffect(() => {
-    return searchIsOpen && setSearchIsOpen(false);
-  }, []);
-
-  useEffect(() => {
-    return searchResult && setQuery('') && setSearchResult([]);
-  }, []);
+export const StuffWeLike = ({ allPosts, preview, bottomAds }) => {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-          {allPosts && <MasonryGrid type="stuffWeLike" data={!query ? allPosts : searchResult} />}
+          {allPosts && <MasonryGrid type="stuffWeLike" data={allPosts} />}
         </Container>
       </Layout>
     </>
@@ -37,8 +20,9 @@ export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
     await getClient(preview).fetch(stuffWeLikeQuery),
   );
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview, bottomAds },
   };
 };
 

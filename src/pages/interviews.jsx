@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { interviewsQuery } from '../utils/queries';
+import { interviewsQuery, bottomAdQuery, } from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -9,30 +9,12 @@ import { useAppContext } from '../context/state';
 // should search on interview page only search inside of interviews?
 
 
-export const Interviews = ({ allPosts, preview }) => {
-  const {
-    query,
-    searchResult,
-    searchIsOpen,
-    setSearchIsOpen,
-    setQuery,
-    setSearchResult,
-  } = useAppContext();
-
-  useEffect(() => {
-    return searchIsOpen && setSearchIsOpen(false);
-  }, []);
-
-  // flushing state. do we need this?
-  useEffect(() => {
-    return searchResult && setQuery('') && setSearchResult([]);
-  }, []);
-
+export const Interviews = ({ allPosts, preview, bottomAds }) => {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-          {allPosts && <MasonryGrid type="interviews" data={!query ? allPosts : searchResult} />}
+          {allPosts && <MasonryGrid type="interviews" data={allPosts} />}
           {/* <div className="font-title flex justify-center text-24">
             {isLoading && <span>... Loading</span>}
             {errorMsg && <span>{errorMsg}</span>}
@@ -48,9 +30,11 @@ export const Interviews = ({ allPosts, preview }) => {
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
     await getClient(preview).fetch(interviewsQuery),
+    
   );
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview, bottomAds },
   };
 };
 
