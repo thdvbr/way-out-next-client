@@ -8,42 +8,42 @@
 
 @font-face {
   font-family: 'Averia Serif Regular';
-  src: url(../assets/typography/AveriaSerif-Regular.ttf);
+  src: url(../public/assets/typography/AveriaSerif-Regular.ttf);
 }
 
 @font-face {
   font-family: 'Averia Serif Bold Italic';
-  src: url(../assets/typography/AveriaSerif-BoldItalic.ttf);
+  src: url(../public/assets/typography/AveriaSerif-BoldItalic.ttf);
 }
 
 @font-face {
   font-family: 'Averia Serif Light Italic';
-  src: url(../assets/typography/AveriaSerif-LightItalic.ttf);
+  src: url(../public/assets/typography/AveriaSerif-LightItalic.ttf);
 }
 
 @font-face {
   font-family: 'Averia Serif Bold';
-  src: url(../assets/typography/AveriaSerif-Bold.ttf);
+  src: url(../public/assets/typography/AveriaSerif-Bold.ttf);
 }
 
 @font-face {
   font-family: 'Agrandir';
-  src: url(../assets/typography/Agrandir-Regular.otf);
+  src: url(../public/assets/typography/Agrandir-Regular.otf);
 }
 
 @font-face {
   font-family: 'Agrandir Narrow';
-  src: url(../assets/typography/Agrandir-Narrow.otf);
+  src: url(../public/assets/typography/Agrandir-Narrow.otf);
 }
 
 @font-face {
   font-family: 'OPTIArtCraft';
-  src: url(../assets/typography/OPTIArtCraft-Bold.otf);
+  src: url(../public/assets/typography/OPTIArtCraft-Bold.otf);
 }
 
 @font-face {
   font-family: 'CopenhagenGrotesk';
-  src: url(../assets/typography/CopenhagenGrotesk.otf);
+  src: url(../public/assets/typography/CopenhagenGrotesk.otf);
 }
 
 body {
@@ -114,7 +114,7 @@ body {
 
 @media only screen and (min-width: 500px) {
   .preview-block:hover {
-    background-image: url(../assets/background/ylw_bkgd_noise_card_LARGE.jpg);
+    background-image: url(../public/assets/background/ylw_bkgd_noise_card_LARGE.jpg);
     box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
     transform: rotate(2deg);
     -webkit-transition: -webkit-transform 0.3s ease-in-out;
@@ -130,7 +130,7 @@ body {
 }
 
 .related-preview-block:hover {
-  background-image: url(../assets/background/ylw_bkgd_noise_card_SMALL.jpg);
+  background-image: url(../public/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
   box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
   transform: rotate(2deg);
   -webkit-transition: -webkit-transform 0.3s ease-in;
@@ -234,13 +234,13 @@ body {
   .logo-container {
     width: 10em;
     height: 9em;
-    content: url(../assets/logos/way_out_vector_transparent-01_.png);
+    content: url(../public/assets/logos/way_out_vector_transparent-01_.png);
   }
   .info-box {
     top: 60px;
   }
   .gif {
-    background-image: url(../assets/logos/wayoutgif_alpha04.gif);
+    background-image: url(../public/assets/logos/wayoutgif_alpha04.gif);
     background-size: 10em 9em;
     width: 10em;
     height: 9em;
@@ -257,7 +257,7 @@ body {
   .logo-gold-container {
     width: 10em;
     height: 9em;
-    content: url(../assets/logos/way_out_vector_transparent-gold.png);
+    content: url(../public/assets/logos/way_out_vector_transparent-gold.png);
   }
 }
 
@@ -290,7 +290,7 @@ button:focus {
 }
 
 .join-search-bg {
-  background-image: url(../assets/background/search_bar_1920px_w.jpg);
+  background-image: url(../public/assets/background/search_bar_1920px_w.jpg);
 }
 
 .top-80 {
