@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useCurrentWidth, Breakpoint } from 'react-socks';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import _ from 'lodash';
+import { useInView } from 'react-intersection-observer';
 import AlertPreview from './alert-preview';
-import Footer from './footer';
 import { useAppContext } from '../context/state';
+
 // eslint-disable-next-line import/no-cycle
 import {
   InfoDrawer,
@@ -13,11 +15,12 @@ import {
   SectionSeparator,
   Container,
   Subscribe,
+  BottomAdImage,
 } from './index';
 import Header from './header';
-import { joinVariants } from '../utils/animation';
+import { joinVariants, adVariants } from '../utils/animation';
 
-export default function Layout({ preview, children }) {
+export default function Layout({ preview, bottomAds, children }) {
   const width = useCurrentWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -25,11 +28,34 @@ export default function Layout({ preview, children }) {
   };
   const { infoIsOpen, joinIsOpen } = useAppContext();
 
+  const randomSlice1 = _.sample(bottomAds);
+  const { ref, inView } = useInView();
+  const animation = useAnimation();
+  // let randomSlice1;
+  // useEffect(() => {
+  //   randomSlice1 = _.sample(bottomAds);
+  //   console.log(randomSlice1);
+  // }, [])
+
+  useEffect(() => {
+    if (inView) {
+      animation.start('visible');
+    }
+    if (!inView) {
+      animation.start('hidden');
+    }
+  }, [inView, animation]);
+
   // if yOffset === 0 && color: gold
   return (
     <>
       {/* <Meta /> */}
-      <div className="min-h-screen">
+      <motion.div
+        className="min-h-screen"
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // exit={{ opacity: 0 }}
+      >
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
@@ -69,10 +95,32 @@ export default function Layout({ preview, children }) {
                 <NavbarDesktop />
               </Container>
               <main className="w-screen inset-0 z-0">{children}</main>
+              {randomSlice1 && (
+                <motion.div
+                  className="flex justify-center px-3 mb-16 md:px-8 ml:px-14 lg:px-16"
+                  ref={ref}
+                  animate={animation}
+                  variants={adVariants}
+                  initial="hidden">
+                  {width > 500 ? (
+                    <BottomAdImage
+                      image={randomSlice1.adImage}
+                      url={randomSlice1.adUrl}
+                      width={1360}
+                    />
+                  ) : (
+                    <BottomAdImage
+                      image={randomSlice1.adImageMobile}
+                      url={randomSlice1.adUrl}
+                      width={500}
+                    />
+                  )}
+                </motion.div>
+              )}
             </motion.div>
           </Breakpoint>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
 import { useAppContext } from '../context/state';
@@ -7,13 +6,16 @@ import SearchBar from './search-bar';
 
 const NavbarDesktop = () => {
   const {
-    handleSearch,
-    handleSearchOpen,
     searchIsOpen,
+    setSearchIsOpen,
     infoIsOpen,
     setInfoIsOpen,
     setJoinIsOpen,
   } = useAppContext();
+
+  const handleSearchOpen = () => {
+    setSearchIsOpen(!searchIsOpen);
+  };
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
@@ -38,7 +40,7 @@ const NavbarDesktop = () => {
         <div>
           <Link href="/stuff-we-like">
             <a href="/stuff-we-like" className="sm:py-0 stuff-we-like">
-              Stuff We Like
+             Reviews
             </a>
           </Link>
         </div>
@@ -64,8 +66,10 @@ const NavbarDesktop = () => {
         </button>
       </nav>
       <div
-        className={`${searchIsOpen ? 'is-search-visible' : 'header-search'} w-full`}>
-        <SearchBar onSearch={handleSearch} />
+        className={`${
+          searchIsOpen ? 'is-search-visible' : 'header-search'
+        } w-full`}>
+        <SearchBar />
       </div>
     </div>
   );

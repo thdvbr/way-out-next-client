@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const router = useRouter();
   const [value, setValue] = useState('');
+
+  // TODO : FORM VALIDATION 
   return (
     <form
       className="w-full"
       onSubmit={(e) => {
         e.preventDefault();
-        onSearch(value);
-        router.push('/');
+        router.push({ pathname: '/search', query: { keyword: value } });
       }}
     >
       <input

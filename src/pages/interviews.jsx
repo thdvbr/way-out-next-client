@@ -1,42 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { interviewsQuery } from '../utils/queries';
+import {
+  interviewsQuery,
+  bottomAdQuery,
+  pageQuery,
+  staffQuery,
+} from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
 // how to handle page redirect after search?
 // should search on interview page only search inside of interviews?
 
-
-export const Interviews = ({ allPosts, preview }) => {
-  const {
-    query,
-    searchResult,
-    searchIsOpen,
-    setSearchIsOpen,
-    setQuery,
-    setSearchResult,
-  } = useAppContext();
+export const Interviews = ({ allPosts, preview, bottomAds, staffs, pages }) => {
+  const { setStaffsData, setPagesData } = useAppContext();
 
   useEffect(() => {
-    return searchIsOpen && setSearchIsOpen(false);
-  }, []);
-
-  // flushing state. do we need this?
-  useEffect(() => {
-    return searchResult && setQuery('') && setSearchResult([]);
-  }, []);
+    setStaffsData(staffs);
+    setPagesData(pages);
+  }, [staffs, pages, setStaffsData, setPagesData]);
 
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-          {allPosts && <MasonryGrid type="interviews" data={!query ? allPosts : searchResult} />}
-          {/* <div className="font-title flex justify-center text-24">
-            {isLoading && <span>... Loading</span>}
-            {errorMsg && <span>{errorMsg}</span>}
-          </div> */}
+          {allPosts && <MasonryGrid type="interviews" data={allPosts} />}
         </Container>
       </Layout>
     </>
@@ -47,10 +36,13 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery),
+    await getClient(preview).fetch(interviewsQuery)
   );
+  const pages = await getClient(preview).fetch(pageQuery);
+  const staffs = await getClient(preview).fetch(staffQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview, bottomAds, pages, staffs },
   };
 };
 

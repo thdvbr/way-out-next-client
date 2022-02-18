@@ -7,16 +7,15 @@ import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = () => {
-  const {
-    handleSearch,
-    handleSearchOpen,
-    searchIsOpen,
-    infoIsOpen,
-    setInfoIsOpen,
-  } = useAppContext();
+  const { infoIsOpen, setInfoIsOpen, searchIsOpen,
+    setSearchIsOpen } = useAppContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  const handleSearchOpen = () => {
+    setSearchIsOpen(!searchIsOpen);
+  };
 
   const handleClick = () => {
     // setMenuIsOpen(!menuIsOpen);
@@ -28,7 +27,7 @@ const NavbarMobile = () => {
     if (currentScrollPos > prevScrollPos) {
       setVisible(false);
     }
-    // Q: Show menu when scrolling up or no? 
+    // Q: Show menu when scrolling up or no?
     // setVisible(
     //   (prevScrollPos > currentScrollPos
     //     && prevScrollPos - currentScrollPos > 70)
@@ -52,9 +51,9 @@ const NavbarMobile = () => {
         <div className="self-center flex justify-center w-7/12">
           {!searchIsOpen ? (
             <Link href="/">
-            <a href="/">
-            <Logo />
-            </a>
+              <a href="/">
+                <Logo />
+              </a>
             </Link>
           ) : (
             <motion.div
@@ -62,7 +61,7 @@ const NavbarMobile = () => {
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
               className="w-full">
-              <SearchBar onSearch={handleSearch} />
+              <SearchBar />
             </motion.div>
           )}
         </div>
@@ -73,9 +72,7 @@ const NavbarMobile = () => {
           <span>Menu</span>
         </button>
         <div
-          className={`${
-            visible ? 'absolute' : 'hidden'
-          } -right-4`}
+          className={`${visible ? 'absolute' : 'hidden'} -right-4`}
           style={{ bottom: '-13.7rem' }}>
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">

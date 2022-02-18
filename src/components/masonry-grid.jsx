@@ -16,21 +16,20 @@ const breakpointColumnsObj = {
 };
 
 const MasonryGrid = ({ data, type }) => {
-  const { query, searchResult } = useAppContext();
+  // const { query, searchResult } = useAppContext();
   const [posts, setPosts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
-
 
   useEffect(() => {
     setPosts(data);
     setHasMore(true);
-  }, [searchResult]);
+  }, [data]);
 
   const getMorePost = async () => {
     const newQuery = getMoreQuery(type, posts);
     const newPosts = await getClient().fetch(newQuery);
     setPosts((post) => [...post, ...newPosts]);
-    if (newPosts.length < 4) {
+    if (newPosts.length < 8) {
       setHasMore(false);
     }
   };
@@ -42,29 +41,10 @@ const MasonryGrid = ({ data, type }) => {
         animate="enter"
         exit="exit"
         variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
-        {!query ? (
-          <InfiniteScroll
-            dataLength={posts.length}
-            next={getMorePost}
-            hasMore={hasMore}>
-            <Masonry
-              breakpointCols={breakpointColumnsObj}
-              className="my-masonry-grid"
-              columnClassName="my-masonry-grid_column">
-              {posts.map((post) => (
-                <motion.div key={post.slug} variants={cardVariants}>
-                  <MasonryItem
-                    key={post.slug}
-                    title={post.title}
-                    subtitle={post.subtitle}
-                    previewImage={post.previewImage}
-                    slug={post.slug}
-                  />
-                </motion.div>
-              ))}
-            </Masonry>
-          </InfiniteScroll>
-        ) : (
+        <InfiniteScroll
+          dataLength={posts.length}
+          next={getMorePost}
+          hasMore={hasMore}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
@@ -81,7 +61,7 @@ const MasonryGrid = ({ data, type }) => {
               </motion.div>
             ))}
           </Masonry>
-        )}
+        </InfiniteScroll>
       </motion.div>
     </>
   );

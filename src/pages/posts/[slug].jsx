@@ -48,11 +48,6 @@ export const Post = ({ data = {}, preview }) => {
     enabled: preview && slug,
   });
   const {
-    setQuery,
-    searchResult,
-    setSearchResult,
-    searchIsOpen,
-    setSearchIsOpen,
     isTop,
     setIsTop,
     setStaffsData,
@@ -79,14 +74,14 @@ export const Post = ({ data = {}, preview }) => {
     setPagesData(pages);
   }, [staffs, pages, setStaffsData, setPagesData]);
 
-  useEffect(() => {
-    return searchIsOpen && setSearchIsOpen(false);
-  }, []);
+  // useEffect(() => {
+  //   return searchIsOpen && setSearchIsOpen(false);
+  // }, []);
 
-  // flushing state. do we need this?
-  useEffect(() => {
-    return searchResult && setQuery('') && setSearchResult([]);
-  }, []);
+  // // flushing state. do we need this?
+  // useEffect(() => {
+  //   return searchResult && setQuery('') && setSearchResult([]);
+  // }, []);
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
