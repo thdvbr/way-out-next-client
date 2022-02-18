@@ -29,7 +29,7 @@ const MasonryGrid = ({ data, type }) => {
     const newQuery = getMoreQuery(type, posts);
     const newPosts = await getClient().fetch(newQuery);
     setPosts((post) => [...post, ...newPosts]);
-    if (newPosts.length < 4) {
+    if (newPosts.length < 8) {
       setHasMore(false);
     }
   };

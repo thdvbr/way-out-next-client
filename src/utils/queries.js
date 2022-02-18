@@ -79,7 +79,7 @@ export const pageSlugsQuery = `
 `;
 
 export const indexQuery = `
-*[_type == "post"] | order(date desc, _updatedAt desc) | [0...5] {
+*[_type == "post"] | order(date desc, _updatedAt desc) | [0...9] {
   ${postPreviewFields}
 }`;
 
@@ -104,12 +104,12 @@ export const postBySlugQuery = `
 `;
 
 export const interviewsQuery = `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc)  | [0...5] {
+*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc)  | [0...8] {
   ${postPreviewFields}
 }`;
 
 export const stuffWeLikeQuery = `
-*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [0...5]  {
+*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [0...8]  {
   ${postPreviewFields}
 }`;
 
@@ -122,7 +122,7 @@ const moreInterviewsQuery = (posts) => {
   return `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
     posts.length
-  }...${posts.length + 4}] {
+  }...${posts.length + 5}] {
   ${postPreviewFields}
 }`;
 };
@@ -131,7 +131,7 @@ const moreStuffWeLikeQuery = (posts) => {
   return `
   *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [${
     posts.length
-  }...${posts.length + 4}] {
+  }...${posts.length + 5}] {
       ${postPreviewFields}
   }`;
 };
@@ -140,7 +140,7 @@ const moreAllPostsQuery = (posts) => {
   return `
   *[_type == "post"] | order(date desc, _updatedAt desc) | [${
     posts.length + 1
-  }...${posts.length + 5}] {
+  }...${posts.length + 6}] {
     ${postPreviewFields}
   }`;
 };
