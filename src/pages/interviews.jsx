@@ -1,24 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { interviewsQuery, bottomAdQuery, } from '../utils/queries';
+import {
+  interviewsQuery,
+  bottomAdQuery,
+  pageQuery,
+  staffQuery,
+} from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
 // how to handle page redirect after search?
 // should search on interview page only search inside of interviews?
 
+export const Interviews = ({ allPosts, preview, bottomAds, staffs, pages }) => {
+  const { setStaffsData, setPagesData } = useAppContext();
 
-export const Interviews = ({ allPosts, preview, bottomAds }) => {
+  useEffect(() => {
+    setStaffsData(staffs);
+    setPagesData(pages);
+  }, [staffs, pages, setStaffsData, setPagesData]);
+
   return (
     <>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
           {allPosts && <MasonryGrid type="interviews" data={allPosts} />}
-          {/* <div className="font-title flex justify-center text-24">
-            {isLoading && <span>... Loading</span>}
-            {errorMsg && <span>{errorMsg}</span>}
-          </div> */}
         </Container>
       </Layout>
     </>
@@ -29,12 +36,13 @@ export const Interviews = ({ allPosts, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery),
-    
+    await getClient(preview).fetch(interviewsQuery)
   );
+  const pages = await getClient(preview).fetch(pageQuery);
+  const staffs = await getClient(preview).fetch(staffQuery);
   const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
-    props: { allPosts, preview, bottomAds },
+    props: { allPosts, preview, bottomAds, pages, staffs },
   };
 };
 

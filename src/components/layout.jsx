@@ -52,9 +52,10 @@ export default function Layout({ preview, bottomAds, children }) {
       {/* <Meta /> */}
       <motion.div
         className="min-h-screen"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // exit={{ opacity: 0 }}
+      >
         {preview && <AlertPreview />}
         <motion.div
           initial={false}
