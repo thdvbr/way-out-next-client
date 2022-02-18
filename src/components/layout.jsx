@@ -57,11 +57,11 @@ export default function Layout({ preview, bottomAds, children }) {
         // exit={{ opacity: 0 }}
       >
         {preview && <AlertPreview />}
-        <motion.div
+        {/* <motion.div
           initial={false}
           variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
-          transition={{ type: 'spring', duration: 1 }}>
+          transition={{ type: 'spring', duration: 1 }}> */}
           <Head>
             <title>Way Out Mag</title>
             <meta
@@ -119,7 +119,7 @@ export default function Layout({ preview, bottomAds, children }) {
               )}
             </motion.div>
           </Breakpoint>
-        </motion.div>
+        {/* </motion.div> */}
       </motion.div>
     </>
   );

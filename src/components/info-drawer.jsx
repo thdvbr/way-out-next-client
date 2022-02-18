@@ -92,8 +92,8 @@ const InfoDrawer = ({ preview }) => {
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
             className="fixed info-box w-full h-full z-60"
             style={
-              width > 500
-                ? { right: '-30vw', maxWidth: '35rem' }
+              width > 768
+                ? { right: 0, maxWidth: '50vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             {/* TODO: Add noise to radial gradiant */}
@@ -110,10 +110,10 @@ const InfoDrawer = ({ preview }) => {
               </div>
               <div className="p-2 sm:p-6 pt-20 sm:pt-24 flex">
                 <div className="w-8/12">
-                  {aboutIsOpen && <Content body={about.body} />}
-                  {contactIsOpen && <Content body={contact.body} />}
+                  {aboutIsOpen && <div className="pt-2"><Content body={about.body} /></div>}
+                  {contactIsOpen && <div className="pt-2"><Content body={contact.body} /></div>}
                   {staffIsOpen && (
-                    <div className="grid grid-flow-row grid-cols-2 gap-4">
+                    <div className="grid grid-flow-row grid-cols-2 gap-4 text-right pt-2">
                       {staffsData.map((staff) => (
                         <div key={staff._id}>
                           <Staff name={staff.staffName} role={staff.role} />
@@ -123,7 +123,7 @@ const InfoDrawer = ({ preview }) => {
                   )}
                 </div>
                 <div className="w-4/12">
-                  <div className="text-23 lg:text-25 font-title text-right">
+                  <div className="text-22 sm:text-27 md:text-22 lg:text-27 font-title text-right">
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
