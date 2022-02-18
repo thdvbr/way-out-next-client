@@ -115,7 +115,7 @@ const InfoDrawer = ({ preview }) => {
                   {staffIsOpen && (
                     <div className="grid grid-flow-row grid-cols-2 gap-4 text-right pt-2">
                       {staffsData.map((staff) => (
-                        <div key={staff._id}>
+                        <div key={staff._id} className="pb-1">
                           <Staff name={staff.staffName} role={staff.role} />
                         </div>
                       ))}
