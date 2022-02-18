@@ -113,12 +113,12 @@ const InfoDrawer = ({ preview }) => {
               <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-6 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
                 <div className="w-8/12">
                   {aboutIsOpen && (
-                    <div className="pt-2">
+                    <div className="pt-2 text-14 sm:text-18">
                       <Content body={about.body} />
                     </div>
                   )}
                   {contactIsOpen && (
-                    <div className="pt-2">
+                    <div className="pt-2 text-14 sm:text-18">
                       <Content body={contact.body} />
                     </div>
                   )}
@@ -144,7 +144,7 @@ const InfoDrawer = ({ preview }) => {
                   )}
                 </div>
                 <div className="w-4/12">
-                  <div className="text-22 sm:text-27 md:text-22 lg:text-27 font-title text-right">
+                  <div className="text-20 sm:text-27 md:text-22 lg:text-27 font-title text-right">
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
