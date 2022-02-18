@@ -25,7 +25,6 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ preview }) => {
-
   const width = useCurrentWidth();
   const { infoIsOpen, setInfoIsOpen, pagesData, staffsData } = useAppContext();
   const { about, contact } = pagesData;
@@ -33,6 +32,9 @@ const InfoDrawer = ({ preview }) => {
   const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const [contactIsOpen, setContactIsOpen] = useState(false);
   const [staffIsOpen, setStaffIsOpen] = useState(false);
+
+  const staffsOdd = staffsData.filter((e, i) => i % 2);
+  const staffsEven = staffsData.filter((e, i) => !(i % 2));
 
   const toggleAbout = () => {
     contactIsOpen && toggleContact();
@@ -93,7 +95,7 @@ const InfoDrawer = ({ preview }) => {
             className="fixed info-box w-full h-full z-60"
             style={
               width > 768
-                ? { right: 0, maxWidth: '50vw' }
+                ? { right: 0, maxWidth: '42vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             {/* TODO: Add noise to radial gradiant */}
@@ -103,23 +105,42 @@ const InfoDrawer = ({ preview }) => {
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-2 sm:top-4 right-2 sm:right-6 p-3 ">
+              <div className="absolute top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-6 p-3 xl:right-20 ">
                 <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-2 sm:p-6 pt-20 sm:pt-24 flex">
+              <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-6 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
                 <div className="w-8/12">
-                  {aboutIsOpen && <div className="pt-2"><Content body={about.body} /></div>}
-                  {contactIsOpen && <div className="pt-2"><Content body={contact.body} /></div>}
-                  {staffIsOpen && (
-                    <div className="grid grid-flow-row grid-cols-2 gap-4 text-right pt-2">
-                      {staffsData.map((staff) => (
-                        <div key={staff._id} className="pb-1">
-                          <Staff name={staff.staffName} role={staff.role} />
-                        </div>
-                      ))}
+                  {aboutIsOpen && (
+                    <div className="pt-2">
+                      <Content body={about.body} />
                     </div>
+                  )}
+                  {contactIsOpen && (
+                    <div className="pt-2">
+                      <Content body={contact.body} />
+                    </div>
+                  )}
+                  {staffIsOpen && (
+                    <>
+                      <div className="flex justify-between pt-2">
+                        <div className="text-left">
+                          {staffsOdd.map((staff) => (
+                            <div key={staff._id} className="pb-4">
+                              <Staff name={staff.staffName} role={staff.role} />
+                            </div>
+                          ))}
+                        </div>
+                        <div className="text-right">
+                          {staffsEven.map((staff) => (
+                            <div key={staff._id} className="pb-4">
+                              <Staff name={staff.staffName} role={staff.role} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
                 <div className="w-4/12">
