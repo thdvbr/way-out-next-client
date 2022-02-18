@@ -8,7 +8,7 @@ const SideAdImage = ({ image, url }) => {
     return imageUrlBuilder(sanityClient).image(source);
   };
 
-  const adImage = image && <img src={urlFor(image).width(80).url()} />;
+  const adImage = image && <img src={urlFor(image).width(110).url()} />;
   return (
     <div className="sticky top-1/3">
       <a href={url}>{adImage}</a>
