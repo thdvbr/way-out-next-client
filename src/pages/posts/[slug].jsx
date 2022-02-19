@@ -27,6 +27,7 @@ import {
   ArtistLink,
   RelatedGrid,
   BottomAdImage,
+  SocialSharing
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -129,8 +130,9 @@ export const Post = ({ data = {}, preview }) => {
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
                   <PostBody body={post.body} ads={sideAds} />
+                  {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
+                  <SocialSharing slug={slug}/>
                 </motion.div>
-                {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
               </article>
             </>
           )}
