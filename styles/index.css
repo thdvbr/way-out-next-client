@@ -255,8 +255,8 @@ body {
     transition: opacity 0.5s ease-in-out;
   }
   .logo-gold-container {
-    width: 13em;
-    height: 12em;
+    width: 10em;
+    height: 9em;
     content: url(../public/assets/logos/way_out_vector_transparent-gold.png);
   }
 }
