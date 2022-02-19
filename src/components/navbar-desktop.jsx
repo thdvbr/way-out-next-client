@@ -40,7 +40,7 @@ const NavbarDesktop = () => {
         <div>
           <Link href="/stuff-we-like">
             <a href="/stuff-we-like" className="sm:py-0 stuff-we-like">
-             Reviews
+            Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
           </Link>
         </div>

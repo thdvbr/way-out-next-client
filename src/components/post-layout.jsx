@@ -66,7 +66,7 @@ export default function PostLayout({ preview, children }) {
                 <div className="sticky top-80 z-30">
                   <div style={{ color: isTop && '#8A7536' }}>
                     <NavbarDesktop />
-                    <div className="flex absolute left-0 right-0 top-24 justify-center">
+                    <div className="flex left-0 right-0 top-20 justify-center absolute">
                     <div className="logo-gold-container" style={{opacity: isTop ? 1 : 0 }}/>
                     </div>
                   </div>
