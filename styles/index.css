@@ -232,18 +232,18 @@ body {
 
 @media only screen and (min-width: 500px) {
   .logo-container {
-    width: 10em;
-    height: 9em;
+    width: 9em;
+    height: 8em;
     content: url(../public/assets/logos/way_out_vector_transparent-01_.png);
   }
   .info-box {
-    top: 60px;
+    top: 70px;
   }
   .gif {
     background-image: url(../public/assets/logos/wayoutgif_alpha04.gif);
-    background-size: 10em 9em;
-    width: 10em;
-    height: 9em;
+    background-size: 9em 8em;
+    width: 9em;
+    height: 8em;
     position: absolute;
     opacity: 0;
   }
@@ -282,7 +282,6 @@ button:focus {
   border-bottom-width: 2px;
   background-color: transparent;
   width: 60vw;
-  margin-bottom: 5px;
 }
 
 *:focus {

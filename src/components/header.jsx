@@ -23,7 +23,7 @@ export default function Header() {
         <Link href="/">
           <a
             href="/"
-            className="flex absolute left-0 right-0 top-4 sm:top-7 xl:top-5 justify-center z-50">
+            className="flex absolute left-0 right-0 top-4 sm:top-7 xl:top-8 justify-center">
             <div className="logo-container"/>
             <div className="gif"/>
           </a>
