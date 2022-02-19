@@ -256,8 +256,8 @@ body {
   }
   .logo-gold-container {
     width: 10em;
-    height: 9em;
-    content: url(../public/assets/logos/way_out_vector_transparent-gold.png);
+    height: auto;
+    content: url(../public/assets/logos/way_out_vector_transparent-gold_no-white-space.png);
   }
 }
 
@@ -310,7 +310,7 @@ button:focus {
 
 .is-search-visible {
   transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
-  max-height: 7rem;
+  max-height: 44px;
   opacity: 1;
 }
 
