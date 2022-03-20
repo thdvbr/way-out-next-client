@@ -21,7 +21,7 @@ const Thumbnail = ({ title, slug, image: source, width, height }) => {
 
   // TODO: BlurDataURL warning, make blur work :( )
   const image = source ? (
-    <div className="thumbnail-border" style={{ overflow: 'hidden' }}>
+    <div className="thumbnail-border thumbnail-drop-shadow" style={{ overflow: 'hidden' }}>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div>
         <Image
