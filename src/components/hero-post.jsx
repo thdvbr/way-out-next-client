@@ -12,7 +12,7 @@ const HeroPost = ({ mainImage, title, subtitle, slug }) => {
       <div
         className={`${
           searchIsOpen ? 'border-l-2 border-r-2 border-b-2' : 'border-2'
-        } mb-2 flex border-black max-h-full mx-3`}>
+        } mb-2 flex border-black max-h-full mx-3 mb-5`}>
         <div className="max-h-full w-1/3 relative">
           <div className="z-0">
             <HeroSvg />
