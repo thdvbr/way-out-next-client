@@ -94,7 +94,7 @@ export default function Layout({ preview, bottomAds, children }) {
                 <InfoDrawer />
                 <NavbarDesktop />
               </Container>
-              <main className="w-screen inset-0 z-0">{children}</main>
+              <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
               {randomSlice1 && (
                 <motion.div
                   className="flex justify-center px-3 mb-16 md:px-8 ml:px-20 lg:px-28"

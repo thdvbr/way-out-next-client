@@ -60,6 +60,7 @@ body {
   display: flex;
   margin-left: -20px; /* gutter size offset */
   width: auto;
+  padding-top: 5px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
