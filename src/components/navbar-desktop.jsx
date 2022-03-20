@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useAppContext } from '../context/state';
 import SearchBar from './search-bar';
 
@@ -17,13 +18,15 @@ const NavbarDesktop = () => {
     setSearchIsOpen(!searchIsOpen);
   };
 
+  const router = useRouter();
+
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
       <nav className="py-3 flex relative justify-between sm:w-full">
         <button
           type="button"
           onClick={handleSearchOpen}
-          className="search sm:float-left inline-block">
+          className={` ${searchIsOpen && "search-active" } search sm:float-left inline-block`}>
           <span className="sm:float-left">
             <FiSearch className="search-icon" />
           </span>
@@ -32,14 +35,14 @@ const NavbarDesktop = () => {
           <Link href="/interviews">
             <a
               href="/interviews"
-              className="sm:float-left inline-block sm:py-0 interviews inline-block">
+              className={`${router.pathname == "/interviews" && "interviews-active"} sm:float-left inline-block sm:py-0 interviews inline-block`} >
               Interviews
             </a>
           </Link>
         </div>
         <div>
           <Link href="/stuff-we-like">
-            <a href="/stuff-we-like" className="sm:py-0 stuff-we-like">
+            <a href="/stuff-we-like" className={`${router.pathname == "/stuff-we-like" && "stuff-we-like-active"}  sm:py-0 stuff-we-like`}>
             Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
           </Link>
@@ -48,7 +51,7 @@ const NavbarDesktop = () => {
           <Link href="/">
             <a
               href="/radio"
-              className="sm:py-0 radio sm:float-left inline-block">
+              className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio sm:float-left inline-block`}>
               <span className="sm:float-left">Radio</span>
             </a>
           </Link>
