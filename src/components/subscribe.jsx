@@ -48,7 +48,7 @@ const Subscribe = () => {
   return (
     // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
     <div className="join-search-bg z-40">
-      <div className="xl:container px-3 md:px-8 ml:px-14 lg:px-16 mx-auto">
+      <div className="xl:container px-3 md:px-8 ml:px-20 lg:px-28 mx-auto">
         <form
           style={{ height: '70px' }}
           onSubmit={subscribe}

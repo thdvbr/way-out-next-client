@@ -50,13 +50,16 @@ body {
   overflow-x: hidden;
 }
 
+.thumbnail-drop-shadow {
+  filter: drop-shadow(3px 4px 8px rgba(0, 0, 0, 0.16));
+}
+
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
   margin-left: -20px; /* gutter size offset */
   width: auto;
-  padding-top: 5px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
@@ -143,7 +146,7 @@ body {
 
 .mobile-navbar-box {
   border-radius: 3.71271px 0px 0px 3.71271px;
-  border: 1.5px solid #000000;
+  border: 2px solid #000000;
   box-sizing: border-box;
   background: #ffffff;
 }
@@ -181,18 +184,23 @@ body {
   background: #e9e9e0;
 }
 
-.interviews:hover {
+.interviews:hover,
+.interviews-active {
   color: #4045a8;
 }
 
-.stuff-we-like:hover {
+.stuff-we-like:hover,
+.stuff-we-like-active {
   color: #8a7536;
 }
 
-.radio:hover {
+.radio:hover,
+.radio-active {
   color: #d10000;
 }
-
+.search-active {
+  color: #7045a4;
+}
 .info:hover {
   color: #93bcd2;
 }
@@ -255,8 +263,8 @@ body {
     transition: opacity 0.5s ease-in-out;
   }
   .logo-gold-container {
-    width: 10em;
-    height: auto;
+    width: 12em;
+    height: 9em;
     content: url(../public/assets/logos/way_out_vector_transparent-gold_no-white-space.png);
   }
 }
@@ -310,7 +318,7 @@ button:focus {
 
 .is-search-visible {
   transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
-  max-height: 44px;
+  max-height: 52px;
   opacity: 1;
 }
 
@@ -322,4 +330,8 @@ button:focus {
   -o-transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
   transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
   overflow: hidden;
+}
+
+.border-width-1 {
+  border-width: 1px;
 }

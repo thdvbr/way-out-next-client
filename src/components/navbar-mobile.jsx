@@ -6,6 +6,7 @@ import SearchBar from './search-bar';
 import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
+
 const NavbarMobile = () => {
   const { infoIsOpen, setInfoIsOpen, searchIsOpen,
     setSearchIsOpen } = useAppContext();
@@ -73,21 +74,21 @@ const NavbarMobile = () => {
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.7rem' }}>
+          style={{ bottom: '-14.5rem' }}>
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
             <Link href="/interviews">
-              <a href="/interviews" className="py-4">
+              <a href="/interviews" className="py-4 interviews">
                 Interviews
               </a>
             </Link>
             <Link href="/stuff-we-like">
-              <a href="/stuff-we-like" className="py-4">
-                Stuff We Like
+              <a href="/stuff-we-like" className="py-4 stuff-we-like">
+                Reviews
               </a>
             </Link>
             <Link href="/radio">
-              <a href="/radio" className="py-4">
+              <a href="/radio" className="py-4 radio">
                 Radio
               </a>
             </Link>
