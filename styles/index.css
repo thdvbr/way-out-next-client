@@ -179,11 +179,11 @@ body {
   .info:hover {
     text-decoration: underline;
   }
-  .preview-block:hover .masonry-item-text {
+  .preview-block:active .masonry-item-text {
     text-decoration: underline;
     color: #4045a8;
   }
-  .preview-block:hover .line {
+  .preview-block:active .line {
     border-top: 1px solid #4045a8;
   }
 }
