@@ -34,7 +34,7 @@ const NavbarMobile = () => {
     //     && prevScrollPos - currentScrollPos > 70)
     // );
     setPrevScrollPos(currentScrollPos);
-  }, 100);
+  }, 10);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -74,7 +74,7 @@ const NavbarMobile = () => {
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-14.5rem' }}>
+          style={{ bottom: '-13.75rem' }}>
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
             <Link href="/interviews">

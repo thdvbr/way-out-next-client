@@ -80,6 +80,7 @@ body {
   .my-masonry-grid {
     padding-left: 0rem;
     padding-right: 0rem;
+    padding-top: 0;
   }
 }
 

@@ -5,7 +5,7 @@ import Thumbnail from './thumbnail';
 const MasonryItem = ({
   title, subtitle, previewImage, slug,
 }) => (
-  <div className="py-2 preview-block">
+  <div className="pb-1 sm:pb-0 sm:py-2 preview-block">
     <div className="mb-4 sm:mb-2">
       <Thumbnail slug={slug} title={title} image={previewImage} />
     </div>
