@@ -82,7 +82,7 @@ const Subscribe = () => {
             <form
               style={{ height: '70px' }}
               onSubmit={subscribe}
-              className="flex justify-between items-center font-title text-23 text-center px-3">
+              className="flex justify-between items-center font-title text-17 ml:text-23 text-center px-3">
               <label htmlFor="email-input" className="w-4/12 flex mr-auto">
                 {'Join our newsletter'}
               </label>
