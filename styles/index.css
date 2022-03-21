@@ -179,6 +179,13 @@ body {
   .info:hover {
     text-decoration: underline;
   }
+  .preview-block:hover .masonry-item-text {
+    text-decoration: underline;
+    color: #4045a8;
+  }
+  .preview-block:hover .line {
+    border-top: 1px solid #4045a8;
+  }
 }
 
 ::-moz-selection {

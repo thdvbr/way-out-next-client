@@ -21,9 +21,8 @@ const MasonryItem = ({
       <span>
         <br />
         <div>
-          <hr className="line float-left transform translate-y-4" />
-          <span className="font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8">
-            &nbsp;&nbsp;
+          <hr className="line float-left transform translate-y-4 mr-3" />
+          <span className="font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8">   
             {subtitle}
           </span>
         </div>
