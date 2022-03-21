@@ -77,6 +77,7 @@ export default function Layout({ preview, bottomAds, children }) {
             </Container>
           </div>
           <main className="w-screen inset-0 z-0">{children}</main>
+          <Subscribe />
           {randomSlice1 && (
             <motion.div
               className="flex justify-center px-3 mb-16 md:px-8 ml:px-20 lg:px-28"
