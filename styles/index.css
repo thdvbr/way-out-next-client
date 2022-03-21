@@ -173,6 +173,12 @@ body {
   .radial-gradient {
     height: 100%;
   }
+  .interviews:hover,
+  .stuff-we-like:hover,
+  .radio:hover,
+  .info:hover {
+    text-decoration: underline;
+  }
 }
 
 ::-moz-selection {
