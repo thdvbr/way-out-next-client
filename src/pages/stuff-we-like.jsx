@@ -33,6 +33,7 @@ export const getStaticProps = async ({ preview = false }) => {
   const staffs = await getClient(preview).fetch(staffQuery);
   return {
     props: { allPosts, preview, bottomAds, pages, staffs },
+    revalidate : 10
   };
 };
 

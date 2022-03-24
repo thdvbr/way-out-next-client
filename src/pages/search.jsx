@@ -19,6 +19,7 @@ export const getStaticProps = async ({ preview = false }) => {
   const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
     props: { bottomAds, preview },
+    revalidate : 10
   };
 };
 

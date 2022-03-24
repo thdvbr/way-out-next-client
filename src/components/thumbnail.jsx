@@ -31,6 +31,7 @@ const Thumbnail = ({ title, slug, image: source, width, height }) => {
           // sizes={`${width}px, ${height}px`}
           sizes="(max-width: 800px) 100vw, 800px"
           alt={`Thumbnail for ${title}`}
+          placeholder="blur"
         />
       </div>
       {/* </motion.div> */}
