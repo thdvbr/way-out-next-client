@@ -60,6 +60,7 @@ body {
   display: flex;
   margin-left: -20px; /* gutter size offset */
   width: auto;
+  padding-top: 5px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
@@ -79,6 +80,7 @@ body {
   .my-masonry-grid {
     padding-left: 0rem;
     padding-right: 0rem;
+    padding-top: 0;
   }
 }
 
@@ -170,6 +172,19 @@ body {
 @media only screen and (max-width: 499px) {
   .radial-gradient {
     height: 100%;
+  }
+  .interviews:hover,
+  .stuff-we-like:hover,
+  .radio:hover,
+  .info:hover {
+    text-decoration: underline;
+  }
+  .preview-block:active .masonry-item-text {
+    text-decoration: underline;
+    color: #4045a8;
+  }
+  .preview-block:active .line {
+    border-top: 1px solid #4045a8;
   }
 }
 

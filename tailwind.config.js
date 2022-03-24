@@ -6,6 +6,9 @@ module.exports = {
       zIndex: {
         60: '60',
       },
+      width: {
+        42: '10.5rem'
+      }
     },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],

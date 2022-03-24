@@ -55,8 +55,6 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds}) => {
               <MasonryGrid data={morePosts} />
             </div>
           </Breakpoint>
-          <div className="font-title flex justify-center py-10 text-24 sm:text-33 ">
-          </div>
         </Container>
       </Layout>
     </>
