@@ -9,7 +9,7 @@ const postComponents = {
   block: {
     h1: ({ children }) => <h1>{children}</h1>,
     main: ({ children }) => (
-      <span className="font-main-bold leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
+      <span className="font-main leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
         <br />
         {children}
         <br />
@@ -17,8 +17,8 @@ const postComponents = {
     ),
     secondary: ({ children }) => (
       <span className="font-secondary text-18 leading-none sm:text-24 xl:text-28 lg:text-21 sm:leading-6">
-        {children}
         <br />
+        {children}
         <br />
       </span>
     ),
@@ -31,7 +31,6 @@ const postComponents = {
     intro: ({ children }) => (
       <span className="font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-8">
         {children}
-        <br />
         <br />
         <br />
       </span>
@@ -62,7 +61,7 @@ const postComponents = {
   marks: {
     em: ({ children }) => <em>{children}</em>,
     underline: ({ children }) => <span className="underline">{children}</span>,
-    strong: ({ children }) => <strong>{children}</strong>,
+    strong: ({ children }) => <span className="font-extrabold">{children}</span>,
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')
         ? '_blank'
