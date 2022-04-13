@@ -117,7 +117,7 @@ export default function Layout({ preview, bottomAds, children }) {
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
             {randomSlice1 && (
               <motion.div
-                className="flex justify-center px-3 mb-16 md:px-8 ml:px-20 lg:px-28"
+                className="flex justify-center px-3 mt-10 mb-16 md:px-8 ml:px-20 lg:px-28"
                 ref={ref}
                 animate={animation}
                 variants={adVariants}
