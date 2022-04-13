@@ -66,6 +66,9 @@ export const pageQuery = `
   "contact": *[_type == "page" && title == "Contact"][0] {
     ${pageFields}
   },
+  "legal": *[_type == "page" && title == "Legal"][0] {
+    ${pageFields}
+  },
 }
 `;
 
