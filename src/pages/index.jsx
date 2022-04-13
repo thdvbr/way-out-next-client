@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import CookieConsent from 'react-cookie-consent';
 import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
@@ -18,13 +19,10 @@ setDefaultBreakpoints([
   { xl: 1536 },
 ]);
 
-export const Index = ({ allPosts, pages, staffs, preview, bottomAds}) => {
+export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const {
-    setStaffsData,
-    setPagesData,
-  } = useAppContext();
+  const { setStaffsData, setPagesData } = useAppContext();
 
   useEffect(() => {
     setStaffsData(staffs);
@@ -35,6 +33,29 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds}) => {
   // needs to wait until searchResult is returned.
   return (
     <>
+      <CookieConsent
+        acceptOnScroll={true}
+        acceptOnScrollPercentage={80}
+        disableButtonStyles={true}
+        contentStyle={{
+          color: 'black',
+          fontFamily: 'Averia Serif Light Italic',
+        }}
+        containerClasses="flex justify-center"
+        buttonText="X"
+        buttonStyle={{ color: 'black' }}
+        buttonClasses="mr-4"
+        style={{
+          backgroundImage:
+            'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
+          width: '500px',
+          boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
+        }}>
+        Hey ! We use{' '}
+        <a href="/legal" className="underline">
+          cookies.
+        </a>
+      </CookieConsent>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
           <Breakpoint customQuery="(max-width: 499px)">
@@ -68,7 +89,7 @@ export const getStaticProps = async ({ preview = false }) => {
   const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
     props: { allPosts, pages, staffs, bottomAds, preview },
-    revalidate : 10
+    revalidate: 10,
   };
 };
 

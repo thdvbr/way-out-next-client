@@ -350,3 +350,8 @@ button:focus {
 .border-width-1 {
   border-width: 1px;
 }
+
+.yellow-pattern {
+  background-image: url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg);
+  box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
+}
