@@ -35,7 +35,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
     <>
       <CookieConsent
         acceptOnScroll={true}
-        acceptOnScrollPercentage={80}
+        acceptOnScrollPercentage={60}
         disableButtonStyles={true}
         contentStyle={{
           color: 'black',
@@ -48,7 +48,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
         style={{
           backgroundImage:
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
-          width: '500px',
+          width: '400px',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
         }}>
         Hey ! We use{' '}
