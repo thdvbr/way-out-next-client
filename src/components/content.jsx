@@ -4,29 +4,27 @@ import { urlForImage } from '../utils/sanity';
 
 const components = {
   block: {
-    h1: ({ children }) => <h1>{children}</h1>,
-    main: ({ children }) => (
-      <span className="font-main leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
+    averiaSerif: ({ children }) => (
+      <span className="block font-main leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
         <br />
         {children}
         <br />
       </span>
     ),
-    secondary: ({ children }) => (
-      <span className="font-secondary text-18 leading-none">
+    agrandirNarrow: ({ children }) => (
+      <span className="block font-secondary text-18 leading-tight">
         {children}
-        <br />
         <br />
       </span>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <span className="font-copenhagen text-11 leading-none">
+      <span className="block font-copenhagen text-11 leading-none">
         {children}
         <br />
       </span>
     ),
-    intro: ({ children }) => (
-      <span className="font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-83">
+    optiArtCraft: ({ children }) => (
+      <span className="block font-title text-17 leading-none sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-83">
         <br />
         {children}
         <br />
