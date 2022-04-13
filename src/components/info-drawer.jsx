@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
 import { Content, Staff } from './index';
@@ -120,6 +121,9 @@ const InfoDrawer = ({ preview }) => {
                   {contactIsOpen && (
                     <div className="pt-2 text-14 sm:text-18">
                       <Content body={contact.body} />
+                      <Link href="/legal">
+                        <a href="/legal" className="font-secondary underline">Legal</a>
+                      </Link>
                     </div>
                   )}
                   {staffIsOpen && (
