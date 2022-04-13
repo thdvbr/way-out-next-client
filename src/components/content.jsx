@@ -5,7 +5,7 @@ import { urlForImage } from '../utils/sanity';
 const components = {
   block: {
     averiaSerif: ({ children }) => (
-      <span className="block font-main leading-3 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
+      <span className="block font-main leading-4 text-17 sm:font-main sm:text-20 xl:text-23 xl:leading-8 sm:leading-6 lg:text-20">
         <br />
         {children}
         <br />
@@ -30,6 +30,18 @@ const components = {
         <br />
       </span>
     ),
+    h2: ({ children }) => (
+      <span className="block font-main text-22 sm:text-28 leading-tight lg:text-30">
+        <br />
+        {children}
+      </span>
+    ),
+    h3: ({ children }) => (
+      <span className="block font-main text-18 leading-tight lg:text-24">
+        <br />
+        {children}
+      </span>
+    )
   },
   types: {
     image: ({ value }) => {
