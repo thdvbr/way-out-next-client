@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import CookieConsent from 'react-cookie-consent';
-import { setDefaultBreakpoints, Breakpoint } from 'react-socks';
+import { setDefaultBreakpoints, Breakpoint, useCurrentWidth } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
   indexQuery,
@@ -20,6 +20,7 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
+  const currentWidth = useCurrentWidth();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const { setStaffsData, setPagesData } = useAppContext();
@@ -41,14 +42,14 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
           color: 'black',
           fontFamily: 'Averia Serif Light Italic',
         }}
-        containerClasses="flex justify-center"
+        containerClasses="flex"
         buttonText="X"
         buttonStyle={{ color: 'black' }}
         buttonClasses="mr-4"
         style={{
           backgroundImage:
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
-          width: '400px',
+          width: currentWidth > '500' ? '50vw' : '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
         }}>
         Hey ! We use{' '}
