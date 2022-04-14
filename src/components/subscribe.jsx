@@ -80,9 +80,9 @@ const Subscribe = () => {
         <div className="join-search-bg z-40">
           <div className="xl:container px-3 md:px-8 ml:px-20 lg:px-28 mx-auto">
             <form
-              style={{ height: '70px' }}
+              style={{ height: '60px' }}
               onSubmit={subscribe}
-              className="flex justify-between items-center font-title text-17 ml:text-23 text-center px-3">
+              className="flex justify-between items-center font-title text-15 ml:text-18 text-center px-3">
               <label htmlFor="email-input" className="w-4/12 flex mr-auto">
                 {'Join our newsletter'}
               </label>
@@ -92,7 +92,7 @@ const Subscribe = () => {
                 ref={input}
                 required
                 type="email"
-                className="subscribe-input font-agrandir w-6/12"
+                className="subscribe-input font-agrandir w-6/12 mb-1"
               />
               <div className="w-3/12">
                 {message || (
