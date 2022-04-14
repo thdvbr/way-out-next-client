@@ -129,6 +129,7 @@ export default function Layout({ preview, bottomAds, children }) {
                 />
               </motion.div>
             )}
+            <h1>this is a footer</h1>
           </motion.div>
         </Breakpoint>
         {/* </motion.div> */}

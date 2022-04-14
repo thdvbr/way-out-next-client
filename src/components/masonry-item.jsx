@@ -13,16 +13,15 @@ const MasonryItem = ({
       <Link as={`/posts/${slug}`} href="/posts/[slug]">
         <a
           href={`post title for ${title}`}
-          className="font-title text-25 leading-tight sm:text-17.25 sm:leading-4 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
+          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
         >
           {title}
         </a>
       </Link>
       <span>
-        <br />
         <div>
-          <hr className="line float-left transform translate-y-4 mr-3" />
-          <span className="font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8">   
+          <hr className="line float-left transform translate-y-4 sm:translate-y-2 md:translate-y-3 xl:translate-y-4 mr-2" />
+          <span className="block font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8">   
             {subtitle}
           </span>
         </div>
