@@ -134,7 +134,6 @@ export default function PostBody({ body, ads }) {
 
       <div className="mx-3" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
-        <span>{postHeight}</span>
         <PortableText value={body} components={postComponents} />
       </div>
     </>
