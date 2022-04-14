@@ -106,20 +106,20 @@ const InfoDrawer = ({ preview }) => {
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-6 p-3 xl:right-20 ">
+              <div className="absolute top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 p-3 xl:right-20 ">
                 <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-6 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
+              <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
                 <div className="w-8/12">
                   {aboutIsOpen && (
-                    <div className="pt-2 text-14 sm:text-18">
+                    <div className="text-justify pt-2 text-14 sm:text-18">
                       <Content body={about.body} />
                     </div>
                   )}
                   {contactIsOpen && (
-                    <div className="pt-2 text-14 sm:text-18">
+                    <div className="text-justify pt-2 text-14 sm:text-18">
                       <Content body={contact.body} />
                       <Link href="/legal">
                         <a href="/legal" className="font-secondary underline">Legal</a>

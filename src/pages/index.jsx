@@ -20,7 +20,6 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
-  const currentWidth = useCurrentWidth();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   const { setStaffsData, setPagesData } = useAppContext();
@@ -49,7 +48,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
         style={{
           backgroundImage:
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
-          width: currentWidth > '500' ? '50vw' : '100vw',
+          width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
         }}>
         Hey ! We use{' '}

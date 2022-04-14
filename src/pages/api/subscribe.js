@@ -33,7 +33,7 @@ export default async (req, res) => {
       });
     }
     return res.status(201).json({ error: '' });
-  } catch (error) {
+    } catch (error) {
     return res.status(500).json({ error: 'Error! Try again.' });
   }
 };

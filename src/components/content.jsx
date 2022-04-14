@@ -15,6 +15,7 @@ const components = {
       <span className="block font-secondary text-18 leading-tight">
         {children}
         <br />
+        <br />
       </span>
     ),
     copenhagenGrotesk: ({ children }) => (
