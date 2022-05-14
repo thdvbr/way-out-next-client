@@ -31,6 +31,7 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
+  // TODO 14/MAY : COOKIE BUTTON -_- 
   return (
     <>
       <CookieConsent
@@ -41,20 +42,22 @@ export const Index = ({ allPosts, pages, staffs, preview, bottomAds }) => {
           color: 'black',
           fontFamily: 'Averia Serif Light Italic',
         }}
-        containerClasses="flex"
+        contentClasses="flex-none"
+        containerClasses="flex flex-row"
         buttonText="X"
         buttonStyle={{ color: 'black' }}
-        buttonClasses="mr-4"
+        buttonClasses="mr-3"
         style={{
           backgroundImage:
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
+          textAlign: 'center'
         }}>
-        Hey ! We use{' '}
+        Hey, We use{' '}
         <a href="/legal" className="underline">
-          cookies.
-        </a>
+          cookies
+        </a> !
       </CookieConsent>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>

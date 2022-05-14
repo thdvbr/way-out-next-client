@@ -125,7 +125,7 @@ export default function Layout({ preview, bottomAds, children }) {
                 <BottomAdImage
                   image={randomSlice1.adImage}
                   url={randomSlice1.adUrl}
-                  width={1360}
+                  width={1500}
                 />
               </motion.div>
             )}

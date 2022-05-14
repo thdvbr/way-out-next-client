@@ -50,6 +50,10 @@ body {
   overflow-x: hidden;
 }
 
+.p-wrap {
+  white-space: pre-wrap;
+}
+
 .thumbnail-drop-shadow {
   filter: drop-shadow(3px 4px 8px rgba(0, 0, 0, 0.16));
 }
@@ -253,6 +257,51 @@ body {
   }
 }
 
+@media only screen and (min-width: 500px) and (max-width: 768px) {
+  .hero-img {
+    height: calc(16rem - 4px);
+  }
+  .hero-bg {
+    flex-basis: 15em;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .hero-img {
+    height: calc(20rem - 4px);
+  }
+  .hero-bg {
+    flex-basis: 18em;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .hero-img {
+    height: calc(20rem - 4px);
+  }
+  .hero-bg {
+    flex-basis: 18em;
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1536px) {
+  .hero-img {
+    height: calc(24rem - 4px);
+  }
+  .hero-bg {
+    flex-basis: 22em;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .hero-img {
+    height: calc(28rem - 4px);
+  }
+  .hero-bg {
+    flex-basis: 26em;
+  }
+}
+
 @media only screen and (min-width: 500px) {
   .logo-container {
     width: 9em;
@@ -278,10 +327,21 @@ body {
     transition: opacity 0.5s ease-in-out;
   }
   .logo-gold-container {
-    width: 12em;
-    height: 9em;
+    width: 6em;
+    height: 5em;
     content: url(/assets/logos/way_out_vector_transparent-gold_no-white-space.png);
   }
+}
+
+.hero-img {
+  position: relative !important;
+}
+
+.unset-img {
+  width: 100%;
+}
+.unset-img > div {
+  position: unset !important;
 }
 
 .logo-container:hover {
