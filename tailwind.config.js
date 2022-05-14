@@ -8,6 +8,11 @@ module.exports = {
       },
       width: {
         42: '10.5rem'
+      },
+      height: {
+        104: '26rem',
+        112: '28rem',
+        120: '30rem'
       }
     },
     fontFamily: {
