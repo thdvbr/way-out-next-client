@@ -50,6 +50,10 @@ body {
   overflow-x: hidden;
 }
 
+.p-wrap {
+  white-space: pre-wrap;
+}
+
 .thumbnail-drop-shadow {
   filter: drop-shadow(3px 4px 8px rgba(0, 0, 0, 0.16));
 }

@@ -8,14 +8,14 @@ import { SideAdImage } from './index';
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <span className="block font-main leading-5 text-17 sm:font-main sm:text-23 xl:text-26.5 xl:leading-8 sm:leading-6 lg:text-20">
+      <span className="block font-main leading-5 text-17 sm:font-main sm:text-21 md:text-23 xl:text-26.5 xl:leading-8 sm:leading-6">
         <br />
         {children}
         <br />
       </span>
     ),
     agrandirNarrow: ({ children }) => (
-      <span className="block font-secondary text-18 leading-5 sm:text-24 lg:leading-9 xl:text-28 lg:text-21 sm:leading-7">
+      <span className="block font-secondary text-18 leading-5 sm:text-21 md:text-24 lg:leading-8 xl:text-27 sm:leading-7">
         <br />
         {children}
         <br />
@@ -28,7 +28,7 @@ const postComponents = {
       </span>
     ),
     optiArtCraft: ({ children }) => (
-      <span className="block font-title text-17 leading-5 sm:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-7">
+      <span className="block font-title text-17 leading-5 sm:text-21 md:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-7">
         {children}
         <br />
         <br />
@@ -75,7 +75,7 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-secondary font-bold text-18 sm:text-24 md:text-26.5 xl:text-30 ">{children}</span>
+      <span className="font-secondary font-bold text-18 sm:text-21 md:text-24 xl:text-27 ">{children}</span>
     ),
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')
@@ -132,7 +132,7 @@ export default function PostBody({ body, ads }) {
         </div>
       )}
 
-      <div className="mx-3" ref={bodyRef}>
+      <div className="mx-3 p-wrap" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
         <PortableText value={body} components={postComponents} />
       </div>
