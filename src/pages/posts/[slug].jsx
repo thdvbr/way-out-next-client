@@ -27,7 +27,8 @@ import {
   ArtistLink,
   RelatedGrid,
   BottomAdImage,
-  SocialSharing
+  SocialSharing,
+  Footer,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -48,13 +49,8 @@ export const Post = ({ data = {}, preview }) => {
     initialData: data,
     enabled: preview && slug,
   });
-  const {
-    isTop,
-    setIsTop,
-    setStaffsData,
-    setPagesData,
-    setJoinIsOpen,
-  } = useAppContext();
+  const { isTop, setIsTop, setStaffsData, setPagesData, setJoinIsOpen } =
+    useAppContext();
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
@@ -130,8 +126,10 @@ export const Post = ({ data = {}, preview }) => {
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
                   <PostBody body={post.body} ads={sideAds} />
-                  {post.artistLink && <ArtistLink artistLink={post.artistLink} />}
-                  <SocialSharing slug={slug}/>
+                  {post.artistLink && (
+                    <ArtistLink artistLink={post.artistLink} />
+                  )}
+                  <SocialSharing slug={slug} />
                 </motion.div>
               </article>
             </>
@@ -151,7 +149,7 @@ export const Post = ({ data = {}, preview }) => {
       </PostLayout>
       {bottomAds && (
         <motion.div
-          className="px-3 mb-2 sm:mb-16 sm:px-6 md:px-10 ml:px-20 lg:px-28 flex justify-center"
+          className="px-3 mb-2 sm:px-6 md:px-10 ml:px-20 lg:px-28 flex justify-center"
           ref={ref}
           animate={animation}
           variants={adVariants}
@@ -171,6 +169,7 @@ export const Post = ({ data = {}, preview }) => {
           )}
         </motion.div>
       )}
+      <Footer />
     </motion.div>
   );
 };
@@ -196,7 +195,7 @@ export async function getStaticProps({ params, preview = false }) {
         bottomAds,
       },
     },
-    revalidate : 10
+    revalidate: 10,
   };
 }
 
