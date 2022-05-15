@@ -13,6 +13,10 @@ module.exports = {
         104: '26rem',
         112: '28rem',
         120: '30rem'
+      },
+      padding: {
+        '26rem': '26rem',
+        '36rem': '36rem'
       }
     },
     fontFamily: {
