@@ -2,46 +2,36 @@ import React from 'react';
 import Link from 'next/link';
 import { renderToStaticMarkup } from 'react-dom/server';
 import FooterSvg from './footer-svg';
-import { useAppContext } from '../context/state';
 
 export default function Footer() {
-  const {
-    infoIsOpen, setInfoIsOpen,
-  } = useAppContext();
   const svgString = encodeURIComponent(renderToStaticMarkup(<FooterSvg />));
   return (
-    <footer>
+    <footer style={{ transform: 'translateY(60px)' }}>
       <nav
-        className="flex flex-row text-white py-5 xl:text-15 text-12 font-title"
+        className="text-white py-2 px-16 sm:px-24 md:px-48 ml:px-64 lg:px-80 xl:px-96 xl:text-18 text-15 ml:text-16 font-secondary"
         style={{
           backgroundImage: `url("data:image/svg+xml,${svgString}")`,
-        }}
-      >
-        <div className="w-1/3 flex flex-row justify-evenly items-center underline">
-          <Link href="/interviews">
-            <a href="/interviews">
-              Interviews
+        }}>
+        <div className="flex flex-row justify-evenly items-center">
+
+            <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+              Contact
             </a>
-          </Link>
-          <Link href="/stuff-we-like">
-            <a href="/stuff-we-like">
-              <span className="">Stuff We Like</span>
+            <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+              Donate
             </a>
-          </Link>
           <Link href="/">
-            <a href="/radio">
-              <span>Radio</span>
+            <a href="/">
+              <div className="footer-logo-container" />
             </a>
           </Link>
-          <button
-            type="button"
-            onClick={() => setInfoIsOpen(!infoIsOpen)}
-          >
-            <span>Info</span>
-          </button>
+          <Link href="/legal">
+            <a className="hover:underline" href="/legal">
+              Legal
+            </a>
+          </Link>
+          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">Advertise</a>
         </div>
-        <div className="w-1/3">join our newsletter</div>
-        <div className="w-1/3">logo</div>
       </nav>
     </footer>
   );

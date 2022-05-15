@@ -18,6 +18,7 @@ import {
   Container,
   Subscribe,
   BottomAdImage,
+  Footer
 } from './index';
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
@@ -117,7 +118,7 @@ export default function Layout({ preview, bottomAds, children }) {
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
             {randomSlice1 && (
               <motion.div
-                className="flex justify-center px-3 mt-10 mb-16 md:px-8 ml:px-20 lg:px-28"
+                className="flex justify-center px-3 mt-10 md:px-8 ml:px-20 lg:px-28"
                 ref={ref}
                 animate={animation}
                 variants={adVariants}
@@ -129,7 +130,7 @@ export default function Layout({ preview, bottomAds, children }) {
                 />
               </motion.div>
             )}
-            <h1>this is a footer</h1>
+            <Footer />
           </motion.div>
         </Breakpoint>
         {/* </motion.div> */}
