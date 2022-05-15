@@ -12,7 +12,6 @@ import {
   NavbarDesktop,
   SectionSeparator,
   Container,
-  HeaderGold,
   Subscribe,
 } from './index';
 import { joinVariants } from '../utils/animation';
@@ -34,52 +33,55 @@ export default function PostLayout({ preview, children }) {
           variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
           transition={{ type: 'spring', duration: 1 }}> */}
-          <Head>
-            <title>Way Out Mag</title>
-            <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width"
-            />
-          </Head>
-          <Breakpoint customQuery="(max-width: 499px)">
-            <div className="sticky top-0 z-30">
-              <Container>
-                <NavbarMobile />
-                <InfoDrawer />
-              </Container>
-            </div>
-            <main className="w-screen inset-0 z-0">{children}</main>
-          </Breakpoint>
-          <Breakpoint customQuery="(min-width: 500px)">
-            <motion.div
-              initial={false}
-              variants={joinVariants}
-              animate={joinIsOpen ? 'opened' : 'closed'}
-              transition={{ type: 'spring', duration: 0.5 }}>
-              <Subscribe />
+        <Head>
+          <title>Way Out Mag</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
+        <Breakpoint customQuery="(max-width: 499px)">
+          <div className="sticky top-0 z-30">
+            <Container>
+              <NavbarMobile />
+              <InfoDrawer />
+            </Container>
+          </div>
+          <main className="w-screen inset-0 z-0">{children}</main>
+        </Breakpoint>
+        <Breakpoint customQuery="(min-width: 500px)">
+          <motion.div
+            initial={false}
+            variants={joinVariants}
+            animate={joinIsOpen ? 'opened' : 'closed'}
+            transition={{ type: 'spring', duration: 0.5 }}>
+            <Subscribe />
 
-              <Container>
+            <Container>
+              <div className="px-3">
+                <Header />
+              </div>
+              <InfoDrawer />
+              <div className="sticky top-80 z-30">
+                <div style={{ color: isTop && '#8A7536' }}>
+                  <NavbarDesktop />
+                  <div className="flex left-0 right-0 top-18 justify-center absolute">
+                    <div
+                      className="logo-gold-container mt-3"
+                      style={{ opacity: isTop ? 1 : 0 }}
+                    />
+                  </div>
+                </div>
+              </div>
+              {!searchIsOpen && (
                 <div className="px-3">
-                  <Header />
+                  <SectionSeparator />
                 </div>
-                <InfoDrawer />
-                <div className="sticky top-80 z-30">
-                  <div style={{ color: isTop && '#8A7536' }}>
-                    <NavbarDesktop />
-                    <div className="flex left-0 right-0 top-18 justify-center absolute">
-                    <div className="logo-gold-container mt-3" style={{opacity: isTop ? 1 : 0 }}/>
-                    </div>
-                  </div>
-                </div>
-                {!searchIsOpen && (
-                  <div className="px-3">
-                    <SectionSeparator />
-                  </div>
-                )}
-                <main className="inset-0 z-0">{children}</main>
-              </Container>
-            </motion.div>
-          </Breakpoint>
+              )}
+              <main className="inset-0 z-0">{children}</main>
+            </Container>
+          </motion.div>
+        </Breakpoint>
         {/* </motion.div> */}
       </div>
     </>

@@ -2,46 +2,41 @@ import React from 'react';
 import Link from 'next/link';
 import { renderToStaticMarkup } from 'react-dom/server';
 import FooterSvg from './footer-svg';
-import { useAppContext } from '../context/state';
+import { useCurrentWidth } from 'react-socks';
 
 export default function Footer() {
-  const {
-    infoIsOpen, setInfoIsOpen,
-  } = useAppContext();
+  const width = useCurrentWidth();
   const svgString = encodeURIComponent(renderToStaticMarkup(<FooterSvg />));
   return (
-    <footer>
+    <footer style={{ transform: 'translateY(60px)' }}>
       <nav
-        className="flex flex-row text-white py-5 xl:text-15 text-12 font-title"
+        className="text-white py-2 px-3 sm:px-36 md:px-56 ml:px-80 lg:px-26rem xl:px-36rem xl:text-18 text-13 sm:text-15 ml:text-16 font-agrandir"
         style={{
           backgroundImage: `url("data:image/svg+xml,${svgString}")`,
-        }}
-      >
-        <div className="w-1/3 flex flex-row justify-evenly items-center underline">
-          <Link href="/interviews">
-            <a href="/interviews">
-              Interviews
+        }}>
+        <div className="flex flex-row justify-between items-center">
+          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+            Contact
+          </a>
+          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+            Donate
+          </a>
+          {width > 500 && (
+            <Link href="/">
+              <a href="/">
+                <div className="footer-logo-container" />
+              </a>
+            </Link>
+          )}
+          <Link href="/legal">
+            <a className="hover:underline" href="/legal">
+              Legal
             </a>
           </Link>
-          <Link href="/stuff-we-like">
-            <a href="/stuff-we-like">
-              <span className="">Stuff We Like</span>
-            </a>
-          </Link>
-          <Link href="/">
-            <a href="/radio">
-              <span>Radio</span>
-            </a>
-          </Link>
-          <button
-            type="button"
-            onClick={() => setInfoIsOpen(!infoIsOpen)}
-          >
-            <span>Info</span>
-          </button>
+          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+            Advertise
+          </a>
         </div>
-        <div className="w-1/3">join our newsletter</div>
-        <div className="w-1/3">logo</div>
       </nav>
     </footer>
   );
