@@ -8,7 +8,7 @@ const RelatedGrid = ({ posts }) => (
     animate="enter"
     exit="exit"
     variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
-    <section className="mt-14 sm:mx-0 sm:mb-10">
+    <section className="mt-14 sm:mx-0">
       <h2 className="font-title text-24 sm:text-40 xl:text-55 lg:text-42 text-center mb-10 md:mb-16">
         More to read
       </h2>
