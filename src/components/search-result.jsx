@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Masonry from 'react-masonry-css';
 import { motion } from 'framer-motion';
 import MasonryItem from './masonry-item';
+import { useAppContext } from '../context/state';
 import { cardVariants } from '../utils/animation';
 
 const breakpointColumnsObj = {
@@ -12,6 +13,7 @@ const breakpointColumnsObj = {
 };
 
 const SearchResult = () => {
+  const { searchIsOpen } = useAppContext();
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -51,7 +53,7 @@ const SearchResult = () => {
         variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
         <Masonry
           breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
+          className={`${searchIsOpen && 'sm:mt-5'} my-masonry-grid`}
           columnClassName="my-masonry-grid_column">
           {searchResult.map((post) => (
             <motion.div key={post.slug} variants={cardVariants}>
