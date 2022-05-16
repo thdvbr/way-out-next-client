@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import { useAppContext } from '../context/state';
 
-
 // eslint-disable-next-line import/no-cycle
 import {
   InfoDrawer,
@@ -18,7 +17,7 @@ import {
   Container,
   Subscribe,
   BottomAdImage,
-  Footer
+  Footer,
 } from './index';
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
@@ -81,23 +80,24 @@ export default function Layout({ preview, bottomAds, children }) {
             </Container>
           </div>
           <main className="w-screen inset-0 z-0">{children}</main>
-          <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}>
-            <Subscribe />
-            {randomSlice1 && (
-              <motion.div
-                className="flex justify-center px-3 mb-2 md:px-8 ml:px-20 lg:px-28"
-                ref={ref}
-                animate={animation}
-                variants={adVariants}
-                initial="hidden">
-                <BottomAdImage
-                  image={randomSlice1.adImageMobile}
-                  url={randomSlice1.adUrl}
-                  width={500}
-                />
-              </motion.div>
-            )}
-          </div>
+          {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
+          <Subscribe />
+          {randomSlice1 && (
+            <motion.div
+              className="flex justify-center px-3 mb-2 md:px-8 ml:px-20 lg:px-28"
+              ref={ref}
+              animate={animation}
+              variants={adVariants}
+              initial="hidden">
+              <BottomAdImage
+                image={randomSlice1.adImageMobile}
+                url={randomSlice1.adUrl}
+                width={500}
+              />
+            </motion.div>
+          )}
+          {/* </div> */}
+          <Footer />
         </Breakpoint>
         {/* desktop */}
         <Breakpoint customQuery="(min-width: 500px)">
