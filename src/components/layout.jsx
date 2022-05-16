@@ -84,7 +84,7 @@ export default function Layout({ preview, bottomAds, children }) {
           <Subscribe />
           {randomSlice1 && (
             <motion.div
-              className="flex justify-center px-3 mb-2 md:px-8 ml:px-20 lg:px-28"
+              className="flex justify-center px-3 mb-2"
               ref={ref}
               animate={animation}
               variants={adVariants}
@@ -118,7 +118,7 @@ export default function Layout({ preview, bottomAds, children }) {
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
             {randomSlice1 && (
               <motion.div
-                className="flex justify-center px-3 mt-10 md:px-8 ml:px-20 lg:px-28"
+                className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
                 ref={ref}
                 animate={animation}
                 variants={adVariants}
