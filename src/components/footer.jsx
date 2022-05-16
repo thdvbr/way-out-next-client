@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer style={{ transform: 'translateY(60px)' }}>
       <nav
-        className="text-white py-2 px-3 sm:px-36 md:px-56 ml:px-80 lg:px-26rem xl:px-36rem xl:text-18 text-13 sm:text-15 ml:text-16 font-agrandir"
+        className="text-white py-2 px-3 sm:px-24 md:px-56 ml:px-80 lg:px-26rem xl:px-36rem xl:text-18 text-13 sm:text-15 ml:text-16 font-agrandir"
         style={{
           backgroundImage: `url("data:image/svg+xml,${svgString}")`,
         }}>
@@ -21,7 +21,7 @@ export default function Footer() {
           <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
             Donate
           </a>
-          {width > 500 && (
+          {width > 499 && (
             <Link href="/">
               <a href="/">
                 <div className="footer-logo-container" />
