@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
-import { getClient } from '../utils/sanity.server';
-import { pageQuery, staffQuery } from '../utils/queries';
 import { Container, Layout, Content } from '../components';
 import { useAppContext } from '../context/state';
 
-export const Legal = ({ pages, staffs, preview }) => {
-  const { setStaffsData, setPagesData, setInfoIsOpen } = useAppContext();
-  const { legal } = pages;
+export const Legal = ({ preview }) => {
+  const { setInfoIsOpen, pageData } = useAppContext();
+  const { legal } = pageData;
   useEffect(() => {
-    setStaffsData(staffs);
-    setPagesData(pages);
     setInfoIsOpen(false);
-  }, [staffs, pages, setStaffsData, setPagesData, setInfoIsOpen]);
+  }, [setInfoIsOpen]);
   return (
     <>
       <Layout preview={preview}>
@@ -28,13 +24,13 @@ export const Legal = ({ pages, staffs, preview }) => {
   );
 };
 
-export const getStaticProps = async ({ preview = false }) => {
-  const pages = await getClient(preview).fetch(pageQuery);
-  const staffs = await getClient(preview).fetch(staffQuery);
-  return {
-    props: { preview, pages, staffs },
-    revalidate: 10,
-  };
-};
+// export const getStaticProps = async ({ preview = false }) => {
+//   // const pages = await getClient(preview).fetch(pageQuery);
+//   // const staffs = await getClient(preview).fetch(staffQuery);
+//   return {
+//     props: { preview },
+//     revalidate: 10,
+//   };
+// };
 
 export default Legal;

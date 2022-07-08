@@ -5,7 +5,7 @@ import Container from './container';
 export default function AlertPreview({ preview }) {
   return (
     <div
-      className={cn('border-b', {
+      className={cn('border-b z-70', {
         'bg-accent-7 border-accent-7 text-white': preview,
         'bg-accent-1 border-accent-2': !preview,
       })}

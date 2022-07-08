@@ -27,15 +27,15 @@ const useCustomMouse = () => {
 
 const InfoDrawer = ({ preview }) => {
   const width = useCurrentWidth();
-  const { infoIsOpen, setInfoIsOpen, pagesData, staffsData } = useAppContext();
-  const { about, contact } = pagesData;
+  const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
+  const { about, contact } = pageData;
   const { x, y } = useCustomMouse();
   const [aboutIsOpen, setAboutIsOpen] = useState(false);
   const [contactIsOpen, setContactIsOpen] = useState(false);
   const [staffIsOpen, setStaffIsOpen] = useState(false);
 
-  const staffsOdd = staffsData.filter((e, i) => i % 2);
-  const staffsEven = staffsData.filter((e, i) => !(i % 2));
+  const staffsOdd = staffData.filter((e, i) => i % 2);
+  const staffsEven = staffData.filter((e, i) => !(i % 2));
 
   const toggleAbout = () => {
     contactIsOpen && toggleContact();
