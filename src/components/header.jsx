@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Logo from './logo-svg';
 import { useAppContext } from '../context/state';
 
 // hyperlink for donate? and join goes to..?

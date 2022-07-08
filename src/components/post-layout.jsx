@@ -1,5 +1,6 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
 import AlertPreview from './alert-preview';
@@ -22,7 +23,8 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } = useAppContext();
+  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } =
+    useAppContext();
   useEffect(() => {
     console.log(joinIsOpen);
     if (preview) {
@@ -72,12 +74,16 @@ export default function PostLayout({ preview, children }) {
                 {/* need to figure out how to change colours to gold when its preview mode  */}
                 <div style={{ color: isTop && '#8A7536' }}>
                   <NavbarDesktop />
-                  <div className="flex left-0 right-0 top-18 justify-center absolute">
-                    <div
-                      className="logo-gold-container mt-3"
-                      style={{ opacity: isTop ? 1 : 0 }}
-                    />
-                  </div>
+                  <Link href="/">
+                    <a
+                      href="/"
+                      className="flex left-0 right-0 top-18 justify-center absolute">
+                      <div
+                        className="logo-gold-container mt-3"
+                        style={{ opacity: isTop ? 1 : 0 }}
+                      />
+                    </a>
+                  </Link>
                 </div>
               </div>
               {!searchIsOpen && (

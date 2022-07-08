@@ -28,7 +28,8 @@ export default function Layout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData } = useAppContext();
+  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData, errorMsg } =
+    useAppContext();
   const { asPath, pathname } = useRouter();
 
   const randomSlice1 = _.sample(bottomAdData);
@@ -48,7 +49,6 @@ export default function Layout({ preview, children }) {
       animation.start('hidden');
     }
   }, [inView, animation]);
-
 
   // if yOffset === 0 && color: gold
   return (
@@ -82,23 +82,26 @@ export default function Layout({ preview, children }) {
           </div>
           <main className="w-screen inset-0 z-0">{children}</main>
           {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
-          <Subscribe />
-          {randomSlice1 && (
-            <motion.div
-              className="flex justify-center px-3 mb-2"
-              ref={ref}
-              animate={animation}
-              variants={adVariants}
-              initial="hidden">
-              <BottomAdImage
-                image={randomSlice1.adImageMobile}
-                url={randomSlice1.adUrl}
-                width={500}
-              />
-            </motion.div>
-          )}
-          {/* </div> */}
-          <Footer />
+          <div className={`${errorMsg !== '' && 'absolute inset-x-0'}`} style={{ bottom: '60px' }}>
+            <Subscribe />
+            {randomSlice1 && (
+              <motion.div
+                className="flex justify-center px-3 mb-2"
+                ref={ref}
+                animate={animation}
+                variants={adVariants}
+                initial="hidden">
+                <BottomAdImage
+                  image={randomSlice1.adImageMobile}
+                  url={randomSlice1.adUrl}
+                  width={500}
+                />
+              </motion.div>
+            )}
+            {/* </div> */}
+
+            <Footer />
+          </div>
         </Breakpoint>
         {/* desktop */}
         <Breakpoint customQuery="(min-width: 500px)">

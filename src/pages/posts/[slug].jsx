@@ -142,7 +142,7 @@ export const Post = ({ data = {}, preview }) => {
       </PostLayout>
       {bottomAdData && (
         <motion.div
-        className="flex justify-center px-3 mb-6 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
+        className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
           ref={ref}
           animate={animation}
           variants={adVariants}

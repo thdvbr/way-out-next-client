@@ -13,10 +13,10 @@ const breakpointColumnsObj = {
 };
 
 const SearchResult = () => {
-  const { searchIsOpen } = useAppContext();
+  const { searchIsOpen, errorMsg, setErrorMsg } = useAppContext();
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  // const [errorMsg, setErrorMsg] = useState('');
 
   const router = useRouter();
   const searchKeyword =
@@ -68,9 +68,9 @@ const SearchResult = () => {
           ))}
         </Masonry>
       </motion.div>
-      <div className="font-title flex justify-center py-10 text-24 sm:text-33 ">
+      <div className="font-title flex justify-center text-24 sm:text-33 ">
         {isLoading && <span>... Loading</span>}
-        {errorMsg && <span>{errorMsg}</span>}
+        {errorMsg && <span className="mt-14 mb-28">{errorMsg}</span>}
       </div>
     </>
   );
