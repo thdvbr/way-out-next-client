@@ -22,16 +22,16 @@ import {
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
 
-export default function Layout({ preview, bottomAds, children }) {
+export default function Layout({ preview, children }) {
   const width = useCurrentWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, joinIsOpen } = useAppContext();
+  const { infoIsOpen, joinIsOpen, bottomAdData } = useAppContext();
   const { asPath, pathname } = useRouter();
 
-  const randomSlice1 = _.sample(bottomAds);
+  const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
   // let randomSlice1;
