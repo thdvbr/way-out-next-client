@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -52,7 +52,9 @@ export const Post = ({ data = {}, preview }) => {
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAdData);
   const width = useCurrentWidth();
+  const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
 
+  console.log(morePosts);
   useEffect(() => {
     if (inView) {
       animation.start('visible');
@@ -61,6 +63,23 @@ export const Post = ({ data = {}, preview }) => {
       animation.start('hidden');
     }
   }, [inView]);
+
+  const randomize = (array) => {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+    }
+    return newArray
+  }
+
+
+  useEffect(() => {
+    setRandomSlicedMorePosts(randomize(morePosts).slice(1,5));
+  },[])
+
+
+
 
 
   // useEffect(() => {
@@ -128,13 +147,13 @@ export const Post = ({ data = {}, preview }) => {
             </>
           )}
           <motion.div variants={stagger}>
-            {morePosts && (
+            {randomSlicedMorePosts && (
               <motion.div
                 variants={morePostVariants}
                 initial="initial"
                 animate="enter"
                 exit="exit">
-                <RelatedGrid posts={morePosts} />
+                <RelatedGrid posts={randomSlicedMorePosts} />
               </motion.div>
             )}
           </motion.div>
