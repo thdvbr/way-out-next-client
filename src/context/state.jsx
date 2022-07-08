@@ -10,8 +10,6 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData }) {
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
-  // const [pagesData, setPagesData] = useState({});
-  // const [staffsData, setStaffsData] = useState([]);
   const [joinIsOpen, setJoinIsOpen] = useState(false);
 
 
@@ -24,10 +22,6 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData }) {
         setInfoIsOpen,
         isTop,
         setIsTop,
-        // pagesData,
-        // staffsData,
-        // setStaffsData,
-        // setPagesData,
         bottomAdData,
         pageData,
         staffData,

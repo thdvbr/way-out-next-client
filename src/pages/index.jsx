@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { setDefaultBreakpoints, Breakpoint, useCurrentWidth } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
   indexQuery,
-  pageQuery,
-  staffQuery,
-  bottomAdQuery,
 } from '../utils/queries';
 import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
@@ -22,16 +19,11 @@ setDefaultBreakpoints([
 export const Index = ({ allPosts, preview }) => {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { setStaffsData, setPagesData, searchIsOpen, staffData, pageData } = useAppContext();
+  const { searchIsOpen } = useAppContext();
 
-  // useEffect(() => {
-  //   setStaffsData(staffsData);
-  //   setPagesData(pagesData);
-  // }, [staffsData, pagesData, setStaffsData, setPagesData]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
-  // TODO 14/MAY : COOKIE BUTTON -_- 
   return (
     <>
       <CookieConsent
@@ -87,9 +79,6 @@ export const Index = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
-  // const pages = await getClient(preview).fetch(pageQuery);
-  // const staffs = await getClient(preview).fetch(staffQuery);
-  // const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   return {
     props: { allPosts, preview },
     revalidate: 10,

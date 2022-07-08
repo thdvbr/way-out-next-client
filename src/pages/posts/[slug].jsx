@@ -14,10 +14,7 @@ import {
 import {
   postQuery,
   postSlugsQuery,
-  pageQuery,
-  staffQuery,
   sideAdQuery,
-  bottomAdQuery,
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
@@ -43,18 +40,18 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts, staffs, pages, sideAds, bottomAds },
+    data: { post, morePosts, sideAds },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
     enabled: preview && slug,
   });
-  const { isTop, setIsTop, setStaffsData, setPagesData, setJoinIsOpen } =
+  const { isTop, setIsTop, setJoinIsOpen, bottomAdData } =
     useAppContext();
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
-  const randomSlice1 = _.sample(bottomAds);
+  const randomSlice1 = _.sample(bottomAdData);
   const width = useCurrentWidth();
 
   useEffect(() => {
@@ -66,10 +63,6 @@ export const Post = ({ data = {}, preview }) => {
     }
   }, [inView]);
 
-  useEffect(() => {
-    setStaffsData(staffs);
-    setPagesData(pages);
-  }, [staffs, pages, setStaffsData, setPagesData]);
 
   // useEffect(() => {
   //   return searchIsOpen && setSearchIsOpen(false);
@@ -147,7 +140,7 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      {bottomAds && (
+      {bottomAdData && (
         <motion.div
         className="flex justify-center px-3 mb-6 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
           ref={ref}
@@ -178,10 +171,8 @@ export async function getStaticProps({ params, preview = false }) {
   const { post, morePosts } = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   });
-  const pages = await getClient(preview).fetch(pageQuery);
-  const staffs = await getClient(preview).fetch(staffQuery);
+
   const sideAds = await getClient(preview).fetch(sideAdQuery);
-  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
 
   return {
     props: {
@@ -189,10 +180,8 @@ export async function getStaticProps({ params, preview = false }) {
       data: {
         post,
         morePosts: overlayDrafts(morePosts),
-        staffs,
-        pages,
         sideAds,
-        bottomAds,
+
       },
     },
     revalidate: 10,

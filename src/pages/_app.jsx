@@ -12,8 +12,6 @@ import {
 import { AppWrapper } from '../context/state';
 
 function MyApp({ Component, pageProps, router, pageData, staffData, bottomAdData }) {
-  console.log(pageData);
-  console.log("hello");
   return (
     <AnimatePresence exitBeforeEnter>
       <AppWrapper pageData={pageData} staffData={staffData} bottomAdData={bottomAdData} >
