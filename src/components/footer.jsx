@@ -33,7 +33,7 @@ export default function Footer() {
               Legal
             </a>
           </Link>
-          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+          <a className="hover:underline" href="mailto:ads@wayoutmagazine.com">
             Advertise
           </a>
         </div>
