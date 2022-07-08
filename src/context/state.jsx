@@ -6,7 +6,7 @@ const AppContext = createContext();
 export function AppWrapper({ children, pageData, staffData, bottomAdData, sideAdData }) {
 
   
-  
+  const [errorMsg, setErrorMsg] = useState('');
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
@@ -28,6 +28,8 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData, sideAd
         staffData,
         joinIsOpen,
         setJoinIsOpen,
+        errorMsg,
+        setErrorMsg
       }}
     >
       {children}
