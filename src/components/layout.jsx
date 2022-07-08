@@ -28,7 +28,7 @@ export default function Layout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, joinIsOpen, bottomAdData } = useAppContext();
+  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData } = useAppContext();
   const { asPath, pathname } = useRouter();
 
   const randomSlice1 = _.sample(bottomAdData);
@@ -49,6 +49,7 @@ export default function Layout({ preview, children }) {
     }
   }, [inView, animation]);
 
+
   // if yOffset === 0 && color: gold
   return (
     <>
@@ -59,12 +60,12 @@ export default function Layout({ preview, children }) {
         // animate={{ opacity: 1 }}
         // exit={{ opacity: 0 }}
       >
-        {preview && <AlertPreview />}
         {/* <motion.div
           initial={false}
           variants={infoVariants}
           animate={infoIsOpen ? 'opened' : 'closed'}
           transition={{ type: 'spring', duration: 1 }}> */}
+        {preview && <AlertPreview />}
         <Head>
           <title>Way Out Mag</title>
           <meta

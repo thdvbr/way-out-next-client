@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import Head from 'next/head';
 import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
@@ -22,7 +22,13 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen } = useAppContext();
+  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } = useAppContext();
+  useEffect(() => {
+    console.log(joinIsOpen);
+    if (preview) {
+      setJoinIsOpen(true);
+    }
+  }, []);
   return (
     <>
       {/* <Meta /> */}
@@ -63,6 +69,7 @@ export default function PostLayout({ preview, children }) {
               </div>
               <InfoDrawer />
               <div className="sticky top-80 z-30">
+                {/* need to figure out how to change colours to gold when its preview mode  */}
                 <div style={{ color: isTop && '#8A7536' }}>
                   <NavbarDesktop />
                   <div className="flex left-0 right-0 top-18 justify-center absolute">
