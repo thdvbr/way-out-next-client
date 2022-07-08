@@ -91,7 +91,7 @@ export const postQuery = `
   "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) | [0] {
     ${postFields}
   },
-  "morePosts": *[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc) | [0...8] {
+  "morePosts": *[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc) | [0...12] {
     ${postPreviewFields}
   }
 }`;

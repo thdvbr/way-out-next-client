@@ -54,7 +54,7 @@ export const Post = ({ data = {}, preview }) => {
   const width = useCurrentWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
 
-  console.log(morePosts);
+
   useEffect(() => {
     if (inView) {
       animation.start('visible');
