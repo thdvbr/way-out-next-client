@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const AppContext = createContext();
 // TODO: Separate your state into different logical pieces rather than in one big store, so a single update to any part of state does NOT trigger an update to every component in your app.
-export function AppWrapper({ children, pageData, staffData, bottomAdData }) {
+export function AppWrapper({ children, pageData, staffData, bottomAdData, sideAdData }) {
 
   
   
@@ -23,6 +23,7 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData }) {
         isTop,
         setIsTop,
         bottomAdData,
+        sideAdData,
         pageData,
         staffData,
         joinIsOpen,

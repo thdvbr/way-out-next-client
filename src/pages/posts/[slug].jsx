@@ -14,7 +14,6 @@ import {
 import {
   postQuery,
   postSlugsQuery,
-  sideAdQuery,
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
@@ -40,13 +39,13 @@ export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts, sideAds },
+    data: { post, morePosts },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
     enabled: preview && slug,
   });
-  const { isTop, setIsTop, setJoinIsOpen, bottomAdData } =
+  const { isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData } =
     useAppContext();
 
   const { ref, inView } = useInView();
@@ -73,10 +72,11 @@ export const Post = ({ data = {}, preview }) => {
   //   return searchResult && setQuery('') && setSearchResult([]);
   // }, []);
 
+
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const isOnTop = window.scrollY > 100;
-      if (isTop !== isOnTop) {
+      if ((isTop !== isOnTop) && !preview ){
         setIsTop(isOnTop);
         setJoinIsOpen(false);
       }
@@ -118,7 +118,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} ads={sideAds} />
+                  <PostBody body={post.body} ads={sideAdData} />
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
                   )}
@@ -172,16 +172,12 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug,
   });
 
-  const sideAds = await getClient(preview).fetch(sideAdQuery);
-
   return {
     props: {
       preview,
       data: {
         post,
         morePosts: overlayDrafts(morePosts),
-        sideAds,
-
       },
     },
     revalidate: 10,
