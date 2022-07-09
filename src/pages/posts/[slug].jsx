@@ -75,8 +75,8 @@ export const Post = ({ data = {}, preview }) => {
 
 
   useEffect(() => {
-    setRandomSlicedMorePosts(randomize(morePosts).slice(1,5));
-  },[])
+    setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
+  },[router.asPath])
 
 
 
@@ -136,7 +136,7 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="xl:px-36 lg:px-28 md:px-24 sm:px-20 px-2">
+                  className="xl:px-54 lg:px-48 ml:px-36 md:px-24 sm:px-20 px-2">
                   <PostBody body={post.body} ads={sideAdData} />
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
