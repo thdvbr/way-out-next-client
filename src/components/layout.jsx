@@ -82,7 +82,9 @@ export default function Layout({ preview, children }) {
           </div>
           <main className="w-screen inset-0 z-0">{children}</main>
           {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
-          <div className={`${errorMsg !== '' && 'absolute inset-x-0'}`} style={{ bottom: '60px' }}>
+          <div
+            className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
+            style={{ bottom: '60px' }}>
             <Subscribe />
             {randomSlice1 && (
               <motion.div
@@ -106,6 +108,7 @@ export default function Layout({ preview, children }) {
         {/* desktop */}
         <Breakpoint customQuery="(min-width: 500px)">
           <motion.div
+            className="min-h-screen"
             initial={false}
             variants={joinVariants}
             animate={joinIsOpen ? 'opened' : 'closed'}
@@ -120,21 +123,23 @@ export default function Layout({ preview, children }) {
               <NavbarDesktop />
             </Container>
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
-            {randomSlice1 && (
-              <motion.div
-                className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
-                ref={ref}
-                animate={animation}
-                variants={adVariants}
-                initial="hidden">
-                <BottomAdImage
-                  image={randomSlice1.adImage}
-                  url={randomSlice1.adUrl}
-                  width={1500}
-                />
-              </motion.div>
-            )}
-            <Footer />
+            <div className={`${errorMsg !== '' && 'absolute inset-x-0 bottom-0'}`}>
+              {randomSlice1 && (
+                <motion.div
+                  className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
+                  ref={ref}
+                  animate={animation}
+                  variants={adVariants}
+                  initial="hidden">
+                  <BottomAdImage
+                    image={randomSlice1.adImage}
+                    url={randomSlice1.adUrl}
+                    width={1500}
+                  />
+                </motion.div>
+              )}
+              <Footer />
+            </div>
           </motion.div>
         </Breakpoint>
         {/* </motion.div> */}
