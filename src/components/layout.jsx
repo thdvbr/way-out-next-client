@@ -28,13 +28,14 @@ export default function Layout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData, errorMsg } =
+  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData, errorMsg, isLoading } =
     useAppContext();
   const { asPath, pathname } = useRouter();
 
   const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
+  console.log(isLoading);
   // let randomSlice1;
   // useEffect(() => {
   //   randomSlice1 = _.sample(bottomAds);
@@ -83,7 +84,7 @@ export default function Layout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
           {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
           <div
-            className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
+            className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0'}`}
             style={{ bottom: '60px' }}>
             <Subscribe />
             {randomSlice1 && (
@@ -123,7 +124,7 @@ export default function Layout({ preview, children }) {
               <NavbarDesktop />
             </Container>
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
-            <div className={`${errorMsg !== '' && 'absolute inset-x-0 bottom-0'}`}>
+            <div className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'}`}>
               {randomSlice1 && (
                 <motion.div
                   className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"

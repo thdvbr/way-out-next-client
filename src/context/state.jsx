@@ -11,6 +11,7 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData, sideAd
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const [isTop, setIsTop] = useState(false);
   const [joinIsOpen, setJoinIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   return (
@@ -29,7 +30,9 @@ export function AppWrapper({ children, pageData, staffData, bottomAdData, sideAd
         joinIsOpen,
         setJoinIsOpen,
         errorMsg,
-        setErrorMsg
+        setErrorMsg,
+        isLoading,
+        setIsLoading
       }}
     >
       {children}
