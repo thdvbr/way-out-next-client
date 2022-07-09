@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import CookieConsent from 'react-cookie-consent';
+import { useRouter } from 'next/router';
 import { setDefaultBreakpoints, Breakpoint, useCurrentWidth } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
@@ -17,9 +18,14 @@ setDefaultBreakpoints([
 ]);
 
 export const Index = ({ allPosts, preview }) => {
+  const router = useRouter();
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
-  const { searchIsOpen } = useAppContext();
+  const { searchIsOpen, setErrorMsg } = useAppContext();
+
+  useEffect(() => { 
+    setErrorMsg('');
+}, [router.asPath])
 
 
   // TODO: search result when theres no result?
