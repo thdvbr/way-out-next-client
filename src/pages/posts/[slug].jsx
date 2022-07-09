@@ -75,8 +75,8 @@ export const Post = ({ data = {}, preview }) => {
 
 
   useEffect(() => {
-    setRandomSlicedMorePosts(randomize(morePosts).slice(1,5));
-  },[])
+    setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
+  },[router.asPath])
 
 
 
