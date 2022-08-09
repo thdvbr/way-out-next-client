@@ -48,7 +48,7 @@ const NavbarDesktop = () => {
           </Link>
         </div>
         <div>
-          <Link href="/">
+          <Link href="/radio">
             <a
               href="/radio"
               className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio sm:float-left inline-block`}>
