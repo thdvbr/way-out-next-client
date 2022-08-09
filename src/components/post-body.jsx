@@ -14,7 +14,7 @@ const postComponents = {
       </span>
     ),
     agrandirNarrow: ({ children }) => (
-      <span className="block font-secondary text-18 leading-5 sm:text-21 md:text-24 lg:leading-8 xl:text-27 sm:leading-7">
+      <span className="block font-secondary text-18 leading-5 sm:text-21 md:text-22.5 md:leading-7 lg:leading-7 xl:text-25 xl:leading-8 sm:leading-7 ">
         <br />
         {children}
       </span>
