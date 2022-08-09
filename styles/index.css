@@ -121,6 +121,7 @@ body {
   width: 20%;
 }
 
+
 @media only screen and (min-width: 500px) {
   .preview-block:hover {
     background-image: url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg);
@@ -136,7 +137,9 @@ body {
     padding-left: 0.25rem;
     padding-bottom: 0.25rem;
   }
+
 }
+
 
 .related-preview-block:hover {
   background-image: url(/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
@@ -245,6 +248,12 @@ body {
   }
 }
 
+@media only screen and (min-width: 768px){
+  .radio-placeholder {
+    background-image: url(/assets/placeholder/way-out-background-1600w.png)
+  }
+}
+
 @media only screen and (max-width: 499px) {
   /* body {
     overflow-x: hidden;
@@ -255,6 +264,9 @@ body {
   .info-box {
     top: 0;
   }
+  .radio-placeholder {
+    background-image: url(/assets/placeholder/way-out-background-phone.png)
+  }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 768px) {
@@ -263,6 +275,9 @@ body {
   }
   .hero-bg {
     flex-basis: 15em;
+  }
+  .radio-placeholder {
+    background-image: url(/assets/placeholder/way-out-background-tablet.png)
   }
 }
 
