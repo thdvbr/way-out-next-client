@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion, useAnimation } from 'framer-motion';
@@ -35,12 +35,8 @@ export default function Layout({ preview, children }) {
   const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
-  console.log(isLoading);
-  // let randomSlice1;
-  // useEffect(() => {
-  //   randomSlice1 = _.sample(bottomAds);
-  //   console.log(randomSlice1);
-  // }, [])
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+
 
   useEffect(() => {
     if (inView) {
@@ -50,6 +46,11 @@ export default function Layout({ preview, children }) {
       animation.start('hidden');
     }
   }, [inView, animation]);
+
+  useEffect(() => {
+    setRandomSliceBottomAd(randomSlice1);
+  },[asPath])
+
 
   // if yOffset === 0 && color: gold
   return (
@@ -87,7 +88,7 @@ export default function Layout({ preview, children }) {
             className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0'}`}
             style={{ bottom: '60px' }}>
             <Subscribe />
-            {randomSlice1 && (
+            {randomSliceBottomAd && (
               <motion.div
                 className="flex justify-center px-3 mb-2"
                 ref={ref}
@@ -95,8 +96,8 @@ export default function Layout({ preview, children }) {
                 variants={adVariants}
                 initial="hidden">
                 <BottomAdImage
-                  image={randomSlice1.adImageMobile}
-                  url={randomSlice1.adUrl}
+                  image={randomSliceBottomAd.adImageMobile}
+                  url={randomSliceBottomAd.adUrl}
                   width={500}
                 />
               </motion.div>
@@ -125,7 +126,7 @@ export default function Layout({ preview, children }) {
             </Container>
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
             <div className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'}`}>
-              {randomSlice1 && (
+              {randomSliceBottomAd && (
                 <motion.div
                   className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
                   ref={ref}
@@ -133,8 +134,8 @@ export default function Layout({ preview, children }) {
                   variants={adVariants}
                   initial="hidden">
                   <BottomAdImage
-                    image={randomSlice1.adImage}
-                    url={randomSlice1.adUrl}
+                    image={randomSliceBottomAd.adImage}
+                    url={randomSliceBottomAd.adUrl}
                     width={1500}
                   />
                 </motion.div>

@@ -53,6 +53,7 @@ export const Post = ({ data = {}, preview }) => {
   const randomSlice1 = _.sample(bottomAdData);
   const width = useCurrentWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
 
 
   useEffect(() => {
@@ -76,6 +77,7 @@ export const Post = ({ data = {}, preview }) => {
 
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
+    setRandomSliceBottomAd(randomSlice1);
   },[router.asPath])
 
 
@@ -159,7 +161,7 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      {bottomAdData && (
+      {randomSliceBottomAd && (
         <motion.div
         className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
           ref={ref}
@@ -168,14 +170,14 @@ export const Post = ({ data = {}, preview }) => {
           initial="hidden">
           {width > 500 ? (
             <BottomAdImage
-              image={randomSlice1.adImage}
-              url={randomSlice1.adUrl}
+              image={randomSliceBottomAd.adImage}
+              url={randomSliceBottomAd.adUrl}
               width={1360}
             />
           ) : (
             <BottomAdImage
-              image={randomSlice1.adImageMobile}
-              url={randomSlice1.adUrl}
+              image={randomSliceBottomAd.adImageMobile}
+              url={randomSliceBottomAd.adUrl}
               width={500}
             />
           )}
