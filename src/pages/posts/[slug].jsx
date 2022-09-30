@@ -51,9 +51,12 @@ export const Post = ({ data = {}, preview }) => {
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAdData);
+  
   const width = useCurrentWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+  const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
+  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState({});
 
 
   useEffect(() => {
@@ -78,6 +81,8 @@ export const Post = ({ data = {}, preview }) => {
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
     setRandomSliceBottomAd(randomSlice1);
+    setRandomSliced2SideAds(_.sampleSize(sideAdData, 2));
+    setRandomSliced1SideAd(_.sample(sideAdData));
   },[router.asPath])
 
 
@@ -139,7 +144,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-54 lg:px-48 ml:px-36 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} ads={sideAdData} />
+                  <PostBody body={post.body} adShortPost={randomSliced1SideAd} adLongPost={randomSliced2SideAds} />
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
                   )}

@@ -96,9 +96,7 @@ const postComponents = {
   },
 };
 
-export default function PostBody({ body, ads }) {
-  const randomSlice2 = _.sampleSize(ads, 2);
-  const randomSlice1 = _.sample(ads);
+export default function PostBody({ body, adShortPost, adLongPost }) {
 
   const [postHeight, setPostHeight] = useState(0);
   const { height, width } = useWindowDimensions();
@@ -114,11 +112,11 @@ export default function PostBody({ body, ads }) {
 
   return (
     <>
-      {width > 500 && ads && (
+      {width > 500 && adLongPost && (
         <div className="absolute left-0">
           {/* need to wrap each sticky so it pushes up not overlap */}
           {postHeight > 500 ? (
-            randomSlice2.map((ad) => (
+            adLongPost.map((ad) => (
               <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
                 <SideAdImage image={ad.adImage} url={ad.adUrl} />
               </div>
@@ -126,8 +124,8 @@ export default function PostBody({ body, ads }) {
           ) : (
             <div style={{ height: `${postHeight / 2}px` }}>
               <SideAdImage
-                image={randomSlice1.adImage}
-                url={randomSlice1.adUrl}
+                image={adShortPost.adImage}
+                url={adShortPost.adUrl}
               />
             </div>
           )}
