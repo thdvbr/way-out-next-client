@@ -8,7 +8,8 @@ module.exports = {
         70: '70',
       },
       width: {
-        42: '10.5rem'
+        42: '10.5rem',
+        46: '11.5rem'
       },
       height: {
         104: '26rem',
@@ -17,8 +18,9 @@ module.exports = {
       },
       padding: {
         '26rem': '26rem',
-        '36rem': '36rem'
-      }
+        '36rem': '36rem',
+        46: '11.5rem'
+      },
     },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],

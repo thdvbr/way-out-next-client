@@ -51,8 +51,12 @@ export const Post = ({ data = {}, preview }) => {
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAdData);
+  
   const width = useCurrentWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+  const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
+  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState({});
 
 
   useEffect(() => {
@@ -76,6 +80,9 @@ export const Post = ({ data = {}, preview }) => {
 
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
+    setRandomSliceBottomAd(randomSlice1);
+    setRandomSliced2SideAds(_.sampleSize(sideAdData, 2));
+    setRandomSliced1SideAd(_.sample(sideAdData));
   },[router.asPath])
 
 
@@ -137,7 +144,7 @@ export const Post = ({ data = {}, preview }) => {
                   animate="enter"
                   exit="exit"
                   className="xl:px-54 lg:px-48 ml:px-36 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} ads={sideAdData} />
+                  <PostBody body={post.body} adShortPost={randomSliced1SideAd} adLongPost={randomSliced2SideAds} />
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
                   )}
@@ -159,23 +166,23 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      {bottomAdData && (
+      {randomSliceBottomAd && (
         <motion.div
-        className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
+        className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
           ref={ref}
           animate={animation}
           variants={adVariants}
           initial="hidden">
           {width > 500 ? (
             <BottomAdImage
-              image={randomSlice1.adImage}
-              url={randomSlice1.adUrl}
+              image={randomSliceBottomAd.adImage}
+              url={randomSliceBottomAd.adUrl}
               width={1360}
             />
           ) : (
             <BottomAdImage
-              image={randomSlice1.adImageMobile}
-              url={randomSlice1.adUrl}
+              image={randomSliceBottomAd.adImageMobile}
+              url={randomSliceBottomAd.adUrl}
               width={500}
             />
           )}
