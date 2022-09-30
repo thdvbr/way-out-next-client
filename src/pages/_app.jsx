@@ -12,10 +12,10 @@ import {
 } from '../utils/queries';
 import { AppWrapper } from '../context/state';
 
-function MyApp({ Component, pageProps, router, pageData, staffData, bottomAdData, sideAdData }) {
+function MyApp({ Component, pageProps, router, pageData, staffData, bottomAds, sideAds }) {
   return (
     <AnimatePresence exitBeforeEnter>
-      <AppWrapper pageData={pageData} staffData={staffData} bottomAdData={bottomAdData} sideAdData={sideAdData}>
+      <AppWrapper pageData={pageData} staffData={staffData} bottomAds={bottomAds} sideAds={sideAds}>
         <BreakpointProvider>
           <Component {...pageProps} key={router.route} />
         </BreakpointProvider>
@@ -27,9 +27,9 @@ MyApp.getInitialProps = async (appContext, preview) => {
   const pageProps = await App.getInitialProps(appContext);
   const pageData = await getClient(preview).fetch(pageQuery);
   const staffData = await getClient(preview).fetch(staffQuery);
-  const bottomAdData = await getClient(preview).fetch(bottomAdQuery);
-  const sideAdData =  await getClient(preview).fetch(sideAdQuery);
-  return { ...pageProps, pageData, staffData, bottomAdData, sideAdData }
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const sideAds =  await getClient(preview).fetch(sideAdQuery);
+  return { ...pageProps, pageData, staffData, bottomAds, sideAds }
 }
 
 export default MyApp;
