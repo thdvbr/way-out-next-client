@@ -128,7 +128,7 @@ export default function Layout({ preview, children }) {
             <div className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'}`}>
               {randomSliceBottomAd && (
                 <motion.div
-                  className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-24 lg:px-32 xl:px-0"
+                  className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:px-0"
                   ref={ref}
                   animate={animation}
                   variants={adVariants}
