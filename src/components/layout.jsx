@@ -28,15 +28,20 @@ export default function Layout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData, errorMsg, isLoading } =
-    useAppContext();
+  const {
+    infoIsOpen,
+    joinIsOpen,
+    setJoinIsOpen,
+    bottomAdData,
+    errorMsg,
+    isLoading,
+  } = useAppContext();
   const { asPath, pathname } = useRouter();
 
   const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
-
 
   useEffect(() => {
     if (inView) {
@@ -49,8 +54,7 @@ export default function Layout({ preview, children }) {
 
   useEffect(() => {
     setRandomSliceBottomAd(randomSlice1);
-  },[asPath])
-
+  }, [asPath]);
 
   // if yOffset === 0 && color: gold
   return (
@@ -85,26 +89,28 @@ export default function Layout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
           {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
           <div
-            className={`${(errorMsg !== '') && 'absolute inset-x-0'}`}
+            className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
             style={{ bottom: '60px' }}>
             {!isLoading && <Subscribe />}
             {!isLoading && randomSliceBottomAd && (
-              <motion.div
-                className="flex justify-center px-3 mb-2"
-                ref={ref}
-                animate={animation}
-                variants={adVariants}
-                initial="hidden">
-                <BottomAdImage
-                  image={randomSliceBottomAd.adImageMobile}
-                  url={randomSliceBottomAd.adUrl}
-                  width={500}
-                />
-              </motion.div>
+              <>
+                <motion.div
+                  className="flex justify-center px-3 mb-2"
+                  ref={ref}
+                  animate={animation}
+                  variants={adVariants}
+                  initial="hidden">
+                  <BottomAdImage
+                    image={randomSliceBottomAd.adImageMobile}
+                    url={randomSliceBottomAd.adUrl}
+                    width={500}
+                  />
+                </motion.div>
+
+                <Footer />
+              </>
             )}
             {/* </div> */}
-
-            <Footer />
           </div>
         </Breakpoint>
         {/* desktop */}
@@ -125,22 +131,27 @@ export default function Layout({ preview, children }) {
               <NavbarDesktop />
             </Container>
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
-            <div className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'}`}>
+            <div
+              className={`${
+                (errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'
+              }`}>
               {!isLoading && randomSliceBottomAd && (
-                <motion.div
-                  className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
-                  ref={ref}
-                  animate={animation}
-                  variants={adVariants}
-                  initial="hidden">
-                  <BottomAdImage
-                    image={randomSliceBottomAd.adImage}
-                    url={randomSliceBottomAd.adUrl}
-                    width={1500}
-                  />
-                </motion.div>
+                <>
+                  <motion.div
+                    className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
+                    ref={ref}
+                    animate={animation}
+                    variants={adVariants}
+                    initial="hidden">
+                    <BottomAdImage
+                      image={randomSliceBottomAd.adImage}
+                      url={randomSliceBottomAd.adUrl}
+                      width={1500}
+                    />
+                  </motion.div>
+                  <Footer />
+                </>
               )}
-              <Footer />
             </div>
           </motion.div>
         </Breakpoint>
