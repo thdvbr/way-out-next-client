@@ -11,11 +11,8 @@ const HeroPost = ({ mainImage, title, subtitle, slug }) => {
       <div
         className={`${
           searchIsOpen ? 'border-l-2 border-r-2 border-b-2' : 'border-2'
-        } mb-2 flex flex-row border-black h-64 md:h-80 ml:h-80 lg:h-96 xl:h-112 mx-3 mt-3`}>
-        <div className="hero-bg overflow-hidden relative">
-          <div className="z-0">
-           <img className="object-cover" src="/assets/background/hero-background.png" />
-          </div>
+        } mb-2 flex flex-row border-black mx-3 mt-3`}>
+        <div className="overflow-hidden hero-text-wrap-bg relative w-1/3">
           <div className="z-10 absolute text-white bottom-0 px-3 pb-4 ml:px-4 ml:pb-5 lg:px-6 lg:pb-7 xl:pb-8  xl:px-9 ">
             <Link as={`/posts/${slug}`} href="/posts/[slug]">
               <a className="underline block font-title sm:text-20 sm:leading-tight md:text-22 ml:text-24 lg:text-28 xl:text-30">
@@ -32,7 +29,7 @@ const HeroPost = ({ mainImage, title, subtitle, slug }) => {
             </span>
           </div>
         </div>
-        <div className="flex-1 h-64 md:h-80 ml:h-80 lg:h-96 xl:h-112 overflow-hidden">
+        <div className="overflow-hidden w-2/3">
           <HeroImage slug={slug} title={title} image={mainImage} />
         </div>
       </div>

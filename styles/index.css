@@ -254,6 +254,13 @@ body {
   }
 }
 
+.hero-text-wrap-bg{
+  background: url(/assets/background/hero-background.png);
+  background-size: 100%;
+  background-color: black;
+}
+
+
 @media only screen and (max-width: 499px) {
   /* body {
     overflow-x: hidden;
@@ -270,52 +277,12 @@ body {
 }
 
 @media only screen and (min-width: 500px) and (max-width: 768px) {
-  .hero-img {
-    height: calc(16rem - 4px);
-  }
-  .hero-bg {
-    flex-basis: 15em;
-  }
   .radio-placeholder {
     background-image: url(/assets/placeholder/way-out-background-tablet.png)
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .hero-img {
-    height: calc(20rem - 4px);
-  }
-  .hero-bg {
-    flex-basis: 18em;
-  }
-}
 
-@media only screen and (min-width: 1024px) and (max-width: 1280px) {
-  .hero-img {
-    height: calc(20rem - 4px);
-  }
-  .hero-bg {
-    flex-basis: 18em;
-  }
-}
-
-@media only screen and (min-width: 1280px) and (max-width: 1536px) {
-  .hero-img {
-    height: calc(24rem - 4px);
-  }
-  .hero-bg {
-    flex-basis: 22em;
-  }
-}
-
-@media only screen and (min-width: 1536px) {
-  .hero-img {
-    height: calc(28rem - 4px);
-  }
-  .hero-bg {
-    flex-basis: 26em;
-  }
-}
 
 .footer-logo-container {
   content: url(/assets/logos/footer-logo.png);

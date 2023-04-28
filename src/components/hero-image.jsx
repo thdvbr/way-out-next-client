@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { sanityClient } from '../utils/sanity.server';
 
 
-// TODO: Find out how to fill in the height of the container?
 const HeroImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     return imageUrlBuilder.width(1000);
@@ -19,16 +18,16 @@ const HeroImage = ({ title, slug, image: source }) => {
   });
 
   const image = source ? (
-    <div className="hero-img">
+    <div className="block">
       <Image
-        // {...imageProps}
         src={imageProps.src}
         loader={imageProps.loader}
         alt={`Hero Image for ${title}`}
-        sizes="(max-width: 2000px) 70vw, auto"
-        layout="fill"
-        // className="hero-img"
+        width={1200}
+        height={600}
+        layout="responsive"
         objectFit="cover"
+
       />
     </div>
   ) : (
