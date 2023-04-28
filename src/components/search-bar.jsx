@@ -15,7 +15,7 @@ const SearchBar = () => {
       }}
     >
       <input
-        className="join-search-bg text-black sm:pl-4 border-black border-2 font-main text-26.5 py-1 sm:py-2 sm:text-24 md:text-28 ml:text-31 lg:text-36 leading-3 w-full text-center rounded sm:rounded-none sm:text-left"
+        className="join-search-bg text-black sm:pl-4 border-black border-2 font-main text-26.5 py-1 sm:text-24 md:text-26 ml:text-31 lg:text-36 leading-3 w-full text-center rounded sm:rounded-none sm:text-left"
         type="text"
         placeholder="Search"
         value={value}

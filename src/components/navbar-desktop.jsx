@@ -22,7 +22,7 @@ const NavbarDesktop = () => {
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav className="py-3 flex relative justify-between sm:w-full">
+      <nav className="sm:py-2 ml:py-3 flex relative justify-between sm:w-full">
         <button
           type="button"
           onClick={handleSearchOpen}
@@ -70,7 +70,7 @@ const NavbarDesktop = () => {
       </nav>
       <div
         className={`${
-          searchIsOpen ? 'is-search-visible mb-5' : 'header-search'
+          searchIsOpen ? 'is-search-visible -mb-4' : 'header-search'
         } w-full`}>
         <SearchBar />
       </div>
