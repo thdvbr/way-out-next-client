@@ -85,10 +85,10 @@ export default function Layout({ preview, children }) {
           <main className="w-screen inset-0 z-0">{children}</main>
           {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
           <div
-            className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0'}`}
+            className={`${(errorMsg !== '') && 'absolute inset-x-0'}`}
             style={{ bottom: '60px' }}>
-            <Subscribe />
-            {randomSliceBottomAd && (
+            {!isLoading && <Subscribe />}
+            {!isLoading && randomSliceBottomAd && (
               <motion.div
                 className="flex justify-center px-3 mb-2"
                 ref={ref}
@@ -126,7 +126,7 @@ export default function Layout({ preview, children }) {
             </Container>
             <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
             <div className={`${(errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'}`}>
-              {randomSliceBottomAd && (
+              {!isLoading && randomSliceBottomAd && (
                 <motion.div
                   className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
                   ref={ref}
