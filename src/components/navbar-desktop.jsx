@@ -70,7 +70,7 @@ const NavbarDesktop = () => {
       </nav>
       <div
         className={`${
-          searchIsOpen ? 'is-search-visible -mb-4' : 'header-search'
+          searchIsOpen ? 'is-search-visible mb-4' : 'header-search'
         } w-full`}>
         <SearchBar />
       </div>
