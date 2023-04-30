@@ -7,7 +7,7 @@ import {
 
 const SocialSharing = ({ slug }) => {
   return (
-    <div className="font-title text-16 text-center flex justify-center">
+    <div className="font-title text-14 ml:text-16 xl:text-20 text-center flex justify-center">
       <div className="mr-8 md:mr-12">
         <FacebookShareButton
           url={`https://way-out-next-client.vercel.app/posts/${slug}`}>
