@@ -8,13 +8,13 @@ import { SideAdImage } from './index';
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <span className="block font-main leading-5 text-17 sm:font-main sm:text-21 md:text-23 xl:text-26.5 xl:leading-8 sm:leading-6">
+      <span className="block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8">
         <br />
         {children}
       </span>
     ),
     agrandirNarrow: ({ children }) => (
-      <span className="block font-secondary text-18 leading-5 sm:text-21 md:text-22.5 md:leading-7 lg:leading-7 xl:text-25 xl:leading-8 sm:leading-7 ">
+      <span className="block font-secondary text-17 leading-5 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8 ">
         <br />
         {children}
       </span>
@@ -26,13 +26,13 @@ const postComponents = {
       </span>
     ),
     optiArtCraft: ({ children }) => (
-      <span className="block font-title text-17 leading-5 sm:text-21 md:text-23 sm:leading-7 xl:leading-9 xl:text-29 lg:text-22 lg:leading-7">
+      <span className="block font-title text-17 sm:text-19 ml:text-22 xl:text-29 leading-5 sm:leading-6 ml:leading-7 xl:leading-9 ">
         <br />
         {children}
       </span>
     ),
     quote: ({ children }) => (
-      <span className="block font-title text-22 mx-3 leading-7 sm:mx-4 sm:text-27 sm:leading-8 md:mx-6 md:text-30 md:leading-9 xl:leading-tight xl:text-40 xl:mx-16 lg:mx-12 lg:text-30 lg:leading-9">
+      <span className="block font-title text-20 mx-4 leading-6 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         <br />
         <br />
         {children}
@@ -59,7 +59,7 @@ const postComponents = {
             />
             {value.caption && (
               <>
-                <p className="font-secondary my-1 text-10 sm:text-16">
+                <p className="font-secondary my-1 text-12 ml:text-16 xl:text-20">
                   {value.caption}
                 </p>
                 <hr className="border-black" />
@@ -77,7 +77,7 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-secondary font-bold text-18 sm:text-21 md:text-24 xl:text-27 ">{children}</span>
+      <span className="font-secondary font-bold text-17 ml:text-20 xl:text-27 ">{children}</span>
     ),
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')
