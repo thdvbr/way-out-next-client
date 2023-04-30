@@ -38,7 +38,7 @@ const HeroImage = ({ title, slug, image: source }) => {
           width={1000}
           height={700}
           layout="responsive"
-          objectFit="fill"
+          objectFit="cover"
         />
       )}
     </div>
