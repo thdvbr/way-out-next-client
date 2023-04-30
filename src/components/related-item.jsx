@@ -6,7 +6,7 @@ const RelatedItem = ({
   title, subtitle, subCategory, previewImage, slug,
 }) => {
   return (
-    <div className="w-44 sm:w-52 md:w-64 lg:w-80 xl:w-96">
+    <div className="sm:w-52 md:w-64 lg:w-80 xl:w-96">
       <div className="z-70 px-2 pt-2 lg:px-3 lg:pt-3 pb-2 related-preview-block ">
       <div className="mb-0">
         <Thumbnail
