@@ -26,8 +26,8 @@ const NavbarDesktop = () => {
         <button
           type="button"
           onClick={handleSearchOpen}
-          className={` ${searchIsOpen && "search-active" } search sm:float-left inline-block`}>
-          <span className="sm:float-left">
+          className={` ${searchIsOpen && "search-active" } search`}>
+          <span>
             <FiSearch className="search-icon" />
           </span>
         </button>
@@ -35,7 +35,7 @@ const NavbarDesktop = () => {
           <Link href="/interviews">
             <a
               href="/interviews"
-              className={`${router.pathname == "/interviews" && "interviews-active"} sm:float-left inline-block sm:py-0 interviews inline-block`} >
+              className={`${router.pathname == "/interviews" && "interviews-active"} sm:py-0 interviews`} >
               Interviews
             </a>
           </Link>
@@ -51,8 +51,8 @@ const NavbarDesktop = () => {
           <Link href="/radio">
             <a
               href="/radio"
-              className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio sm:float-left inline-block`}>
-              <span className="sm:float-left">Radio</span>
+              className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio`}>
+              <span className="">Radio</span>
             </a>
           </Link>
         </div>
@@ -62,10 +62,10 @@ const NavbarDesktop = () => {
             setInfoIsOpen(!infoIsOpen);
             setJoinIsOpen(false);
           }}
-          className={`sm:py-0 sm:float-left inline-block ${
+          className={`sm:py-0 ${
             infoIsOpen ? 'info-color' : 'info'
           }`}>
-          <span className="sm:float-left">Info</span>
+          <span>Info</span>
         </button>
       </nav>
       <div
