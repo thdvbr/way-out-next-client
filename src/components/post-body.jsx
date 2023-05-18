@@ -14,25 +14,25 @@ const postComponents = {
       </span>
     ),
     agrandirNarrow: ({ children }) => (
-      <span className="block font-secondary text-17 leading-5 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8 ">
+      <span className="block leading-5 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8 ">
         <br />
         {children}
       </span>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <span className="block font-copenhagen text-11 leading-none">
+      <span className="block leading-none font-copenhagen text-11">
         <br />
         {children}
       </span>
     ),
     optiArtCraft: ({ children }) => (
-      <span className="block font-title text-17 sm:text-19 ml:text-22 xl:text-29 leading-5 sm:leading-6 ml:leading-7 xl:leading-9 ">
+      <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9 ">
         <br />
         {children}
       </span>
     ),
     quote: ({ children }) => (
-      <span className="block font-title text-20 mx-4 leading-6 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
+      <span className="block mx-4 leading-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         <br />
         <br />
         {children}
@@ -59,7 +59,7 @@ const postComponents = {
             />
             {value.caption && (
               <>
-                <p className="font-secondary my-1 text-12 ml:text-16 xl:text-20">
+                <p className="my-1 font-secondary text-12 ml:text-16 xl:text-20">
                   {value.caption}
                 </p>
                 <hr className="border-black" />
@@ -77,7 +77,7 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-secondary font-bold text-17 ml:text-20 xl:text-27 ">{children}</span>
+      <span className="font-extrabold font-secondary extra-bold text-17 ml:text-21 xl:text-27 ">{children}</span>
     ),
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')

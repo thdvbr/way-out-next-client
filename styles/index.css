@@ -36,6 +36,7 @@
   src: url(/assets/typography/Agrandir-Narrow.otf);
 }
 
+
 @font-face {
   font-family: 'OPTIArtCraft';
   src: url(/assets/typography/OPTIArtCraft-Bold.otf);
@@ -401,4 +402,8 @@ button:focus {
 .yellow-pattern {
   background-image: url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg);
   box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.extra-bold {
+  text-shadow: 0 0.003em, 0.003em 0, 0.003em 0.003em;
 }
