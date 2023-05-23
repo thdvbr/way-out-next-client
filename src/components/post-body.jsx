@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PortableText } from '@portabletext/react';
+import getYouTubeId from 'get-youtube-id';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import _ from 'lodash';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { urlForImage } from '../utils/sanity';
@@ -69,6 +71,11 @@ const postComponents = {
         </div>
       );
     },
+    youtube: ({ value }) => {
+      const { url } = value;
+      const id = getYouTubeId(url);
+      return <LiteYouTubeEmbed id={id} title="YouTube Embed" />;
+    },
   },
   marks: {
     em: ({ children }) => <em>{children}</em>,
@@ -77,7 +84,9 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-extrabold xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">{children}</span>
+      <span className="font-extrabold xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">
+        {children}
+      </span>
     ),
     link: ({ value, children }) => {
       const target = (value?.href || '').startsWith('http')
@@ -97,7 +106,6 @@ const postComponents = {
 };
 
 export default function PostBody({ body, adShortPost, adLongPost }) {
-
   const [postHeight, setPostHeight] = useState(0);
   const { height, width } = useWindowDimensions();
   const bodyRef = useRef();
