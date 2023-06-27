@@ -10,37 +10,29 @@ import { SideAdImage } from './index';
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <span className="block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8">
-        <br />
+      <p className="block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
         {children}
-      </span>
+      </p>
     ),
     agrandirNarrow: ({ children }) => (
-      <span className="block leading-5 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8 ">
-        <br />
+      <p className="block pb-4 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
         {children}
-      </span>
+      </p>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <span className="block leading-none font-copenhagen text-11">
-        <br />
+      <p className="block pb-4 leading-none ml:pb-6 font-copenhagen text-11 ">
         {children}
-      </span>
+      </p>
     ),
     optiArtCraft: ({ children }) => (
-      <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9 ">
-        <br />
+      <p className="block pb-4 leading-5 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
         {children}
-      </span>
+      </p>
     ),
     quote: ({ children }) => (
-      <span className="block mx-4 leading-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
-        <br />
-        <br />
+      <p className="block pb-4 mx-4 my-8 leading-6 ml:my-16 ml:pb-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         {children}
-        <br />
-        <br />
-      </span>
+      </p>
     ),
   },
   types: {
@@ -50,10 +42,7 @@ const postComponents = {
       }
       return (
         <div className="flex justify-center">
-          <div className="flex-col">
-            <br />
-            <br />
-            <br />
+          <div className="flex-col pt-4">
             <img
               alt={value.alt || ''}
               loading="lazy"
