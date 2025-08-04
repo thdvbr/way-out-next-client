@@ -488,3 +488,12 @@ button:focus {
   opacity: 0;
   pointer-events: none;
 }
+
+.drop-cap-letter {
+  float: left;
+  font-size: 4rem;
+  line-height: 1;
+  padding-right: 0.1em;
+  font-weight: bold;
+  color: #333;
+}
