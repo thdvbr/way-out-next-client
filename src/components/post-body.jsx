@@ -27,12 +27,32 @@ const postComponents = {
         {children}
       </span>
     ),
-    optiArtCraft: ({ children }) => (
-      <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9 ">
-        <br />
-        {children}
-      </span>
-    ),
+    // intro font: add drop cap
+    optiArtCraft: ({ children }) => {
+      const firstChild = children[0];
+    
+      if (typeof firstChild === 'string') {
+        const firstLetter = firstChild.charAt(0);
+        const restText = firstChild.slice(1);
+    
+        return (
+          <span className="block leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+            <br />
+            <span className="drop-cap-letter">{firstLetter}</span>
+            {restText}
+            {children.slice(1)}
+          </span>
+        );
+      }
+    
+      return (
+        <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+          <br />
+          {children}
+        </span>
+      );
+    },
+    
     quote: ({ children }) => (
       <span className="block mx-4 leading-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         <br />
@@ -42,24 +62,6 @@ const postComponents = {
         <br />
       </span>
     ),
-    normal: ({ children, index }) => {
-      // Apply drop cap only to the first paragraph (index 0)
-      if (index === 0 && children.length > 0) {
-        const firstChild = children[0];
-        if (typeof firstChild === 'string') {
-          const firstLetter = firstChild.charAt(0);
-          const restText = firstChild.slice(1);
-          return (
-            <p className="drop-cap">
-              <span className="drop-cap-letter">{firstLetter}</span>
-              {restText}
-              {children.slice(1)}
-            </p>
-          );
-        }
-      }
-      return <p>{children}</p>;
-    },
   },
   types: {
     image: ({ value }) => {
