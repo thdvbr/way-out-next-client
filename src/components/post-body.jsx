@@ -42,6 +42,24 @@ const postComponents = {
         <br />
       </span>
     ),
+    normal: ({ children, index }) => {
+      // Apply drop cap only to the first paragraph (index 0)
+      if (index === 0 && children.length > 0) {
+        const firstChild = children[0];
+        if (typeof firstChild === 'string') {
+          const firstLetter = firstChild.charAt(0);
+          const restText = firstChild.slice(1);
+          return (
+            <p className="drop-cap">
+              <span className="drop-cap-letter">{firstLetter}</span>
+              {restText}
+              {children.slice(1)}
+            </p>
+          );
+        }
+      }
+      return <p>{children}</p>;
+    },
   },
   types: {
     image: ({ value }) => {
