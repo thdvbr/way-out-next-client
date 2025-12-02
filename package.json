@@ -9,6 +9,9 @@
     "lint": "eslint --color --ext .js --ext .jsx ./src",
     "lint --fix": "eslint --color --ext .js --ext .jsx ./src --fix"
   },
+  "engines": {
+  "node": "20.x"
+},
   "dependencies": {
     "@portabletext/react": "^1.0.4",
     "@sanity/client": "^2.8.0",
