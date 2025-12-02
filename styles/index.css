@@ -498,3 +498,15 @@ button:focus {
   font-weight: bold;
   color: #333;
 }
+
+@media only screen and (max-width: 499px) {
+ .drop-cap-letter {
+  float: left;
+  font-size: 4rem;
+  margin-top: 0.45em;  
+  line-height: 0.2;
+  padding-right: 0.1em;
+  font-weight: bold;
+  color: #333;
+}
+}
