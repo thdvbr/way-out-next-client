@@ -35,7 +35,8 @@ const radioFields = `
   heroImage,
   mixcloudUrl,
   tracklist,
-  "publishedAt": _updatedAt,
+publishedAt,
+  description,
   tags `;
 
 const pageFields = `

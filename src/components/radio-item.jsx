@@ -12,6 +12,7 @@ const RadioItem = ({
   mixcloudUrl,
   tags,
   slug,
+  description,
   publishedAt,
 }) => {
   return (
