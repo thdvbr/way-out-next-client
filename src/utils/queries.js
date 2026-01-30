@@ -162,8 +162,20 @@ const moreAllPostsQuery = (posts) => {
   }`;
 };
 
+const moreRadioQuery = (posts) => {
+   const lastDate = posts[posts.length - 1]?.publishDate;
+  return `
+      *[_type == "radio" && publishDate < "${lastDate}"]
+      | order(publishDate desc)[0...8] {
+        ${radioFields}
+      }
+    `;
+}
+
 export const getMoreQuery = (type, posts) => {
   switch (type) {
+    case 'radio':
+      return moreRadioQuery(posts);
     case 'stuffWeLike':
       return moreStuffWeLikeQuery(posts);
     case 'interviews':
