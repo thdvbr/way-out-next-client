@@ -94,7 +94,7 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-extrabold text-red-500 xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">
+      <span className="font-extrabold xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">
         {children}
       </span>
     ),
