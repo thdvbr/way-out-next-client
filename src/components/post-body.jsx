@@ -27,11 +27,11 @@ const postComponents = {
     // intro font: add drop cap
     optiArtCraft: ({ children }) => {
       const firstChild = children[0];
-    
+
       if (typeof firstChild === 'string') {
         const firstLetter = firstChild.charAt(0);
         const restText = firstChild.slice(1);
-    
+
         return (
           <span className="block leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
             <br />
@@ -41,7 +41,7 @@ const postComponents = {
           </span>
         );
       }
-    
+
       return (
         <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
           <br />
@@ -49,7 +49,7 @@ const postComponents = {
         </span>
       );
     },
-    
+
     quote: ({ children }) => (
       <p className="block pb-4 mx-4 my-8 leading-6 ml:my-16 ml:pb-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         {children}
@@ -94,7 +94,7 @@ const postComponents = {
       <span className="font-extrabold">{children}</span>
     ),
     secondary: ({ children }) => (
-      <span className="font-extrabold xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">
+      <span className="font-extrabold text-red-500 xl:font-black font-secondary extra-bold text-16 ml:text-20 xl:text-26.5 ">
         {children}
       </span>
     ),
@@ -119,14 +119,26 @@ export default function PostBody({ body, adShortPost, adLongPost }) {
   const [postHeight, setPostHeight] = useState(0);
   const { height, width } = useWindowDimensions();
   const bodyRef = useRef();
-  const getPostBodyHeight = () => {
-    const newHeight = bodyRef.current.clientHeight;
-    setPostHeight(newHeight);
-  };
 
+  // mounted flag for client-only rendering
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  // calculate postHeight after mount
   useEffect(() => {
-    getPostBodyHeight();
-  }, [body, height]);
+    if (!mounted) return;
+    const newHeight = bodyRef.current?.clientHeight || 0;
+    setPostHeight(newHeight);
+  }, [body, height, mounted]);
+
+  if (!mounted) {
+    // render only static content on server
+    return (
+      <div className="mx-3 p-wrap" ref={bodyRef}>
+        <PortableText value={body} components={postComponents} />
+      </div>
+    );
+  }
 
   return (
     <>

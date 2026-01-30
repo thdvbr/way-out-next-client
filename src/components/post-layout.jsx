@@ -26,7 +26,6 @@ export default function PostLayout({ preview, children }) {
   const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } =
     useAppContext();
   useEffect(() => {
-    console.log(joinIsOpen);
     if (preview) {
       setJoinIsOpen(true);
     }
@@ -48,16 +47,20 @@ export default function PostLayout({ preview, children }) {
             content="initial-scale=1.0, width=device-width"
           />
         </Head>
-        <Breakpoint customQuery="(max-width: 499px)">
-          <div className="sticky top-0 z-30">
-            <Container>
-              <NavbarMobile />
-              <InfoDrawer />
-            </Container>
-          </div>
-          <main className="inset-0 z-0 w-screen">{children}</main>
-        </Breakpoint>
-        <Breakpoint customQuery="(min-width: 500px)">
+        {/* MOBILE */}
+        {width < 500 && (
+          <>
+            <div className="sticky top-0 z-30">
+              <Container>
+                <NavbarMobile />
+                <InfoDrawer />
+              </Container>
+            </div>
+            <main className="inset-0 z-0 w-screen">{children}</main>
+          </>
+        )}
+        {/* desktop */}
+        {width >= 500 && (
           <motion.div
             initial={false}
             variants={joinVariants}
@@ -92,7 +95,7 @@ export default function PostLayout({ preview, children }) {
               <main className="inset-0 z-0">{children}</main>
             </Container>
           </motion.div>
-        </Breakpoint>
+        )}
         {/* </motion.div> */}
       </div>
     </>
