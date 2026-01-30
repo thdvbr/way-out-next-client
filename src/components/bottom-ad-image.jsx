@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/image";
+import Image from 'next/image';
 import { useNextSanityImage } from 'next-sanity-image';
 import { motion } from 'framer-motion';
 import { sanityClient } from '../utils/sanity.server';
@@ -19,20 +19,26 @@ const BottomAdImage = ({ image: source, url }) => {
   const image = source ? (
     <Image
       src={imageProps.src}
-      loader={imageProps.loader}
-      alt='Bottom ad image'
+      alt="Bottom ad image"
       fill
+      unoptimized
       sizes="(min-width: 500px), 800px auto"
       style={{
-        objectFit: "cover"
-      }} />
+        objectFit: 'cover',
+      }}
+    />
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
 
   return (
     <motion.div
-      style={{width: '100%', height:'200px', maxWidth:'1280px', position: 'relative'}}
+      style={{
+        width: '100%',
+        height: '200px',
+        maxWidth: '1280px',
+        position: 'relative',
+      }}
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.6 }}>
