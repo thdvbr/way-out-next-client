@@ -15,7 +15,7 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const MasonryGrid = ({ data, type, fixedHeight }) => {
+const MasonryGrid = ({ data, type }) => {
   // const { query, searchResult } = useAppContext();
   const [posts, setPosts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
@@ -57,7 +57,6 @@ const MasonryGrid = ({ data, type, fixedHeight }) => {
                   subtitle={post.subtitle}
                   previewImage={post.previewImage}
                   slug={post.slug}
-                  fixedHeight={fixedHeight}
                 />
               </motion.div>
             ))}

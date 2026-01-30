@@ -2,12 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import Thumbnail from './thumbnail';
 
-const MasonryItem = ({ title, subtitle, previewImage, slug, fixedHeight }) => {
-  const heightClasses = fixedHeight
-    ? 'h-64 sm:h-72 md:h-80 lg:h-96 xl:h-96 flex flex-col'
-    : '';
+const MasonryItem = ({ title, subtitle, previewImage, slug }) => {
   return (
-    <div className={`pb-1 sm:pb-0 sm:py-2 preview-block ${heightClasses}`}>
+    <div className="pb-1 sm:pb-0 sm:py-2 preview-block">
       <div className="mb-4 sm:mb-2">
         <Thumbnail slug={slug} title={title} image={previewImage} />
       </div>
