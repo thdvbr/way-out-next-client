@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useNextSanityImage } from 'next-sanity-image';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { sanityClient } from '../utils/sanity.server';
 
 const MainImage = ({ title, slug, image: source }) => {
@@ -29,8 +29,10 @@ const MainImage = ({ title, slug, image: source }) => {
           {...imageProps}
           alt={`Cover Image for ${title}`}
           sizes="(max-width: 2000px) 100vw, auto"
-          layout="responsive"
-        />
+          style={{
+            width: "100%",
+            height: "auto"
+          }} />
       </motion.div>
       <div className="main-image-caption my-1 font-secondary text-10 sm:text-16">
         {source.caption}

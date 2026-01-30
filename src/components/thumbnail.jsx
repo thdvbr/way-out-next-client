@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useNextSanityImage } from 'next-sanity-image';
-import Image from "next/legacy/image";
+import Image from "next/image";
 // import { motion } from 'framer-motion';
 import { sanityClient } from '../utils/sanity.server';
 
@@ -26,13 +26,15 @@ const Thumbnail = ({ title, slug, image: source, width, height }) => {
       <div>
         <Image
           {...imageProps}
-          layout="responsive"
+          alt={`Thumbnail for ${title}`}
+          placeholder="blur"
           // check for responsive option..
           // sizes={`${width}px, ${height}px`}
           sizes="(max-width: 800px) 100vw, 800px"
-          alt={`Thumbnail for ${title}`}
-          placeholder="blur"
-        />
+          style={{
+            width: "100%",
+            height: "auto"
+          }} />
       </div>
       {/* </motion.div> */}
     </div>
