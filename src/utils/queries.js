@@ -121,6 +121,16 @@ export const searchQuery = `
   ${postPreviewFields}
 }`;
 
+export const radioShowsQuery = `*[_type == "radio"] | order(publishDate desc) {
+  title,
+  subtitle,
+  slug,
+  heroImage,
+  mixcloudLink,
+  tracklist,
+  tags
+}`;
+
 const moreInterviewsQuery = (posts) => {
   return `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
