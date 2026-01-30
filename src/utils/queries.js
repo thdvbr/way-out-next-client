@@ -27,6 +27,16 @@ previewImage,
 "slug": slug.current,
 `;
 
+const radioFields = `  
+_id, 
+  title,
+  subtitle,
+  slug,
+  heroImage,
+  mixcloudLink,
+  tracklist,
+  tags `;
+
 const pageFields = `
 _id,
 name,
@@ -122,13 +132,7 @@ export const searchQuery = `
 }`;
 
 export const radioShowsQuery = `*[_type == "radio"] | order(publishDate desc) {
-  title,
-  subtitle,
-  slug,
-  heroImage,
-  mixcloudLink,
-  tracklist,
-  tags
+${radioFields}
 }`;
 
 const moreInterviewsQuery = (posts) => {
