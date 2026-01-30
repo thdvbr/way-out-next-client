@@ -28,13 +28,14 @@ previewImage,
 `;
 
 const radioFields = `  
-_id, 
+  _id,
   title,
   subtitle,
   slug,
   heroImage,
-  mixcloudLink,
+  mixcloudUrl,
   tracklist,
+  "publishedAt": _updatedAt,
   tags `;
 
 const pageFields = `
@@ -131,7 +132,7 @@ export const searchQuery = `
   ${postPreviewFields}
 }`;
 
-export const radioShowsQuery = `*[_type == "radio"] | order(publishDate desc) {
+export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc) {
 ${radioFields}
 }`;
 
@@ -163,10 +164,10 @@ const moreAllPostsQuery = (posts) => {
 };
 
 const moreRadioQuery = (posts) => {
-   const lastDate = posts[posts.length - 1]?.publishDate;
+   const lastDate = posts[posts.length - 1]?.publishedAt;
   return `
-      *[_type == "radio" && publishDate < "${lastDate}"]
-      | order(publishDate desc)[0...8] {
+      *[_type == "radio" && publishedAt < "${lastDate}"]
+      | order(publishedAt desc)[0...8] {
         ${radioFields}
       }
     `;
