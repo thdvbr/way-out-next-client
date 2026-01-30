@@ -37,6 +37,7 @@ const HeroImage = ({ title, slug, image: source }) => {
       ) : (
         <Image
           src={imageProps.src}
+          unoptimized
           alt={`Hero Image for ${title}`}
           width={1000}
           height={700}
