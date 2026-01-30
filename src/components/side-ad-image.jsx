@@ -16,9 +16,6 @@ const SideAdImage = ({ image, url }) => {
   );
   return (
     <div className="sticky top-1/3">
-      <span className="block mb-1 text-right font-secondary text-9 md:text-10 ml:text-12 xl:text-14">
-        Sponsored by:
-      </span>
       <a href={url}>{adImage}</a>
     </div>
   );
