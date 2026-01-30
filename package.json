@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint --color --ext .js --ext .jsx ./src",
     "lint --fix": "eslint --color --ext .js --ext .jsx ./src --fix"
   },
   "engines": {
-  "node": "20.x"
-},
+    "node": "20.x"
+  },
   "dependencies": {
     "@portabletext/react": "^1.0.4",
     "@sanity/client": "^2.8.0",
@@ -20,17 +20,18 @@
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.21.2",
+    "eslint-config-next": "13",
     "framer-motion": "^4.1.16",
     "get-youtube-id": "^1.0.1",
     "lodash": "^4.17.21",
-    "next": "10.2.0",
+    "next": "13",
     "next-sanity": "^0.1.12",
     "next-sanity-image": "^3.1.7",
     "next-share": "^0.13.0",
     "postcss": "^8.2.13",
-    "react": "17.0.2",
+    "react": "^19.2.4",
     "react-cookie-consent": "^7.4.1",
-    "react-dom": "17.0.2",
+    "react-dom": "^19.2.4",
     "react-icons": "^4.2.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-intersection-observer": "^8.33.1",
