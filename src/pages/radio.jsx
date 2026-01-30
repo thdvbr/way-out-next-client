@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container, Layout, MasonryGrid } from '../components';
+import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { radioShowsQuery } from '../utils/queries';
 import { useAppContext } from '../context/state';
 
-export const Radio = ({ allShows, preview, bottomAds }) => {
+export const Radio = ({ allRadioShows, preview, bottomAds }) => {
+  console.log(allRadioShows);
   const router = useRouter();
   const { setErrorMsg } = useAppContext();
 
@@ -16,8 +18,13 @@ export const Radio = ({ allShows, preview, bottomAds }) => {
     <>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-          {allShows && <MasonryGrid type="radio" data={allShows} fixedHeight />}
-          <div className="h-screen mx-4 mt-4 radio-placeholder font-main text-30" />
+          {allRadioShows && (
+            <MasonryGrid
+              type="radio"
+              data={allRadioShows}
+              ItemComponent={RadioItem}
+            />
+          )}
         </Container>
       </Layout>
     </>
@@ -25,11 +32,11 @@ export const Radio = ({ allShows, preview, bottomAds }) => {
 };
 
 export const getStaticProps = async ({ preview = false }) => {
-  const allShows = overlayDrafts(
+  const allRadioShows = overlayDrafts(
     await getClient(preview).fetch(radioShowsQuery)
   );
   return {
-    props: { allShows, preview },
+    props: { allRadioShows, preview },
     revalidate: 10,
   };
 };
