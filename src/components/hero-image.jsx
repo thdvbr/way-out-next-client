@@ -22,6 +22,7 @@ const HeroImage = ({ title, slug, image: source }) => {
     <div className="block">
       {width > 768 ? (
         <Image
+          priority
           src={imageProps.src}
           unoptimized
           alt={`Hero Image for ${title}`}
@@ -36,6 +37,7 @@ const HeroImage = ({ title, slug, image: source }) => {
         />
       ) : (
         <Image
+          priority
           src={imageProps.src}
           unoptimized
           alt={`Hero Image for ${title}`}
