@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useNextSanityImage } from 'next-sanity-image';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { sanityClient } from '../utils/sanity.server';
 
 const MainImage = ({ title, slug, image: source }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useNextSanityImage } from 'next-sanity-image';
 import { motion } from 'framer-motion';
 import { sanityClient } from '../utils/sanity.server';

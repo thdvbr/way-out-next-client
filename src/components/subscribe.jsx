@@ -77,9 +77,7 @@ const Subscribe = ({ preview }) => {
           </form>
         </div>
       )}
-
       {/* DESKTOP */}
-
       {!preview && width >= 500 && (
         <div className="z-40 join-search-bg">
           <div className="px-3 mx-auto xl:container md:px-8 ml:px-20 lg:px-28">

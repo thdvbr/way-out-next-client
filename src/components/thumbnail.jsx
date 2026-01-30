@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useNextSanityImage } from 'next-sanity-image';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 // import { motion } from 'framer-motion';
 import { sanityClient } from '../utils/sanity.server';
 
