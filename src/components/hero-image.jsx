@@ -20,36 +20,34 @@ const HeroImage = ({ title, slug, image: source }) => {
 
   const image = source ? (
     <div className="block">
+      {/* desktop */}
       {width > 768 ? (
-        <Image
-          priority
-          src={imageProps.src}
-          unoptimized
-          alt={`Hero Image for ${title}`}
-          width={1200}
-          height={600}
-          sizes="100vw"
-          style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'cover',
-          }}
-        />
+        <div
+          style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+          <Image
+            priority
+            src={imageProps.src}
+            alt={`Hero Image for ${title}`}
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </div>
       ) : (
-        <Image
-          priority
-          src={imageProps.src}
-          unoptimized
-          alt={`Hero Image for ${title}`}
-          width={1000}
-          height={700}
-          sizes="100vw"
-          style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'cover',
-          }}
-        />
+        // tablet
+        <div
+          style={{ position: 'relative', width: '100%', aspectRatio: '10/7' }}>
+          <Image
+            priority
+            src={imageProps.src}
+            alt={`Hero Image for ${title}`}
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </div>
       )}
     </div>
   ) : (
