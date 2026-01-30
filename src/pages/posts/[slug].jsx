@@ -5,16 +5,12 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ErrorPage from 'next/error';
 import _ from 'lodash';
-import { useCurrentWidth } from 'react-socks';
 import {
   sanityClient,
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import {
-  postQuery,
-  postSlugsQuery,
-} from '../../utils/queries';
+import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
@@ -34,6 +30,7 @@ import {
   stagger,
   adVariants,
 } from '../../utils/animation';
+import useWindowWidth from '../../utils/useWindowWidth';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -51,13 +48,12 @@ export const Post = ({ data = {}, preview }) => {
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const randomSlice1 = _.sample(bottomAdData);
-  
-  const width = useCurrentWidth();
+
+  const width = useWindowWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
   const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
   const [randomSliced1SideAd, setRandomSliced1SideAd] = useState({});
-
 
   useEffect(() => {
     if (inView) {
@@ -69,25 +65,20 @@ export const Post = ({ data = {}, preview }) => {
   }, [inView]);
 
   const randomize = (array) => {
-    const newArray = [...array]
+    const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
-    return newArray
-  }
-
+    return newArray;
+  };
 
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
     setRandomSliceBottomAd(randomSlice1);
     setRandomSliced2SideAds(_.sampleSize(sideAdData, 2));
     setRandomSliced1SideAd(_.sample(sideAdData));
-  },[router.asPath])
-
-
-
-
+  }, [router.asPath]);
 
   // useEffect(() => {
   //   return searchIsOpen && setSearchIsOpen(false);
@@ -98,11 +89,10 @@ export const Post = ({ data = {}, preview }) => {
   //   return searchResult && setQuery('') && setSearchResult([]);
   // }, []);
 
-
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const isOnTop = window.scrollY > 100;
-      if ((isTop !== isOnTop) && !preview ){
+      if (isTop !== isOnTop && !preview) {
         setIsTop(isOnTop);
         setJoinIsOpen(false);
       }
@@ -143,8 +133,12 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="lg:px-28 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} adShortPost={randomSliced1SideAd} adLongPost={randomSliced2SideAds} />
+                  className="px-2 lg:px-28 md:px-24 sm:px-20">
+                  <PostBody
+                    body={post.body}
+                    adShortPost={randomSliced1SideAd}
+                    adLongPost={randomSliced2SideAds}
+                  />
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
                   )}
@@ -168,7 +162,7 @@ export const Post = ({ data = {}, preview }) => {
       </PostLayout>
       {randomSliceBottomAd && (
         <motion.div
-        className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
+          className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
           ref={ref}
           animate={animation}
           variants={adVariants}

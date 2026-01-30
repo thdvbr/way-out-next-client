@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import { useCurrentWidth, Breakpoint } from 'react-socks';
+import useWindowWidth from '../utils/useWindowWidth';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import SubscribeSvg from './subscribe-svg';
 // const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
 
-const Subscribe = ({preview}) => {
+const Subscribe = ({ preview }) => {
+  const width = useWindowWidth();
   const input = useRef(null);
   // response from the mailchimp api
   const [message, setMessage] = useState('');
@@ -49,13 +50,13 @@ const Subscribe = ({preview}) => {
   return (
     // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
     <>
-      <Breakpoint customQuery="(max-width: 499px)">
-        {' '}
-        <div className="px-3 mb-10 mt-3">
+      {/* MOBILE */}
+      {width < 500 && (
+        <div className="px-3 mt-3 mb-10">
           <form
             style={{ height: '120px' }}
             onSubmit={subscribe}
-            className="flex flex-col justify-between items-center font-agrandir text-center px-3">
+            className="flex flex-col items-center justify-between px-3 text-center font-agrandir">
             <label htmlFor="email-input" className="flex font-title text-18">
               {'Join our newsletter'}
             </label>
@@ -75,37 +76,38 @@ const Subscribe = ({preview}) => {
             )}
           </form>
         </div>
-      </Breakpoint>
-      {!preview && (
-        <Breakpoint customQuery="(min-width: 500px)">
-          <div className="join-search-bg z-40">
-            <div className="xl:container px-3 md:px-8 ml:px-20 lg:px-28 mx-auto">
-              <form
-                style={{ height: '60px' }}
-                onSubmit={subscribe}
-                className="flex justify-between items-center font-title text-15 ml:text-18 text-center px-3">
-                <label htmlFor="email-input" className="w-4/12 flex mr-auto">
-                  {'Join our newsletter'}
-                </label>
-                <input
-                  id="email-input"
-                  name="email"
-                  ref={input}
-                  required
-                  type="email"
-                  className="subscribe-input font-agrandir w-6/12 mb-1"
-                />
-                <div className="w-3/12">
-                  {message || (
-                    <button type="submit" className="flex ml-auto">
-                      <BsArrowRight size={32} />
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
+      )}
+
+      {/* DESKTOP */}
+
+      {!preview && width >= 500 && (
+        <div className="z-40 join-search-bg">
+          <div className="px-3 mx-auto xl:container md:px-8 ml:px-20 lg:px-28">
+            <form
+              style={{ height: '60px' }}
+              onSubmit={subscribe}
+              className="flex items-center justify-between px-3 text-center font-title text-15 ml:text-18">
+              <label htmlFor="email-input" className="flex w-4/12 mr-auto">
+                {'Join our newsletter'}
+              </label>
+              <input
+                id="email-input"
+                name="email"
+                ref={input}
+                required
+                type="email"
+                className="w-6/12 mb-1 subscribe-input font-agrandir"
+              />
+              <div className="w-3/12">
+                {message || (
+                  <button type="submit" className="flex ml-auto">
+                    <BsArrowRight size={32} />
+                  </button>
+                )}
+              </div>
+            </form>
           </div>
-        </Breakpoint>
+        </div>
       )}
     </>
   );

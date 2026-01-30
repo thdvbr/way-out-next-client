@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { useNextSanityImage } from 'next-sanity-image';
-import { useCurrentWidth } from 'react-socks';
 import Image from 'next/image';
 import { sanityClient } from '../utils/sanity.server';
+import useWindowWidth from '../utils/useWindowWidth';
 
 const HeroImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     return imageUrlBuilder.width(1000);
   };
-  const width = useCurrentWidth();
+  const width = useWindowWidth();
 
   const imageProps = useNextSanityImage(sanityClient, source, {
     blurUpImageWidth: 124,

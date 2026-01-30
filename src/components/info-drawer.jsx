@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
 import { Content, Staff } from './index';
+import useWindowWidth from '../utils/useWindowWidth';
 
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
@@ -26,7 +26,7 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ preview }) => {
-  const width = useCurrentWidth();
+  const width = useWindowWidth();
   const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
   const { about, contact } = pageData;
   const { x, y } = useCustomMouse();
@@ -93,7 +93,7 @@ const InfoDrawer = ({ preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box w-full h-full z-60"
+            className="fixed w-full h-full info-box z-60"
             style={
               width > 768
                 ? { right: 0, maxWidth: '42vw' }
@@ -106,22 +106,22 @@ const InfoDrawer = ({ preview }) => {
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 p-3 xl:right-20 ">
+              <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
                 <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
+              <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
                 <div className="w-8/12">
                   {aboutIsOpen && (
-                    <div className="text-justify pt-2 text-14 sm:text-18">
+                    <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={about.body} />
                     </div>
                   )}
                   {contactIsOpen && (
-                    <div className="text-justify pt-2 text-14 sm:text-18">
+                    <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={contact.body} />
-                      <Link href="/legal" className="font-secondary underline">
+                      <Link href="/legal" className="underline font-secondary">
                         Legal
                       </Link>
                     </div>
@@ -148,7 +148,7 @@ const InfoDrawer = ({ preview }) => {
                   )}
                 </div>
                 <div className="w-4/12">
-                  <div className="text-20 sm:text-27 md:text-22 lg:text-27 font-title text-right">
+                  <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
@@ -175,7 +175,7 @@ const InfoDrawer = ({ preview }) => {
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
             onClick={toggleInfo}
-            className="bg-transparent px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
+            className="fixed top-0 left-0 flex items-center justify-center w-full h-full px-5 bg-transparent"
           />
         </>
       )}

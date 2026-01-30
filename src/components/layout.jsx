@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion, useAnimation } from 'framer-motion';
 import _ from 'lodash';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import { useAppContext } from '../context/state';
+import useWindowWidth from '../utils/useWindowWidth';
 
 // eslint-disable-next-line import/no-cycle
 import {
@@ -23,7 +23,7 @@ import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
 
 export default function Layout({ preview, children }) {
-  const width = useCurrentWidth();
+  const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
@@ -79,42 +79,45 @@ export default function Layout({ preview, children }) {
             content="initial-scale=1.0, width=device-width"
           />
         </Head>
-        <Breakpoint customQuery="(max-width: 499px)">
-          <div className="sticky top-0 z-30">
-            <Container>
-              <NavbarMobile />
-              <InfoDrawer />
-            </Container>
-          </div>
-          <main className="w-screen inset-0 z-0">{children}</main>
-          {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
-          <div
-            className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
-            style={{ bottom: '60px' }}>
-            {!isLoading && <Subscribe />}
-            {!isLoading && randomSliceBottomAd && (
-              <>
-                <motion.div
-                  className="flex justify-center px-3 mb-2"
-                  ref={ref}
-                  animate={animation}
-                  variants={adVariants}
-                  initial="hidden">
-                  <BottomAdImage
-                    image={randomSliceBottomAd.adImageMobile}
-                    url={randomSliceBottomAd.adUrl}
-                    width={500}
-                  />
-                </motion.div>
+        {/* MOBILE */}
+        {width < 500 && (
+          <>
+            {' '}
+            <div className="sticky top-0 z-30">
+              <Container>
+                <NavbarMobile />
+                <InfoDrawer />
+              </Container>
+            </div>
+            <main className="inset-0 z-0 w-screen">{children}</main>
+            {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
+            <div
+              className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
+              style={{ bottom: '60px' }}>
+              {!isLoading && <Subscribe />}
+              {!isLoading && randomSliceBottomAd && (
+                <>
+                  <motion.div
+                    className="flex justify-center px-3 mb-2"
+                    ref={ref}
+                    animate={animation}
+                    variants={adVariants}
+                    initial="hidden">
+                    <BottomAdImage
+                      image={randomSliceBottomAd.adImageMobile}
+                      url={randomSliceBottomAd.adUrl}
+                      width={500}
+                    />
+                  </motion.div>
 
-                <Footer />
-              </>
-            )}
-            {/* </div> */}
-          </div>
-        </Breakpoint>
+                  <Footer />
+                </>
+              )}
+            </div>{' '}
+          </>
+        )}
         {/* desktop */}
-        <Breakpoint customQuery="(min-width: 500px)">
+        {width >= 500 && (
           <motion.div
             className="min-h-screen"
             initial={false}
@@ -130,7 +133,7 @@ export default function Layout({ preview, children }) {
               <InfoDrawer />
               <NavbarDesktop />
             </Container>
-            <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
+            <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
             <div
               className={`${
                 (errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'
@@ -154,8 +157,7 @@ export default function Layout({ preview, children }) {
               )}
             </div>
           </motion.div>
-        </Breakpoint>
-        {/* </motion.div> */}
+        )}
       </motion.div>
     </>
   );

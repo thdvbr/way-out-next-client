@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion } from 'framer-motion';
 import AlertPreview from './alert-preview';
 import Header from './header';
@@ -16,9 +15,10 @@ import {
   Subscribe,
 } from './index';
 import { joinVariants } from '../utils/animation';
+import useWindowWidth from '../utils/useWindowWidth';
 
 export default function PostLayout({ preview, children }) {
-  const width = useCurrentWidth();
+  const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
@@ -55,7 +55,7 @@ export default function PostLayout({ preview, children }) {
               <InfoDrawer />
             </Container>
           </div>
-          <main className="w-screen inset-0 z-0">{children}</main>
+          <main className="inset-0 z-0 w-screen">{children}</main>
         </Breakpoint>
         <Breakpoint customQuery="(min-width: 500px)">
           <motion.div
@@ -70,17 +70,17 @@ export default function PostLayout({ preview, children }) {
                 <Header />
               </div>
               <InfoDrawer />
-              <div className="sticky top-80 z-30">
+              <div className="sticky z-30 top-80">
                 {/* need to figure out how to change colours to gold when its preview mode  */}
                 <div style={{ color: isTop && '#8A7536' }}>
                   <NavbarDesktop />
-                  <Link href="/" className="flex left-0 right-0 top-18 justify-center absolute">
-
+                  <Link
+                    href="/"
+                    className="absolute left-0 right-0 flex justify-center top-18">
                     <div
-                      className="logo-gold-container mt-3"
+                      className="mt-3 logo-gold-container"
                       style={{ opacity: isTop ? 1 : 0 }}
                     />
-
                   </Link>
                 </div>
               </div>
