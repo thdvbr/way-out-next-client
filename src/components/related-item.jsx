@@ -27,11 +27,14 @@ const RelatedItem = ({
         </span>
       </div>
       <div className="max-w-xs lg:mr-8 tracking-tight">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
+        <Link
+          as={`/posts/${slug}`}
+          href="/posts/[slug]"
+          className="block hover:underline font-main-bold text-15 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9">
           {/* TODO: leading doesnt work here why?? */}
-          <a className="block hover:underline font-main-bold text-15 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9">
-            {title}
-          </a>
+
+          {title}
+
         </Link>
         <p className="block font-main-light-italic text-15 sm:text-16 md:text-18 md:leading-5 leading-4 xl:text-25.5 xl:leading-8 lg:text-18.5">
           {subtitle}

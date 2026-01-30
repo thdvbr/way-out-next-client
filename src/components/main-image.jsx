@@ -43,8 +43,8 @@ const MainImage = ({ title, slug, image: source }) => {
   return (
     <div>
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a aria-label={title}>{image}</a>
+        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

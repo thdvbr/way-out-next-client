@@ -32,28 +32,30 @@ const NavbarDesktop = () => {
           </span>
         </button>
         <div>
-          <Link href="/interviews">
-            <a
-              href="/interviews"
-              className={`${router.pathname == "/interviews" && "interviews-active"} sm:py-0 interviews`} >
+          <Link
+            href="/interviews"
+            className={`${router.pathname == "/interviews" && "interviews-active"} sm:py-0 interviews`}>
+            
               Interviews
-            </a>
+            
           </Link>
         </div>
         <div>
-          <Link href="/stuff-we-like">
-            <a href="/stuff-we-like" className={`${router.pathname == "/stuff-we-like" && "stuff-we-like-active"}  sm:py-0 stuff-we-like`}>
+          <Link
+            href="/stuff-we-like"
+            className={`${router.pathname == "/stuff-we-like" && "stuff-we-like-active"}  sm:py-0 stuff-we-like`}>
+            
             Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </a>
+            
           </Link>
         </div>
         <div>
-          <Link href="/radio">
-            <a
-              href="/radio"
-              className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio`}>
-              <span className="">Radio</span>
-            </a>
+          <Link
+            href="/radio"
+            className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio`}>
+
+            <span className="">Radio</span>
+
           </Link>
         </div>
         <button

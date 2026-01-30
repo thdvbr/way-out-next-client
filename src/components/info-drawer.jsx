@@ -121,8 +121,8 @@ const InfoDrawer = ({ preview }) => {
                   {contactIsOpen && (
                     <div className="text-justify pt-2 text-14 sm:text-18">
                       <Content body={contact.body} />
-                      <Link href="/legal">
-                        <a href="/legal" className="font-secondary underline">Legal</a>
+                      <Link href="/legal" className="font-secondary underline">
+                        Legal
                       </Link>
                     </div>
                   )}

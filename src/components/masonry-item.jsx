@@ -10,13 +10,13 @@ const MasonryItem = ({
       <Thumbnail slug={slug} title={title} image={previewImage} />
     </div>
     <div className="masonry-item-text max-w-xl md:max-w-xs xl:max-w-sm my-5 mr-5 sm:my-0 sm:mr-2 sm:mt-3">
-      <Link as={`/posts/${slug}`} href="/posts/[slug]">
-        <a
-          href={`post title for ${title}`}
-          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
-        >
-          {title}
-        </a>
+      <Link
+        as={`/posts/${slug}`}
+        href="/posts/[slug]"
+        className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
+
+        {title}
+
       </Link>
       <span>
         <div>

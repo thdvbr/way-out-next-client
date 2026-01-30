@@ -42,8 +42,8 @@ const Thumbnail = ({ title, slug, image: source, width, height }) => {
   return (
     <div>
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a aria-label={title}>{image}</a>
+        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

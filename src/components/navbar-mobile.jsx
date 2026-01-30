@@ -52,9 +52,9 @@ const NavbarMobile = () => {
         <div className="self-center flex justify-center w-7/12">
           {!searchIsOpen ? (
             <Link href="/">
-              <a href="/">
-                <Logo />
-              </a>
+
+              <Logo />
+
             </Link>
           ) : (
             <motion.div
@@ -77,20 +77,20 @@ const NavbarMobile = () => {
           style={{ bottom: '-13.75rem' }}>
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
-            <Link href="/interviews">
-              <a href="/interviews" className="py-4 interviews">
+            <Link href="/interviews" className="py-4 interviews">
+              
                 Interviews
-              </a>
+              
             </Link>
-            <Link href="/stuff-we-like">
-              <a href="/stuff-we-like" className="py-4 stuff-we-like">
+            <Link href="/stuff-we-like" className="py-4 stuff-we-like">
+              
                 Reviews
-              </a>
+              
             </Link>
-            <Link href="/radio">
-              <a href="/radio" className="py-4 radio">
+            <Link href="/radio" className="py-4 radio">
+              
                 Radio
-              </a>
+              
             </Link>
             <button
               className="py-4 text-left"

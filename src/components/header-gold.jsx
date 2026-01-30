@@ -19,14 +19,14 @@ export default function HeaderGold() {
           className="z-50 button-underline">
           Join
         </button>
-        <Link href="/">
-          <a
-            href="/"
-            className="flex absolute left-0 right-0 top-4 sm:top-6 lg:top-5 xl:top-3 justify-center z-40">
-            {/* <Logo /> */}
-            <div className="logo-container sticky top-0"/>
-            <div className="gif"/>
-          </a>
+        <Link
+          href="/"
+          className="flex absolute left-0 right-0 top-4 sm:top-6 lg:top-5 xl:top-3 justify-center z-40">
+
+          {/* <Logo /> */}
+          <div className="logo-container sticky top-0"/>
+          <div className="gif"/>
+
         </Link>
 {/* fixed positioning doesnt work if parent div uses translate */}
         {/* <motion.div

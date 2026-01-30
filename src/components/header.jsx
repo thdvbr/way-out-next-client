@@ -19,13 +19,13 @@ export default function Header() {
           className="z-50 button-underline">
           Join
         </button>
-        <Link href="/">
-          <a
-            href="/"
-            className="flex absolute left-0 right-0 top-4 sm:top-7 xl:top-8 justify-center">
-            <div className="logo-container"/>
-            <div className="gif"/>
-          </a>
+        <Link
+          href="/"
+          className="flex absolute left-0 right-0 top-4 sm:top-7 xl:top-8 justify-center">
+
+          <div className="logo-container"/>
+          <div className="gif"/>
+
         </Link>
       </div>
     </header>

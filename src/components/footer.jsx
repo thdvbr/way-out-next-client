@@ -20,15 +20,15 @@ export default function Footer() {
           </a>
           {width > 499 && (
             <Link href="/">
-              <a href="/">
-                <div className="footer-logo-container" />
-              </a>
+
+              <div className="footer-logo-container" />
+
             </Link>
           )}
-          <Link href="/legal">
-            <a className="hover:underline" href="/legal">
+          <Link href="/legal" className="hover:underline">
+            
               Legal
-            </a>
+            
           </Link>
           <a className="hover:underline" href="mailto:ads@wayoutmagazine.com">
             Advertise
