@@ -36,7 +36,6 @@
   src: url(/assets/typography/Agrandir-Narrow.otf);
 }
 
-
 @font-face {
   font-family: 'OPTIArtCraft';
   src: url(/assets/typography/OPTIArtCraft-Bold.otf);
@@ -122,7 +121,6 @@ body {
   width: 20%;
 }
 
-
 @media only screen and (min-width: 500px) {
   .preview-block:hover {
     background-image: url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg);
@@ -138,9 +136,7 @@ body {
     padding-left: 0.25rem;
     padding-bottom: 0.25rem;
   }
-
 }
-
 
 .related-preview-block:hover {
   background-image: url(/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
@@ -249,18 +245,17 @@ body {
   }
 }
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
   .radio-placeholder {
-    background-image: url(/assets/placeholder/way-out-background-1600w.png)
+    background-image: url(/assets/placeholder/way-out-background-1600w.png);
   }
 }
 
-.hero-text-wrap-bg{
+.hero-text-wrap-bg {
   background: url(/assets/background/hero-background.png);
   background-size: 100%;
   background-color: black;
 }
-
 
 @media only screen and (max-width: 499px) {
   /* body {
@@ -273,17 +268,15 @@ body {
     top: 0;
   }
   .radio-placeholder {
-    background-image: url(/assets/placeholder/way-out-background-phone.png)
+    background-image: url(/assets/placeholder/way-out-background-phone.png);
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 768px) {
   .radio-placeholder {
-    background-image: url(/assets/placeholder/way-out-background-tablet.png)
+    background-image: url(/assets/placeholder/way-out-background-tablet.png);
   }
 }
-
-
 
 .footer-logo-container {
   content: url(/assets/logos/footer-logo.png);
@@ -380,7 +373,9 @@ button:focus {
 }
 
 .is-search-visible {
-  transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  transition:
+    max-height 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
   max-height: 52px;
   opacity: 1;
 }
@@ -389,9 +384,15 @@ button:focus {
   max-height: 0;
   opacity: 0;
   pointer-events: none;
-  -webkit-transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
-  -o-transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
-  transition: max-height 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  -webkit-transition:
+    max-height 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
+  -o-transition:
+    max-height 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
+  transition:
+    max-height 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
   overflow: hidden;
 }
 
@@ -405,7 +406,10 @@ button:focus {
 }
 
 .extra-bold {
-  text-shadow: 0 0.003em, 0.003em 0, 0.003em 0.003em;
+  text-shadow:
+    0 0.003em,
+    0.003em 0,
+    0.003em 0.003em;
 }
 
 .yt-lite {
@@ -437,7 +441,7 @@ button:focus {
   thanks https://css-tricks.com/responsive-iframes/
 */
 .yt-lite::after {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: calc(100% / (16 / 9));
 }
@@ -492,7 +496,7 @@ button:focus {
 .drop-cap-letter {
   float: left;
   font-size: 6rem;
-  margin-top: 0.45em;  
+  margin-top: 0.45em;
   line-height: 0.2;
   padding-right: 0.1em;
   font-weight: bold;
@@ -500,13 +504,13 @@ button:focus {
 }
 
 @media only screen and (max-width: 499px) {
- .drop-cap-letter {
-  float: left;
-  font-size: 4rem;
-  margin-top: 0.45em;  
-  line-height: 0.2;
-  padding-right: 0.1em;
-  font-weight: bold;
-  color: #333;
-}
+  .drop-cap-letter {
+    float: left;
+    font-size: 4rem;
+    margin-top: 0.45em;
+    line-height: 0.2;
+    padding-right: 0.1em;
+    font-weight: bold;
+    color: #333;
+  }
 }

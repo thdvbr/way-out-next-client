@@ -9,17 +9,17 @@ module.exports = {
       },
       width: {
         42: '10.5rem',
-        46: '11.5rem'
+        46: '11.5rem',
       },
       height: {
         104: '26rem',
         112: '28rem',
-        120: '30rem'
+        120: '30rem',
       },
       padding: {
         '26rem': '26rem',
         '36rem': '36rem',
-        46: '11.5rem'
+        46: '11.5rem',
       },
     },
     fontFamily: {

@@ -11,7 +11,7 @@ export const Radio = ({ preview }) => {
     <>
       <Layout preview={preview}>
         <Container>
-          <div className="mt-4 mx-4 radio-placeholder h-screen font-main text-30"/>
+          <div className="mt-4 mx-4 radio-placeholder h-screen font-main text-30" />
         </Container>
       </Layout>
     </>

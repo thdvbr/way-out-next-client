@@ -4,23 +4,25 @@ import HeroImage from './hero-image';
 import { useAppContext } from '../context/state';
 
 // TODO: Fix sizing on hero svg and image
-const HeroPost = ({ mainImage, title, subtitle, slug }) => {
+const HeroPost = ({
+  mainImage, title, subtitle, slug,
+}) => {
   const { searchIsOpen } = useAppContext();
   return (
     <section>
       <div
         className={`${
           searchIsOpen ? 'border-l-2 border-r-2 border-b-2' : 'border-2'
-        } mb-2 flex flex-row border-black mx-3 mt-3`}>
+        } mb-2 flex flex-row border-black mx-3 mt-3`}
+      >
         <div className="overflow-hidden hero-text-wrap-bg relative w-1/3">
           <div className="z-10 absolute text-white bottom-0 px-3 pb-4 ml:px-4 ml:pb-5 lg:px-6 lg:pb-7 xl:pb-8  xl:px-9 ">
             <Link
               as={`/posts/${slug}`}
               href="/posts/[slug]"
-              className="underline block font-title sm:leading-tight sm:text-20 md:text-22 ml:text-24 lg:text-28 xl:text-30">
-
+              className="underline block font-title sm:leading-tight sm:text-20 md:text-22 ml:text-24 lg:text-28 xl:text-30"
+            >
               {title}
-
             </Link>
             <div className="linebreak">
               <br />

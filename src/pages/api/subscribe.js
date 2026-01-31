@@ -25,7 +25,7 @@ export default async (req, res) => {
     },
   };
 
-    try {
+  try {
     const response = await axios.post(url, data, options);
     if (response.status >= 400) {
       return res.status(400).json({
@@ -33,7 +33,7 @@ export default async (req, res) => {
       });
     }
     return res.status(201).json({ error: '' });
-    } catch (error) {
+  } catch (error) {
     return res.status(500).json({ error: 'Error! Try again.' });
   }
 };

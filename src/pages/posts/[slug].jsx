@@ -42,8 +42,9 @@ export const Post = ({ data = {}, preview }) => {
     initialData: data,
     enabled: preview && slug,
   });
-  const { isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData } =
-    useAppContext();
+  const {
+    isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData,
+  } = useAppContext();
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
@@ -107,7 +108,8 @@ export const Post = ({ data = {}, preview }) => {
       // ref={listInnerRef}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}>
+      exit={{ opacity: 0 }}
+    >
       <PostLayout preview={preview}>
         <div className="px-3">
           {post && (
@@ -118,7 +120,8 @@ export const Post = ({ data = {}, preview }) => {
                   variants={postHeaderVariants}
                   initial="hidden"
                   animate="enter"
-                  exit="exit">
+                  exit="exit"
+                >
                   <PostHeader
                     title={post.title}
                     subtitle={post.subtitle}
@@ -133,7 +136,8 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="px-2 lg:px-28 md:px-24 sm:px-20">
+                  className="px-2 lg:px-28 md:px-24 sm:px-20"
+                >
                   <PostBody
                     body={post.body}
                     adShortPost={randomSliced1SideAd}
@@ -153,7 +157,8 @@ export const Post = ({ data = {}, preview }) => {
                 variants={morePostVariants}
                 initial="initial"
                 animate="enter"
-                exit="exit">
+                exit="exit"
+              >
                 <RelatedGrid posts={randomSlicedMorePosts} />
               </motion.div>
             )}
@@ -166,7 +171,8 @@ export const Post = ({ data = {}, preview }) => {
           ref={ref}
           animate={animation}
           variants={adVariants}
-          initial="hidden">
+          initial="hidden"
+        >
           {width > 500 ? (
             <BottomAdImage
               image={randomSliceBottomAd.adImage}

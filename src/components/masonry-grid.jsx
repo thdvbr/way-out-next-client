@@ -40,15 +40,18 @@ const MasonryGrid = ({ data, type }) => {
         initial="initial"
         animate="enter"
         exit="exit"
-        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
+        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+      >
         <InfiniteScroll
           dataLength={posts.length}
           next={getMorePost}
-          hasMore={hasMore}>
+          hasMore={hasMore}
+        >
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column">
+            columnClassName="my-masonry-grid_column"
+          >
             {posts.map((post) => (
               <motion.div key={post.slug} variants={cardVariants}>
                 <MasonryItem

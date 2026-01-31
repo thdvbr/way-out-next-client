@@ -23,8 +23,9 @@ export default function PostLayout({ preview, children }) {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
   };
-  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } =
-    useAppContext();
+  const {
+    infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen,
+  } = useAppContext();
   useEffect(() => {
     if (preview) {
       setJoinIsOpen(true);
@@ -65,7 +66,8 @@ export default function PostLayout({ preview, children }) {
             initial={false}
             variants={joinVariants}
             animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'spring', duration: 0.5 }}>
+            transition={{ type: 'spring', duration: 0.5 }}
+          >
             <Subscribe />
 
             <Container>
@@ -79,7 +81,8 @@ export default function PostLayout({ preview, children }) {
                   <NavbarDesktop />
                   <Link
                     href="/"
-                    className="absolute left-0 right-0 flex justify-center top-18">
+                    className="absolute left-0 right-0 flex justify-center top-18"
+                  >
                     <div
                       className="mt-3 logo-gold-container"
                       style={{ opacity: isTop ? 1 : 0 }}

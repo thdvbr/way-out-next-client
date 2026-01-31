@@ -13,14 +13,15 @@ const breakpointColumnsObj = {
 };
 
 const SearchResult = () => {
-  const { searchIsOpen, errorMsg, setErrorMsg, isLoading, setIsLoading } = useAppContext();
+  const {
+    searchIsOpen, errorMsg, setErrorMsg, isLoading, setIsLoading,
+  } = useAppContext();
   const [searchResult, setSearchResult] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [errorMsg, setErrorMsg] = useState('');
 
   const router = useRouter();
-  const searchKeyword =
-    router && router.query && router.query.keyword ? router.query.keyword : '';
+  const searchKeyword = router && router.query && router.query.keyword ? router.query.keyword : '';
 
   useEffect(() => {
     const searchEndpoint = (searchQuery) => `/api/search?q=${searchQuery}`;
@@ -50,11 +51,13 @@ const SearchResult = () => {
         initial="initial"
         animate="enter"
         exit="exit"
-        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
+        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+      >
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className={`${searchIsOpen && 'sm:mt-5'} my-masonry-grid`}
-          columnClassName="my-masonry-grid_column">
+          columnClassName="my-masonry-grid_column"
+        >
           {searchResult.map((post) => (
             <motion.div key={post.slug} variants={cardVariants}>
               <MasonryItem

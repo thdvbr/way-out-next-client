@@ -3,11 +3,7 @@ import React from 'react';
 const LogoGold = () => {
   return (
     <div className="logo-container">
-      <svg
-        viewBox="0 0 54 41"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 54 41" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M11.4837 40.6427C16.4388 40.6427 20.4557 36.4729 20.4557 31.3293C20.4557 26.1856 16.4388 22.0159 11.4837 22.0159C6.52861 22.0159 2.51172 26.1856 2.51172 31.3293C2.51172 36.4729 6.52861 40.6427 11.4837 40.6427Z"
           fill="none"

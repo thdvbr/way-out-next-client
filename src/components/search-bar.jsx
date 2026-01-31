@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const SearchBar = () => {
   const router = useRouter();
   const [value, setValue] = useState('');
 
-  // TODO : FORM VALIDATION 
+  // TODO : FORM VALIDATION
   return (
     <form
       className="w-full"

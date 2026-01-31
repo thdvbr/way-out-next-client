@@ -107,7 +107,8 @@ const postComponents = {
           className="underline"
           href={value?.href}
           target={target}
-          rel={target === '_blank' ? 'noindex nofollow' : undefined}>
+          rel={target === '_blank' ? 'noindex nofollow' : undefined}
+        >
           {children}
         </a>
       );

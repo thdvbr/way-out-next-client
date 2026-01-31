@@ -6,10 +6,10 @@ import SearchBar from './search-bar';
 import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
-
 const NavbarMobile = () => {
-  const { infoIsOpen, setInfoIsOpen, searchIsOpen,
-    setSearchIsOpen } = useAppContext();
+  const {
+    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
+  } = useAppContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -52,16 +52,15 @@ const NavbarMobile = () => {
         <div className="self-center flex justify-center w-7/12">
           {!searchIsOpen ? (
             <Link href="/">
-
               <Logo />
-
             </Link>
           ) : (
             <motion.div
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full">
+              className="w-full"
+            >
               <SearchBar />
             </motion.div>
           )}
@@ -69,33 +68,30 @@ const NavbarMobile = () => {
         <button
           type="button"
           onClick={handleClick}
-          className="sm:hidden pb-8 pt-4">
+          className="sm:hidden pb-8 pt-4"
+        >
           <span>Menu</span>
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.75rem' }}>
+          style={{ bottom: '-13.75rem' }}
+        >
           {/* TODO: fix hide overflow */}
           <div className="flex flex-col pl-4 pr-8 mobile-navbar-box">
             <Link href="/interviews" className="py-4 interviews">
-              
-                Interviews
-              
+              Interviews
             </Link>
             <Link href="/stuff-we-like" className="py-4 stuff-we-like">
-              
-                Reviews
-              
+              Reviews
             </Link>
             <Link href="/radio" className="py-4 radio">
-              
-                Radio
-              
+              Radio
             </Link>
             <button
               className="py-4 text-left"
               type="button"
-              onClick={() => setInfoIsOpen(!infoIsOpen)}>
+              onClick={() => setInfoIsOpen(!infoIsOpen)}
+            >
               <span>Info</span>
             </button>
           </div>

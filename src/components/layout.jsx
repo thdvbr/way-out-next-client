@@ -93,7 +93,8 @@ export default function Layout({ preview, children }) {
             {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
             <div
               className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
-              style={{ bottom: '60px' }}>
+              style={{ bottom: '60px' }}
+            >
               {!isLoading && <Subscribe />}
               {!isLoading && randomSliceBottomAd && (
                 <>
@@ -102,7 +103,8 @@ export default function Layout({ preview, children }) {
                     ref={ref}
                     animate={animation}
                     variants={adVariants}
-                    initial="hidden">
+                    initial="hidden"
+                  >
                     <BottomAdImage
                       image={randomSliceBottomAd.adImageMobile}
                       url={randomSliceBottomAd.adUrl}
@@ -113,7 +115,8 @@ export default function Layout({ preview, children }) {
                   <Footer />
                 </>
               )}
-            </div>{' '}
+            </div>
+            {' '}
           </>
         )}
         {/* desktop */}
@@ -123,7 +126,8 @@ export default function Layout({ preview, children }) {
             initial={false}
             variants={joinVariants}
             animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'linear', duration: 0.3 }}>
+            transition={{ type: 'linear', duration: 0.3 }}
+          >
             <Subscribe />
             <Container>
               <div className="px-3">
@@ -137,7 +141,8 @@ export default function Layout({ preview, children }) {
             <div
               className={`${
                 (errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'
-              }`}>
+              }`}
+            >
               {!isLoading && randomSliceBottomAd && (
                 <>
                   <motion.div
@@ -145,7 +150,8 @@ export default function Layout({ preview, children }) {
                     ref={ref}
                     animate={animation}
                     variants={adVariants}
-                    initial="hidden">
+                    initial="hidden"
+                  >
                     <BottomAdImage
                       image={randomSliceBottomAd.adImage}
                       url={randomSliceBottomAd.adUrl}

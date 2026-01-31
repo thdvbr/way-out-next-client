@@ -35,10 +35,9 @@ import BottomAdImage from './bottom-ad-image';
 import SearchResult from './search-result';
 import SocialSharing from './social-sharing';
 
-const InfoDrawerWithoutSSR = dynamic(
-  () => import('./info-drawer'),
-  { ssr: false },
-);
+const InfoDrawerWithoutSSR = dynamic(() => import('./info-drawer'), {
+  ssr: false,
+});
 
 export {
   AlertPreview,
@@ -76,5 +75,5 @@ export {
   SideAdImage,
   BottomAdImage,
   SearchResult,
-  SocialSharing
+  SocialSharing,
 };
