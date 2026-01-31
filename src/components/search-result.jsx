@@ -33,9 +33,12 @@ const SearchResult = () => {
         .then((res) => res.json())
         .then((res) => {
           setSearchResult(res.results);
-          res.results.length === 0
-            ? setErrorMsg('Nothing Found')
-            : setErrorMsg('');
+          if (res.results.length === 0) {
+            setErrorMsg('Nothing Found');
+          } else {
+            setErrorMsg('');
+          }
+
           setIsLoading(false);
         });
     } else {
@@ -44,7 +47,7 @@ const SearchResult = () => {
       setSearchResult([]);
       //   setSearchIsOpen(false);
     }
-  }, [searchKeyword]);
+  }, [searchKeyword, setErrorMsg, setIsLoading]);
   return (
     <>
       <motion.div
@@ -71,7 +74,7 @@ const SearchResult = () => {
           ))}
         </Masonry>
       </motion.div>
-      <div className="font-title flex justify-center text-24 sm:text-33 ">
+      <div className="flex justify-center font-title text-24 sm:text-33 ">
         {isLoading && <span className="mt-14 mb-28">... Loading</span>}
         {errorMsg && <span className="mt-14 mb-28">{errorMsg}</span>}
       </div>

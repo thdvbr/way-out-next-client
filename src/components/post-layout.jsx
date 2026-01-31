@@ -19,18 +19,18 @@ import useWindowWidth from '../utils/useWindowWidth';
 
 export default function PostLayout({ preview, children }) {
   const width = useWindowWidth();
-  const infoVariants = {
-    opened: { x: width > 500 ? '-30vw' : 0 },
-    closed: { x: 0 },
-  };
+  // const infoVariants = {
+  //   opened: { x: width > 500 ? '-30vw' : 0 },
+  //   closed: { x: 0 },
+  // };
   const {
-    infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen,
+    isTop, searchIsOpen, joinIsOpen, setJoinIsOpen,
   } = useAppContext();
   useEffect(() => {
     if (preview) {
       setJoinIsOpen(true);
     }
-  }, []);
+  }, [preview, setJoinIsOpen]);
   return (
     <>
       {/* <Meta /> */}

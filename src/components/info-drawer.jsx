@@ -26,9 +26,11 @@ const useCustomMouse = () => {
   return mousePosition;
 };
 
-const InfoDrawer = ({}) => {
+const InfoDrawer = () => {
   const width = useWindowWidth();
-  const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
+  const {
+    infoIsOpen, setInfoIsOpen, pageData, staffData,
+  } = useAppContext();
   const { about, contact } = pageData;
   const { x, y } = useCustomMouse();
   const [aboutIsOpen, setAboutIsOpen] = useState(false);
@@ -59,7 +61,11 @@ const InfoDrawer = ({}) => {
   };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
-    infoIsOpen ? moveToTop() : document.body.classList.remove('no-scroll');
+    if (infoIsOpen) {
+      moveToTop();
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
   }, [infoIsOpen]);
 
   return (
@@ -81,13 +87,15 @@ const InfoDrawer = ({}) => {
               width > 768
                 ? { right: 0, maxWidth: '42vw' }
                 : { right: 0, maxWidth: '100vw' }
-            }>
+            }
+          >
             {/* TODO: Add noise to radial gradiant */}
             <div
               className="absolute top-0 p-5 radial-gradient"
               style={{
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
-              }}>
+              }}
+            >
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
                 <button type="button" onClick={() => toggleSection(false)}>
@@ -134,19 +142,22 @@ const InfoDrawer = ({}) => {
                   <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
                     <button
                       type="button"
-                      onClick={() => toggleSection('about')}>
+                      onClick={() => toggleSection('about')}
+                    >
                       {about.title}
                     </button>
                     <span className="br" />
                     <button
                       type="button"
-                      onClick={() => toggleSection('contact')}>
+                      onClick={() => toggleSection('contact')}
+                    >
                       {contact.title}
                     </button>
                     <span className="br" />
                     <button
                       type="button"
-                      onClick={() => toggleSection('staff')}>
+                      onClick={() => toggleSection('staff')}
+                    >
                       Staff
                     </button>
                   </div>

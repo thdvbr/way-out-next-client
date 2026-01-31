@@ -1,10 +1,11 @@
 import React, {
   createContext, useContext, useState, useEffect,
 } from 'react';
-import { useRouter } from 'next/router';
 
 const AppContext = createContext();
-// TODO: Separate your state into different logical pieces rather than in one big store, so a single update to any part of state does NOT trigger an update to every component in your app.
+// TODO: Separate your state into different logical pieces rather than in one big store,
+// so a single update to any part of state
+// does NOT trigger an update to every component in your app.
 export function AppWrapper({
   children,
   pageData,

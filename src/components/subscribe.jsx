@@ -47,6 +47,9 @@ const Subscribe = ({ preview }) => {
     setMessage('Got it!');
   };
 
+  // Generate a unique ID for the input so mobile/desktop don't clash
+  const inputId = 'subscribe-email';
+
   return (
     // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
     <>
@@ -58,12 +61,13 @@ const Subscribe = ({ preview }) => {
             onSubmit={subscribe}
             className="flex flex-col items-center justify-between px-3 text-center font-agrandir"
           >
-            <label htmlFor="email-input" className="flex font-title text-18">
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label htmlFor={inputId} className="flex font-title text-18">
               Join our newsletter
             </label>
             <input
               style={{ width: '80%' }}
-              id="email-input"
+              id={inputId}
               name="email"
               ref={input}
               required
@@ -87,11 +91,12 @@ const Subscribe = ({ preview }) => {
               onSubmit={subscribe}
               className="flex items-center justify-between px-3 text-center font-title text-15 ml:text-18"
             >
-              <label htmlFor="email-input" className="flex w-4/12 mr-auto">
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor={inputId} className="flex w-4/12 mr-auto">
                 Join our newsletter
               </label>
               <input
-                id="email-input"
+                id={inputId}
                 name="email"
                 ref={input}
                 required

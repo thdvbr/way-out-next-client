@@ -67,6 +67,7 @@ export const Post = ({ data = {}, preview }) => {
 
   const randomize = (array) => {
     const newArray = [...array];
+    // eslint-disable-next-line no-plusplus
     for (let i = newArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
@@ -108,7 +109,6 @@ export const Post = ({ data = {}, preview }) => {
       // ref={listInnerRef}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
     >
       <PostLayout preview={preview}>
         <div className="px-3">

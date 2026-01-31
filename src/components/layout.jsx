@@ -24,19 +24,19 @@ import { joinVariants, adVariants } from '../utils/animation';
 
 export default function Layout({ preview, children }) {
   const width = useWindowWidth();
-  const infoVariants = {
-    opened: { x: width > 500 ? '-30vw' : 0 },
-    closed: { x: 0 },
-  };
+  // const infoVariants = {
+  //   opened: { x: width > 500 ? '-30vw' : 0 },
+  //   closed: { x: 0 },
+  // };
   const {
-    infoIsOpen,
+    // infoIsOpen,
     joinIsOpen,
-    setJoinIsOpen,
+    // setJoinIsOpen,
     bottomAdData,
     errorMsg,
     isLoading,
   } = useAppContext();
-  const { asPath, pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
@@ -54,7 +54,7 @@ export default function Layout({ preview, children }) {
 
   useEffect(() => {
     setRandomSliceBottomAd(randomSlice1);
-  }, [asPath]);
+  }, [asPath, randomSlice1]);
 
   // if yOffset === 0 && color: gold
   return (

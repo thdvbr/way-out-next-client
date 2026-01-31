@@ -1,6 +1,6 @@
 import { previewClient } from '../../utils/sanity.server';
 import { postBySlugQuery } from '../../utils/queries';
-
+/* eslint-disable consistent-return */
 const handler = async (req, res) => {
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS

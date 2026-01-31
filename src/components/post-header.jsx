@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import PostTitle from './post-title';
 import PostSubtitle from './post-subtitle';
 import MainImage from './main-image';

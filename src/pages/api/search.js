@@ -1,6 +1,6 @@
 import { sanityClient } from '../../utils/sanity.server';
 import { searchQuery } from '../../utils/queries';
-
+/* eslint-disable consistent-return */
 // TODO: error handling and better search query
 const handler = async (req, res) => {
   const results = await sanityClient.fetch(searchQuery, {

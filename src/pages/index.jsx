@@ -18,7 +18,7 @@ export const Index = ({ allPosts, preview }) => {
 
   useEffect(() => {
     setErrorMsg('');
-  }, [router.asPath]);
+  }, [router.asPath, setErrorMsg]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.

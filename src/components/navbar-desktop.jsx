@@ -22,7 +22,7 @@ const NavbarDesktop = () => {
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav className="sm:py-2 ml:py-3 flex relative justify-between sm:w-full">
+      <nav className="relative flex justify-between sm:py-2 ml:py-3 sm:w-full">
         <button
           type="button"
           onClick={handleSearchOpen}
@@ -35,7 +35,7 @@ const NavbarDesktop = () => {
         <div>
           <Link
             href="/interviews"
-            className={`${router.pathname == '/interviews' && 'interviews-active'} sm:py-0 interviews`}
+            className={`${router.pathname === '/interviews' && 'interviews-active'} sm:py-0 interviews`}
           >
             Interviews
           </Link>
@@ -43,7 +43,7 @@ const NavbarDesktop = () => {
         <div>
           <Link
             href="/stuff-we-like"
-            className={`${router.pathname == '/stuff-we-like' && 'stuff-we-like-active'}  sm:py-0 stuff-we-like`}
+            className={`${router.pathname === '/stuff-we-like' && 'stuff-we-like-active'}  sm:py-0 stuff-we-like`}
           >
             Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </Link>
@@ -51,7 +51,7 @@ const NavbarDesktop = () => {
         <div>
           <Link
             href="/radio"
-            className={`${router.pathname == '/radio' && 'radio-active'} sm:py-0 radio`}
+            className={`${router.pathname === '/radio' && 'radio-active'} sm:py-0 radio`}
           >
             <span className="">Radio</span>
           </Link>
