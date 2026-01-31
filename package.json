@@ -28,7 +28,6 @@
     "next-sanity-image": "^3.1.7",
     "next-share": "^0.13.0",
     "postcss": "^8.2.13",
-    "radash": "^12.1.1",
     "react": "^19.2.4",
     "react-cookie-consent": "^7.4.1",
     "react-dom": "^19.2.4",

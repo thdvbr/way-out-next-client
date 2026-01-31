@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import _ from 'radash';
+import { sample, sampleSize } from '../utils/random';
 import ErrorPage from 'next/error';
 import {
   sanityClient,
@@ -49,7 +49,7 @@ export const Post = ({ data = {}, preview }) => {
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
-  const randomSlice1 = _.sample(bottomAdData);
+  const randomSlice1 = sample(bottomAdData);
 
   const width = useWindowWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
@@ -78,8 +78,8 @@ export const Post = ({ data = {}, preview }) => {
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
     setRandomSliceBottomAd(randomSlice1);
-    setRandomSliced2SideAds(_.sampleSize(sideAdData, 2));
-    setRandomSliced1SideAd(_.sample(sideAdData));
+    setRandomSliced2SideAds(sampleSize(sideAdData, 2));
+    setRandomSliced1SideAd(sample(sideAdData));
   }, [router.asPath]);
 
   // useEffect(() => {

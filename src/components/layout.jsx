@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { motion, useAnimation } from 'framer-motion';
-import _ from 'radash';
+import { sample } from '../utils/random';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
@@ -40,7 +40,7 @@ export default function Layout({ preview, children }) {
   } = useAppContext();
   const { asPath, pathname } = useRouter();
 
-  const randomSlice1 = _.sample(bottomAdData);
+  const randomSlice1 = sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
