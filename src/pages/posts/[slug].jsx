@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { sample, sampleSize } from '../utils/random';
+import { sample, sampleSize } from '../../utils/random';
 import ErrorPage from 'next/error';
 import {
   sanityClient,
