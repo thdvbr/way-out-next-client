@@ -36,7 +36,8 @@ const RadioItem = ({
             href={mixcloudUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 text-blue-600 underline">
+            className="mt-2 text-blue-600 underline"
+          >
             Listen on Mixcloud
           </a>
         )}

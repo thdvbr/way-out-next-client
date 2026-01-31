@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Layout, MasonryGrid, ThemeWrapper } from '../components';
+import {
+  Container, Layout, MasonryGrid, ThemeWrapper,
+} from '../components';
 import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { radioShowsQuery } from '../utils/queries';
@@ -34,7 +36,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery)
+    await getClient(preview).fetch(radioShowsQuery),
   );
   return {
     props: { allRadioShows, preview },

@@ -10,7 +10,8 @@ import { PostLayout, ThemeWrapper } from '../../components';
 export const Radio = ({ data = {}, preview }) => {
   return (
     <ThemeWrapper theme="dark">
-      <PostLayout theme="dark" />{' '}
+      <PostLayout theme="dark" />
+      {' '}
     </ThemeWrapper>
   );
 };

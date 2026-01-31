@@ -7,7 +7,9 @@ import { sanityClient } from '../utils/sanity.server';
 
 // const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const Thumbnail = ({ title, slug, image: source, width, height, type }) => {
+const Thumbnail = ({
+  title, slug, image: source, width, height, type,
+}) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     return imageUrlBuilder.width(width).height(height);
   };
@@ -23,7 +25,8 @@ const Thumbnail = ({ title, slug, image: source, width, height, type }) => {
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{ overflow: 'hidden' }}>
+      style={{ overflow: 'hidden' }}
+    >
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div>
         <Image
@@ -51,7 +54,8 @@ const Thumbnail = ({ title, slug, image: source, width, height, type }) => {
         <Link
           as={`/${type}/${slug.current || slug}`}
           href={`/${type}/[slug]`}
-          aria-label={title}>
+          aria-label={title}
+        >
           {image}
         </Link>
       ) : (
