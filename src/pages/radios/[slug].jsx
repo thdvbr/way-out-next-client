@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PostLayout, ThemeWrapper } from '../../components';
+import { PostLayout, ThemeWrapper, Footer } from '../../components';
 
 // 1. skeleton, layout
 // 2. bring the data in
@@ -10,8 +10,7 @@ import { PostLayout, ThemeWrapper } from '../../components';
 export const Radio = ({ data = {}, preview }) => {
   return (
     <ThemeWrapper theme="dark">
-      <PostLayout theme="dark" />
-      {' '}
+      <PostLayout theme="dark" /> <Footer theme="dark" />
     </ThemeWrapper>
   );
 };

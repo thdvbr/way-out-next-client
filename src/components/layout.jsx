@@ -112,7 +112,7 @@ export default function Layout({ preview, children, theme = 'light' }) {
                     />
                   </motion.div>
 
-                  <Footer />
+                  <Footer theme={theme} />
                 </>
               )}
             </div>{' '}
@@ -154,7 +154,7 @@ export default function Layout({ preview, children, theme = 'light' }) {
                       width={1500}
                     />
                   </motion.div>
-                  <Footer />
+                  <Footer theme={theme} />
                 </>
               )}
             </div>
