@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Layout, MasonryGrid } from '../components';
+import { Container, Layout, MasonryGrid, ThemeWrapper } from '../components';
 import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { radioShowsQuery } from '../utils/queries';
@@ -15,17 +15,19 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
   }, [router.asPath]);
   return (
     <>
-      <Layout preview={preview} bottomAds={bottomAds}>
-        <Container>
-          {allRadioShows && (
-            <MasonryGrid
-              type="radios"
-              data={allRadioShows}
-              ItemComponent={RadioItem}
-            />
-          )}
-        </Container>
-      </Layout>
+      <ThemeWrapper theme="dark">
+        <Layout preview={preview} bottomAds={bottomAds}>
+          <Container>
+            {allRadioShows && (
+              <MasonryGrid
+                type="radios"
+                data={allRadioShows}
+                ItemComponent={RadioItem}
+              />
+            )}
+          </Container>
+        </Layout>
+      </ThemeWrapper>
     </>
   );
 };
