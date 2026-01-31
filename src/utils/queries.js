@@ -27,6 +27,18 @@ previewImage,
 "slug": slug.current,
 `;
 
+const radioFields = `  
+  _id,
+  title,
+  subtitle,
+  slug,
+  heroImage,
+  mixcloudUrl,
+  tracklist,
+publishedAt,
+  description,
+  tags `;
+
 const pageFields = `
 _id,
 name,
@@ -121,6 +133,10 @@ export const searchQuery = `
   ${postPreviewFields}
 }`;
 
+export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc) {
+${radioFields}
+}`;
+
 const moreInterviewsQuery = (posts) => {
   return `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
@@ -148,8 +164,20 @@ const moreAllPostsQuery = (posts) => {
   }`;
 };
 
+const moreRadioQuery = (posts) => {
+   const lastDate = posts[posts.length - 1]?.publishedAt;
+  return `
+      *[_type == "radio" && publishedAt < "${lastDate}"]
+      | order(publishedAt desc)[0...8] {
+        ${radioFields}
+      }
+    `;
+}
+
 export const getMoreQuery = (type, posts) => {
   switch (type) {
+    case 'radio':
+      return moreRadioQuery(posts);
     case 'stuffWeLike':
       return moreStuffWeLikeQuery(posts);
     case 'interviews':

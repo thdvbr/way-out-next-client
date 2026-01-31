@@ -13,7 +13,7 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const MasonryGrid = ({ data, type }) => {
+const MasonryGrid = ({ data, type, ItemComponent = MasonryItem }) => {
   // const { query, searchResult } = useAppContext();
   const [posts, setPosts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
@@ -51,15 +51,7 @@ const MasonryGrid = ({ data, type }) => {
             columnClassName="my-masonry-grid_column"
           >
             {posts.map((post) => (
-              <motion.div key={post.slug} variants={cardVariants}>
-                <MasonryItem
-                  key={post.slug}
-                  title={post.title}
-                  subtitle={post.subtitle}
-                  previewImage={post.previewImage}
-                  slug={post.slug}
-                />
-              </motion.div>
+              <ItemComponent key={post._id} {...post} />
             ))}
           </Masonry>
         </InfiniteScroll>
