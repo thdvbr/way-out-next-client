@@ -54,7 +54,7 @@ export default function PostLayout({ preview, children, theme }) {
           <>
             <div className="sticky top-0 z-30">
               <Container>
-                <NavbarMobile />
+                <NavbarMobile theme={theme} />
                 <InfoDrawer />
               </Container>
             </div>
