@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { MdClose } from 'react-icons/md';
-import { Content, Staff } from './index';
+import Content from './content';
+import Staff from './staff';
 import useWindowWidth from '../utils/useWindowWidth';
 
 // import useMouse from '@react-hook/mouse-position';
@@ -25,7 +26,7 @@ const useCustomMouse = () => {
   return mousePosition;
 };
 
-const InfoDrawer = ({ preview }) => {
+const InfoDrawer = ({}) => {
   const width = useWindowWidth();
   const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
   const { about, contact } = pageData;
@@ -37,29 +38,11 @@ const InfoDrawer = ({ preview }) => {
   const staffsOdd = staffData.filter((e, i) => i % 2);
   const staffsEven = staffData.filter((e, i) => !(i % 2));
 
-  const toggleAbout = () => {
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
-    setAboutIsOpen(!aboutIsOpen);
-  };
-
-  const toggleContact = () => {
-    aboutIsOpen && toggleAbout();
-    staffIsOpen && toggleStaff();
-    setContactIsOpen(!contactIsOpen);
-  };
-
-  const toggleStaff = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    setStaffIsOpen(!staffIsOpen);
-  };
-
-  const toggleInfo = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
-    setInfoIsOpen(!infoIsOpen);
+  const toggleSection = (section) => {
+    setAboutIsOpen(section === 'about' ? !aboutIsOpen : false);
+    setContactIsOpen(section === 'contact' ? !contactIsOpen : false);
+    setStaffIsOpen(section === 'staff' ? !staffIsOpen : false);
+    setInfoIsOpen(section ? true : !infoIsOpen);
   };
   // const target = useRef(null);
   // const mouse = useMouse(target, {
@@ -107,7 +90,7 @@ const InfoDrawer = ({ preview }) => {
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
-                <button type="button" onClick={toggleInfo}>
+                <button type="button" onClick={() => toggleSection(false)}>
                   <MdClose size={32} />
                 </button>
               </div>
@@ -149,15 +132,21 @@ const InfoDrawer = ({ preview }) => {
                 </div>
                 <div className="w-4/12">
                   <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
-                    <button type="button" onClick={toggleAbout}>
+                    <button
+                      type="button"
+                      onClick={() => toggleSection('about')}>
                       {about.title}
                     </button>
-                    <span className="br"></span>
-                    <button type="button" onClick={toggleContact}>
+                    <span className="br" />
+                    <button
+                      type="button"
+                      onClick={() => toggleSection('contact')}>
                       {contact.title}
                     </button>
-                    <span className="br"></span>
-                    <button type="button" onClick={toggleStaff}>
+                    <span className="br" />
+                    <button
+                      type="button"
+                      onClick={() => toggleSection('staff')}>
                       Staff
                     </button>
                   </div>
@@ -174,7 +163,7 @@ const InfoDrawer = ({ preview }) => {
               opacity: 0,
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-            onClick={toggleInfo}
+            onClick={() => toggleSection(true)}
             className="fixed top-0 left-0 flex items-center justify-center w-full h-full px-5 bg-transparent"
           />
         </>
