@@ -24,7 +24,7 @@ import {
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
 
-export default function Layout({ preview, children }) {
+export default function Layout({ preview, children, theme = 'light' }) {
   const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -129,7 +129,7 @@ export default function Layout({ preview, children }) {
             <Subscribe />
             <Container>
               <div className="px-3">
-                <Header />
+                <Header theme={theme} />
                 <SectionSeparator />
               </div>
               <InfoDrawer />

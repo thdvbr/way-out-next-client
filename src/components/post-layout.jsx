@@ -19,7 +19,7 @@ import {
 import { joinVariants } from '../utils/animation';
 import useWindowWidth from '../utils/useWindowWidth';
 
-export default function PostLayout({ preview, children }) {
+export default function PostLayout({ preview, children, theme }) {
   const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -72,7 +72,7 @@ export default function PostLayout({ preview, children }) {
 
             <Container>
               <div className="px-3">
-                <Header />
+                <Header theme={theme} />
               </div>
               <InfoDrawer />
               <div className="sticky z-30 top-80">

@@ -16,7 +16,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
   return (
     <>
       <ThemeWrapper theme="dark">
-        <Layout preview={preview} bottomAds={bottomAds}>
+        <Layout preview={preview} bottomAds={bottomAds} theme="dark">
           <Container>
             {allRadioShows && (
               <MasonryGrid
