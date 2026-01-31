@@ -35,6 +35,7 @@ import SideAdImage from './side-ad-image';
 import BottomAdImage from './bottom-ad-image';
 import SearchResult from './search-result';
 import SocialSharing from './social-sharing';
+import ThemeWrapper from './theme-wrapper';
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -78,4 +79,5 @@ export {
   BottomAdImage,
   SearchResult,
   SocialSharing,
+  ThemeWrapper
 };
