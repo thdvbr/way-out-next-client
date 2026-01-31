@@ -133,7 +133,7 @@ export default function Layout({ preview, children, theme = 'light' }) {
                 <SectionSeparator />
               </div>
               <InfoDrawer />
-              <NavbarDesktop />
+              <NavbarDesktop theme={theme} />
             </Container>
             <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
             <div

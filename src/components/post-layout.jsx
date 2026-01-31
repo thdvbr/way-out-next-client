@@ -78,7 +78,7 @@ export default function PostLayout({ preview, children, theme }) {
               <div className="sticky z-30 top-80">
                 {/* need to figure out how to change colours to gold when its preview mode  */}
                 <div style={{ color: isTop && '#8A7536' }}>
-                  <NavbarDesktop />
+                  <NavbarDesktop theme={theme} />
                   <Link
                     href="/"
                     className="absolute left-0 right-0 flex justify-center top-18">

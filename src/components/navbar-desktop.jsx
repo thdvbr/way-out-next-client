@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useAppContext } from '../context/state';
 import SearchBar from './search-bar';
 
-const NavbarDesktop = () => {
+const NavbarDesktop = ({ theme = 'light' }) => {
   const {
     searchIsOpen,
     setSearchIsOpen,
@@ -15,6 +15,9 @@ const NavbarDesktop = () => {
     setInfoIsOpen,
     setJoinIsOpen,
   } = useAppContext();
+
+  const isDark = theme === 'dark';
+  const borderClass = isDark ? 'border-t border-b border-white' : '';
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
@@ -24,7 +27,8 @@ const NavbarDesktop = () => {
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav className="relative flex justify-between sm:py-2 ml:py-3 sm:w-full">
+      <nav
+        className={`relative flex justify-between sm:py-2 ml:py-3 sm:w-full ${borderClass}`}>
         <button
           type="button"
           onClick={handleSearchOpen}
