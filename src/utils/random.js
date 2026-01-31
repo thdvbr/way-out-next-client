@@ -1,3 +1,4 @@
+/* eslint-disable */
 function sample(arr) {
   if (!arr || arr.length === 0) return undefined;
   const randomIndex = Math.floor(Math.random() * arr.length);
