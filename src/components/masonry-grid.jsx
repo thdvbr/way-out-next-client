@@ -51,7 +51,7 @@ const MasonryGrid = ({ data, type, ItemComponent = MasonryItem }) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {posts.map((post) => (
-              <ItemComponent key={post._id} {...post} />
+              <ItemComponent key={post._id} {...post} type={type} />
             ))}
           </Masonry>
         </InfiniteScroll>

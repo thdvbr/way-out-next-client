@@ -7,7 +7,6 @@ import { radioShowsQuery } from '../utils/queries';
 import { useAppContext } from '../context/state';
 
 export const Radio = ({ allRadioShows, preview, bottomAds }) => {
-  console.log(allRadioShows);
   const router = useRouter();
   const { setErrorMsg } = useAppContext();
 
@@ -20,7 +19,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
         <Container>
           {allRadioShows && (
             <MasonryGrid
-              type="radio"
+              type="radios"
               data={allRadioShows}
               ItemComponent={RadioItem}
             />
@@ -33,7 +32,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery),
+    await getClient(preview).fetch(radioShowsQuery)
   );
   return {
     props: { allRadioShows, preview },

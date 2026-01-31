@@ -2,20 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import Thumbnail from './thumbnail';
 
-const MasonryItem = ({
-  title, subtitle, previewImage, slug,
-}) => {
+const MasonryItem = ({ title, subtitle, previewImage, slug, type }) => {
   return (
     <div className="pb-1 sm:pb-0 sm:py-2 preview-block">
       <div className="mb-4 sm:mb-2">
-        <Thumbnail slug={slug} title={title} image={previewImage} />
+        <Thumbnail slug={slug} title={title} image={previewImage} type={type} />
       </div>
       <div className="max-w-xl my-5 mr-5 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">
         <Link
-          as={`/posts/${slug}`}
-          href="/posts/[slug]"
-          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
-        >
+          as={`/${type}/${slug.current || slug}`}
+          href={`/${type}/[slug]`}
+          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
           {title}
         </Link>
         <span>

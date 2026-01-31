@@ -13,11 +13,14 @@ const RadioItem = ({
   slug,
   // description,
   publishedAt,
+  type,
 }) => {
   return (
     <div className="">
       <div className="">
-        {heroImage && <Thumbnail slug={slug} title={title} image={heroImage} />}
+        {heroImage && (
+          <Thumbnail slug={slug} title={title} image={heroImage} type={type} />
+        )}
       </div>
       <div className="flex flex-col flex-grow p-4">
         <p>{formatDate(publishedAt)}</p>
@@ -33,8 +36,7 @@ const RadioItem = ({
             href={mixcloudUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 text-blue-600 underline"
-          >
+            className="mt-2 text-blue-600 underline">
             Listen on Mixcloud
           </a>
         )}
