@@ -33,7 +33,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery)
+    await getClient(preview).fetch(radioShowsQuery),
   );
   return {
     props: { allRadioShows, preview },
