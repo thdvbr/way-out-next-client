@@ -124,8 +124,8 @@ export const searchQuery = `
 const moreInterviewsQuery = (posts) => {
   return `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
-    posts.length
-  }...${posts.length + 5}] {
+  posts.length
+}...${posts.length + 5}] {
   ${postPreviewFields}
 }`;
 };
@@ -133,8 +133,8 @@ const moreInterviewsQuery = (posts) => {
 const moreStuffWeLikeQuery = (posts) => {
   return `
   *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [${
-    posts.length
-  }...${posts.length + 5}] {
+  posts.length
+}...${posts.length + 5}] {
       ${postPreviewFields}
   }`;
 };
@@ -142,8 +142,8 @@ const moreStuffWeLikeQuery = (posts) => {
 const moreAllPostsQuery = (posts) => {
   return `
   *[_type == "post"] | order(date desc, _updatedAt desc) | [${
-    posts.length + 1
-  }...${posts.length + 6}] {
+  posts.length + 1
+}...${posts.length + 6}] {
     ${postPreviewFields}
   }`;
 };

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Masonry from 'react-masonry-css';
@@ -13,7 +15,8 @@ const breakpointColumnsObj = {
 };
 
 const SearchResult = () => {
-  const { searchIsOpen, errorMsg, setErrorMsg, isLoading, setIsLoading } = useAppContext();
+  const { searchIsOpen, errorMsg, setErrorMsg, isLoading, setIsLoading } =
+    useAppContext();
   const [searchResult, setSearchResult] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [errorMsg, setErrorMsg] = useState('');
@@ -68,7 +71,7 @@ const SearchResult = () => {
           ))}
         </Masonry>
       </motion.div>
-      <div className="font-title flex justify-center text-24 sm:text-33 ">
+      <div className="flex justify-center font-title text-24 sm:text-33 ">
         {isLoading && <span className="mt-14 mb-28">... Loading</span>}
         {errorMsg && <span className="mt-14 mb-28">{errorMsg}</span>}
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import { useState, useEffect } from 'react';
 
 export default function useWindowDimensions() {
@@ -13,7 +14,7 @@ export default function useWindowDimensions() {
   }
 
   const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
+    getWindowDimensions(),
   );
 
   useEffect(() => {

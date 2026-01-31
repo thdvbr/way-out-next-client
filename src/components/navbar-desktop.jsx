@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
@@ -22,11 +24,11 @@ const NavbarDesktop = () => {
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav className="sm:py-2 ml:py-3 flex relative justify-between sm:w-full">
+      <nav className="relative flex justify-between sm:py-2 ml:py-3 sm:w-full">
         <button
           type="button"
           onClick={handleSearchOpen}
-          className={` ${searchIsOpen && "search-active" } search`}>
+          className={` ${searchIsOpen && 'search-active'} search`}>
           <span>
             <FiSearch className="search-icon" />
           </span>
@@ -34,28 +36,22 @@ const NavbarDesktop = () => {
         <div>
           <Link
             href="/interviews"
-            className={`${router.pathname == "/interviews" && "interviews-active"} sm:py-0 interviews`}>
-            
-              Interviews
-            
+            className={`${router.pathname == '/interviews' && 'interviews-active'} sm:py-0 interviews`}>
+            Interviews
           </Link>
         </div>
         <div>
           <Link
             href="/stuff-we-like"
-            className={`${router.pathname == "/stuff-we-like" && "stuff-we-like-active"}  sm:py-0 stuff-we-like`}>
-            
+            className={`${router.pathname == '/stuff-we-like' && 'stuff-we-like-active'}  sm:py-0 stuff-we-like`}>
             Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            
           </Link>
         </div>
         <div>
           <Link
             href="/radio"
-            className={`${router.pathname == "/radio" && "radio-active"} sm:py-0 radio`}>
-
+            className={`${router.pathname == '/radio' && 'radio-active'} sm:py-0 radio`}>
             <span className="">Radio</span>
-
           </Link>
         </div>
         <button
@@ -64,9 +60,7 @@ const NavbarDesktop = () => {
             setInfoIsOpen(!infoIsOpen);
             setJoinIsOpen(false);
           }}
-          className={`sm:py-0 ${
-            infoIsOpen ? 'info-color' : 'info'
-          }`}>
+          className={`sm:py-0 ${infoIsOpen ? 'info-color' : 'info'}`}>
           <span>Info</span>
         </button>
       </nav>

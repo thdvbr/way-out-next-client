@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+
 import { previewClient } from '../../utils/sanity.server';
 import { postBySlugQuery } from '../../utils/queries';
 

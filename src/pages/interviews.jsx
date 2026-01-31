@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
@@ -14,9 +14,9 @@ import { useAppContext } from '../context/state';
 export const Interviews = ({ allPosts, preview }) => {
   const router = useRouter();
   const { setErrorMsg } = useAppContext();
-  useEffect(() => { 
+  useEffect(() => {
     setErrorMsg('');
-}, [router.asPath])
+  }, [router.asPath]);
   return (
     <>
       <Layout preview={preview}>
@@ -32,11 +32,11 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery)
+    await getClient(preview).fetch(interviewsQuery),
   );
   return {
     props: { allPosts, preview },
-    revalidate : 10
+    revalidate: 10,
   };
 };
 

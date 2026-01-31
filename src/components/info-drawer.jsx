@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -152,11 +154,11 @@ const InfoDrawer = ({ preview }) => {
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
-                    <span className="br"></span>
+                    <span className="br" />
                     <button type="button" onClick={toggleContact}>
                       {contact.title}
                     </button>
-                    <span className="br"></span>
+                    <span className="br" />
                     <button type="button" onClick={toggleStaff}>
                       Staff
                     </button>

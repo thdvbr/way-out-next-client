@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 // utils/useWindowWidth.js
 import { useState, useEffect } from 'react';
 

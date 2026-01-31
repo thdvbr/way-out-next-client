@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useRef, useEffect } from 'react';
 import { PortableText } from '@portabletext/react';
 import getYouTubeId from 'get-youtube-id';

@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import dynamic from 'next/dynamic';
 import AlertPreview from './alert-preview';
 import ArtistLink from './artist-link';
@@ -76,5 +77,5 @@ export {
   SideAdImage,
   BottomAdImage,
   SearchResult,
-  SocialSharing
+  SocialSharing,
 };

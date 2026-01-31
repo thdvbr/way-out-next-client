@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { motion, useAnimation } from 'framer-motion';

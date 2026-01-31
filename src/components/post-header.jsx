@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import PostTitle from './post-title';

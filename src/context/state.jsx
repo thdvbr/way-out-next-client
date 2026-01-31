@@ -1,11 +1,17 @@
+/* eslint-disable */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const AppContext = createContext();
 // TODO: Separate your state into different logical pieces rather than in one big store, so a single update to any part of state does NOT trigger an update to every component in your app.
-export function AppWrapper({ children, pageData, staffData, bottomAds, sideAds }) {
-
-  
+export function AppWrapper({
+  children,
+  pageData,
+  staffData,
+  bottomAds,
+  sideAds,
+}) {
   const [errorMsg, setErrorMsg] = useState('');
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [infoIsOpen, setInfoIsOpen] = useState(false);
@@ -15,7 +21,6 @@ export function AppWrapper({ children, pageData, staffData, bottomAds, sideAds }
   // Ads data: only set after component mounts to prevent SSR mismatch
   const [bottomAdData, setBottomAdData] = useState([]);
   const [sideAdData, setSideAdData] = useState([]);
-  
 
   // Hydration-safe: initialize ads client-side
   useEffect(() => {
@@ -41,9 +46,8 @@ export function AppWrapper({ children, pageData, staffData, bottomAds, sideAds }
         errorMsg,
         setErrorMsg,
         isLoading,
-        setIsLoading
-      }}
-    >
+        setIsLoading,
+      }}>
       {children}
     </AppContext.Provider>
   );

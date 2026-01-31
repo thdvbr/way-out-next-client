@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useRef, useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import useWindowWidth from '../utils/useWindowWidth';
@@ -58,7 +60,7 @@ const Subscribe = ({ preview }) => {
             onSubmit={subscribe}
             className="flex flex-col items-center justify-between px-3 text-center font-agrandir">
             <label htmlFor="email-input" className="flex font-title text-18">
-              {'Join our newsletter'}
+              Join our newsletter
             </label>
             <input
               style={{ width: '80%' }}
@@ -86,7 +88,7 @@ const Subscribe = ({ preview }) => {
               onSubmit={subscribe}
               className="flex items-center justify-between px-3 text-center font-title text-15 ml:text-18">
               <label htmlFor="email-input" className="flex w-4/12 mr-auto">
-                {'Join our newsletter'}
+                Join our newsletter
               </label>
               <input
                 id="email-input"

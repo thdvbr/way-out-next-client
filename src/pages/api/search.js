@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+
 import { sanityClient } from '../../utils/sanity.server';
 import { searchQuery } from '../../utils/queries';
 

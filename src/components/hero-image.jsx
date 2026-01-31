@@ -23,7 +23,8 @@ const HeroImage = ({ title, slug, image: source }) => {
       {/* desktop */}
       {width > 768 ? (
         <div
-          style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+          style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}
+        >
           <Image
             priority
             src={imageProps.src}
@@ -37,7 +38,8 @@ const HeroImage = ({ title, slug, image: source }) => {
       ) : (
         // tablet
         <div
-          style={{ position: 'relative', width: '100%', aspectRatio: '10/7' }}>
+          style={{ position: 'relative', width: '100%', aspectRatio: '10/7' }}
+        >
           <Image
             priority
             src={imageProps.src}
