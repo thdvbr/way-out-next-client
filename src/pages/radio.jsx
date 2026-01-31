@@ -18,9 +18,6 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
     <>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-<<<<<<< HEAD
-          <div className="mt-4 mx-4 radio-placeholder h-screen font-main text-30" />
-=======
           {allRadioShows && (
             <MasonryGrid
               type="radio"
@@ -28,7 +25,6 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
               ItemComponent={RadioItem}
             />
           )}
->>>>>>> radio
         </Container>
       </Layout>
     </>
@@ -37,7 +33,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery)
+    await getClient(preview).fetch(radioShowsQuery),
   );
   return {
     props: { allRadioShows, preview },

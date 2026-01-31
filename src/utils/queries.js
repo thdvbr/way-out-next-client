@@ -165,14 +165,14 @@ const moreAllPostsQuery = (posts) => {
 };
 
 const moreRadioQuery = (posts) => {
-   const lastDate = posts[posts.length - 1]?.publishedAt;
+  const lastDate = posts[posts.length - 1]?.publishedAt;
   return `
       *[_type == "radio" && publishedAt < "${lastDate}"]
       | order(publishedAt desc)[0...8] {
         ${radioFields}
       }
     `;
-}
+};
 
 export const getMoreQuery = (type, posts) => {
   switch (type) {

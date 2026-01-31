@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { getClient } from '../utils/sanity.server';
 import MasonryItem from './masonry-item';
 import { getMoreQuery } from '../utils/queries';
-import { cardVariants } from '../utils/animation';
 
 const breakpointColumnsObj = {
   default: 4,

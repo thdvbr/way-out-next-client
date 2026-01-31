@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-export const formatDate =(isoString) => {
+export const formatDate = (isoString) => {
   if (!isoString) return ''; // handle empty or undefined
 
   const date = new Date(isoString);
@@ -9,4 +9,4 @@ export const formatDate =(isoString) => {
   const year = date.getUTCFullYear();
 
   return `${day}.${month}.${year}`;
-}
+};
