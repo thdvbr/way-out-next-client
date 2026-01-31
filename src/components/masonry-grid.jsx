@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Masonry from 'react-masonry-css';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import _ from 'lodash';
 import { motion } from 'framer-motion';
 import { getClient } from '../utils/sanity.server';
 import MasonryItem from './masonry-item';

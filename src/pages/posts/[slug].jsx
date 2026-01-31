@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import _ from 'radash';
 import ErrorPage from 'next/error';
-import _ from 'lodash';
 import {
   sanityClient,
   getClient,
@@ -108,8 +108,7 @@ export const Post = ({ data = {}, preview }) => {
     <motion.div
       // ref={listInnerRef}
       exit={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}>
+      animate={{ opacity: 1 }}>
       <PostLayout preview={preview}>
         <div className="px-3">
           {post && (

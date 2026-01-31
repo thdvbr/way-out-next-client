@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { PortableText } from '@portabletext/react';
 import getYouTubeId from 'get-youtube-id';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import _ from 'lodash';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { urlForImage } from '../utils/sanity';
 import { SideAdImage } from './index';

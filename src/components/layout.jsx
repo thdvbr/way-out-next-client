@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { motion, useAnimation } from 'framer-motion';
-import _ from 'lodash';
+import _ from 'radash';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
