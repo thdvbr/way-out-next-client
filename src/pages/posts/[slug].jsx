@@ -183,7 +183,7 @@ export const Post = ({ data = {}, preview }) => {
           )}
         </motion.div>
       )}
-      <Footer theme={theme} />
+      <Footer />
     </motion.div>
   );
 };
