@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: false,
 
   images: {
     domains: ['cdn.sanity.io'], // keep your existing Sanity domain
@@ -13,7 +14,9 @@ const nextConfig = {
     'next-sanity-image',
     'framer-motion',
     'react-infinite-scroll-component',
-    'react-masonry-css'// add any other libraries causing "Cannot call a class as a function"
+    'react-masonry-css',// add any other libraries causing "Cannot call a class as a function"
+     'react-lite-youtube-embed'
+
   ],
 };
 
