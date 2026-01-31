@@ -87,7 +87,7 @@ export default function Layout({ preview, children, theme = 'light' }) {
             {' '}
             <div className="sticky top-0 z-30">
               <Container>
-                <NavbarMobile />
+                <NavbarMobile theme={theme} />
                 <InfoDrawer />
               </Container>
             </div>

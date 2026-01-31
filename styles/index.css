@@ -161,6 +161,13 @@ body {
   background: #ffffff;
 }
 
+.mobile-navbar-box-dark {
+  border-radius: 3.71271px 0px 0px 3.71271px;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  background: #000000;
+}
+
 .info-box {
   /* background: linear-gradient(180deg, #c4c4c4 24.78%, #ffff00 100%); */
   box-sizing: border-box;
