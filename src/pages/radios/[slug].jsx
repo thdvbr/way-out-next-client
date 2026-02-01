@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import ErrorPage from 'next/error';
 import { RadioLayout, ThemeWrapper, Footer, Thumbnail } from '../../components';
+import { sanityClient, getClient } from '../../utils/sanity.server';
+import { radioQuery, radioSlugsQuery } from '../../utils/queries';
+import { usePreviewSubscription } from '../../utils/sanity';
 
 // 1. skeleton, layout
 // 2. bring the data in
@@ -7,7 +12,21 @@ import { RadioLayout, ThemeWrapper, Footer, Thumbnail } from '../../components';
 // 4. state
 // 5. desktop / mobile?
 
-export const Radio = ({ data = {}, preview }) => {
+function Radio({ data = {}, preview }) {
+  const router = useRouter();
+  const slug = data?.radio?.slug;
+  const { data: previewData } = usePreviewSubscription(radioQuery, {
+    params: { slug },
+    initialData: data.radio,
+    enabled: preview && !!slug,
+  });
+  // !!slug === true only if slug exists
+  // choose the source of truth
+  const radio = preview ? previewData : data.radio;
+  if (!router.isFallback && !slug) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
     <ThemeWrapper theme="dark">
       <RadioLayout theme="dark" preview={preview}>
@@ -25,9 +44,9 @@ export const Radio = ({ data = {}, preview }) => {
           <section className="flex flex-col flex-1 w-full min-h-0 md:w-1/2 md:order-1">
             {/* Fixed Metadata */}
             <div className="flex-shrink-0 bg-blue-700">
-              <div className="mb-4">date</div>
-              <h1 className="mb-2 text-4xl">title</h1>
-              <h2 className="mb-4 text-xl">subtitle</h2>
+              <div className="mb-4">{radio.publishedAt}</div>
+              <h1 className="mb-2 text-4xl">{radio.title}</h1>
+              <h2 className="mb-4 text-xl">{radio.subtitle}</h2>
               <div className="hidden mb-4 md:block">tags</div>
               <hr className="mb-6 border-white" />
             </div>
@@ -100,6 +119,30 @@ export const Radio = ({ data = {}, preview }) => {
       </RadioLayout>
     </ThemeWrapper>
   );
-};
+}
 
+export async function getStaticProps({ params, preview = false }) {
+  const radio = await getClient(preview).fetch(radioQuery, {
+    slug: params.slug,
+  });
+  if (!radio) {
+    return { notFound: true };
+  }
+
+  return {
+    props: {
+      preview,
+      data: { radio },
+    },
+    revalidate: 10,
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(radioSlugsQuery);
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  };
+}
 export default Radio;
