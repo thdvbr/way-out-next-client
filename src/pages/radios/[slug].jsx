@@ -66,7 +66,7 @@ function Radio({ data = {}, preview }) {
           <section className="flex flex-col flex-1 w-full min-h-0 md:w-1/2 md:order-1">
             {/* Fixed Metadata */}
             <div className="flex-shrink-0 bg-blue-700">
-              <div className="mb-4">{radio.publishedAt}</div>
+              <div className="mb-4">{`Episode ${radio.episodeNumber}`}</div>
               <h1 className="mb-2 text-4xl">{radio.title}</h1>
               <h2 className="mb-4 text-xl">{radio.subtitle}</h2>
               {radio.tags && (

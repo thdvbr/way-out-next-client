@@ -37,6 +37,7 @@ previewImage,
 
 const radioFields = `  
   _id,
+  episodeNumber,
   title,
   subtitle,
   slug,
