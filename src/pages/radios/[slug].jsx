@@ -12,24 +12,43 @@ export const Radio = ({ data = {}, preview }) => {
     <ThemeWrapper theme="dark">
       <RadioLayout theme="dark" preview={preview}>
         <div
-          className="flex flex-col gap-8 lg:flex-row"
+          className="flex flex-col gap-8 md:flex-row"
           style={{ height: '400px' }}>
           {/* TODO: Calculate height for this container you need fixed heigh  */}
+
+          {/* Right Section- Thumbnail - first on mobile, second on desktop*/}
+          <section className="flex-shrink-0 w-full bg-pink-500 md:w-1/2 md:order-2">
+            <div>thumbnail</div>
+          </section>
           {/* Left Section */}
-          {/* <!-- Main content area --> */}
-          <section className="flex flex-col w-full h-full lg:w-1/2">
-            <div className="flex-shrink-0 bg-blue-700 fixedmetadata">
+          {/* Content Section - second on mobile, first on desktop */}
+          <section className="flex flex-col flex-1 w-full min-h-0 md:w-1/2 md:order-1">
+            {/* Fixed Metadata */}
+            <div className="flex-shrink-0 bg-blue-700">
               <div className="mb-4">date</div>
               <h1 className="mb-2 text-4xl">title</h1>
               <h2 className="mb-4 text-xl">subtitle</h2>
-              <div className="mb-4">tags</div>
+              <div className="hidden mb-4 md:block">tags</div>
               <hr className="mb-6 border-white" />
             </div>
+            {/* Play Button - separate on mobile, side-by-side on desktop */}
+            <div className="flex-shrink-0 mb-6 md:hidden">
+              <button className="w-full py-3 text-black bg-white">play</button>
+            </div>
+            {/* Tags - Visible on mobile */}
+            <div className="md:hidden">tags tags tags</div>
 
-            {/* Scrollable Container */}
+            {/* Description - separate on mobile */}
+            <div className="flex-shrink-0 mb-6 md:hidden">
+              <p>description</p>
+              <hr className="mt-6 border-white" />
+            </div>
+
+            {/* Scrollable Container - contains play+description on desktop, 
+            only tracklist on mobile */}
             <div className="flex-1 overflow-y-auto bg-green-500">
-              {/* Play Button + Description Side by Side */}
-              <div className="flex gap-6 mb-6">
+              {/* Play Button + Description Side by Side - DESKTOP ONLY */}
+              <div className="flex hidden gap-6 mb-6 md:flex">
                 <button className="px-6 py-3 text-black bg-white whitespace-nowrap h-fit">
                   play
                 </button>
@@ -41,7 +60,7 @@ export const Radio = ({ data = {}, preview }) => {
 
               <hr className="my-6 border-white" />
 
-              {/* Tracklist */}
+              {/* Tracklist - scrollable on both */}
               <div className="space-y-4">
                 <h3 className="mb-4 text-2xl">Tracklist</h3>
                 <div className="space-y-2">
@@ -71,11 +90,6 @@ export const Radio = ({ data = {}, preview }) => {
                 {/* Repeat for more tracks */}
               </div>
             </div>
-          </section>
-
-          {/* Right Section */}
-          <section className="w-full bg-pink-500 lg:w-1/2">
-            <div>thumbnail</div>
           </section>
         </div>
 
