@@ -36,6 +36,7 @@ import BottomAdImage from './bottom-ad-image';
 import SearchResult from './search-result';
 import SocialSharing from './social-sharing';
 import ThemeWrapper from './theme-wrapper';
+import RadioLayout from './radio-layout'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -79,5 +80,6 @@ export {
   BottomAdImage,
   SearchResult,
   SocialSharing,
-  ThemeWrapper
+  ThemeWrapper,
+  RadioLayout
 };
