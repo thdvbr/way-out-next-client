@@ -185,13 +185,11 @@ const moreAllPostsQuery = (posts) => {
 };
 
 const moreRadioQuery = (posts) => {
-  const lastDate = posts[posts.length - 1]?.publishedAt;
   return `
-      *[_type == "radio" && publishedAt < "${lastDate}"]
-      | order(publishedAt desc)[0...8] {
-        ${radioFields}
-      }
-    `;
+*[_type == "radio"] | order(publishedAt desc) [${posts.length}...${posts.length + 8}] {
+  ${radioFields}
+}
+`;
 };
 
 // UPDATED: Use categoryTitle instead of type
