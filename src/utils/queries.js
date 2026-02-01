@@ -126,6 +126,15 @@ export const postBySlugQuery = `
   ${postFields}
 }
 `;
+export const radioQuery = `
+*[_type == "radio" && slug.current == $slug]
+  | order(publishedAt desc, _updatedAt desc)[0] {
+    ${radioFields}
+  }
+`;
+export const radioSlugsQuery = `
+*[_type == "radio" && defined(slug.current)][].slug.current
+`;
 
 export const interviewsQuery = `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc)  | [0...8] {
@@ -145,6 +154,7 @@ export const searchQuery = `
 export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc, _updatedAt desc) {
 ${radioFields}
 }`;
+
 
 const moreInterviewsQuery = (posts) => {
   return `
