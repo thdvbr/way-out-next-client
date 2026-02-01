@@ -53,9 +53,9 @@ export const Post = ({ data = {}, preview }) => {
 
   const width = useWindowWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
-  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
   const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
-  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState({});
+  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState(null);
 
   useEffect(() => {
     if (inView) {
@@ -76,10 +76,10 @@ export const Post = ({ data = {}, preview }) => {
   };
 
   useEffect(() => {
-    setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
-    setRandomSliceBottomAd(randomSlice1);
-    setRandomSliced2SideAds(sampleSize(sideAdData, 2));
-    setRandomSliced1SideAd(sample(sideAdData));
+    setRandomSlicedMorePosts(randomize(morePosts || []).slice(1, 5));
+    setRandomSliceBottomAd(randomSlice1 || null);
+    setRandomSliced2SideAds(sampleSize(sideAdData || [], 2));
+    setRandomSliced1SideAd(sample(sideAdData || null));
   }, [router.asPath]);
 
   // useEffect(() => {

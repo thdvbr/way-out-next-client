@@ -116,7 +116,11 @@ const postComponents = {
   },
 };
 
-export default function PostBody({ body, adShortPost, adLongPost }) {
+export default function PostBody({
+  body,
+  adShortPost = null,
+  adLongPost = [],
+}) {
   const [postHeight, setPostHeight] = useState(0);
   const { height, width } = useWindowDimensions();
   const bodyRef = useRef();
@@ -143,23 +147,25 @@ export default function PostBody({ body, adShortPost, adLongPost }) {
 
   return (
     <>
-      {width > 500 && adLongPost && (
+      {width > 500 && adLongPost.length > 0 && (
         <div className="absolute left-0">
           {/* need to wrap each sticky so it pushes up not overlap */}
-          {postHeight > 500 ? (
-            adLongPost.map((ad) => (
-              <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
-                <SideAdImage image={ad.adImage} url={ad.adUrl} />
-              </div>
-            ))
-          ) : (
-            <div style={{ height: `${postHeight / 2}px` }}>
-              <SideAdImage
-                image={adShortPost.adImage}
-                url={adShortPost.adUrl}
-              />
-            </div>
-          )}
+          {postHeight > 500
+            ? adLongPost.map((ad) => (
+                <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
+                  {ad?.adImage && (
+                    <SideAdImage image={ad.adImage} url={ad.adUrl} />
+                  )}
+                </div>
+              ))
+            : adShortPost?.adImage && (
+                <div style={{ height: `${postHeight / 2}px` }}>
+                  <SideAdImage
+                    image={adShortPost.adImage}
+                    url={adShortPost.adUrl}
+                  />
+                </div>
+              )}
         </div>
       )}
 
