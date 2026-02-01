@@ -13,11 +13,12 @@ import {
   Container,
   Subscribe,
   Footer,
+  MixcloudWidget,
 } from './index';
 import { joinVariants } from '../utils/animation';
 import useWindowWidth from '../utils/useWindowWidth';
 
-export default function RadioLayout({ preview, children, theme }) {
+export default function RadioLayout({ preview, children, theme, url }) {
   const width = useWindowWidth();
   const { joinIsOpen, setJoinIsOpen } = useAppContext();
 
@@ -82,8 +83,8 @@ export default function RadioLayout({ preview, children, theme }) {
         {/* Footer section - constrained height */}
         <div className="relative flex-shrink-0 h-28">
           {/* Sticky Player */}
-          <div className="absolute top-0 left-0 right-0 z-50 p-4 bg-black border-t border-white">
-            sticky player
+          <div className="absolute top-0 left-0 right-0 z-50 bg-black border-t border-white">
+            <MixcloudWidget url={url} />
           </div>
 
           {/* Footer - translateY pulls it up into view */}

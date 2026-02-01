@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { RadioLayout, ThemeWrapper, Footer, Thumbnail } from '../../components';
+import {
+  RadioLayout,
+  ThemeWrapper,
+  Footer,
+  Thumbnail,
+  MixcloudWidget,
+} from '../../components';
 import { sanityClient, getClient } from '../../utils/sanity.server';
 import { radioQuery, radioSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
@@ -29,7 +35,7 @@ function Radio({ data = {}, preview }) {
 
   return (
     <ThemeWrapper theme="dark">
-      <RadioLayout theme="dark" preview={preview}>
+      <RadioLayout theme="dark" preview={preview} url={radio.mixcloudUrl}>
         <div
           className="flex flex-col gap-8 md:flex-row"
           style={{ height: '400px' }}>
