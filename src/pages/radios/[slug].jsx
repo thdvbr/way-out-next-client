@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import useWindowWidth from '../../utils/useWindowWidth';
 import {
   RadioLayout,
   ThemeWrapper,
@@ -9,6 +10,7 @@ import {
   Tracklist,
   Tags,
 } from '../../components';
+
 import { sanityClient, getClient } from '../../utils/sanity.server';
 import { radioQuery, radioSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
@@ -39,6 +41,7 @@ function Radio({ data = {}, preview }) {
     initialData: data.radio,
     enabled: preview && !!slug,
   });
+  const width = useWindowWidth();
   // !!slug === true only if slug exists
   // choose the source of truth
   const radio = preview ? previewData : data.radio;
@@ -51,7 +54,7 @@ function Radio({ data = {}, preview }) {
       <RadioLayout theme="dark" preview={preview} url={radio.mixcloudUrl}>
         <div
           className="flex flex-col gap-8 md:flex-row"
-          style={{ height: '400px' }}>
+          style={width >= 768 ? { height: '400px' } : {}}>
           {/* TODO: Calculate height for this container you need fixed heigh  */}
 
           {/* Right Section- Thumbnail - first on mobile, second on desktop*/}

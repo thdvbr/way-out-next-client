@@ -29,7 +29,7 @@ export default function RadioLayout({ preview, children, theme, url }) {
 
   return (
     <>
-      <div className="flex flex-col h-screen overflow-hidden">
+      <div className="flex flex-col h-screen ">
         {preview && <AlertPreview />}
         <Head>
           <title>Way Out Mag - Radio</title>
@@ -40,7 +40,7 @@ export default function RadioLayout({ preview, children, theme, url }) {
         </Head>
 
         {/* MOBILE */}
-        {width < 500 && (
+        {width < 768 && (
           <>
             <div className="top-0 z-30 flex-shrink-0">
               <Container>
@@ -48,12 +48,12 @@ export default function RadioLayout({ preview, children, theme, url }) {
                 <InfoDrawer />
               </Container>
             </div>
-            <main className="flex-1 min-h-0 overflow-hidden">{children}</main>
+            <main className="flex-1 min-h-0 overflow-y-auto">{children}</main>
           </>
         )}
 
         {/* DESKTOP */}
-        {width >= 500 && (
+        {width >= 768 && (
           <motion.div
             style={{ marginBottom: '-60px' }}
             initial={false}
