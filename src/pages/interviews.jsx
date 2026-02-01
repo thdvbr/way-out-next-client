@@ -2,9 +2,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import {
-  interviewsQuery,
-} from '../utils/queries';
+import { interviewsQuery } from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
@@ -21,7 +19,9 @@ export const Interviews = ({ allPosts, preview }) => {
     <>
       <Layout preview={preview}>
         <Container>
-          {allPosts && <MasonryGrid type="interviews" data={allPosts} />}
+          {allPosts && (
+            <MasonryGrid categoryTitle="Interview" data={allPosts} />
+          )}
         </Container>
       </Layout>
     </>
@@ -32,7 +32,7 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery),
+    await getClient(preview).fetch(interviewsQuery)
   );
   return {
     props: { allPosts, preview },

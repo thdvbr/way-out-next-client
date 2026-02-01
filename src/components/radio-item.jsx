@@ -13,13 +13,17 @@ const RadioItem = ({
   slug,
   // description,
   publishedAt,
-  type,
 }) => {
   return (
     <div className="">
       <div className="">
         {heroImage && (
-          <Thumbnail slug={slug} title={title} image={heroImage} type={type} />
+          <Thumbnail
+            slug={slug}
+            title={title}
+            image={heroImage}
+            mixcloudUrl={mixcloudUrl}
+          /> // Pass this so Thumbnail knows it's radio
         )}
       </div>
       <div className="flex flex-col flex-grow p-4">
@@ -36,8 +40,7 @@ const RadioItem = ({
             href={mixcloudUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 text-blue-600 underline"
-          >
+            className="mt-2 text-blue-600 underline">
             Listen on Mixcloud
           </a>
         )}

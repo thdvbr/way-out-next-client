@@ -8,7 +8,14 @@ import { sanityClient } from '../utils/sanity.server';
 // const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
 const Thumbnail = ({
-  title, slug, image: source, width, height, type,
+  title,
+  slug,
+  image: source,
+  width,
+  height,
+  type,
+  mixcloudUrl, // Radio shows have this field
+  mainCategory, // Posts have this field
 }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     return imageUrlBuilder.width(width).height(height);
@@ -21,12 +28,20 @@ const Thumbnail = ({
     imageBuilder: myCustomImageBuilder,
   });
 
+  // Determine if this is a radio show or a post
+  const isRadio = !!mixcloudUrl;
+
+  // Generate the correct link path
+  const href = isRadio ? '/radios/[slug]' : '/posts/[slug]';
+  const as = isRadio
+    ? `/radios/${slug.current || slug}`
+    : `/posts/${slug.current || slug}`;
+
   // TODO: BlurDataURL warning, make blur work :( )
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{ overflow: 'hidden' }}
-    >
+      style={{ overflow: 'hidden' }}>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div>
         <Image
@@ -51,11 +66,7 @@ const Thumbnail = ({
   return (
     <div>
       {slug ? (
-        <Link
-          as={`/${type}/${slug.current || slug}`}
-          href={`/${type}/[slug]`}
-          aria-label={title}
-        >
+        <Link as={as} href={href} aria-label={title}>
           {image}
         </Link>
       ) : (

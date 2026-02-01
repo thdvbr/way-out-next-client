@@ -16,7 +16,11 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const MasonryGrid = ({ data, type, ItemComponent = MasonryItem }) => {
+const MasonryGrid = ({
+  data,
+  categoryTitle = null,
+  ItemComponent = MasonryItem,
+}) => {
   // const { query, searchResult } = useAppContext();
   const [posts, setPosts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
@@ -27,7 +31,7 @@ const MasonryGrid = ({ data, type, ItemComponent = MasonryItem }) => {
   }, [data]);
 
   const getMorePost = async () => {
-    const newQuery = getMoreQuery(type, posts);
+    const newQuery = getMoreQuery(categoryTitle, posts);
     const newPosts = await getClient().fetch(newQuery);
     setPosts((post) => [...post, ...newPosts]);
     if (newPosts.length < 8) {
@@ -51,7 +55,7 @@ const MasonryGrid = ({ data, type, ItemComponent = MasonryItem }) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {posts.map((post) => (
-              <ItemComponent key={post._id} {...post} type={type} />
+              <ItemComponent key={post._id} {...post} />
             ))}
           </Masonry>
         </InfiniteScroll>

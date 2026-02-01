@@ -2,17 +2,11 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import {
-  stuffWeLikeQuery,
-} from '../utils/queries';
+import { stuffWeLikeQuery } from '../utils/queries';
 import { Container, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 
-export const StuffWeLike = ({
-  allPosts,
-  preview,
-  bottomAds,
-}) => {
+export const StuffWeLike = ({ allPosts, preview, bottomAds }) => {
   const router = useRouter();
   const { setErrorMsg } = useAppContext();
 
@@ -24,7 +18,9 @@ export const StuffWeLike = ({
     <>
       <Layout preview={preview} bottomAds={bottomAds}>
         <Container>
-          {allPosts && <MasonryGrid type="stuffWeLike" data={allPosts} />}
+          {allPosts && (
+            <MasonryGrid categoryTitle="stuffWeLike" data={allPosts} />
+          )}
         </Container>
       </Layout>
     </>
@@ -33,7 +29,7 @@ export const StuffWeLike = ({
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(stuffWeLikeQuery),
+    await getClient(preview).fetch(stuffWeLikeQuery)
   );
   return {
     props: { allPosts, preview },
