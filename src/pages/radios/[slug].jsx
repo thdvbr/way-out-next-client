@@ -6,7 +6,8 @@ import {
   ThemeWrapper,
   Footer,
   Thumbnail,
-  MixcloudWidget,
+  Tracklist,
+  Tags,
 } from '../../components';
 import { sanityClient, getClient } from '../../utils/sanity.server';
 import { radioQuery, radioSlugsQuery } from '../../utils/queries';
@@ -17,6 +18,18 @@ import { usePreviewSubscription } from '../../utils/sanity';
 // 3. feed the data in
 // 4. state
 // 5. desktop / mobile?
+
+// const radioFields = `
+//   _id,
+//   title,
+//   subtitle,
+//   slug,
+//   heroImage,
+//   mixcloudUrl,
+//   tracklist,
+// publishedAt,
+//   description,
+//   tags `;
 
 function Radio({ data = {}, preview }) {
   const router = useRouter();
@@ -43,7 +56,7 @@ function Radio({ data = {}, preview }) {
 
           {/* Right Section- Thumbnail - first on mobile, second on desktop*/}
           <section className="flex-shrink-0 w-full bg-pink-500 md:w-1/2 md:order-2">
-            <div>thumbnail</div>
+            <Thumbnail slug="" image={radio.heroImage} />
           </section>
           {/* Left Section */}
           {/* Content Section - second on mobile, first on desktop */}
@@ -53,7 +66,12 @@ function Radio({ data = {}, preview }) {
               <div className="mb-4">{radio.publishedAt}</div>
               <h1 className="mb-2 text-4xl">{radio.title}</h1>
               <h2 className="mb-4 text-xl">{radio.subtitle}</h2>
-              <div className="hidden mb-4 md:block">tags</div>
+              {radio.tags && (
+                <div className="hidden mb-4 md:block">
+                  <Tags tags={radio.tags} />
+                </div>
+              )}
+              ;
               <hr className="mb-6 border-white" />
             </div>
             {/* Play Button - separate on mobile, side-by-side on desktop */}
@@ -61,11 +79,15 @@ function Radio({ data = {}, preview }) {
               <button className="w-full py-3 text-black bg-white">play</button>
             </div>
             {/* Tags - Visible on mobile */}
-            <div className="md:hidden">tags tags tags</div>
+            {radio.tags && (
+              <div className="md:hidden">
+                <Tags tags={radio.tags} />
+              </div>
+            )}
 
             {/* Description - separate on mobile */}
             <div className="flex-shrink-0 mb-6 md:hidden">
-              <p>description</p>
+              <p>{radio.description}</p>
               <hr className="mt-6 border-white" />
             </div>
 
@@ -79,40 +101,14 @@ function Radio({ data = {}, preview }) {
                 </button>
 
                 <div className="flex-1">
-                  <p>description</p>
+                  <p>{radio.description}</p>
                 </div>
               </div>
-
               <hr className="my-6 border-white" />
-
               {/* Tracklist - scrollable on both */}
+
               <div className="space-y-4">
-                <h3 className="mb-4 text-2xl">Tracklist</h3>
-                <div className="space-y-2">
-                  <div className="font-bold">track title</div>
-                  <div>Track 5</div>
-                  <div>Track 6</div>
-                  <div>Track 7</div>
-                  <div>Track 8</div>
-                  <div>Track 9</div>
-                  <div>Track 10</div>
-                  <div>Track 11</div>
-                  <div>Track 12</div>
-                  <div>Track 13</div>
-                  <div>Track 14</div>
-                  <div>Track 15</div>
-                  <div>Track 16</div>
-                  <div>Track 17</div>
-                  <div>Track 18</div>
-                  <div>Track 19</div>
-                  <div>Track 20</div>
-                  <div>Track 21</div>
-                  <div>Track 22</div>
-                  <div>Track 23</div>
-                  <div>Track 24</div>
-                  <div>Track 25</div>
-                </div>
-                {/* Repeat for more tracks */}
+                {radio.tracklist && <Tracklist tracklist={radio.tracklist} />}
               </div>
             </div>
           </section>

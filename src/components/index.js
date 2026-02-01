@@ -38,6 +38,8 @@ import SocialSharing from './social-sharing';
 import ThemeWrapper from './theme-wrapper';
 import RadioLayout from './radio-layout'
 import MixcloudWidget from './mixcloud-widget'
+import Tracklist from './tracklist'
+import Tags from './tags'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -84,4 +86,6 @@ export {
   ThemeWrapper,
   RadioLayout,
   MixcloudWidget,
+  Tracklist,
+  Tags
 };
