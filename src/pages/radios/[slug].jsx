@@ -112,9 +112,7 @@ function MobileRadioView({ radio, onPlayClick }) {
 // ===== DESKTOP VIEW =====
 function DesktopRadioView({ radio, onPlayClick }) {
   return (
-    <div
-      className="flex flex-row gap-8 px-3 py-6 radio-content-container "
-      style={{ height: '520px' }}>
+    <div className="flex flex-row gap-8 px-3 desktop-radio-content-container ">
       {/* Left: Content */}
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}

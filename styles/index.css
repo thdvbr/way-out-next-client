@@ -548,3 +548,17 @@ button:focus {
   width: 24px;
   stroke-width: 0.5px;
 }
+
+.desktop-radio-content-container{
+padding-top: 18px;
+padding-bottom:18px;
+height: 520px;
+}
+/* for tablets  */
+@media only screen and (min-height: 1000px ){
+.desktop-radio-content-container{
+padding-top: 100px;
+padding-bottom:36px;
+height: 800px;
+}
+}
