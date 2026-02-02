@@ -29,7 +29,7 @@ export default function RadioLayout({ preview, children, theme, url }) {
 
   return (
     <>
-      <div className="flex flex-col h-screen ">
+      <div className="flex flex-col h-screen overflow-hidden ">
         {preview && <AlertPreview />}
         <Head>
           <title>Way Out Mag - Radio</title>
