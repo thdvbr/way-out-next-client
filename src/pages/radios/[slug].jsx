@@ -103,17 +103,19 @@ function DesktopRadioView({ radio }) {
   return (
     <div
       className="flex flex-row gap-8 px-3 py-6 radio-content-container "
-      style={{ height: '500px' }}>
+      style={{ height: '520px' }}>
       {/* Left: Content */}
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}
         <div className="flex-shrink-0 mb-3">
-          <div className="my-3 font-agrandir text-13">
+          <div className="my-3 font-agrandir text-13 xl:text-16">
             {`Episode 
             ${radio.episodeNumber}`}
           </div>
-          <h1 className="leading-tight text-28 font-title">{radio.title}</h1>
-          <h2 className="mb-5 leading-tight text-24 font-agrandir">
+          <h1 className="leading-tight text-28 font-title xl:text-43">
+            {radio.title}
+          </h1>
+          <h2 className="mb-5 leading-tight text-24 font-agrandir xl:text-33">
             {radio.subtitle}
           </h2>
           {radio.tags && (
@@ -130,7 +132,7 @@ function DesktopRadioView({ radio }) {
             <button>
               <PlayButton />
             </button>
-            <div className="flex-1 leading-6 font-secondary text-15">
+            <div className="flex-1 leading-6 font-secondary text-15 xl:text-20">
               <p>{radio.description}</p>
             </div>
           </div>
