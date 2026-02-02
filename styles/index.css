@@ -1,3 +1,13 @@
+
+
+
+html{
+  font-size: 15px;
+  line-height: 1.3; /* Explicit line height */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
@@ -48,8 +58,19 @@
 }
 
 body {
-  overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.3; /* Match html */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+   overflow-x: hidden;
 }
+
+/* Force consistent spacing */
+* {
+  line-height: inherit; /* Inherit from parent */
+}
+
 
 .p-wrap {
   white-space: pre-wrap;

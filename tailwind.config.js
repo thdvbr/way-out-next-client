@@ -1,4 +1,7 @@
 module.exports = {
+  corePlugins: {
+    preflight: true, // Make sure this is true or not explicitly disabled
+  },
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
