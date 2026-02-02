@@ -40,6 +40,7 @@ import RadioLayout from './radio-layout'
 import MixcloudWidget from './mixcloud-widget'
 import Tracklist from './tracklist'
 import Tags from './tags'
+import PlayButton from './play-button-svg'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -87,5 +88,6 @@ export {
   RadioLayout,
   MixcloudWidget,
   Tracklist,
-  Tags
+  Tags,
+  PlayButton
 };
