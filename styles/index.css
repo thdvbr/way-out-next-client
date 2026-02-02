@@ -538,3 +538,13 @@ button:focus {
   color: #333;
 }
 }
+
+.sticky-footer-radio {
+  height: 112px
+}
+
+.play-button {
+  height: 24px;
+  width: 24px;
+  stroke-width: 0.5px;
+}

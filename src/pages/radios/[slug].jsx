@@ -9,6 +9,7 @@ import {
   Thumbnail,
   Tracklist,
   Tags,
+  PlayButton,
 } from '../../components';
 
 import { sanityClient, getClient } from '../../utils/sanity.server';
@@ -72,7 +73,10 @@ function MobileRadioView({ radio }) {
         </div>
 
         {/* Play Button */}
-        <button className="w-full py-3 mb-6 text-black bg-white">Play</button>
+        <button className="w-full py-3 mb-6">
+          {' '}
+          <PlayButton />
+        </button>
 
         {/* Tags */}
         {radio.tags && (
@@ -81,7 +85,7 @@ function MobileRadioView({ radio }) {
           </div>
         )}
         {/* Description */}
-        <div className="mb-6 font-secondary text-13">
+        <div className="mb-6 font-secondary text-15">
           <p>{radio.description}</p>
         </div>
 
@@ -98,22 +102,22 @@ function MobileRadioView({ radio }) {
 function DesktopRadioView({ radio }) {
   return (
     <div
-      className="flex flex-row h-[400px] gap-8 px-2"
-      style={{ height: '470px' }}>
+      className="flex flex-row gap-8 px-3 py-6 radio-content-container "
+      style={{ height: '500px' }}>
       {/* Left: Content */}
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}
-        <div className="flex-shrink-0 mb-4">
+        <div className="flex-shrink-0 mb-3">
           <div className="my-3 font-agrandir text-13">
             {`Episode 
             ${radio.episodeNumber}`}
           </div>
           <h1 className="leading-tight text-28 font-title">{radio.title}</h1>
-          <h2 className="mb-4 -mt-2 leading-tight text-24 font-agrandir">
+          <h2 className="mb-5 leading-tight text-24 font-agrandir">
             {radio.subtitle}
           </h2>
           {radio.tags && (
-            <div className="mb-4">
+            <div className="mb-8">
               <Tags tags={radio.tags} />
             </div>
           )}
@@ -123,10 +127,10 @@ function DesktopRadioView({ radio }) {
         <div className="flex-1 min-h-0 pt-4 overflow-y-auto">
           {/* Play + Description */}
           <div className="flex gap-6 mb-6">
-            <button className="px-6 py-3 text-black bg-white whitespace-nowrap h-fit">
-              Play
+            <button>
+              <PlayButton />
             </button>
-            <div className="flex-1 font-secondary text-13">
+            <div className="flex-1 leading-6 font-secondary text-15">
               <p>{radio.description}</p>
             </div>
           </div>

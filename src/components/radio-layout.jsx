@@ -83,9 +83,9 @@ export default function RadioLayout({ preview, children, theme, url }) {
         )}
 
         {/* Footer section - constrained height */}
-        <div className="relative flex-shrink-0 h-28">
+        <div className="relative flex-shrink-0 sticky-footer-radio">
           {/* Sticky Player */}
-          <div className="absolute top-0 left-0 right-0 z-50 bg-black border-t border-white">
+          <div className="absolute top-0 left-0 right-0 z-50">
             <MixcloudWidget url={url} />
           </div>
 
