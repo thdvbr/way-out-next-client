@@ -21,18 +21,6 @@ import { usePreviewSubscription } from '../../utils/sanity';
 // 4. state
 // 5. desktop / mobile?
 
-// const radioFields = `
-//   _id,
-//   title,
-//   subtitle,
-//   slug,
-//   heroImage,
-//   mixcloudUrl,
-//   tracklist,
-// publishedAt,
-//   description,
-//   tags `;
-
 function Radio({ data = {}, preview }) {
   const router = useRouter();
   const slug = data?.radio?.slug;
@@ -52,77 +40,111 @@ function Radio({ data = {}, preview }) {
   return (
     <ThemeWrapper theme="dark">
       <RadioLayout theme="dark" preview={preview} url={radio.mixcloudUrl}>
-        <div
-          className="flex flex-col gap-8 md:flex-row"
-          style={width >= 768 ? { height: '400px' } : {}}>
-          {/* TODO: Calculate height for this container you need fixed heigh  */}
-
-          {/* Right Section- Thumbnail - first on mobile, second on desktop*/}
-          <section className="flex-shrink-0 w-full bg-pink-500 md:w-1/2 md:order-2">
-            <Thumbnail slug="" image={radio.heroImage} />
-          </section>
-          {/* Left Section */}
-          {/* Content Section - second on mobile, first on desktop */}
-          <section className="flex flex-col flex-1 w-full min-h-0 md:w-1/2 md:order-1">
-            {/* Fixed Metadata */}
-            <div className="flex-shrink-0 bg-blue-700">
-              <div className="mb-4">{`Episode ${radio.episodeNumber}`}</div>
-              <h1 className="mb-2 text-4xl">{radio.title}</h1>
-              <h2 className="mb-4 text-xl">{radio.subtitle}</h2>
-              {radio.tags && (
-                <div className="hidden mb-4 md:block">
-                  <Tags tags={radio.tags} />
-                </div>
-              )}
-              ;
-              <hr className="mb-6 border-white" />
-            </div>
-            {/* Play Button - separate on mobile, side-by-side on desktop */}
-            <div className="flex-shrink-0 mb-6 md:hidden">
-              <button className="w-full py-3 text-black bg-white">play</button>
-            </div>
-            {/* Tags - Visible on mobile */}
-            {radio.tags && (
-              <div className="md:hidden">
-                <Tags tags={radio.tags} />
-              </div>
-            )}
-
-            {/* Description - separate on mobile */}
-            <div className="flex-shrink-0 mb-6 md:hidden">
-              <p>{radio.description}</p>
-              <hr className="mt-6 border-white" />
-            </div>
-
-            {/* Scrollable Container - contains play+description on desktop, 
-            only tracklist on mobile */}
-            <div className="flex-1 overflow-y-auto bg-green-500">
-              {/* Play Button + Description Side by Side - DESKTOP ONLY */}
-              <div className="flex hidden gap-6 mb-6 md:flex">
-                <button className="px-6 py-3 text-black bg-white whitespace-nowrap h-fit">
-                  play
-                </button>
-
-                <div className="flex-1">
-                  <p>{radio.description}</p>
-                </div>
-              </div>
-              <hr className="my-6 border-white" />
-              {/* Tracklist - scrollable on both */}
-
-              <div className="space-y-4">
-                {radio.tracklist && <Tracklist tracklist={radio.tracklist} />}
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* Sticky Player
-        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black border-t border-white">
-          sticky player
-        </div> */}
+        {width < 768 ? (
+          <MobileRadioView radio={radio} />
+        ) : (
+          <DesktopRadioView radio={radio} />
+        )}
       </RadioLayout>
     </ThemeWrapper>
+  );
+}
+
+// ===== MOBILE VIEW =====
+function MobileRadioView({ radio }) {
+  return (
+    <div className="flex flex-col gap-6 px-2">
+      {/* Thumbnail */}
+      <section className="w-full">
+        <Thumbnail slug="" image={radio.heroImage} />
+      </section>
+      {/* Content */}
+      <section className="flex flex-col">
+        {/* Metadata */}
+        <div className="mb-6">
+          <div className="my-3 font-agrandir text-13">
+            Episode {radio.episodeNumber}
+          </div>
+          <h1 className="leading-tight text-28 font-title">{radio.title}</h1>
+          <h2 className="-mt-2 leading-tight text-24 font-agrandir">
+            {radio.subtitle}
+          </h2>
+        </div>
+
+        {/* Play Button */}
+        <button className="w-full py-3 mb-6 text-black bg-white">Play</button>
+
+        {/* Tags */}
+        {radio.tags && (
+          <div className="mb-6">
+            <Tags tags={radio.tags} />
+          </div>
+        )}
+        {/* Description */}
+        <div className="mb-6 font-secondary text-13">
+          <p>{radio.description}</p>
+        </div>
+
+        {/* Tracklist */}
+        <div>
+          {radio.tracklist && <Tracklist tracklist={radio.tracklist} />}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ===== DESKTOP VIEW =====
+function DesktopRadioView({ radio }) {
+  return (
+    <div
+      className="flex flex-row h-[400px] gap-8 px-2"
+      style={{ height: '470px' }}>
+      {/* Left: Content */}
+      <section className="flex flex-col flex-1 order-1 min-h-0">
+        {/* Fixed Metadata */}
+        <div className="flex-shrink-0 mb-4">
+          <div className="my-3 font-agrandir text-13">
+            {`Episode 
+            ${radio.episodeNumber}`}
+          </div>
+          <h1 className="leading-tight text-28 font-title">{radio.title}</h1>
+          <h2 className="mb-4 -mt-2 leading-tight text-24 font-agrandir">
+            {radio.subtitle}
+          </h2>
+          {radio.tags && (
+            <div className="mb-4">
+              <Tags tags={radio.tags} />
+            </div>
+          )}
+          <hr className="border-white" />
+        </div>
+        {/* Scrollable Container */}
+        <div className="flex-1 min-h-0 pt-4 overflow-y-auto">
+          {/* Play + Description */}
+          <div className="flex gap-6 mb-6">
+            <button className="px-6 py-3 text-black bg-white whitespace-nowrap h-fit">
+              Play
+            </button>
+            <div className="flex-1 font-secondary text-13">
+              <p>{radio.description}</p>
+            </div>
+          </div>
+
+          <hr className="mb-6 border-white" />
+
+          {/* Tracklist */}
+          <div>
+            {radio.tracklist && <Tracklist tracklist={radio.tracklist} />}
+          </div>
+        </div>
+      </section>
+
+      {/* Right: Thumbnail */}
+      <section className="flex-shrink-0 order-2 w-1/2">
+        <Thumbnail slug="" image={radio.heroImage} />
+      </section>
+    </div>
   );
 }
 
