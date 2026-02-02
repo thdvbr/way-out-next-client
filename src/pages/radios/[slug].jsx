@@ -67,33 +67,31 @@ function Radio({ data = {}, preview }) {
 // ===== MOBILE VIEW =====
 function MobileRadioView({ radio, onPlayClick }) {
   return (
-    <div className="flex flex-col gap-6 px-2">
+    <div className="flex flex-col items-center gap-6 px-2 text-center">
       {/* Thumbnail */}
-      <section className="w-full">
+      <section className="w-full max-w-md">
         <Thumbnail slug="" image={radio.heroImage} />
       </section>
       {/* Content */}
-      <section className="flex flex-col">
+      <section className="flex flex-col items-center w-full max-w-md px-8">
         {/* Metadata */}
         <div className="mb-6">
           <div className="my-3 font-agrandir text-13">
             Episode {radio.episodeNumber}
           </div>
-          <h1 className="leading-tight text-28 font-title">{radio.title}</h1>
-          <h2 className="-mt-2 leading-tight text-24 font-agrandir">
-            {radio.subtitle}
-          </h2>
+          <h1 className="text-24 font-title">{radio.title}</h1>
+          <h2 className="-mt-2 text-20 font-agrandir">{radio.subtitle}</h2>
         </div>
 
         {/* Play Button */}
-        <button className="w-full py-3 mb-6" onClick={onPlayClick}>
+        <button className="px-8 py-3 mb-6 " onClick={onPlayClick}>
           {' '}
           <PlayButton />
         </button>
 
         {/* Tags */}
         {radio.tags && (
-          <div className="mb-6">
+          <div className="flex justify-center mb-6">
             <Tags tags={radio.tags} />
           </div>
         )}
