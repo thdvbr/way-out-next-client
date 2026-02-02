@@ -65,7 +65,9 @@ export default function RadioLayout({ preview, children, theme, url }) {
 
             <div className="flex-shrink-0">
               <Container>
-                <Header theme={theme} />
+                <div className="px-3">
+                  <Header theme={theme} />
+                </div>
               </Container>
               <InfoDrawer />
 
