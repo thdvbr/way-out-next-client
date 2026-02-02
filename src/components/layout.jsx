@@ -24,7 +24,12 @@ import {
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
 
-export default function Layout({ preview, children, theme = 'light' }) {
+export default function Layout({
+  preview,
+  children,
+  theme = 'light',
+  page = '',
+}) {
   const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
@@ -133,7 +138,7 @@ export default function Layout({ preview, children, theme = 'light' }) {
                 <SectionSeparator />
               </div>
               <InfoDrawer />
-              <NavbarDesktop theme={theme} />
+              <NavbarDesktop theme={theme} page={page} />
             </Container>
             <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
             <div

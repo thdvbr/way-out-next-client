@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useAppContext } from '../context/state';
 import SearchBar from './search-bar';
 
-const NavbarDesktop = ({ theme = 'light' }) => {
+const NavbarDesktop = ({ theme = 'light', page = '' }) => {
   const {
     searchIsOpen,
     setSearchIsOpen,
@@ -17,7 +17,13 @@ const NavbarDesktop = ({ theme = 'light' }) => {
   } = useAppContext();
 
   const isDark = theme === 'dark';
-  const borderClass = isDark ? 'border-t border-b border-white' : '';
+  const isRadioMain = page === 'radiomain';
+
+  const borderClass = isDark
+    ? isRadioMain
+      ? 'border-t border-white'
+      : 'border-t border-white border-b'
+    : '';
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
