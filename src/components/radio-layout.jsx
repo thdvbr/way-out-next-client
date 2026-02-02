@@ -18,7 +18,13 @@ import {
 import { joinVariants } from '../utils/animation';
 import useWindowWidth from '../utils/useWindowWidth';
 
-export default function RadioLayout({ preview, children, theme, url }) {
+export default function RadioLayout({
+  preview,
+  children,
+  theme,
+  url,
+  showPlayer,
+}) {
   const width = useWindowWidth();
   const { joinIsOpen, setJoinIsOpen } = useAppContext();
 
@@ -84,10 +90,12 @@ export default function RadioLayout({ preview, children, theme, url }) {
 
         {/* Footer section - constrained height */}
         <div className="relative flex-shrink-0 sticky-footer-radio">
-          {/* Sticky Player */}
-          <div className="absolute top-0 left-0 right-0 z-50">
-            <MixcloudWidget url={url} />
-          </div>
+          {/* Sticky Player - only show if showPlayer is true */}
+          {showPlayer && (
+            <div className="absolute top-0 left-0 right-0 z-50 mixcloud-widget">
+              <MixcloudWidget url={url} />
+            </div>
+          )}
 
           {/* Footer - translateY pulls it up into view */}
           <div className="absolute left-0 right-0">

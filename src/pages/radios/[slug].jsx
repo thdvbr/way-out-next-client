@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import useWindowWidth from '../../utils/useWindowWidth';
@@ -32,19 +32,32 @@ function Radio({ data = {}, preview }) {
   });
   const width = useWindowWidth();
   // !!slug === true only if slug exists
+  // State to track if player should be visible
+  const [showPlayer, setShowPlayer] = useState(false);
+
   // choose the source of truth
   const radio = preview ? previewData : data.radio;
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
+  // Handler for play button - only shows player once
+  const handlePlayClick = () => {
+    if (!showPlayer) {
+      setShowPlayer(true);
+    }
+  };
 
   return (
     <ThemeWrapper theme="dark">
-      <RadioLayout theme="dark" preview={preview} url={radio.mixcloudUrl}>
+      <RadioLayout
+        theme="dark"
+        preview={preview}
+        url={radio.mixcloudUrl}
+        showPlayer={showPlayer}>
         {width < 768 ? (
-          <MobileRadioView radio={radio} />
+          <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
         ) : (
-          <DesktopRadioView radio={radio} />
+          <DesktopRadioView radio={radio} onPlayClick={handlePlayClick} />
         )}
       </RadioLayout>
     </ThemeWrapper>
@@ -52,7 +65,7 @@ function Radio({ data = {}, preview }) {
 }
 
 // ===== MOBILE VIEW =====
-function MobileRadioView({ radio }) {
+function MobileRadioView({ radio, onPlayClick }) {
   return (
     <div className="flex flex-col gap-6 px-2">
       {/* Thumbnail */}
@@ -73,7 +86,7 @@ function MobileRadioView({ radio }) {
         </div>
 
         {/* Play Button */}
-        <button className="w-full py-3 mb-6">
+        <button className="w-full py-3 mb-6" onClick={onPlayClick}>
           {' '}
           <PlayButton />
         </button>
@@ -99,7 +112,7 @@ function MobileRadioView({ radio }) {
 }
 
 // ===== DESKTOP VIEW =====
-function DesktopRadioView({ radio }) {
+function DesktopRadioView({ radio, onPlayClick }) {
   return (
     <div
       className="flex flex-row gap-8 px-3 py-6 radio-content-container "
@@ -129,7 +142,7 @@ function DesktopRadioView({ radio }) {
         <div className="flex-1 min-h-0 pt-4 overflow-y-auto">
           {/* Play + Description */}
           <div className="flex gap-6 mb-6">
-            <button>
+            <button onClick={onPlayClick}>
               <PlayButton />
             </button>
             <div className="flex-1 leading-6 font-secondary text-15 xl:text-20">
