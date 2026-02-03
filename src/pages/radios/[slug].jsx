@@ -69,8 +69,8 @@ function MobileRadioView({ radio, onPlayClick }) {
   return (
     <div className="flex flex-col items-center gap-6 px-2 text-center">
       {/* Thumbnail */}
-      <section className="w-full max-w-md">
-        <Thumbnail slug="" image={radio.heroImage} width="500" height="500" />
+      <section className="w-full max-w-xl">
+        <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
       <section className="flex flex-col items-center w-full max-w-md px-12">
