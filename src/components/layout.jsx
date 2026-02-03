@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import { motion, useAnimation } from 'framer-motion';
 import { sample } from '../utils/random';
@@ -98,12 +98,9 @@ export default function Layout({
             </div>
             <main className="inset-0 z-0 w-screen">{children}</main>
             {page === 'radiomain' ? (
-              <>
-                {!isLoading && <Subscribe />}
-                <div className="fixed bottom-0 left-0 right-0 z-50">
-                  <Footer theme={theme} />
-                </div>
-              </>
+              <div className="sticky bottom-0 left-0 right-0 z-50">
+                <Footer theme={theme} />
+              </div>
             ) : (
               <div
                 className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
@@ -150,9 +147,7 @@ export default function Layout({
             </Container>
             <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
             {page === 'radiomain' ? (
-              <div className="fixed bottom-0 left-0 right-0 z-50">
-                <Footer theme={theme} />
-              </div>
+              <Footer theme={theme} />
             ) : (
               <div
                 className={`${

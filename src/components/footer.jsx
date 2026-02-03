@@ -13,7 +13,7 @@ export default function Footer({ theme = 'light' }) {
   return (
     <footer
       style={{
-        transform: 'translateY(58px)',
+        transform: 'translateY(60px)',
         backgroundImage: `url("data:image/svg+xml,${svgString}")`,
         filter: isDark ? 'invert(1)' : 'none',
       }}>
