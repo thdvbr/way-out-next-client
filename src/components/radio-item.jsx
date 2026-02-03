@@ -44,7 +44,7 @@ const RadioItem = ({
         <ul className="flex flex-wrap gap-1 text-xs tags ">
           {tags?.map((tag, index) => (
             <li
-              key={tag._key || `${tag}-${index}`}
+              key={tag._key || tag + '-' + index}
               className="mt-3 px-4 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 font-agrandir group-hover:bg-black group-hover:border-black group-hover:text-white">
               {tag}
             </li>
