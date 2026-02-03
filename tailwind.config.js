@@ -24,6 +24,9 @@ module.exports = {
         '36rem': '36rem',
         46: '11.5rem',
       },
+          colors: {
+      yellow: '#FFFF00',
+    },
     },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],

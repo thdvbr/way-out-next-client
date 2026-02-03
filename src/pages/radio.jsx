@@ -21,11 +21,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
           bottomAds={bottomAds}
           theme="dark"
           page="radiomain">
-          <div className="pb-24 mt-1 sm:mt-2 md:mt-3 sm:px-2">
-            {/* The footer has transform: translateY(58px) which shifts it down. With fixed bottom-0,
-            the footer will sit at the very bottom of the viewport.
-            The content behind it will scroll naturally since the main content area is already scrollable.
-            However, we should add some bottom padding to the radio page content so the last items aren't hidden behind the sticky footer. */}
+          <div className="mt-1 sm:mt-2 md:mt-3 sm:px-2">
             <Container>
               {allRadioShows && <RadioGrid data={allRadioShows} />}
             </Container>

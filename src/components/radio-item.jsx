@@ -12,10 +12,10 @@ const RadioItem = ({
   tags,
   slug,
   // description,
-  publishedAt,
+  episodeNumber,
 }) => {
   return (
-    <div className="">
+    <div className="group">
       <div className="">
         {heroImage && (
           <Thumbnail
@@ -29,13 +29,25 @@ const RadioItem = ({
           // Pass this so Thumbnail knows it's radio
         )}
       </div>
-      <div className="flex flex-col flex-grow p-4">
-        <p>{formatDate(publishedAt)}</p>
-        <h3 className="mb-1 text-xl font-title">{title}</h3>
-        {subtitle && <p className="mb-2 text-sm text-gray-600">{subtitle}</p>}
-        <ul className="flex-1 text-sm tags">
-          {tags?.slice(0, 3).map((tag) => (
-            <li key={tag}>{tag}</li>
+      <div className="flex flex-col flex-grow px-1 pt-2 pb-4 transition-colors duration-200 group-hover:bg-yellow">
+        <p className="mb-2 text-13 group-hover:text-black">
+          {episodeNumber ? `Episode.${episodeNumber}` : ''}
+        </p>
+        <h3 className="mb-1 text-22 font-title group-hover:text-black">
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="text-17 font-agrandir group-hover:text-black">
+            {subtitle}
+          </p>
+        )}
+        <ul className="flex flex-wrap gap-1 text-xs tags ">
+          {tags?.map((tag, index) => (
+            <li
+              key={tag._key || `${tag}-${index}`}
+              className="mt-3 px-4 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 font-agrandir group-hover:bg-black group-hover:border-black group-hover:text-white">
+              {tag}
+            </li>
           ))}
         </ul>
       </div>
