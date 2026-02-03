@@ -54,7 +54,7 @@ function Radio({ data = {}, preview }) {
         preview={preview}
         url={radio.mixcloudUrl}
         showPlayer={showPlayer}>
-        {width < 768 ? (
+        {width < 1025 ? (
           <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
         ) : (
           <DesktopRadioView radio={radio} onPlayClick={handlePlayClick} />
@@ -70,7 +70,7 @@ function MobileRadioView({ radio, onPlayClick }) {
     <div className="flex flex-col items-center gap-6 px-2 text-center">
       {/* Thumbnail */}
       <section className="w-full max-w-md">
-        <Thumbnail slug="" image={radio.heroImage} />
+        <Thumbnail slug="" image={radio.heroImage} width="500" height="500" />
       </section>
       {/* Content */}
       <section className="flex flex-col items-center w-full max-w-md px-12">
@@ -112,7 +112,7 @@ function MobileRadioView({ radio, onPlayClick }) {
 // ===== DESKTOP VIEW =====
 function DesktopRadioView({ radio, onPlayClick }) {
   return (
-    <div className="flex flex-row gap-8 px-3 desktop-radio-content-container ">
+    <div className="flex flex-row justify-between gap-8 px-3 desktop-radio-content-container ">
       {/* Left: Content */}
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}
@@ -156,8 +156,15 @@ function DesktopRadioView({ radio, onPlayClick }) {
       </section>
 
       {/* Right: Thumbnail */}
-      <section className="flex-shrink-0 order-2 w-1/2">
-        <Thumbnail slug="" image={radio.heroImage} />
+      <section className="flex-shrink-0 order-2 w-1/2 overflow-hidden radio-thumbnail-square">
+        <div className="mb-32">
+          <Thumbnail
+            slug=""
+            image={radio.heroImage}
+            width="1000"
+            height="1000"
+          />
+        </div>
       </section>
     </div>
   );

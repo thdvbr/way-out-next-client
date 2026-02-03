@@ -69,7 +69,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="pt-4 pb-8 md:hidden">
+          className="pt-4 pb-8 lg:hidden">
           <span>Menu</span>
         </button>
         <div

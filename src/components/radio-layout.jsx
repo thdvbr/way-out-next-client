@@ -45,8 +45,8 @@ export default function RadioLayout({
           />
         </Head>
 
-        {/* MOBILE */}
-        {width < 768 && (
+        {/* MOBILE and TABLETS */}
+        {width < 1025 && (
           <>
             <div className="top-0 z-30 flex-shrink-0">
               <Container>
@@ -61,7 +61,7 @@ export default function RadioLayout({
         )}
 
         {/* DESKTOP */}
-        {width >= 768 && (
+        {width >= 1025 && (
           <motion.div
             style={{ marginBottom: '-60px' }}
             initial={false}

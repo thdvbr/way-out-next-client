@@ -290,7 +290,7 @@ body {
 }
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1024px) {
   /* body {
     overflow-x: hidden;
   } */
@@ -550,15 +550,29 @@ button:focus {
 }
 
 .desktop-radio-content-container{
-padding-top: 18px;
+padding-top: 10px;
 padding-bottom:18px;
+ /* padding-left: 75px;
+  padding-right: 75px;     */
 height: 520px;
 }
 /* for tablets  */
-@media only screen and (min-height: 1000px ){
+/* @media only screen and (min-height: 1000px ){
 .desktop-radio-content-container{
 padding-top: 100px;
 padding-bottom:36px;
 height: 800px;
 }
+} */
+
+.radio-thumbnail-square {
+  width: 470px;
+  height: 470px;
 }
+
+/* @media only screen and (min-height: 1000px) {
+  .radio-thumbnail-square {
+    width: 360px;
+    height: 360px;
+  }
+} */
