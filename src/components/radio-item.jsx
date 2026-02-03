@@ -12,7 +12,7 @@ const RadioItem = ({
   tags,
   slug,
   // description,
-  episodeNumber,
+  episodeLabel,
 }) => {
   return (
     <div className="group">
@@ -30,9 +30,9 @@ const RadioItem = ({
         )}
       </div>
       <div className="flex flex-col flex-grow px-1 pt-2 pb-4 transition-colors duration-200 group-hover:bg-yellow">
-        <p className="mb-2 text-13 group-hover:text-black">
-          {episodeNumber ? `Episode.${episodeNumber}` : ''}
-        </p>
+        {episodeLabel && (
+          <p className="mb-2 text-13 group-hover:text-black">{episodeLabel}</p>
+        )}
         <h3 className="mb-1 text-22 font-title group-hover:text-black">
           {title}
         </h3>

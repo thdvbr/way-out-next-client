@@ -46,7 +46,6 @@ function Radio({ data = {}, preview }) {
       setShowPlayer(true);
     }
   };
-
   return (
     <ThemeWrapper theme="dark">
       <RadioLayout
@@ -76,9 +75,7 @@ function MobileRadioView({ radio, onPlayClick }) {
       <section className="flex flex-col items-center w-full max-w-md px-12">
         {/* Metadata */}
         <div className="mb-6">
-          <div className="my-5 font-agrandir text-13">
-            Episode {radio.episodeNumber}
-          </div>
+          <div className="my-5 font-agrandir text-13">{radio.episodeLabel}</div>
           <h1 className="text-24 font-title">{radio.title}</h1>
           <h2 className="text-20 font-agrandir">{radio.subtitle}</h2>
         </div>
@@ -118,8 +115,7 @@ function DesktopRadioView({ radio, onPlayClick }) {
         {/* Fixed Metadata */}
         <div className="flex-shrink-0 mb-3">
           <div className="my-3 font-agrandir text-13 xl:text-16">
-            {`Episode 
-            ${radio.episodeNumber}`}
+            {radio.episodeLabel}
           </div>
           <h1 className="leading-tight text-28 font-title xl:text-43">
             {radio.title}
