@@ -32,7 +32,7 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery)
+    await getClient(preview).fetch(interviewsQuery),
   );
   return {
     props: { allPosts, preview },

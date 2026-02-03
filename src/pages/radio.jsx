@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Layout, RadioGrid, ThemeWrapper } from '../components';
+import {
+  Container, Layout, RadioGrid, ThemeWrapper,
+} from '../components';
 import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { radioShowsQuery } from '../utils/queries';
@@ -20,7 +22,8 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
           preview={preview}
           bottomAds={bottomAds}
           theme="dark"
-          page="radiomain">
+          page="radiomain"
+        >
           <div className="mt-1 sm:mt-2 md:mt-3 sm:px-2">
             <Container>
               {allRadioShows && <RadioGrid data={allRadioShows} />}
@@ -34,7 +37,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery)
+    await getClient(preview).fetch(radioShowsQuery),
   );
   return {
     props: { allRadioShows, preview },

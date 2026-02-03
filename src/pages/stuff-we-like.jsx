@@ -29,7 +29,7 @@ export const StuffWeLike = ({ allPosts, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(stuffWeLikeQuery)
+    await getClient(preview).fetch(stuffWeLikeQuery),
   );
   return {
     props: { allPosts, preview },

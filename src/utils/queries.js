@@ -156,7 +156,6 @@ export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc, _u
 ${radioFields}
 }`;
 
-
 const moreInterviewsQuery = (posts) => {
   return `
 *[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc) | [${
@@ -205,7 +204,7 @@ export const getMoreQuery = (categoryTitle, posts) => {
       return moreStuffWeLikeQuery(posts);
     case 'interviews':
       return moreInterviewsQuery(posts);
-        case null:
+    case null:
     case undefined:
       return moreAllPostsQuery(posts);
     default:
@@ -215,5 +214,4 @@ export const getMoreQuery = (categoryTitle, posts) => {
   ${postPreviewFields}
 }`;
   }
-  }
-;
+};

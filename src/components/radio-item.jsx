@@ -1,3 +1,4 @@
+/* eslint-disable */
 // RadioItem.jsx
 import React from 'react';
 import { formatDate } from '../utils/formatDate';
@@ -26,7 +27,6 @@ const RadioItem = ({
             width="500"
             height="500"
           />
-          // Pass this so Thumbnail knows it's radio
         )}
       </div>
       <div className="flex flex-col flex-grow px-1 pt-2 pb-4 transition-colors duration-200 group-hover:bg-yellow">

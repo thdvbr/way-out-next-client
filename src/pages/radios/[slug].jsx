@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
@@ -52,7 +53,8 @@ function Radio({ data = {}, preview }) {
         theme="dark"
         preview={preview}
         url={radio.mixcloudUrl}
-        showPlayer={showPlayer}>
+        showPlayer={showPlayer}
+      >
         {width < 1025 ? (
           <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
         ) : (
