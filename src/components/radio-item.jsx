@@ -23,27 +23,21 @@ const RadioItem = ({
             title={title}
             image={heroImage}
             mixcloudUrl={mixcloudUrl}
-          /> // Pass this so Thumbnail knows it's radio
+            width="500"
+            height="500"
+          />
+          // Pass this so Thumbnail knows it's radio
         )}
       </div>
       <div className="flex flex-col flex-grow p-4">
         <p>{formatDate(publishedAt)}</p>
         <h3 className="mb-1 text-xl font-title">{title}</h3>
-        <p className="mb-2 text-sm text-gray-600">{subtitle}</p>
+        {subtitle && <p className="mb-2 text-sm text-gray-600">{subtitle}</p>}
         <ul className="flex-1 text-sm tags">
-          {tags?.map((tag) => (
+          {tags?.slice(0, 3).map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
         </ul>
-        {mixcloudUrl && (
-          <a
-            href={mixcloudUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 text-blue-600 underline">
-            Listen on Mixcloud
-          </a>
-        )}
       </div>
     </div>
   );

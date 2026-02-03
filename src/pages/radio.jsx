@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Layout, MasonryGrid, ThemeWrapper } from '../components';
+import { Container, Layout, RadioGrid, ThemeWrapper } from '../components';
 import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { radioShowsQuery } from '../utils/queries';
@@ -21,15 +21,13 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
           bottomAds={bottomAds}
           theme="dark"
           page="radiomain">
-          <div className="mt-1">
+          <div className="pb-24 mt-1">
+            {/* The footer has transform: translateY(58px) which shifts it down. With fixed bottom-0,
+            the footer will sit at the very bottom of the viewport.
+            The content behind it will scroll naturally since the main content area is already scrollable.
+            However, we should add some bottom padding to the radio page content so the last items aren't hidden behind the sticky footer. */}
             <Container>
-              {allRadioShows && (
-                <MasonryGrid
-                  type="radios"
-                  data={allRadioShows}
-                  ItemComponent={RadioItem}
-                />
-              )}
+              {allRadioShows && <RadioGrid data={allRadioShows} />}
             </Container>
           </div>
         </Layout>
