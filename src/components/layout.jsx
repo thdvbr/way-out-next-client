@@ -97,30 +97,38 @@ export default function Layout({
               </Container>
             </div>
             <main className="inset-0 z-0 w-screen">{children}</main>
-            {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
-            <div
-              className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
-              style={{ bottom: '60px' }}>
-              {!isLoading && <Subscribe />}
-              {!isLoading && randomSliceBottomAd && (
-                <>
-                  <motion.div
-                    className="flex justify-center px-3 mb-2"
-                    ref={ref}
-                    animate={animation}
-                    variants={adVariants}
-                    initial="hidden">
-                    <BottomAdImage
-                      image={randomSliceBottomAd.adImageMobile}
-                      url={randomSliceBottomAd.adUrl}
-                      width={500}
-                    />
-                  </motion.div>
-
+            {page === 'radiomain' ? (
+              <>
+                {!isLoading && <Subscribe />}
+                <div className="fixed bottom-0 left-0 right-0 z-50">
                   <Footer theme={theme} />
-                </>
-              )}
-            </div>{' '}
+                </div>
+              </>
+            ) : (
+              <div
+                className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
+                style={{ bottom: '60px' }}>
+                {!isLoading && <Subscribe />}
+                {!isLoading && randomSliceBottomAd && (
+                  <>
+                    <motion.div
+                      className="flex justify-center px-3 mb-2"
+                      ref={ref}
+                      animate={animation}
+                      variants={adVariants}
+                      initial="hidden">
+                      <BottomAdImage
+                        image={randomSliceBottomAd.adImageMobile}
+                        url={randomSliceBottomAd.adUrl}
+                        width={500}
+                      />
+                    </motion.div>
+
+                    <Footer theme={theme} />
+                  </>
+                )}
+              </div>
+            )}{' '}
           </>
         )}
         {/* desktop */}
@@ -141,28 +149,35 @@ export default function Layout({
               <NavbarDesktop theme={theme} page={page} />
             </Container>
             <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
-            <div
-              className={`${
-                (errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'
-              }`}>
-              {!isLoading && randomSliceBottomAd && (
-                <>
-                  <motion.div
-                    className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
-                    ref={ref}
-                    animate={animation}
-                    variants={adVariants}
-                    initial="hidden">
-                    <BottomAdImage
-                      image={randomSliceBottomAd.adImage}
-                      url={randomSliceBottomAd.adUrl}
-                      width={1500}
-                    />
-                  </motion.div>
-                  <Footer theme={theme} />
-                </>
-              )}
-            </div>
+            {page === 'radiomain' ? (
+              <div className="fixed bottom-0 left-0 right-0 z-50">
+                <Footer theme={theme} />
+              </div>
+            ) : (
+              <div
+                className={`${
+                  (errorMsg !== '' || isLoading) &&
+                  'absolute inset-x-0 bottom-0'
+                }`}>
+                {!isLoading && randomSliceBottomAd && (
+                  <>
+                    <motion.div
+                      className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
+                      ref={ref}
+                      animate={animation}
+                      variants={adVariants}
+                      initial="hidden">
+                      <BottomAdImage
+                        image={randomSliceBottomAd.adImage}
+                        url={randomSliceBottomAd.adUrl}
+                        width={1500}
+                      />
+                    </motion.div>
+                    <Footer theme={theme} />
+                  </>
+                )}
+              </div>
+            )}
           </motion.div>
         )}
       </motion.div>
