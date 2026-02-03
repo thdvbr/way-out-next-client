@@ -73,18 +73,18 @@ function MobileRadioView({ radio, onPlayClick }) {
         <Thumbnail slug="" image={radio.heroImage} />
       </section>
       {/* Content */}
-      <section className="flex flex-col items-center w-full max-w-md px-8">
+      <section className="flex flex-col items-center w-full max-w-md px-12">
         {/* Metadata */}
         <div className="mb-6">
-          <div className="my-3 font-agrandir text-13">
+          <div className="my-5 font-agrandir text-13">
             Episode {radio.episodeNumber}
           </div>
           <h1 className="text-24 font-title">{radio.title}</h1>
-          <h2 className="-mt-2 text-20 font-agrandir">{radio.subtitle}</h2>
+          <h2 className="text-20 font-agrandir">{radio.subtitle}</h2>
         </div>
 
         {/* Play Button */}
-        <button className="px-8 py-3 mb-6 " onClick={onPlayClick}>
+        <button className="px-8 pb-2 mb-5 " onClick={onPlayClick}>
           {' '}
           <PlayButton />
         </button>
@@ -96,7 +96,7 @@ function MobileRadioView({ radio, onPlayClick }) {
           </div>
         )}
         {/* Description */}
-        <div className="mb-6 font-secondary text-15">
+        <div className="mb-6 text-justify font-secondary text-15">
           <p>{radio.description}</p>
         </div>
 
