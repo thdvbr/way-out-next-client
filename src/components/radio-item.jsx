@@ -1,6 +1,7 @@
 /* eslint-disable */
 // RadioItem.jsx
 import React from 'react';
+import Link from 'next/link';
 import { formatDate } from '../utils/formatDate';
 import Thumbnail from './thumbnail';
 
@@ -33,9 +34,11 @@ const RadioItem = ({
         {episodeLabel && (
           <p className="mb-2 text-13 group-hover:text-black">{episodeLabel}</p>
         )}
-        <h3 className="mb-1 text-22 font-title group-hover:text-black">
-          {title}
-        </h3>
+        <div className="mb-1 text-22 font-title group-hover:text-black">
+          <Link as={`/radios/${slug.current || slug}`} href="/radios/[slug]">
+            {title}
+          </Link>
+        </div>
         {subtitle && (
           <p className="text-17 font-agrandir group-hover:text-black">
             {subtitle}
