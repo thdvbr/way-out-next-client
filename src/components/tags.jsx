@@ -5,7 +5,7 @@ const Tags = ({ tags = [] }) => {
     <div className="flex flex-row gap-2">
       {tags.map((tag, index) => (
         <div
-          className="px-2 py-0 border border-white font-secondary text-15 md:text-17 xl:text-22"
+          className="px-2 py-0.5 border border-white rounded-sm font-secondary text-15 md:text-17 xl:text-22"
           // eslint-disable-next-line react/jsx-closing-bracket-location
           key={tag._key || `${tag}-${index}`}>
           {tag}
