@@ -41,6 +41,9 @@ function Radio({ data = {}, preview }) {
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
   }
+  if (router.isFallback || !radio) {
+    return <div>Loading...</div>;
+  }
   // Handler for play button - only shows player once
   const handlePlayClick = () => {
     if (!showPlayer) {
