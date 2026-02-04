@@ -8,6 +8,13 @@ html{
   -moz-text-size-adjust: 100%;
 }
 
+@supports (height: 100dvh) {
+  .h-screen-safe {
+    height: 100dvh !important;
+  }
+}
+
+
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;

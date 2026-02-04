@@ -35,13 +35,13 @@ export default function RadioLayout({
 
   return (
     <>
-      <div className="flex flex-col h-screen overflow-hidden ">
+      <div className="flex flex-col h-screen overflow-hidden h-screen-safe">
         {preview && <AlertPreview />}
         <Head>
           <title>Way Out Mag - Radio</title>
           <meta
             name="viewport"
-            content="initial-scale=1.0, width=device-width"
+            content="initial-scale=1.0, width=device-width viewport-fit=cover"
           />
         </Head>
 
@@ -91,7 +91,9 @@ export default function RadioLayout({
         )}
 
         {/* Footer section - constrained height */}
-        <div className="relative flex-shrink-0 sticky-footer-radio">
+        <div
+          className="relative flex-shrink-0 sticky-footer-radio"
+          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
           {/* Sticky Player - only show if showPlayer is true */}
           {showPlayer && (
             <div className="absolute top-0 left-0 right-0 z-50 mixcloud-widget">
