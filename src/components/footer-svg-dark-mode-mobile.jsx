@@ -8,7 +8,8 @@ const FooterSvgDarkModeMobile = () => {
       viewBox="0 0 375 49"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink">
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <rect width="375" height="49" fill="#D7D7D7" />
       <rect
         width="375"
@@ -21,7 +22,8 @@ const FooterSvgDarkModeMobile = () => {
           id="pattern0_3925_5562"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <use
             xlinkHref="#image0_3925_5562"
             transform="matrix(0.000860709 0 0 0.0102041 -1.50599 -9.17851)"

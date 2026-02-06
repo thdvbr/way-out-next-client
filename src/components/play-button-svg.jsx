@@ -8,7 +8,8 @@ const PlayButton = ({ style }) => {
       viewBox="0 0 51 52"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={style}>
+      style={style}
+    >
       <rect
         x="0.5"
         y="0.5"
