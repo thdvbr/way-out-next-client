@@ -321,7 +321,7 @@ body {
 
 
 .footer-logo-container {
-  content: url(/assets/logos/footer-logo.png);
+  /* content: url(/assets/logos/footer-logo.png); */
   width: 3em;
 }
 
@@ -331,6 +331,7 @@ body {
     height: 8em;
     content: url(/assets/logos/way_out_vector_transparent-01_.png);
   }
+
   .info-box {
     top: 60px;
   }

@@ -42,6 +42,9 @@ import Tracklist from './tracklist'
 import Tags from './tags'
 import PlayButton from './play-button-svg'
 import RadioGrid from './radio-grid'
+import FooterSvgDarkMode from './footer-svg-dark-mode'
+import FooterSvg from './footer-svg'
+import FooterSvgDarkModeMobile from './footer-svg-dark-mode-mobile'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -91,5 +94,8 @@ export {
   Tracklist,
   Tags,
   PlayButton,
-  RadioGrid
+  RadioGrid,
+  FooterSvgDarkMode,
+  FooterSvg,
+  FooterSvgDarkModeMobile
 };
