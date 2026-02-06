@@ -93,18 +93,25 @@ export default function RadioLayout({
         {/* Footer section - constrained height */}
         <div
           className="relative flex-shrink-0 sticky-footer-radio"
-          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+          style={{
+            paddingBottom: 'env(safe-area-inset-bottom)',
+            height: showPlayer ? '109.38px' : '50.38px',
+          }}>
           {/* Sticky Player - only show if showPlayer is true */}
-          {showPlayer && (
-            <div className="absolute top-0 left-0 right-0 z-50 mixcloud-widget">
-              <MixcloudWidget url={url} />
+          {showPlayer ? (
+            <>
+              <div className="absolute top-0 left-0 right-0 z-50 mixcloud-widget">
+                <MixcloudWidget url={url} />
+              </div>
+              <div className="absolute left-0 right-0">
+                <Footer theme={theme} showPlayer={true} />
+              </div>
+            </>
+          ) : (
+            <div className="absolute left-0 right-0">
+              <Footer theme={theme} showPlayer={false} />
             </div>
           )}
-
-          {/* Footer - translateY pulls it up into view */}
-          <div className="absolute left-0 right-0">
-            <Footer theme={theme} />
-          </div>
         </div>
       </div>
     </>

@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import FooterSvg from './footer-svg';
 import useWindowWidth from '../utils/useWindowWidth';
 
-export default function Footer({ theme = 'light' }) {
+export default function Footer({ theme = 'light', showPlayer = true }) {
   const width = useWindowWidth();
   const isDark = theme === 'dark';
   const svgString = encodeURIComponent(renderToStaticMarkup(<FooterSvg />));
@@ -13,15 +13,13 @@ export default function Footer({ theme = 'light' }) {
   return (
     <footer
       style={{
-        transform: 'translateY(60px)',
+        transform: showPlayer ? 'translateY(60px)' : '',
         backgroundImage: `url("data:image/svg+xml,${svgString}")`,
         filter: isDark ? 'invert(1)' : 'none',
-      }}
-    >
+      }}>
       <nav
         className={`container px-3 py-6 sm:py-2 mx-auto sm:px-14 md:px-36 ml:px-72 lg:px-80 xl:px-96 text-13 sm:text-15 ml:text-16 xl:text-18 font-agrandir ${textColor}`}
-        style={isDark ? { filter: 'invert(1)' } : {}}
-      >
+        style={isDark ? { filter: 'invert(1)' } : {}}>
         <div className="flex flex-row items-center justify-between">
           <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
             Contact
