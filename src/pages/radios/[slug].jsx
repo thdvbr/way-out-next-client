@@ -56,12 +56,19 @@ function Radio({ data = {}, preview }) {
         theme="dark"
         preview={preview}
         url={radio.mixcloudUrl}
-        showPlayer={showPlayer}
-      >
+        showPlayer={showPlayer}>
         {width < 1025 ? (
-          <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
+          <MobileRadioView
+            radio={radio}
+            onPlayClick={handlePlayClick}
+            showPlayer={showPlayer}
+          />
         ) : (
-          <DesktopRadioView radio={radio} onPlayClick={handlePlayClick} />
+          <DesktopRadioView
+            radio={radio}
+            onPlayClick={handlePlayClick}
+            showPlayer={showPlayer}
+          />
         )}
       </RadioLayout>
     </ThemeWrapper>
@@ -69,7 +76,7 @@ function Radio({ data = {}, preview }) {
 }
 
 // ===== MOBILE VIEW =====
-function MobileRadioView({ radio, onPlayClick }) {
+function MobileRadioView({ radio, onPlayClick, showPlayer }) {
   return (
     <div className="flex flex-col items-center gap-4 px-2 text-center">
       {/* Thumbnail */}
@@ -78,8 +85,7 @@ function MobileRadioView({ radio, onPlayClick }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}
-      >
+        }}>
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
@@ -94,7 +100,7 @@ function MobileRadioView({ radio, onPlayClick }) {
         {/* Play Button */}
         <button className="px-8 pb-2 mb-3 " onClick={onPlayClick}>
           {' '}
-          <PlayButton />
+          <PlayButton style={{ filter: showPlayer ? 'invert(1)' : 'none' }} />
         </button>
 
         {/* Tags */}
@@ -118,7 +124,7 @@ function MobileRadioView({ radio, onPlayClick }) {
 }
 
 // ===== DESKTOP VIEW =====
-function DesktopRadioView({ radio, onPlayClick }) {
+function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
   return (
     <div className="flex flex-row justify-between gap-8 px-3 desktop-radio-content-container ">
       {/* Left: Content */}
@@ -146,7 +152,9 @@ function DesktopRadioView({ radio, onPlayClick }) {
           {/* Play + Description */}
           <div className="flex gap-6 mb-6">
             <button onClick={onPlayClick}>
-              <PlayButton />
+              <PlayButton
+                style={{ filter: showPlayer ? 'invert(1)' : 'none' }}
+              />
             </button>
             <div className="flex-1 leading-6 font-secondary text-15 xl:text-20">
               <p>{radio.description}</p>
