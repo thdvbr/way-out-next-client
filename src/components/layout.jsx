@@ -98,9 +98,7 @@ export default function Layout({
             </div>
             <main className="inset-0 z-0 w-screen">{children}</main>
             {page === 'radiomain' ? (
-              <div className="sticky bottom-0 left-0 right-0 z-50">
-                <Footer theme={theme} />
-              </div>
+              <Footer theme={theme} />
             ) : (
               <div
                 className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
