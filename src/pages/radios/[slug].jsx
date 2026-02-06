@@ -56,8 +56,7 @@ function Radio({ data = {}, preview }) {
         theme="dark"
         preview={preview}
         url={radio.mixcloudUrl}
-        showPlayer={showPlayer}
-      >
+        showPlayer={showPlayer}>
         {width < 1025 ? (
           <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
         ) : (
@@ -71,35 +70,34 @@ function Radio({ data = {}, preview }) {
 // ===== MOBILE VIEW =====
 function MobileRadioView({ radio, onPlayClick }) {
   return (
-    <div className="flex flex-col items-center gap-6 px-2 text-center">
+    <div className="flex flex-col items-center gap-4 px-2 text-center">
       {/* Thumbnail */}
       <section
         className="w-full max-w-xl"
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}
-      >
+        }}>
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
       <section className="flex flex-col items-center w-full max-w-md px-12">
         {/* Metadata */}
-        <div className="mb-6">
-          <div className="my-5 font-agrandir text-13">{radio.episodeLabel}</div>
+        <div className="mb-3">
+          <div className="my-1 font-agrandir text-13">{radio.episodeLabel}</div>
           <h1 className="text-24 font-title">{radio.title}</h1>
           <h2 className="text-20 font-agrandir">{radio.subtitle}</h2>
         </div>
 
         {/* Play Button */}
-        <button className="px-8 pb-2 mb-5 " onClick={onPlayClick}>
+        <button className="px-8 pb-2 mb-3 " onClick={onPlayClick}>
           {' '}
           <PlayButton />
         </button>
 
         {/* Tags */}
         {radio.tags && (
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-7">
             <Tags tags={radio.tags} />
           </div>
         )}
