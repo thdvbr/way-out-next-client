@@ -620,3 +620,20 @@ height: 640px;
 }
 }
 
+@media only screen and (max-width: 768px){
+.radio-preview-block:active .radio-preview-text-box{
+  background-color: #FFFF00
+}
+
+.radio-preview-block:active .radio-preview-episode-label, 
+.radio-preview-block:active .radio-preview-title, 
+.radio-preview-block:active .radio-preview-subtitle {
+  color: black 
+}
+
+.radio-preview-block:active .radio-tags {
+  color:white;
+  background-color: black;
+  border-color: black;
+}
+}

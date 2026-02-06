@@ -17,7 +17,7 @@ const RadioItem = ({
   episodeLabel,
 }) => {
   return (
-    <div className="group">
+    <div className="group radio-preview-block">
       <div className="">
         {heroImage && (
           <Thumbnail
@@ -30,17 +30,19 @@ const RadioItem = ({
           />
         )}
       </div>
-      <div className="flex flex-col flex-grow px-1 pt-2 pb-4 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black group-hover:bg-yellow">
+      <div className="flex flex-col flex-grow px-1 pt-2 pb-4 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black md:group-hover:bg-yellow radio-preview-text-box">
         {episodeLabel && (
-          <p className="mb-2 text-13 group-hover:text-black">{episodeLabel}</p>
+          <p className="mb-2 text-13 md:group-hover:text-black radio-preview-episode-label">
+            {episodeLabel}
+          </p>
         )}
-        <div className="mb-1 text-22 font-title group-hover:text-black">
+        <div className="mb-1 text-22 font-title md:group-hover:text-black radio-preview-title">
           <Link as={`/radios/${slug.current || slug}`} href="/radios/[slug]">
             {title}
           </Link>
         </div>
         {subtitle && (
-          <p className="text-17 font-agrandir group-hover:text-black">
+          <p className="text-17 font-agrandir md:group-hover:text-black radio-preview-subtitle">
             {subtitle}
           </p>
         )}
@@ -48,7 +50,7 @@ const RadioItem = ({
           {tags?.map((tag, index) => (
             <li
               key={tag._key || tag + '-' + index}
-              className="mt-3 px-4 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 font-agrandir group-hover:bg-black group-hover:border-black group-hover:text-white">
+              className="mt-3 px-4 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 font-agrandir md:group-hover:bg-black md:group-hover:border-black md:group-hover:text-white radio-tags">
               {tag}
             </li>
           ))}
