@@ -56,7 +56,8 @@ function Radio({ data = {}, preview }) {
         theme="dark"
         preview={preview}
         url={radio.mixcloudUrl}
-        showPlayer={showPlayer}>
+        showPlayer={showPlayer}
+      >
         {width < 1025 ? (
           <MobileRadioView radio={radio} onPlayClick={handlePlayClick} />
         ) : (
@@ -77,7 +78,8 @@ function MobileRadioView({ radio, onPlayClick }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}>
+        }}
+      >
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
