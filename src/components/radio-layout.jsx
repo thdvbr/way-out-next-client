@@ -100,7 +100,7 @@ export default function RadioLayout({
           {/* Sticky Player - only show if showPlayer is true */}
           {/* Always render the widget, but hide until showPlayer is true */}
           <div
-            className="absolute top-0 left-0 right-0 z-50 mixcloud-widget"
+            className="absolute top-0 left-0 right-0 z-1 mixcloud-widget"
             style={{
               visibility: showPlayer ? 'visible' : 'hidden',
               height: showPlayer ? 'auto' : 0,
