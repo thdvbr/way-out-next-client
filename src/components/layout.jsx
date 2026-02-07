@@ -76,7 +76,6 @@ export default function Layout({
       const newRandomSlice = sample(bottomAdData);
       setRandomSliceBottomAd(newRandomSlice);
     }
-    setHasMorePosts(true); //reset for new page
   }, [bottomAdData, asPath]);
 
   return (
