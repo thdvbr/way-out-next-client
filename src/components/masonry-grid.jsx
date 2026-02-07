@@ -40,14 +40,16 @@ const MasonryGrid = ({
 
   const getMorePost = async () => {
     console.log('=== GET MORE POST CALLED ===');
-    const newQuery = getMoreQuery(categoryTitle, posts);
-    const newPosts = await getClient().fetch(newQuery);
-    console.log('newPosts.length:', newPosts.length);
-    setPosts((post) => [...post, ...newPosts]);
-    if (newPosts.length < 8) {
-      console.log('Setting hasMorePosts to FALSE');
-      setHasMorePosts(false);
-      // setAllPostsLoaded(true);
+    try {
+      const newQuery = getMoreQuery(categoryTitle, posts);
+      const newPosts = await getClient().fetch(newQuery);
+      setPosts((post) => [...post, ...newPosts]);
+      if (newPosts.length < 8) {
+        setHasMorePosts(false);
+      }
+    } catch (error) {
+      console.error('Failed to fetch more posts:', error);
+      setHasMorePosts(false); // Stop trying if it fails
     }
   };
 
