@@ -26,11 +26,13 @@ const MasonryGrid = ({
 
   const prevDataRef = useRef();
   useEffect(() => {
-    console.log('Is same reference?', prevDataRef.current === data);
-    console.log('MasonryGrid data changed:', data);
-    prevDataRef.current = data;
+    // console.log('Is same reference?', prevDataRef.current === data);
+    // console.log('MasonryGrid data changed:', data);
+    // prevDataRef.current = data;
     setPosts(data);
-    setHasMorePosts(true);
+    // If we have 8+ items, there might be more to load
+    // If less than 8, we know there's nothing more
+    setHasMorePosts(data.length >= 8);
   }, [data]);
 
   const getMorePost = async () => {
