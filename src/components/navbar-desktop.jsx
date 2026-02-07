@@ -54,7 +54,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
           <Link
             href="/stuff-we-like"
             className={`${router.pathname == '/stuff-we-like' && 'stuff-we-like-active'}  sm:py-0 stuff-we-like`}>
-            Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Opinions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </Link>
         </div>
         <div>
