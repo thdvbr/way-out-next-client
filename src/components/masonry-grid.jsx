@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Masonry from 'react-masonry-css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { motion } from 'framer-motion';
@@ -21,13 +21,16 @@ const MasonryGrid = ({
   categoryTitle = null,
   ItemComponent = MasonryItem,
 }) => {
-  // const { query, searchResult } = useAppContext();
+  const { hasMorePosts, setHasMorePosts } = useAppContext();
   const [posts, setPosts] = useState(data);
-  const [hasMore, setHasMore] = useState(true);
 
+  const prevDataRef = useRef();
   useEffect(() => {
+    console.log('Is same reference?', prevDataRef.current === data);
+    console.log('MasonryGrid data changed:', data);
+    prevDataRef.current = data;
     setPosts(data);
-    setHasMore(true);
+    setHasMorePosts(true);
   }, [data]);
 
   const getMorePost = async () => {
@@ -35,7 +38,8 @@ const MasonryGrid = ({
     const newPosts = await getClient().fetch(newQuery);
     setPosts((post) => [...post, ...newPosts]);
     if (newPosts.length < 8) {
-      setHasMore(false);
+      setHasMorePosts(false);
+      // setAllPostsLoaded(true);
     }
   };
 
@@ -49,7 +53,7 @@ const MasonryGrid = ({
         <InfiniteScroll
           dataLength={posts.length}
           next={getMorePost}
-          hasMore={hasMore}>
+          hasMore={hasMorePosts}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"

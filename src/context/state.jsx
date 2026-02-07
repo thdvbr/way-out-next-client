@@ -21,6 +21,7 @@ export function AppWrapper({
   // Ads data: only set after component mounts to prevent SSR mismatch
   const [bottomAdData, setBottomAdData] = useState([]);
   const [sideAdData, setSideAdData] = useState([]);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
 
   // Hydration-safe: initialize ads client-side
   useEffect(() => {
@@ -47,6 +48,8 @@ export function AppWrapper({
         setErrorMsg,
         isLoading,
         setIsLoading,
+        hasMorePosts,
+        setHasMorePosts,
       }}>
       {children}
     </AppContext.Provider>

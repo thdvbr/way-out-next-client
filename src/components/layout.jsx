@@ -42,6 +42,8 @@ export default function Layout({
     bottomAdData,
     errorMsg,
     isLoading,
+    hasMorePosts,
+    setHasMorePosts,
   } = useAppContext();
   const { asPath, pathname } = useRouter();
 
@@ -57,20 +59,20 @@ export default function Layout({
       animation.start('hidden');
     }
   }, [inView, animation]);
-
+  console.log('randomSliceBottomAd:', randomSliceBottomAd);
+  console.log('hasMorePosts:', hasMorePosts);
   // run when bottomAdData first loads
   // run on every page navigation = asPath
   // only set the state when theres actually data to work with
   useEffect(() => {
+    console.log('Layout useEffect triggered!', { bottomAdData, asPath });
     if (bottomAdData && bottomAdData.length > 0) {
       const newRandomSlice = sample(bottomAdData);
       setRandomSliceBottomAd(newRandomSlice);
     }
+    setHasMorePosts(true); //reset for new page
   }, [bottomAdData, asPath]);
 
-  // console.log('bottomAdData:', bottomAdData);
-  // console.log('randomSliceBottomAd:', randomSliceBottomAd);
-  // if yOffset === 0 && color: gold
   return (
     <>
       {/* <Meta /> */}
@@ -111,7 +113,7 @@ export default function Layout({
                 className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
                 style={{ bottom: '60px' }}>
                 {!isLoading && <Subscribe />}
-                {!isLoading && randomSliceBottomAd && (
+                {!isLoading && randomSliceBottomAd && !hasMorePosts && (
                   <>
                     <motion.div
                       className="flex justify-center px-3 mb-2"
@@ -159,7 +161,7 @@ export default function Layout({
                   (errorMsg !== '' || isLoading) &&
                   'absolute inset-x-0 bottom-0'
                 }`}>
-                {!isLoading && randomSliceBottomAd && (
+                {!isLoading && randomSliceBottomAd && !hasMorePosts && (
                   <>
                     <motion.div
                       className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"

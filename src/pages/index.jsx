@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
@@ -13,7 +13,8 @@ export const Index = ({ allPosts, preview }) => {
   const width = useWindowWidth();
   const router = useRouter();
   const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  // only create a new morePosts when allPosts actually changes
+  const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
   const { searchIsOpen, setErrorMsg } = useAppContext();
 
   useEffect(() => {
