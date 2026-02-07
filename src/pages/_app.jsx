@@ -26,7 +26,8 @@ function MyApp({
         pageData={pageData}
         staffData={staffData}
         bottomAds={bottomAds}
-        sideAds={sideAds}>
+        sideAds={sideAds}
+      >
         <Component {...pageProps} key={router.route} />
       </AppWrapper>
     </AnimatePresence>
