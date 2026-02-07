@@ -7,8 +7,9 @@ import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = ({ theme = 'light' }) => {
-  const { infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen } =
-    useAppContext();
+  const {
+    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
+  } = useAppContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -61,7 +62,8 @@ const NavbarMobile = ({ theme = 'light' }) => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full">
+              className="w-full"
+            >
               <SearchBar />
             </motion.div>
           )}
@@ -69,15 +71,18 @@ const NavbarMobile = ({ theme = 'light' }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="pt-4 pb-8 lg:hidden">
+          className="pt-4 pb-8 lg:hidden"
+        >
           <span>Menu</span>
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.07rem' }}>
+          style={{ bottom: '-13.07rem' }}
+        >
           {/* TODO: fix hide overflow */}
           <div
-            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}>
+            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}
+          >
             <Link href="/interviews" className="py-4 interviews">
               Interviews
             </Link>
@@ -90,7 +95,8 @@ const NavbarMobile = ({ theme = 'light' }) => {
             <button
               className="py-4 text-left"
               type="button"
-              onClick={() => setInfoIsOpen(!infoIsOpen)}>
+              onClick={() => setInfoIsOpen(!infoIsOpen)}
+            >
               <span>Info</span>
             </button>
           </div>
