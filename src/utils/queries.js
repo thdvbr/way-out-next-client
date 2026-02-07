@@ -37,10 +37,11 @@ previewImage,
 
 const radioFields = `  
   _id,
+  name,
   episodeLabel,
   title,
   subtitle,
-  slug,
+  "slug": slug.current,
   heroImage,
   mixcloudUrl,
   tracklist,
@@ -135,6 +136,12 @@ export const radioQuery = `
 `;
 export const radioSlugsQuery = `
 *[_type == "radio" && defined(slug.current)][].slug.current
+`;
+
+export const radioBySlugQuery = `
+*[_type == "radio" && slug.current == $slug][0] {
+  ${radioFields}
+}
 `;
 
 export const interviewsQuery = `
