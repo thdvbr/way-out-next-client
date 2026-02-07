@@ -45,7 +45,6 @@ export default function Layout({
   } = useAppContext();
   const { asPath, pathname } = useRouter();
 
-  const randomSlice1 = sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
@@ -59,10 +58,18 @@ export default function Layout({
     }
   }, [inView, animation]);
 
+  // run when bottomAdData first loads
+  // run on every page navigation = asPath
+  // only set the state when theres actually data to work with
   useEffect(() => {
-    setRandomSliceBottomAd(randomSlice1);
-  }, [asPath]);
+    if (bottomAdData && bottomAdData.length > 0) {
+      const newRandomSlice = sample(bottomAdData);
+      setRandomSliceBottomAd(newRandomSlice);
+    }
+  }, [bottomAdData, asPath]);
 
+  // console.log('bottomAdData:', bottomAdData);
+  // console.log('randomSliceBottomAd:', randomSliceBottomAd);
   // if yOffset === 0 && color: gold
   return (
     <>
