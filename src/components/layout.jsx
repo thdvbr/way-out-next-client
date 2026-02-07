@@ -59,8 +59,14 @@ export default function Layout({
       animation.start('hidden');
     }
   }, [inView, animation]);
+  console.log('=== AD RENDER CHECK ===');
+  console.log('isLoading:', isLoading);
   console.log('randomSliceBottomAd:', randomSliceBottomAd);
   console.log('hasMorePosts:', hasMorePosts);
+  console.log(
+    'Should show ad?',
+    !isLoading && randomSliceBottomAd && !hasMorePosts
+  );
   // run when bottomAdData first loads
   // run on every page navigation = asPath
   // only set the state when theres actually data to work with

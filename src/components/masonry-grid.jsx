@@ -29,6 +29,9 @@ const MasonryGrid = ({
     // console.log('Is same reference?', prevDataRef.current === data);
     // console.log('MasonryGrid data changed:', data);
     // prevDataRef.current = data;
+    console.log('=== MASONRY USEEFFECT ===');
+    console.log('data.length:', data.length);
+    console.log('Setting hasMorePosts to:', data.length >= 8);
     setPosts(data);
     // If we have 8+ items, there might be more to load
     // If less than 8, we know there's nothing more
@@ -36,10 +39,13 @@ const MasonryGrid = ({
   }, [data]);
 
   const getMorePost = async () => {
+    console.log('=== GET MORE POST CALLED ===');
     const newQuery = getMoreQuery(categoryTitle, posts);
     const newPosts = await getClient().fetch(newQuery);
+    console.log('newPosts.length:', newPosts.length);
     setPosts((post) => [...post, ...newPosts]);
     if (newPosts.length < 8) {
+      console.log('Setting hasMorePosts to FALSE');
       setHasMorePosts(false);
       // setAllPostsLoaded(true);
     }
