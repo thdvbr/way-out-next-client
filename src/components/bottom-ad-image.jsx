@@ -36,8 +36,8 @@ const BottomAdImage = ({ image: source, url }) => {
       style={{
         width: '100%',
         height: '200px',
-        maxWidth: '1280px',
         position: 'relative',
+        margin: '0 auto', // for centering
       }}
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}

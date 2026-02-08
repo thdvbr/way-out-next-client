@@ -1,11 +1,15 @@
 /* eslint-disable */
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { sample } from '../utils/random';
+import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import Header from './header';
+import { adVariants } from '../utils/animation';
 import { useAppContext } from '../context/state';
 // eslint-disable-next-line import/no-cycle
 import {
@@ -15,33 +19,40 @@ import {
   SectionSeparator,
   Container,
   Subscribe,
+  BottomAdImage,
+  Footer,
 } from './index';
 import { joinVariants } from '../utils/animation';
 import useWindowWidth from '../utils/useWindowWidth';
 
 export default function PostLayout({ preview, children, theme }) {
   const width = useWindowWidth();
-  const infoVariants = {
-    opened: { x: width > 500 ? '-30vw' : 0 },
-    closed: { x: 0 },
-  };
-  const { infoIsOpen, isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } =
+  const { isTop, searchIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData } =
     useAppContext();
+  const { asPath } = useRouter();
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+  const { ref } = useInView();
+  const animation = useAnimation();
+
   useEffect(() => {
     if (preview) {
       setJoinIsOpen(true);
     }
   }, []);
+
+  useEffect(() => {
+    console.log('Layout useEffect triggered!', { bottomAdData, asPath });
+    if (bottomAdData && bottomAdData.length > 0) {
+      const newRandomSlice = sample(bottomAdData);
+      setRandomSliceBottomAd(newRandomSlice);
+    }
+  }, [bottomAdData, asPath]);
+
   return (
     <>
       {/* <Meta /> */}
       <div className="min-h-screen">
         {preview && <AlertPreview />}
-        {/* <motion.div
-          initial={false}
-          variants={infoVariants}
-          animate={infoIsOpen ? 'opened' : 'closed'}
-          transition={{ type: 'spring', duration: 1 }}> */}
         <Head>
           <title>Way Out Mag</title>
           <meta
@@ -101,6 +112,31 @@ export default function PostLayout({ preview, children, theme }) {
             </motion.div>
           </>
         )}
+        {randomSliceBottomAd && (
+          <Container>
+            <motion.div
+              className="flex justify-center px-3 mt-10"
+              ref={ref}
+              animate={animation}
+              variants={adVariants}
+              initial="hidden">
+              {width > 500 ? (
+                <BottomAdImage
+                  image={randomSliceBottomAd.adImage}
+                  url={randomSliceBottomAd.adUrl}
+                  width={1360}
+                />
+              ) : (
+                <BottomAdImage
+                  image={randomSliceBottomAd.adImageMobile}
+                  url={randomSliceBottomAd.adUrl}
+                  width={500}
+                />
+              )}
+            </motion.div>
+          </Container>
+        )}
+        <Footer />
         {/* </motion.div> */}
       </div>
     </>

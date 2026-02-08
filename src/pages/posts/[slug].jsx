@@ -20,9 +20,7 @@ import {
   PostLayout,
   ArtistLink,
   RelatedGrid,
-  BottomAdImage,
   SocialSharing,
-  Footer,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -30,7 +28,6 @@ import {
   postBodyVariants,
   morePostVariants,
   stagger,
-  adVariants,
 } from '../../utils/animation';
 import useWindowWidth from '../../utils/useWindowWidth';
 
@@ -47,13 +44,13 @@ export const Post = ({ data = {}, preview }) => {
   const { isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData } =
     useAppContext();
 
-  const { ref, inView } = useInView();
+  const { inView } = useInView();
   const animation = useAnimation();
-  const randomSlice1 = sample(bottomAdData);
+  // const randomSlice1 = sample(bottomAdData);
 
   const width = useWindowWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
-  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
+  // const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
   const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
   const [randomSliced1SideAd, setRandomSliced1SideAd] = useState(null);
 
@@ -77,7 +74,6 @@ export const Post = ({ data = {}, preview }) => {
 
   useEffect(() => {
     setRandomSlicedMorePosts(randomize(morePosts || []).slice(1, 5));
-    setRandomSliceBottomAd(randomSlice1 || null);
     setRandomSliced2SideAds(sampleSize(sideAdData || [], 2));
     setRandomSliced1SideAd(sample(sideAdData || null));
   }, [router.asPath]);
@@ -161,29 +157,6 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      {randomSliceBottomAd && (
-        <motion.div
-          className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
-          ref={ref}
-          animate={animation}
-          variants={adVariants}
-          initial="hidden">
-          {width > 500 ? (
-            <BottomAdImage
-              image={randomSliceBottomAd.adImage}
-              url={randomSliceBottomAd.adUrl}
-              width={1360}
-            />
-          ) : (
-            <BottomAdImage
-              image={randomSliceBottomAd.adImageMobile}
-              url={randomSliceBottomAd.adUrl}
-              width={500}
-            />
-          )}
-        </motion.div>
-      )}
-      <Footer />
     </motion.div>
   );
 };

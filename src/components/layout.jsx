@@ -165,18 +165,21 @@ export default function Layout({
                 <>
                   {!isLoading && randomSliceBottomAd && !hasMorePosts && (
                     <>
-                      <motion.div
-                        className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
-                        ref={ref}
-                        animate={animation}
-                        variants={adVariants}
-                        initial="hidden">
-                        <BottomAdImage
-                          image={randomSliceBottomAd.adImage}
-                          url={randomSliceBottomAd.adUrl}
-                          width={1500}
-                        />
-                      </motion.div>
+                      <Container>
+                        <motion.div
+                          className="flex justify-center px-3 mt-10"
+                          ref={ref}
+                          animate={animation}
+                          variants={adVariants}
+                          initial="hidden">
+                          <BottomAdImage
+                            image={randomSliceBottomAd.adImage}
+                            url={randomSliceBottomAd.adUrl}
+                            width={1500}
+                          />
+                        </motion.div>
+                      </Container>
+
                       <Footer theme={theme} />
                     </>
                   )}
