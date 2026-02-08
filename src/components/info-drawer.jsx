@@ -29,38 +29,33 @@ const useCustomMouse = () => {
 
 const InfoDrawer = ({ preview }) => {
   const width = useWindowWidth();
-  const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
+  const {
+    infoIsOpen,
+    setInfoIsOpen,
+    infoDrawerSection,
+    setInfoDrawerSection,
+    pageData,
+    staffData,
+  } = useAppContext();
   const { about, contact } = pageData;
   const { x, y } = useCustomMouse();
-  const [aboutIsOpen, setAboutIsOpen] = useState(false);
-  const [contactIsOpen, setContactIsOpen] = useState(false);
-  const [staffIsOpen, setStaffIsOpen] = useState(false);
-
   const staffsOdd = staffData.filter((e, i) => i % 2);
   const staffsEven = staffData.filter((e, i) => !(i % 2));
 
   const toggleAbout = () => {
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
-    setAboutIsOpen(!aboutIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'about' ? null : 'about');
   };
 
   const toggleContact = () => {
-    aboutIsOpen && toggleAbout();
-    staffIsOpen && toggleStaff();
-    setContactIsOpen(!contactIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'contact' ? null : 'contact');
   };
 
   const toggleStaff = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    setStaffIsOpen(!staffIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'staff' ? null : 'staff');
   };
 
   const toggleInfo = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
+    setInfoDrawerSection(null);
     setInfoIsOpen(!infoIsOpen);
   };
   // const target = useRef(null);
@@ -69,13 +64,6 @@ const InfoDrawer = ({ preview }) => {
   //     enterDelay: 100,
   //     leaveDelay: 100,
   // });
-  const moveToTop = () => {
-    document.body.classList.add('no-scroll');
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant',
-    });
-  };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
     infoIsOpen
@@ -117,12 +105,12 @@ const InfoDrawer = ({ preview }) => {
               </div>
               <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
                 <div className="w-8/12">
-                  {aboutIsOpen && (
+                  {infoDrawerSection === 'about' && (
                     <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={about.body} />
                     </div>
                   )}
-                  {contactIsOpen && (
+                  {infoDrawerSection === 'contact' && (
                     <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={contact.body} />
                       <Link href="/legal" className="underline font-secondary">
@@ -130,7 +118,7 @@ const InfoDrawer = ({ preview }) => {
                       </Link>
                     </div>
                   )}
-                  {staffIsOpen && (
+                  {infoDrawerSection === 'staff' && (
                     <>
                       <div className="flex justify-between pt-2">
                         <div className="text-left">

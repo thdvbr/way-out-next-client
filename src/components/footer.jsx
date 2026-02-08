@@ -9,6 +9,7 @@ import {
   Logo,
 } from './index';
 import useWindowWidth from '../utils/useWindowWidth';
+import { useAppContext } from '../context/state';
 
 export default function Footer({ theme = 'light', showPlayer = true }) {
   const width = useWindowWidth();
@@ -31,6 +32,7 @@ export default function Footer({ theme = 'light', showPlayer = true }) {
     }
     return `url("data:image/svg+xml,${svgString}")`;
   };
+  const { setInfoIsOpen, setInfoDrawerSection } = useAppContext();
 
   return (
     <footer
@@ -44,9 +46,15 @@ export default function Footer({ theme = 'light', showPlayer = true }) {
         className={`container px-3 py-6 sm:py-2 mx-auto sm:px-14 md:px-36 ml:px-72 lg:px-80 xl:px-96 text-13 sm:text-15 ml:text-16 xl:text-18 font-agrandir ${textColor}`}
       >
         <div className="flex flex-row items-center justify-between">
-          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+          <button
+            type="button"
+            onClick={() => {
+              setInfoIsOpen(true);
+              setInfoDrawerSection('contact');
+            }}
+          >
             Contact
-          </a>
+          </button>
           <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
             Donate
           </a>

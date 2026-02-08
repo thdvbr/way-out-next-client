@@ -22,6 +22,7 @@ export function AppWrapper({
   const [bottomAdData, setBottomAdData] = useState([]);
   const [sideAdData, setSideAdData] = useState([]);
   const [hasMorePosts, setHasMorePosts] = useState(true);
+  const [infoDrawerSection, setInfoDrawerSection] = useState(null);
 
   // Hydration-safe: initialize ads client-side
   useEffect(() => {
@@ -50,6 +51,8 @@ export function AppWrapper({
         setIsLoading,
         hasMorePosts,
         setHasMorePosts,
+        setInfoDrawerSection,
+        infoDrawerSection,
       }}>
       {children}
     </AppContext.Provider>
