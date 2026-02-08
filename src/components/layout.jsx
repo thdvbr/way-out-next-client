@@ -143,7 +143,7 @@ export default function Layout({
         {/* desktop */}
         {width >= 500 && (
           <motion.div
-            className="min-h-screen"
+            className="flex flex-col min-h-screen"
             initial={false}
             variants={joinVariants}
             animate={joinIsOpen ? 'opened' : 'closed'}
@@ -157,15 +157,11 @@ export default function Layout({
               <InfoDrawer />
               <NavbarDesktop theme={theme} page={page} />
             </Container>
-            <main className="inset-0 z-0 w-screen -mt-3">{children}</main>
+            <main className="z-0 flex-1 w-screen -mt-3">{children}</main>
             {page === 'radiomain' ? (
               <Footer theme={theme} />
             ) : (
-              <div
-                className={`${
-                  (errorMsg !== '' || isLoading) &&
-                  'absolute inset-x-0 bottom-0'
-                }`}>
+              <>
                 {!isLoading && randomSliceBottomAd && !hasMorePosts && (
                   <>
                     <motion.div
@@ -183,7 +179,7 @@ export default function Layout({
                     <Footer theme={theme} />
                   </>
                 )}
-              </div>
+              </>
             )}
           </motion.div>
         )}
