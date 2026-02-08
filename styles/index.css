@@ -196,7 +196,7 @@ body {
   background: #000000;
 }
 
-.info-box {
+.x-box {
   /* background: linear-gradient(180deg, #c4c4c4 24.78%, #ffff00 100%); */
   box-sizing: border-box;
   border-radius: 0px;
@@ -333,7 +333,8 @@ body {
   }
 
   .info-box {
-    top: 60px;
+    top: 0px;
+    height:100vh
   }
   .gif {
     background-image: url(/assets/logos/wayoutgif_alpha04.gif);

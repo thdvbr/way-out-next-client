@@ -81,7 +81,7 @@ export default function Layout({
   return (
     <>
       {/* <Meta /> */}
-      <motion.div
+      <div
         className="min-h-screen"
         // initial={{ opacity: 0 }}
         // animate={{ opacity: 1 }}
@@ -142,48 +142,50 @@ export default function Layout({
         )}
         {/* desktop */}
         {width >= 500 && (
-          <motion.div
-            className="flex flex-col min-h-screen"
-            initial={false}
-            variants={joinVariants}
-            animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'linear', duration: 0.3 }}>
-            <Subscribe />
-            <Container>
-              <div className="px-3">
-                <Header theme={theme} />
-                <SectionSeparator />
-              </div>
-              <InfoDrawer />
-              <NavbarDesktop theme={theme} page={page} />
-            </Container>
-            <main className="z-0 flex-1 w-screen -mt-3">{children}</main>
-            {page === 'radiomain' ? (
-              <Footer theme={theme} />
-            ) : (
-              <>
-                {!isLoading && randomSliceBottomAd && !hasMorePosts && (
-                  <>
-                    <motion.div
-                      className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
-                      ref={ref}
-                      animate={animation}
-                      variants={adVariants}
-                      initial="hidden">
-                      <BottomAdImage
-                        image={randomSliceBottomAd.adImage}
-                        url={randomSliceBottomAd.adUrl}
-                        width={1500}
-                      />
-                    </motion.div>
-                    <Footer theme={theme} />
-                  </>
-                )}
-              </>
-            )}
-          </motion.div>
+          <>
+            <InfoDrawer />
+            <motion.div
+              className="flex flex-col min-h-screen"
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'linear', duration: 0.3 }}>
+              <Subscribe />
+              <Container>
+                <div className="px-3">
+                  <Header theme={theme} />
+                  <SectionSeparator />
+                </div>
+                <NavbarDesktop theme={theme} page={page} />
+              </Container>
+              <main className="z-0 flex-1 w-screen -mt-3">{children}</main>
+              {page === 'radiomain' ? (
+                <Footer theme={theme} />
+              ) : (
+                <>
+                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                    <>
+                      <motion.div
+                        className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
+                        ref={ref}
+                        animate={animation}
+                        variants={adVariants}
+                        initial="hidden">
+                        <BottomAdImage
+                          image={randomSliceBottomAd.adImage}
+                          url={randomSliceBottomAd.adUrl}
+                          width={1500}
+                        />
+                      </motion.div>
+                      <Footer theme={theme} />
+                    </>
+                  )}
+                </>
+              )}
+            </motion.div>
+          </>
         )}
-      </motion.div>
+      </div>
     </>
   );
 }

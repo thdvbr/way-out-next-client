@@ -78,7 +78,9 @@ const InfoDrawer = ({ preview }) => {
   };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
-    infoIsOpen ? moveToTop() : document.body.classList.remove('no-scroll');
+    infoIsOpen
+      ? document.body.classList.add('no-scroll')
+      : document.body.classList.remove('no-scroll');
   }, [infoIsOpen]);
 
   return (

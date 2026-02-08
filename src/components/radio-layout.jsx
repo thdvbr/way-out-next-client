@@ -62,32 +62,31 @@ export default function RadioLayout({
 
         {/* DESKTOP */}
         {width >= 1025 && (
-          <motion.div
-            style={{ marginBottom: '-60px' }}
-            initial={false}
-            variants={joinVariants}
-            animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'spring', duration: 0.5 }}
-            className="flex flex-col flex-1 min-h-0">
-            <Subscribe />
+          <>
+            <InfoDrawer />
+            <motion.div
+              style={{ marginBottom: '-60px' }}
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'spring', duration: 0.5 }}
+              className="flex flex-col flex-1 min-h-0">
+              <Subscribe />
 
-            <div className="flex-shrink-0">
-              <Container>
-                <div className="px-3">
-                  <Header theme={theme} />
-                </div>
-              </Container>
-              <InfoDrawer />
+              <div className="flex-shrink-0">
+                <Container>
+                  <div className="px-3">
+                    <Header theme={theme} />
+                  </div>
+                  <NavbarDesktop theme={theme} />
+                </Container>
 
-              <Container>
-                <NavbarDesktop theme={theme} />
-              </Container>
-
-              <main className="flex-1 min-h-0 px-3 mx-auto mb-32 xl:container md:px-8 ml:px-40">
-                {children}
-              </main>
-            </div>
-          </motion.div>
+                <main className="flex-1 min-h-0 px-3 mx-auto mb-32 xl:container md:px-8 ml:px-40">
+                  {children}
+                </main>
+              </div>
+            </motion.div>
+          </>
         )}
 
         {/* Footer section - constrained height */}

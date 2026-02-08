@@ -63,40 +63,43 @@ export default function PostLayout({ preview, children, theme }) {
         )}
         {/* desktop */}
         {width >= 500 && (
-          <motion.div
-            initial={false}
-            variants={joinVariants}
-            animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'spring', duration: 0.5 }}>
-            <Subscribe />
+          <>
+            <InfoDrawer />
+            <motion.div
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'spring', duration: 0.5 }}>
+              <Subscribe />
 
-            <Container>
-              <div className="px-3">
-                <Header theme={theme} />
-              </div>
-              <InfoDrawer />
-              <div className="sticky z-30 top-80">
-                {/* need to figure out how to change colours to gold when its preview mode  */}
-                <div style={{ color: isTop && '#8A7536' }}>
-                  <NavbarDesktop theme={theme} />
-                  <Link
-                    href="/"
-                    className="absolute left-0 right-0 flex justify-center top-18">
-                    <div
-                      className="mt-3 logo-gold-container"
-                      style={{ opacity: isTop ? 1 : 0 }}
-                    />
-                  </Link>
-                </div>
-              </div>
-              {!searchIsOpen && (
+              <Container>
                 <div className="px-3">
-                  <SectionSeparator />
+                  <Header theme={theme} />
                 </div>
-              )}
-              <main className="inset-0 z-0">{children}</main>
-            </Container>
-          </motion.div>
+
+                <div className="sticky z-30 top-80">
+                  {/* need to figure out how to change colours to gold when its preview mode  */}
+                  <div style={{ color: isTop && '#8A7536' }}>
+                    <NavbarDesktop theme={theme} />
+                    <Link
+                      href="/"
+                      className="absolute left-0 right-0 flex justify-center top-18">
+                      <div
+                        className="mt-3 logo-gold-container"
+                        style={{ opacity: isTop ? 1 : 0 }}
+                      />
+                    </Link>
+                  </div>
+                </div>
+                {!searchIsOpen && (
+                  <div className="px-3">
+                    <SectionSeparator />
+                  </div>
+                )}
+                <main className="inset-0 z-0">{children}</main>
+              </Container>
+            </motion.div>
+          </>
         )}
         {/* </motion.div> */}
       </div>
