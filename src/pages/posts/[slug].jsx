@@ -136,10 +136,19 @@ export const Post = ({ data = {}, preview }) => {
                     adShortPost={randomSliced1SideAd}
                     adLongPost={randomSliced2SideAds}
                   />
-                  {post.externalLinks && (
-                    <ExternalLinks externalLinks={post.externalLinks} />
+                  <div className="xl:text-22.5 xl:leading-7 text-center my-12 tracking-wider">
+                    {(post.externalLinks || post.socialLinks) && (
+                      <p className="font-secondary mb-3 font-extrabold text-16 ml:text-20 xl:text-26.5 xl:leading-8">
+                        Connect here
+                      </p>
+                    )}
+                    {post.externalLinks && (
+                      <ExternalLinks externalLinks={post.externalLinks} />
+                    )}
+                  </div>
+                  {post.socialLinks && (
+                    <SocialLinks socialLinks={post.socialLinks} />
                   )}
-                  <SocialLinks socialLinks={post.socialLinks} />
                 </motion.div>
               </article>
             </>
