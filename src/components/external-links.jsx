@@ -13,7 +13,7 @@ const ExternalLinks = ({ externalLinks }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:opacity-70">
-              {link.url}
+              {link.displayText}
             </a>
           </div>
         ))}
