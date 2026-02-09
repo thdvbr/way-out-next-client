@@ -121,7 +121,7 @@ const InfoDrawer = ({ preview }) => {
             }>
             {/* TODO: Add noise to radial gradiant */}
             <div
-              className="absolute inset-0 p-5 radial-gradient"
+              className="absolute inset-0 p-5 text-black radial-gradient"
               style={{
                 background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #D7D7D7)`,
                 filter: 'url(#noise)',
