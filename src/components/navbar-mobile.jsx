@@ -7,12 +7,12 @@ import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = ({ theme = 'light' }) => {
-  const {
-    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
-  } = useAppContext();
+  const { infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen } =
+    useAppContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [activeItem, setActiveItem] = useState(null);
 
   const isDark = theme === 'dark';
   const bgClass = isDark ? 'bg-black text-white' : 'bg-white text-black';
@@ -62,8 +62,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full"
-            >
+              className="w-full">
               <SearchBar />
             </motion.div>
           )}
@@ -71,33 +70,74 @@ const NavbarMobile = ({ theme = 'light' }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="pt-4 pb-8 lg:hidden"
-        >
+          className="pt-4 pb-8 lg:hidden">
           <span>Menu</span>
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.07rem' }}
-        >
+          style={{ bottom: '-13.07rem' }}>
           {/* TODO: fix hide overflow */}
           <div
-            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}
-          >
-            <Link href="/interviews" className="py-4 interviews">
-              Interviews
+            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}>
+            <Link
+              href="/interviews"
+              className="relative block py-4"
+              onTouchStart={() => setActiveItem('interviews')}
+              onTouchEnd={() => setActiveItem(null)}>
+              <span className="relative inline-block group">
+                Interviews
+                <img
+                  src="/assets/icons/cross-interviews.svg"
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'interviews' ? 'opacity-100' : 'opacity-0'}`}
+                  alt=""
+                />
+              </span>
             </Link>
-            <Link href="/stuff-we-like" className="py-4 stuff-we-like">
-              Opinions
+
+            <Link
+              href="/stuff-we-like"
+              className="relative block py-4"
+              onTouchStart={() => setActiveItem('opinions')}
+              onTouchEnd={() => setActiveItem(null)}>
+              <span className="relative inline-block group">
+                Opinions
+                <img
+                  src="/assets/icons/cross-opinions.svg"
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'opinions' ? 'opacity-100' : 'opacity-0'}`}
+                  alt=""
+                />
+              </span>
             </Link>
-            <Link href="/radio" className="py-4 radio">
-              Radio
+
+            <Link
+              href="/radio"
+              className="relative block py-4"
+              onTouchStart={() => setActiveItem('radio')}
+              onTouchEnd={() => setActiveItem(null)}>
+              <span className="relative inline-block group">
+                Radio
+                <img
+                  src="/assets/icons/cross-radio.svg"
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'radio' ? 'opacity-100' : 'opacity-0'}`}
+                  alt=""
+                />
+              </span>
             </Link>
+
             <button
-              className="py-4 text-left"
+              className="relative block w-full py-4 text-left"
               type="button"
               onClick={() => setInfoIsOpen(!infoIsOpen)}
-            >
-              <span>Info</span>
+              onTouchStart={() => setActiveItem('info')}
+              onTouchEnd={() => setActiveItem(null)}>
+              <span className="relative inline-block group">
+                Info
+                <img
+                  src="/assets/icons/cross-info.svg"
+                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'info' ? 'opacity-100' : 'opacity-0'}`}
+                  alt=""
+                />
+              </span>
             </button>
           </div>
         </div>

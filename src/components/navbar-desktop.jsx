@@ -44,24 +44,35 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
           </span>
         </button>
         <div>
-          <Link
-            href="/interviews"
-            className={`${router.pathname == '/interviews' && 'interviews-active'} sm:py-0 interviews`}>
+          <Link href="/interviews" className="relative sm:py-0 group">
             Interviews
+            <img
+              src="/assets/icons/cross-interviews.svg"
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interviews' && 'opacity-100'}`}
+              alt=""
+            />
           </Link>
         </div>
         <div>
           <Link
             href="/stuff-we-like"
-            className={`${router.pathname == '/stuff-we-like' && 'stuff-we-like-active'}  sm:py-0 stuff-we-like`}>
-            Opinions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            className={`sm:py-0 relative group inline-block mr-6`}>
+            Opinions
+            <img
+              src="/assets/icons/cross-opinions.svg"
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/stuff-we-like' && 'opacity-100'}`}
+              alt=""
+            />
           </Link>
         </div>
         <div>
-          <Link
-            href="/radio"
-            className={`${router.pathname == '/radio' && 'radio-active'} sm:py-0 radio`}>
-            <span className="">Radio</span>
+          <Link href="/radio" className={`sm:py-0 relative group`}>
+            <span>Radio</span>
+            <img
+              src="/assets/icons/cross-radio.svg"
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/radio' && 'opacity-100'}`}
+              alt=""
+            />
           </Link>
         </div>
         <button
@@ -70,8 +81,13 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
             setInfoIsOpen(!infoIsOpen);
             setJoinIsOpen(false);
           }}
-          className={`sm:py-0 ${infoIsOpen ? 'info-color' : 'info'}`}>
+          className={`sm:py-0 relative group`}>
           <span>Info</span>
+          <img
+            src="/assets/icons/cross-info.svg"
+            className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${infoIsOpen && 'opacity-100'}`}
+            alt=""
+          />
         </button>
       </nav>
       <div
