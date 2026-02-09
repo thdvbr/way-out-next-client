@@ -27,9 +27,9 @@ const PostHeader = ({
       </div>
       <div className="mx-14 my-8 text-center font-agrandir text-14 leading-5 sm:leading-6 sm:text-16 lg:text-17 xl:text-22.5 tracking-wider">
         <p className="underline">{subCategory}</p>
-        <span>Published on: </span>
-        <Date dateString={publishedAt} />
-        {credits && <p>{credits}</p>}
+        {/* <span>Published on: </span> */}
+        {/* <Date dateString={publishedAt} /> */}
+        {credits && <p className="whitespace-pre-line">{credits}</p>}
       </div>
     </>
   );
