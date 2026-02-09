@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { useNextSanityImage } from 'next-sanity-image';
-import { useCurrentWidth } from 'react-socks';
 import Image from 'next/image';
 import { sanityClient } from '../utils/sanity.server';
+import useWindowWidth from '../utils/useWindowWidth';
 
 const HeroImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     return imageUrlBuilder.width(1000);
   };
-  const width = useCurrentWidth();
+  const width = useWindowWidth();
 
   const imageProps = useNextSanityImage(sanityClient, source, {
     blurUpImageWidth: 124,
@@ -20,26 +20,36 @@ const HeroImage = ({ title, slug, image: source }) => {
 
   const image = source ? (
     <div className="block">
+      {/* desktop */}
       {width > 768 ? (
-        <Image
-          src={imageProps.src}
-          loader={imageProps.loader}
-          alt={`Hero Image for ${title}`}
-          width={1200}
-          height={600}
-          layout="responsive"
-          objectFit="cover"
-        />
+        <div
+          style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}
+        >
+          <Image
+            priority
+            src={imageProps.src}
+            alt={`Hero Image for ${title}`}
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </div>
       ) : (
-        <Image
-          src={imageProps.src}
-          loader={imageProps.loader}
-          alt={`Hero Image for ${title}`}
-          width={1000}
-          height={700}
-          layout="responsive"
-          objectFit="cover"
-        />
+        // tablet
+        <div
+          style={{ position: 'relative', width: '100%', aspectRatio: '10/7' }}
+        >
+          <Image
+            priority
+            src={imageProps.src}
+            alt={`Hero Image for ${title}`}
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </div>
       )}
     </div>
   ) : (
@@ -48,8 +58,8 @@ const HeroImage = ({ title, slug, image: source }) => {
   return (
     <div>
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a aria-label={title}>{image}</a>
+        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

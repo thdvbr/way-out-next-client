@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable */
+
+import React, { useState, useEffect, useRef } from 'react';
 import Masonry from 'react-masonry-css';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import _ from 'lodash';
 import { motion } from 'framer-motion';
 import { getClient } from '../utils/sanity.server';
 import MasonryItem from './masonry-item';
@@ -15,22 +16,40 @@ const breakpointColumnsObj = {
   499: 1,
 };
 
-const MasonryGrid = ({ data, type }) => {
-  // const { query, searchResult } = useAppContext();
+const MasonryGrid = ({
+  data,
+  categoryTitle = null,
+  ItemComponent = MasonryItem,
+}) => {
+  const { hasMorePosts, setHasMorePosts } = useAppContext();
   const [posts, setPosts] = useState(data);
-  const [hasMore, setHasMore] = useState(true);
 
+  const prevDataRef = useRef();
   useEffect(() => {
+    // console.log('Is same reference?', prevDataRef.current === data);
+    // console.log('MasonryGrid data changed:', data);
+    // prevDataRef.current = data;
+    console.log('=== MASONRY USEEFFECT ===');
+    console.log('data.length:', data.length);
+    console.log('Setting hasMorePosts to:', data.length >= 8);
     setPosts(data);
-    setHasMore(true);
+    // If we have 8+ items, there might be more to load
+    // If less than 8, we know there's nothing more
+    setHasMorePosts(data.length >= 8);
   }, [data]);
 
   const getMorePost = async () => {
-    const newQuery = getMoreQuery(type, posts);
-    const newPosts = await getClient().fetch(newQuery);
-    setPosts((post) => [...post, ...newPosts]);
-    if (newPosts.length < 8) {
-      setHasMore(false);
+    console.log('=== GET MORE POST CALLED ===');
+    try {
+      const newQuery = getMoreQuery(categoryTitle, posts);
+      const newPosts = await getClient().fetch(newQuery);
+      setPosts((post) => [...post, ...newPosts]);
+      if (newPosts.length < 8) {
+        setHasMorePosts(false);
+      }
+    } catch (error) {
+      console.error('Failed to fetch more posts:', error);
+      setHasMorePosts(false); // Stop trying if it fails
     }
   };
 
@@ -44,21 +63,13 @@ const MasonryGrid = ({ data, type }) => {
         <InfiniteScroll
           dataLength={posts.length}
           next={getMorePost}
-          hasMore={hasMore}>
+          hasMore={hasMorePosts}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {posts.map((post) => (
-              <motion.div key={post.slug} variants={cardVariants}>
-                <MasonryItem
-                  key={post.slug}
-                  title={post.title}
-                  subtitle={post.subtitle}
-                  previewImage={post.previewImage}
-                  slug={post.slug}
-                />
-              </motion.div>
+              <ItemComponent key={post._id} {...post} />
             ))}
           </Masonry>
         </InfiniteScroll>

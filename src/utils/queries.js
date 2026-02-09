@@ -8,9 +8,14 @@ const postFields = `
   mainImage,
   previewImage,
   body,
-  artistLink,
+  socialLinks,
+  externalLinks,
   "subCategory": subCategory->title,
-  "mainCategory": mainCategory->title,
+  mainCategory->{
+    _id,
+    title,
+    description
+  },
   "slug": slug.current,
 `;
 
@@ -23,9 +28,27 @@ publishedAt,
 mainImage,
 previewImage,
 "subCategory": subCategory->title,
-"mainCategory": mainCategory->title,
+  mainCategory->{
+    _id,
+    title,
+    description
+  },
 "slug": slug.current,
 `;
+
+const radioFields = `  
+  _id,
+  name,
+  episodeLabel,
+  title,
+  subtitle,
+  "slug": slug.current,
+  heroImage,
+  mixcloudUrl,
+  tracklist,
+publishedAt,
+  description,
+  tags `;
 
 const pageFields = `
 _id,
@@ -81,17 +104,18 @@ export const pageSlugsQuery = `
 *[_type == "page" && defined(slug.current)][].slug.current
 `;
 
+// Fix ordering - use publishedAt instead of date, primary sort by pulishedat, secondary updatedat
 export const indexQuery = `
-*[_type == "post"] | order(date desc, _updatedAt desc) | [0...9] {
+*[_type == "post"] | order(publishedAt desc, _updatedAt desc) | [0...9] {
   ${postPreviewFields}
 }`;
 
 export const postQuery = `
 {
-  "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) | [0] {
+  "post": *[_type == "post" && slug.current == $slug] | order(publishedAt desc, _updatedAt desc) | [0] {
     ${postFields}
   },
-  "morePosts": *[_type == "post" && slug.current != $slug] | order(date desc, _updatedAt desc) | [0...12] {
+  "morePosts": *[_type == "post" && slug.current != $slug] | order(publishedAt desc, _updatedAt desc) | [0...12] {
     ${postPreviewFields}
   }
 }`;
@@ -105,14 +129,29 @@ export const postBySlugQuery = `
   ${postFields}
 }
 `;
+export const radioQuery = `
+*[_type == "radio" && slug.current == $slug]
+  | order(publishedAt desc, _updatedAt desc)[0] {
+    ${radioFields}
+  }
+`;
+export const radioSlugsQuery = `
+*[_type == "radio" && defined(slug.current)][].slug.current
+`;
+
+export const radioBySlugQuery = `
+*[_type == "radio" && slug.current == $slug][0] {
+  ${radioFields}
+}
+`;
 
 export const interviewsQuery = `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc)  | [0...8] {
+*[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc)  | [0...8] {
   ${postPreviewFields}
 }`;
 
 export const stuffWeLikeQuery = `
-*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [0...8]  {
+*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(publishedAt desc, _updatedAt desc) | [0...8]  {
   ${postPreviewFields}
 }`;
 
@@ -121,40 +160,66 @@ export const searchQuery = `
   ${postPreviewFields}
 }`;
 
+export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc, _updatedAt desc) {
+${radioFields}
+}`;
+
 const moreInterviewsQuery = (posts) => {
   return `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(date desc, _updatedAt desc) | [${
-    posts.length
-  }...${posts.length + 5}] {
+*[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc) | [${
+  posts.length
+}...${posts.length + 5}] {
   ${postPreviewFields}
 }`;
 };
 
 const moreStuffWeLikeQuery = (posts) => {
   return `
-  *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(date desc, _updatedAt desc) | [${
-    posts.length
-  }...${posts.length + 5}] {
+  *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(publishedAt desc, _updatedAt desc) | [${
+  posts.length
+}...${posts.length + 5}] {
       ${postPreviewFields}
   }`;
 };
 
 const moreAllPostsQuery = (posts) => {
   return `
-  *[_type == "post"] | order(date desc, _updatedAt desc) | [${
-    posts.length + 1
-  }...${posts.length + 6}] {
+  *[_type == "post"] | order(publishedAt desc, _updatedAt desc) | [${
+  posts.length + 1
+}...${posts.length + 6}] {
     ${postPreviewFields}
   }`;
 };
 
-export const getMoreQuery = (type, posts) => {
-  switch (type) {
+const moreRadioQuery = (posts) => {
+  return `
+*[_type == "radio"] | order(publishedAt desc) [${posts.length}...${posts.length + 8}] {
+  ${radioFields}
+}
+`;
+};
+
+// UPDATED: Use categoryTitle instead of type
+export const getMoreQuery = (categoryTitle, posts) => {
+  // For radio, check if posts have radio fields
+  if (posts[0]?.mixcloudUrl) {
+    return moreRadioQuery(posts);
+  }
+  // Filter by category title
+  // TODO: Change name later for stuffwelike
+  switch (categoryTitle) {
     case 'stuffWeLike':
       return moreStuffWeLikeQuery(posts);
     case 'interviews':
       return moreInterviewsQuery(posts);
-    default:
+    case null:
+    case undefined:
       return moreAllPostsQuery(posts);
+    default:
+      // Dynamic category support!
+      return `
+*[_type == "post" && mainCategory->title == "${categoryTitle}"] | order(publishedAt desc) | [${posts.length}...${posts.length + 8}] {
+  ${postPreviewFields}
+}`;
   }
 };

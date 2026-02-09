@@ -1,30 +1,26 @@
+/* eslint-disable */
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { sample, sampleSize } from '../../utils/random';
 import ErrorPage from 'next/error';
-import _ from 'lodash';
-import { useCurrentWidth } from 'react-socks';
 import {
   sanityClient,
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import {
-  postQuery,
-  postSlugsQuery,
-} from '../../utils/queries';
+import { postQuery, postSlugsQuery } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
   PostBody,
   PostLayout,
-  ArtistLink,
+  ExternalLinks,
   RelatedGrid,
-  BottomAdImage,
-  SocialSharing,
-  Footer,
+  SocialLinks,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -32,8 +28,8 @@ import {
   postBodyVariants,
   morePostVariants,
   stagger,
-  adVariants,
 } from '../../utils/animation';
+import useWindowWidth from '../../utils/useWindowWidth';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -48,16 +44,15 @@ export const Post = ({ data = {}, preview }) => {
   const { isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData } =
     useAppContext();
 
-  const { ref, inView } = useInView();
+  const { inView } = useInView();
   const animation = useAnimation();
-  const randomSlice1 = _.sample(bottomAdData);
-  
-  const width = useCurrentWidth();
-  const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
-  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
-  const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
-  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState({});
+  // const randomSlice1 = sample(bottomAdData);
 
+  const width = useWindowWidth();
+  const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
+  // const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
+  const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);
+  const [randomSliced1SideAd, setRandomSliced1SideAd] = useState(null);
 
   useEffect(() => {
     if (inView) {
@@ -69,25 +64,19 @@ export const Post = ({ data = {}, preview }) => {
   }, [inView]);
 
   const randomize = (array) => {
-    const newArray = [...array]
+    const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
-    return newArray
-  }
-
+    return newArray;
+  };
 
   useEffect(() => {
-    setRandomSlicedMorePosts(randomize(morePosts).slice(1, 5));
-    setRandomSliceBottomAd(randomSlice1);
-    setRandomSliced2SideAds(_.sampleSize(sideAdData, 2));
-    setRandomSliced1SideAd(_.sample(sideAdData));
-  },[router.asPath])
-
-
-
-
+    setRandomSlicedMorePosts(randomize(morePosts || []).slice(1, 5));
+    setRandomSliced2SideAds(sampleSize(sideAdData || [], 2));
+    setRandomSliced1SideAd(sample(sideAdData || null));
+  }, [router.asPath]);
 
   // useEffect(() => {
   //   return searchIsOpen && setSearchIsOpen(false);
@@ -98,11 +87,10 @@ export const Post = ({ data = {}, preview }) => {
   //   return searchResult && setQuery('') && setSearchResult([]);
   // }, []);
 
-
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const isOnTop = window.scrollY > 100;
-      if ((isTop !== isOnTop) && !preview ){
+      if (isTop !== isOnTop && !preview) {
         setIsTop(isOnTop);
         setJoinIsOpen(false);
       }
@@ -116,8 +104,7 @@ export const Post = ({ data = {}, preview }) => {
     <motion.div
       // ref={listInnerRef}
       exit={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}>
+      animate={{ opacity: 1 }}>
       <PostLayout preview={preview}>
         <div className="px-3">
           {post && (
@@ -143,12 +130,16 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="lg:px-28 md:px-24 sm:px-20 px-2">
-                  <PostBody body={post.body} adShortPost={randomSliced1SideAd} adLongPost={randomSliced2SideAds} />
-                  {post.artistLink && (
-                    <ArtistLink artistLink={post.artistLink} />
+                  className="px-2 lg:px-28 md:px-24 sm:px-20">
+                  <PostBody
+                    body={post.body}
+                    adShortPost={randomSliced1SideAd}
+                    adLongPost={randomSliced2SideAds}
+                  />
+                  {post.externalLinks && (
+                    <ExternalLinks externalLinks={post.externalLinks} />
                   )}
-                  <SocialSharing slug={slug} />
+                  <SocialLinks socialLinks={post.socialLinks} />
                 </motion.div>
               </article>
             </>
@@ -166,29 +157,6 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-      {randomSliceBottomAd && (
-        <motion.div
-        className="flex justify-center px-3 mt-8 mb-6 sm:px-6 md:px-11 ml:px-46"
-          ref={ref}
-          animate={animation}
-          variants={adVariants}
-          initial="hidden">
-          {width > 500 ? (
-            <BottomAdImage
-              image={randomSliceBottomAd.adImage}
-              url={randomSliceBottomAd.adUrl}
-              width={1360}
-            />
-          ) : (
-            <BottomAdImage
-              image={randomSliceBottomAd.adImageMobile}
-              url={randomSliceBottomAd.adUrl}
-              width={500}
-            />
-          )}
-        </motion.div>
-      )}
-      <Footer />
     </motion.div>
   );
 };

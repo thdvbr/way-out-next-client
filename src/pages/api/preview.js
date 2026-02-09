@@ -1,5 +1,7 @@
+/* eslint-disable */ 
+
 import { previewClient } from '../../utils/sanity.server';
-import { postBySlugQuery } from '../../utils/queries';
+import { postBySlugQuery, radioBySlugQuery } from '../../utils/queries';
 
 const handler = async (req, res) => {
   // Check the secret and next parameters
@@ -11,24 +13,47 @@ const handler = async (req, res) => {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
+  const type = req.query.type;
+  const slug = req.query.slug;
+
+  
+  if (type === 'post') {
   // Fetch the headless CMS to check if the provided `slug` exists
   // getPostBySlug would implement the required fetching logic to the headless CMS
   const post = await previewClient.fetch(postBySlugQuery, {
     slug: req.query.slug,
   });
-
-  // If the slug doesn't exist prevent preview mode from being enabled
-  if (!post) {
+    
+    if (!post) {
     return res.status(401).json({ message: 'Invalid slug' });
-  }
-
-  // Enable Preview Mode by setting the cookies
-  res.setPreviewData({});
+    }
+  
+    // Enable Preview Mode by setting the cookies
+    res.setPreviewData({});
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  res.writeHead(307, { Location: `/posts/${post.slug}` });
+    res.writeHead(307, { Location: `/posts/${post.slug}` });
+    res.end();
+
+  } else if (type === 'radio') {
+      const radio = await previewClient.fetch(radioBySlugQuery, {
+    slug: req.query.slug,
+      });
+    console.log(radio);
+    
+  if (!radio) {
+    return res.status(401).json({ message: 'Invalid slug' });
+  }
+
+    res.setPreviewData({});
+
+  res.writeHead(307, { Location: `/radios/${radio.slug}` });
   res.end();
+  } else {
+        return res.status(400).json({ message: 'Invalid type' });
+  }
+
 };
 
 export default handler;

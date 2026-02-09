@@ -1,9 +1,11 @@
+/* eslint-disable */
+
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useCurrentWidth } from 'react-socks';
 import { MdClose } from 'react-icons/md';
 import { Content, Staff } from './index';
+import useWindowWidth from '../utils/useWindowWidth';
 
 // import useMouse from '@react-hook/mouse-position';
 import { useAppContext } from '../context/state';
@@ -26,39 +28,34 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ preview }) => {
-  const width = useCurrentWidth();
-  const { infoIsOpen, setInfoIsOpen, pageData, staffData } = useAppContext();
+  const width = useWindowWidth();
+  const {
+    infoIsOpen,
+    setInfoIsOpen,
+    infoDrawerSection,
+    setInfoDrawerSection,
+    pageData,
+    staffData,
+  } = useAppContext();
   const { about, contact } = pageData;
   const { x, y } = useCustomMouse();
-  const [aboutIsOpen, setAboutIsOpen] = useState(false);
-  const [contactIsOpen, setContactIsOpen] = useState(false);
-  const [staffIsOpen, setStaffIsOpen] = useState(false);
-
   const staffsOdd = staffData.filter((e, i) => i % 2);
   const staffsEven = staffData.filter((e, i) => !(i % 2));
 
   const toggleAbout = () => {
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
-    setAboutIsOpen(!aboutIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'about' ? null : 'about');
   };
 
   const toggleContact = () => {
-    aboutIsOpen && toggleAbout();
-    staffIsOpen && toggleStaff();
-    setContactIsOpen(!contactIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'contact' ? null : 'contact');
   };
 
   const toggleStaff = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    setStaffIsOpen(!staffIsOpen);
+    setInfoDrawerSection(infoDrawerSection === 'staff' ? null : 'staff');
   };
 
   const toggleInfo = () => {
-    aboutIsOpen && toggleAbout();
-    contactIsOpen && toggleContact();
-    staffIsOpen && toggleStaff();
+    setInfoDrawerSection(null);
     setInfoIsOpen(!infoIsOpen);
   };
   // const target = useRef(null);
@@ -67,16 +64,11 @@ const InfoDrawer = ({ preview }) => {
   //     enterDelay: 100,
   //     leaveDelay: 100,
   // });
-  const moveToTop = () => {
-    document.body.classList.add('no-scroll');
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant',
-    });
-  };
   // TODO: what to do when user opens info drawer in the middle of the screen?
   useEffect(() => {
-    infoIsOpen ? moveToTop() : document.body.classList.remove('no-scroll');
+    infoIsOpen
+      ? document.body.classList.add('no-scroll')
+      : document.body.classList.remove('no-scroll');
   }, [infoIsOpen]);
 
   return (
@@ -84,6 +76,34 @@ const InfoDrawer = ({ preview }) => {
       {infoIsOpen && (
         <>
           {/* TODO: Think about what to do with the width of info box */}
+          {/* <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency=".4"
+                numOctaves="3"
+                result="noise"
+              />
+              <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+            </filter>
+          </svg> */}
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <filter
+              id="noise"
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+              filterUnits="objectBoundingBox">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="5.4"
+                numOctaves="6"
+                stitchTiles="stitch"
+              />
+              <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+            </filter>
+          </svg>
           <motion.div
             initial={{ x: '100%' }}
             animate={{
@@ -93,7 +113,7 @@ const InfoDrawer = ({ preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed info-box w-full h-full z-60"
+            className="fixed w-full h-full overflow-hidden info-box z-60"
             style={
               width > 768
                 ? { right: 0, maxWidth: '42vw' }
@@ -101,32 +121,33 @@ const InfoDrawer = ({ preview }) => {
             }>
             {/* TODO: Add noise to radial gradiant */}
             <div
-              className="absolute top-0 p-5 radial-gradient"
+              className="absolute inset-0 p-5 text-black radial-gradient"
               style={{
-                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
+                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #D7D7D7)`,
+                filter: 'url(#noise)',
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 p-3 xl:right-20 ">
+              <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
                 <button type="button" onClick={toggleInfo}>
                   <MdClose size={32} />
                 </button>
               </div>
-              <div className="p-2 sm:p-10 pt-20 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48 flex">
+              <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
                 <div className="w-8/12">
-                  {aboutIsOpen && (
-                    <div className="text-justify pt-2 text-14 sm:text-18">
+                  {infoDrawerSection === 'about' && (
+                    <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={about.body} />
                     </div>
                   )}
-                  {contactIsOpen && (
-                    <div className="text-justify pt-2 text-14 sm:text-18">
+                  {infoDrawerSection === 'contact' && (
+                    <div className="pt-2 text-justify text-14 sm:text-18">
                       <Content body={contact.body} />
-                      <Link href="/legal">
-                        <a href="/legal" className="font-secondary underline">Legal</a>
+                      <Link href="/legal" className="underline font-secondary">
+                        Legal
                       </Link>
                     </div>
                   )}
-                  {staffIsOpen && (
+                  {infoDrawerSection === 'staff' && (
                     <>
                       <div className="flex justify-between pt-2">
                         <div className="text-left">
@@ -148,15 +169,15 @@ const InfoDrawer = ({ preview }) => {
                   )}
                 </div>
                 <div className="w-4/12">
-                  <div className="text-20 sm:text-27 md:text-22 lg:text-27 font-title text-right">
+                  <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
                     <button type="button" onClick={toggleAbout}>
                       {about.title}
                     </button>
-                    <span className="br"></span>
+                    <span className="br" />
                     <button type="button" onClick={toggleContact}>
                       {contact.title}
                     </button>
-                    <span className="br"></span>
+                    <span className="br" />
                     <button type="button" onClick={toggleStaff}>
                       Staff
                     </button>
@@ -175,7 +196,7 @@ const InfoDrawer = ({ preview }) => {
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
             onClick={toggleInfo}
-            className="bg-transparent px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
+            className="fixed top-0 left-0 flex items-center justify-center w-full h-full px-5 bg-transparent"
           />
         </>
       )}

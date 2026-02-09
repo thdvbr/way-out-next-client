@@ -1,41 +1,34 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useMemo } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
-import { setDefaultBreakpoints, Breakpoint, useCurrentWidth } from 'react-socks';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
+import { indexQuery } from '../utils/queries';
 import {
-  indexQuery,
-} from '../utils/queries';
-import { Container, HeroPost, MasonryGrid, Layout } from '../components';
+  Container, HeroPost, MasonryGrid, Layout,
+} from '../components';
 import { useAppContext } from '../context/state';
-
-setDefaultBreakpoints([
-  { xs: 0 },
-  { s: 500 },
-  { m: 768 },
-  { l: 1366 },
-  { xl: 1536 },
-]);
+import useWindowWidth from '../utils/useWindowWidth';
 
 export const Index = ({ allPosts, preview }) => {
+  const width = useWindowWidth();
   const router = useRouter();
   const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  // only create a new morePosts when allPosts actually changes
+  const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
   const { searchIsOpen, setErrorMsg } = useAppContext();
 
-  useEffect(() => { 
+  useEffect(() => {
     setErrorMsg('');
-}, [router.asPath])
-
+  }, [router.asPath]);
 
   // TODO: search result when theres no result?
   // needs to wait until searchResult is returned.
   return (
     <>
       <CookieConsent
-        acceptOnScroll={true}
+        acceptOnScroll
         acceptOnScrollPercentage={60}
-        disableButtonStyles={true}
+        disableButtonStyles
         contentStyle={{
           color: 'black',
           fontFamily: 'Averia Serif Light Italic',
@@ -50,33 +43,39 @@ export const Index = ({ allPosts, preview }) => {
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
-          textAlign: 'center'
-        }}>
-        Hey, We use{' '}
+          textAlign: 'center',
+        }}
+      >
+        Hey, We use
+        {' '}
         <a href="/legal" className="underline">
           cookies
-        </a> !
+        </a>
+        {' '}
+        !
       </CookieConsent>
       <Layout preview={preview}>
         <Container>
-          <Breakpoint customQuery="(max-width: 499px)">
+          {/* MOBILE */}
+          {width < 500 && (
             <div>
-              <MasonryGrid data={allPosts} />
+              <MasonryGrid data={allPosts} type="posts" />
             </div>
-          </Breakpoint>
-          <Breakpoint customQuery="(min-width: 500px)">
+          )}
+          {/* DESKTOP */}
+          {width >= 500 && (
             <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-              {heroPost && (
+              {/* {heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
                   mainImage={heroPost.mainImage}
                   slug={heroPost.slug}
                 />
-              )}
-              <MasonryGrid data={morePosts} />
+              )} */}
+              <MasonryGrid data={morePosts} categoryTitle={null} />
             </div>
-          </Breakpoint>
+          )}
         </Container>
       </Layout>
     </>

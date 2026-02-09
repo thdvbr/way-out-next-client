@@ -1,8 +1,9 @@
+/* eslint-disable */
+
 import React, { useState, useRef, useEffect } from 'react';
 import { PortableText } from '@portabletext/react';
 import getYouTubeId from 'get-youtube-id';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import _ from 'lodash';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { urlForImage } from '../utils/sanity';
 import { SideAdImage } from './index';
@@ -27,11 +28,11 @@ const postComponents = {
     // intro font: add drop cap
     optiArtCraft: ({ children }) => {
       const firstChild = children[0];
-    
+
       if (typeof firstChild === 'string') {
         const firstLetter = firstChild.charAt(0);
         const restText = firstChild.slice(1);
-    
+
         return (
           <span className="block leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
             <br />
@@ -41,7 +42,7 @@ const postComponents = {
           </span>
         );
       }
-    
+
       return (
         <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
           <br />
@@ -49,7 +50,7 @@ const postComponents = {
         </span>
       );
     },
-    
+
     quote: ({ children }) => (
       <p className="block pb-4 mx-4 my-8 leading-6 ml:my-16 ml:pb-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         {children}
@@ -107,7 +108,7 @@ const postComponents = {
           className="underline"
           href={value?.href}
           target={target}
-          rel={target === '_blank' && 'noindex nofollow'}>
+          rel={target === '_blank' ? 'noindex nofollow' : undefined}>
           {children}
         </a>
       );
@@ -115,38 +116,56 @@ const postComponents = {
   },
 };
 
-export default function PostBody({ body, adShortPost, adLongPost }) {
+export default function PostBody({
+  body,
+  adShortPost = null,
+  adLongPost = [],
+}) {
   const [postHeight, setPostHeight] = useState(0);
   const { height, width } = useWindowDimensions();
   const bodyRef = useRef();
-  const getPostBodyHeight = () => {
-    const newHeight = bodyRef.current.clientHeight;
-    setPostHeight(newHeight);
-  };
 
+  // mounted flag for client-only rendering
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  // calculate postHeight after mount
   useEffect(() => {
-    getPostBodyHeight();
-  }, [body, height]);
+    if (!mounted) return;
+    const newHeight = bodyRef.current?.clientHeight || 0;
+    setPostHeight(newHeight);
+  }, [body, height, mounted]);
+
+  if (!mounted) {
+    // render only static content on server
+    return (
+      <div className="mx-3 p-wrap" ref={bodyRef}>
+        <PortableText value={body} components={postComponents} />
+      </div>
+    );
+  }
 
   return (
     <>
-      {width > 500 && adLongPost && (
+      {width > 500 && adLongPost.length > 0 && (
         <div className="absolute left-0">
           {/* need to wrap each sticky so it pushes up not overlap */}
-          {postHeight > 500 ? (
-            adLongPost.map((ad) => (
-              <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
-                <SideAdImage image={ad.adImage} url={ad.adUrl} />
-              </div>
-            ))
-          ) : (
-            <div style={{ height: `${postHeight / 2}px` }}>
-              <SideAdImage
-                image={adShortPost.adImage}
-                url={adShortPost.adUrl}
-              />
-            </div>
-          )}
+          {postHeight > 500
+            ? adLongPost.map((ad) => (
+                <div key={ad._id} style={{ height: `${postHeight / 2}px` }}>
+                  {ad?.adImage && (
+                    <SideAdImage image={ad.adImage} url={ad.adUrl} />
+                  )}
+                </div>
+              ))
+            : adShortPost?.adImage && (
+                <div style={{ height: `${postHeight / 2}px` }}>
+                  <SideAdImage
+                    image={adShortPost.adImage}
+                    url={adShortPost.adUrl}
+                  />
+                </div>
+              )}
         </div>
       )}
 

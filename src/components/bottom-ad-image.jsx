@@ -17,17 +17,32 @@ const BottomAdImage = ({ image: source, url }) => {
   });
 
   const image = source ? (
-    <Image src={imageProps.src} loader={imageProps.loader} alt='Bottom ad image' sizes="(min-width: 500px), 800px auto" layout="fill" objectFit="cover" />
+    <Image
+      src={imageProps.src}
+      alt="Bottom ad image"
+      fill
+      unoptimized
+      sizes="(min-width: 500px), 800px auto"
+      style={{
+        objectFit: 'cover',
+      }}
+    />
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
 
   return (
     <motion.div
-      style={{width: '100%', height:'200px', maxWidth:'1280px', position: 'relative'}}
+      style={{
+        width: '100%',
+        height: '200px',
+        position: 'relative',
+        margin: '0 auto', // for centering
+      }}
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ delay: 0.6 }}>
+      transition={{ delay: 0.6 }}
+    >
       <a href={url}>{image}</a>
     </motion.div>
   );

@@ -4,7 +4,7 @@ import { useAppContext } from '../context/state';
 
 // hyperlink for donate? and join goes to..?
 
-export default function Header() {
+export default function Header({ theme }) {
   const { joinIsOpen, setJoinIsOpen, setInfoIsOpen } = useAppContext();
   return (
     <header>
@@ -16,16 +16,21 @@ export default function Header() {
             setJoinIsOpen(!joinIsOpen);
             setInfoIsOpen(false);
           }}
-          className="z-50 button-underline">
+          className="z-50 button-underline"
+        >
           Join
         </button>
-        <Link href="/">
-          <a
-            href="/"
-            className="flex absolute left-0 right-0 top-4 sm:top-7 xl:top-8 justify-center">
-            <div className="logo-container"/>
-            <div className="gif"/>
-          </a>
+        <Link
+          href="/"
+          className="absolute left-0 right-0 flex justify-center top-4 sm:top-7 xl:top-8"
+        >
+          <div
+            className={
+              theme === 'dark' ? 'logo-container-dark' : 'logo-container'
+            }
+            alt="Logo"
+          />
+          <div className="gif" />
         </Link>
       </div>
     </header>

@@ -1,4 +1,7 @@
 module.exports = {
+  corePlugins: {
+    preflight: true, // Make sure this is true or not explicitly disabled
+  },
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -9,18 +12,21 @@ module.exports = {
       },
       width: {
         42: '10.5rem',
-        46: '11.5rem'
+        46: '11.5rem',
       },
       height: {
         104: '26rem',
         112: '28rem',
-        120: '30rem'
+        120: '30rem',
       },
       padding: {
         '26rem': '26rem',
         '36rem': '36rem',
-        46: '11.5rem'
+        46: '11.5rem',
       },
+          colors: {
+      yellow: '#FFFF00',
+    },
     },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable */
+
+import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
-import { useCurrentWidth, Breakpoint } from 'react-socks';
 import { motion, useAnimation } from 'framer-motion';
-import _ from 'lodash';
+import { sample } from '../utils/random';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import { useAppContext } from '../context/state';
+import useWindowWidth from '../utils/useWindowWidth';
 
 // eslint-disable-next-line import/no-cycle
 import {
@@ -22,8 +24,13 @@ import {
 import Header from './header';
 import { joinVariants, adVariants } from '../utils/animation';
 
-export default function Layout({ preview, children }) {
-  const width = useCurrentWidth();
+export default function Layout({
+  preview,
+  children,
+  theme = 'light',
+  page = '',
+}) {
+  const width = useWindowWidth();
   const infoVariants = {
     opened: { x: width > 500 ? '-30vw' : 0 },
     closed: { x: 0 },
@@ -35,10 +42,11 @@ export default function Layout({ preview, children }) {
     bottomAdData,
     errorMsg,
     isLoading,
+    hasMorePosts,
+    setHasMorePosts,
   } = useAppContext();
   const { asPath, pathname } = useRouter();
 
-  const randomSlice1 = _.sample(bottomAdData);
   const { ref, inView } = useInView();
   const animation = useAnimation();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
@@ -51,16 +59,29 @@ export default function Layout({ preview, children }) {
       animation.start('hidden');
     }
   }, [inView, animation]);
-
+  console.log('=== AD RENDER CHECK ===');
+  console.log('isLoading:', isLoading);
+  console.log('randomSliceBottomAd:', randomSliceBottomAd);
+  console.log('hasMorePosts:', hasMorePosts);
+  console.log(
+    'Should show ad?',
+    !isLoading && randomSliceBottomAd && !hasMorePosts
+  );
+  // run when bottomAdData first loads
+  // run on every page navigation = asPath
+  // only set the state when theres actually data to work with
   useEffect(() => {
-    setRandomSliceBottomAd(randomSlice1);
-  }, [asPath]);
+    console.log('Layout useEffect triggered!', { bottomAdData, asPath });
+    if (bottomAdData && bottomAdData.length > 0) {
+      const newRandomSlice = sample(bottomAdData);
+      setRandomSliceBottomAd(newRandomSlice);
+    }
+  }, [bottomAdData, asPath]);
 
-  // if yOffset === 0 && color: gold
   return (
     <>
       {/* <Meta /> */}
-      <motion.div
+      <div
         className="min-h-screen"
         // initial={{ opacity: 0 }}
         // animate={{ opacity: 1 }}
@@ -78,85 +99,98 @@ export default function Layout({ preview, children }) {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <link rel="icon" href="/favicon.ico" />
+          {/* add favicon to directly in the /public folder - favicon.ico or favicon.png */}
         </Head>
-        <Breakpoint customQuery="(max-width: 499px)">
-          <div className="sticky top-0 z-30">
-            <Container>
-              <NavbarMobile />
-              <InfoDrawer />
-            </Container>
-          </div>
-          <main className="w-screen inset-0 z-0">{children}</main>
-          {/* <div className={pathname === '/search' ? 'fixed bottom-0' : undefined}> */}
-          <div
-            className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
-            style={{ bottom: '60px' }}>
-            {!isLoading && <Subscribe />}
-            {!isLoading && randomSliceBottomAd && (
-              <>
-                <motion.div
-                  className="flex justify-center px-3 mb-2"
-                  ref={ref}
-                  animate={animation}
-                  variants={adVariants}
-                  initial="hidden">
-                  <BottomAdImage
-                    image={randomSliceBottomAd.adImageMobile}
-                    url={randomSliceBottomAd.adUrl}
-                    width={500}
-                  />
-                </motion.div>
+        {/* MOBILE */}
+        {width < 500 && (
+          <>
+            {' '}
+            <div className="sticky top-0 z-30">
+              <Container>
+                <NavbarMobile theme={theme} />
+                <InfoDrawer />
+              </Container>
+            </div>
+            <main className="inset-0 z-0 w-screen">{children}</main>
+            {page === 'radiomain' ? (
+              <Footer theme={theme} />
+            ) : (
+              <div
+                className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
+                style={{ bottom: '60px' }}>
+                {!isLoading && <Subscribe />}
+                {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                  <>
+                    <motion.div
+                      className="flex justify-center px-3 mb-2"
+                      ref={ref}
+                      animate={animation}
+                      variants={adVariants}
+                      initial="hidden">
+                      <BottomAdImage
+                        image={randomSliceBottomAd.adImageMobile}
+                        url={randomSliceBottomAd.adUrl}
+                        width={500}
+                      />
+                    </motion.div>
 
-                <Footer />
-              </>
-            )}
-            {/* </div> */}
-          </div>
-        </Breakpoint>
-        {/* desktop */}
-        <Breakpoint customQuery="(min-width: 500px)">
-          <motion.div
-            className="min-h-screen"
-            initial={false}
-            variants={joinVariants}
-            animate={joinIsOpen ? 'opened' : 'closed'}
-            transition={{ type: 'linear', duration: 0.3 }}>
-            <Subscribe />
-            <Container>
-              <div className="px-3">
-                <Header />
-                <SectionSeparator />
+                    <Footer theme={theme} />
+                  </>
+                )}
               </div>
-              <InfoDrawer />
-              <NavbarDesktop />
-            </Container>
-            <main className="w-screen inset-0 z-0 -mt-3">{children}</main>
-            <div
-              className={`${
-                (errorMsg !== '' || isLoading) && 'absolute inset-x-0 bottom-0'
-              }`}>
-              {!isLoading && randomSliceBottomAd && (
+            )}{' '}
+          </>
+        )}
+        {/* desktop */}
+        {width >= 500 && (
+          <>
+            <InfoDrawer />
+            <motion.div
+              className="flex flex-col min-h-screen"
+              initial={false}
+              variants={joinVariants}
+              animate={joinIsOpen ? 'opened' : 'closed'}
+              transition={{ type: 'linear', duration: 0.3 }}>
+              <Subscribe />
+              <Container>
+                <div className="px-3">
+                  <Header theme={theme} />
+                  <SectionSeparator />
+                </div>
+                <NavbarDesktop theme={theme} page={page} />
+              </Container>
+              <main className="z-0 flex-1 w-screen -mt-3">{children}</main>
+              {page === 'radiomain' ? (
+                <Footer theme={theme} />
+              ) : (
                 <>
-                  <motion.div
-                    className="flex justify-center px-3 mt-10 sm:px-6 md:px-11 ml:px-40 lg:px-44 xl:container xl:mx-auto"
-                    ref={ref}
-                    animate={animation}
-                    variants={adVariants}
-                    initial="hidden">
-                    <BottomAdImage
-                      image={randomSliceBottomAd.adImage}
-                      url={randomSliceBottomAd.adUrl}
-                      width={1500}
-                    />
-                  </motion.div>
-                  <Footer />
+                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                    <>
+                      <Container>
+                        <motion.div
+                          className="flex justify-center px-3 mt-10"
+                          ref={ref}
+                          animate={animation}
+                          variants={adVariants}
+                          initial="hidden">
+                          <BottomAdImage
+                            image={randomSliceBottomAd.adImage}
+                            url={randomSliceBottomAd.adUrl}
+                            width={1500}
+                          />
+                        </motion.div>
+                      </Container>
+
+                      <Footer theme={theme} />
+                    </>
+                  )}
                 </>
               )}
-            </div>
-          </motion.div>
-        </Breakpoint>
-        {/* </motion.div> */}
-      </motion.div>
+            </motion.div>
+          </>
+        )}
+      </div>
     </>
   );
 }
