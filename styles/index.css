@@ -332,6 +332,12 @@ body {
     content: url(/assets/logos/way_out_vector_transparent-01_.png);
   }
 
+  .logo-container-dark{
+    width: 9em;
+    height: 8em;
+    content: url(/assets/logos/way_out_vector_transparent-white_black-outline_.png);
+  }
+
   .info-box {
     top: 0px;
     height:100vh
@@ -370,6 +376,9 @@ body {
 }
 
 .logo-container:hover {
+  opacity: 0;
+}
+.logo-container-dark:hover {
   opacity: 0;
 }
 .no-scroll {

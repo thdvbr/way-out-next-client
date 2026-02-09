@@ -16,17 +16,16 @@ export default function Header({ theme }) {
             setJoinIsOpen(!joinIsOpen);
             setInfoIsOpen(false);
           }}
-          className="z-50 button-underline"
-        >
+          className="z-50 button-underline">
           Join
         </button>
         <Link
           href="/"
-          className="absolute left-0 right-0 flex justify-center top-4 sm:top-7 xl:top-8"
-        >
+          className="absolute left-0 right-0 flex justify-center top-4 sm:top-7 xl:top-8">
           <div
-            className="logo-container"
-            style={{ filter: theme === 'dark' ? 'invert(1)' : 'none' }}
+            className={
+              theme === 'dark' ? 'logo-container-dark' : 'logo-container'
+            }
             alt="Logo"
           />
           <div className="gif" />
