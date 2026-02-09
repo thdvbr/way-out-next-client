@@ -3,9 +3,7 @@ import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
-import {
-  Container, HeroPost, MasonryGrid, Layout,
-} from '../components';
+import { Container, HeroPost, MasonryGrid, Layout } from '../components';
 import { useAppContext } from '../context/state';
 import useWindowWidth from '../utils/useWindowWidth';
 
@@ -44,14 +42,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <Layout preview={preview}>
@@ -65,14 +60,14 @@ export const Index = ({ allPosts, preview }) => {
           {/* DESKTOP */}
           {width >= 500 && (
             <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-              {heroPost && (
+              {/* {heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
                   mainImage={heroPost.mainImage}
                   slug={heroPost.slug}
                 />
-              )}
+              )} */}
               <MasonryGrid data={morePosts} categoryTitle={null} />
             </div>
           )}

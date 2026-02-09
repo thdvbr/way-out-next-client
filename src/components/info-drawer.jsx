@@ -76,6 +76,34 @@ const InfoDrawer = ({ preview }) => {
       {infoIsOpen && (
         <>
           {/* TODO: Think about what to do with the width of info box */}
+          {/* <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency=".4"
+                numOctaves="3"
+                result="noise"
+              />
+              <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+            </filter>
+          </svg> */}
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <filter
+              id="noise"
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+              filterUnits="objectBoundingBox">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="5.4"
+                numOctaves="6"
+                stitchTiles="stitch"
+              />
+              <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+            </filter>
+          </svg>
           <motion.div
             initial={{ x: '100%' }}
             animate={{
@@ -85,7 +113,7 @@ const InfoDrawer = ({ preview }) => {
               x: '100%',
             }}
             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-            className="fixed w-full h-full info-box z-60"
+            className="fixed w-full h-full overflow-hidden info-box z-60"
             style={
               width > 768
                 ? { right: 0, maxWidth: '42vw' }
@@ -93,9 +121,10 @@ const InfoDrawer = ({ preview }) => {
             }>
             {/* TODO: Add noise to radial gradiant */}
             <div
-              className="absolute top-0 p-5 radial-gradient"
+              className="absolute inset-0 p-5 radial-gradient"
               style={{
-                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #C4C4C4)`,
+                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #D7D7D7)`,
+                filter: 'url(#noise)',
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
               <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
