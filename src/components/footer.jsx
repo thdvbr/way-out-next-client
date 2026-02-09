@@ -62,9 +62,9 @@ export default function Footer({ theme = 'light', showPlayer = true }) {
             <Link href="/">
               <div
                 className="footer-logo-container"
-                // style={isDark ? { filter: 'invert(1)' } : {}}
+                style={isDark ? { filter: 'invert(1)' } : {}}
               >
-                <Logo />
+                {/* <Logo /> */}
               </div>
             </Link>
           )}
