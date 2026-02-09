@@ -18,8 +18,8 @@ const MasonryItem = ({
     ? `/radios/${slug.current || slug}`
     : `/posts/${slug.current || slug}`;
   return (
-    <div className="pb-1 sm:pb-0 sm:py-2 preview-block">
-      <div className="mb-4 sm:mb-2">
+    <div className="pb-2 sm:pb-0 sm:py-2 preview-block">
+      <div className="sm:mb-2">
         <Thumbnail
           slug={slug}
           title={title}
@@ -27,12 +27,11 @@ const MasonryItem = ({
           mainCategory={mainCategory?.title}
         />
       </div>
-      <div className="max-w-xl my-5 mr-5 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">
+      <div className="max-w-xl py-4 pl-2 pr-5 sm:py-0 sm:pl-0 sm:pr-0 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">
         <Link
           as={as}
           href={href}
-          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
-        >
+          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
           {title}
         </Link>
         <span>

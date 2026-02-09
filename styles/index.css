@@ -216,18 +216,12 @@ body {
   .radial-gradient {
     height: 100%;
   }
-  .interviews:hover,
-  .stuff-we-like:hover,
-  .radio:hover,
-  .info:hover {
-    text-decoration: underline;
-  }
-  .preview-block:active .masonry-item-text {
-    text-decoration: underline;
-    color: #4045a8;
-  }
-  .preview-block:active .line {
-    border-top: 1px solid #4045a8;
+
+  .preview-block:active .masonry-item-text{
+    background-color:#FFFF00;
+    border-left: 2px solid black;
+    border-right:2px solid black;
+    border-bottom: 2px solid black;
   }
 }
 
@@ -242,33 +236,7 @@ body {
   background: #e9e9e0;
 }
 
-.interviews:hover,
-.interviews-active {
-  color: #4045a8;
-}
 
-.stuff-we-like:hover,
-.stuff-we-like-active {
-  color: #8a7536;
-}
-
-.radio:hover,
-.radio-active {
-  color: #d10000;
-}
-.search-active {
-  color: #7045a4;
-}
-.info:hover {
-  color: #93bcd2;
-}
-/* .info:focus {
-  color: #93bcd2;
-} */
-
-.info-color {
-  color: #93bcd2;
-}
 .svg-scale {
   width: 100%;
   height: auto;
@@ -321,8 +289,8 @@ body {
 
 
 .footer-logo-container {
-  /* content: url(/assets/logos/footer-logo.png); */
-  width: 3em;
+  content: url(/assets/logos/way_out_vector_transparent-white_black-outline_.png);
+  width: 4em;
 }
 
 @media only screen and (min-width: 500px) {
