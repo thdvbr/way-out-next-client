@@ -18,7 +18,7 @@ import {
   PostHeader,
   PostBody,
   PostLayout,
-  ArtistLink,
+  ExternalLinks,
   RelatedGrid,
   SocialLinks,
 } from '../../components';
@@ -136,8 +136,8 @@ export const Post = ({ data = {}, preview }) => {
                     adShortPost={randomSliced1SideAd}
                     adLongPost={randomSliced2SideAds}
                   />
-                  {post.artistLink && (
-                    <ArtistLink artistLink={post.artistLink} />
+                  {post.externalLinks && (
+                    <ExternalLinks externalLinks={post.externalLinks} />
                   )}
                   <SocialLinks socialLinks={post.socialLinks} />
                 </motion.div>

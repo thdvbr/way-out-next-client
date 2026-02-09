@@ -46,6 +46,7 @@ import FooterSvgDarkMode from './footer-svg-dark-mode'
 import FooterSvg from './footer-svg'
 import FooterSvgDarkModeMobile from './footer-svg-dark-mode-mobile'
 import SocialLinks from './social-links'
+import ExternalLinks from './external-links'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -99,5 +100,6 @@ export {
   FooterSvgDarkMode,
   FooterSvg,
   FooterSvgDarkModeMobile,
-  SocialLinks
+  SocialLinks,
+  ExternalLinks
 };
