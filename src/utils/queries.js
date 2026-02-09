@@ -9,6 +9,7 @@ const postFields = `
   previewImage,
   body,
   artistLink,
+  socialLinks,
   "subCategory": subCategory->title,
   mainCategory->{
     _id,

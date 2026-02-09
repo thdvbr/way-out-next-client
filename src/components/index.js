@@ -45,6 +45,7 @@ import RadioGrid from './radio-grid'
 import FooterSvgDarkMode from './footer-svg-dark-mode'
 import FooterSvg from './footer-svg'
 import FooterSvgDarkModeMobile from './footer-svg-dark-mode-mobile'
+import SocialLinks from './social-links'
 
 const InfoDrawerWithoutSSR = dynamic(
   () => import('./info-drawer'),
@@ -97,5 +98,6 @@ export {
   RadioGrid,
   FooterSvgDarkMode,
   FooterSvg,
-  FooterSvgDarkModeMobile
+  FooterSvgDarkModeMobile,
+  SocialLinks
 };

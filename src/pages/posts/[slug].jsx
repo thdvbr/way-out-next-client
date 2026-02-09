@@ -20,7 +20,7 @@ import {
   PostLayout,
   ArtistLink,
   RelatedGrid,
-  SocialSharing,
+  SocialLinks,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -139,7 +139,7 @@ export const Post = ({ data = {}, preview }) => {
                   {post.artistLink && (
                     <ArtistLink artistLink={post.artistLink} />
                   )}
-                  <SocialSharing slug={slug} />
+                  <SocialLinks socialLinks={post.socialLinks} />
                 </motion.div>
               </article>
             </>
