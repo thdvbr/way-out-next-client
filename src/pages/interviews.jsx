@@ -3,7 +3,9 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { interviewsQuery } from '../utils/queries';
-import { Container, MasonryGrid, Layout } from '../components';
+import {
+  Container, MasonryGrid, Layout, PageTransition,
+} from '../components';
 import { useAppContext } from '../context/state';
 
 // how to handle page redirect after search?
@@ -17,13 +19,15 @@ export const Interviews = ({ allPosts, preview }) => {
   }, [router.asPath]);
   return (
     <>
-      <Layout preview={preview}>
-        <Container>
-          {allPosts && (
-            <MasonryGrid categoryTitle="Interview" data={allPosts} />
-          )}
-        </Container>
-      </Layout>
+      <PageTransition>
+        <Layout preview={preview}>
+          <Container>
+            {allPosts && (
+              <MasonryGrid categoryTitle="Interview" data={allPosts} />
+            )}
+          </Container>
+        </Layout>
+      </PageTransition>
     </>
   );
 };

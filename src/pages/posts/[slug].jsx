@@ -21,6 +21,7 @@ import {
   ExternalLinks,
   RelatedGrid,
   SocialLinks,
+  PageTransition,
 } from '../../components';
 import { useAppContext } from '../../context/state';
 import {
@@ -101,10 +102,7 @@ export const Post = ({ data = {}, preview }) => {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <motion.div
-      // ref={listInnerRef}
-      exit={{ opacity: 0 }}
-      animate={{ opacity: 1 }}>
+    <PageTransition>
       <PostLayout preview={preview}>
         <div className="px-3">
           {post && (
@@ -166,7 +164,7 @@ export const Post = ({ data = {}, preview }) => {
           </motion.div>
         </div>
       </PostLayout>
-    </motion.div>
+    </PageTransition>
   );
 };
 

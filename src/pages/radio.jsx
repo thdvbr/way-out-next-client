@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
-  Container, Layout, RadioGrid, ThemeWrapper,
+  Container,
+  Layout,
+  RadioGrid,
+  ThemeWrapper,
+  PageTransition,
 } from '../components';
 import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
@@ -18,18 +22,20 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
   return (
     <>
       <ThemeWrapper theme="dark">
-        <Layout
-          preview={preview}
-          bottomAds={bottomAds}
-          theme="dark"
-          page="radiomain"
-        >
-          <div className="mt-1 sm:mt-2 md:mt-3 sm:px-2">
-            <Container>
-              {allRadioShows && <RadioGrid data={allRadioShows} />}
-            </Container>
-          </div>
-        </Layout>
+        <PageTransition>
+          <Layout
+            preview={preview}
+            bottomAds={bottomAds}
+            theme="dark"
+            page="radiomain"
+          >
+            <div className="mt-1 sm:mt-2 md:mt-3 sm:px-2">
+              <Container>
+                {allRadioShows && <RadioGrid data={allRadioShows} />}
+              </Container>
+            </div>
+          </Layout>
+        </PageTransition>
       </ThemeWrapper>
     </>
   );

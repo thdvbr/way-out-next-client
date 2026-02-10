@@ -25,8 +25,13 @@ const postComponents = {
         {children}
       </p>
     ),
+    optiArtCraft: ({ children }) => (
+      <p className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+        {children}
+      </p>
+    ),
     // intro font: add drop cap
-    optiArtCraft: ({ children }) => {
+    optiArtCraftDropCap: ({ children }) => {
       const firstChild = children[0];
 
       if (typeof firstChild === 'string') {
@@ -42,7 +47,6 @@ const postComponents = {
           </span>
         );
       }
-
       return (
         <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
           <br />

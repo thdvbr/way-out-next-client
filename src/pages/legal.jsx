@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { Container, Layout, Content } from '../components';
+import {
+  Container, Layout, Content, PageTransition,
+} from '../components';
 import { useAppContext } from '../context/state';
 
 export const Legal = ({ preview }) => {
@@ -10,16 +12,18 @@ export const Legal = ({ preview }) => {
   }, [setInfoIsOpen]);
   return (
     <>
-      <Layout preview={preview}>
-        <Container>
-          <div className="font-main text-30 md:text-33 lg:text-43 mt-12 text-center">
-            Terms & Conditions
-          </div>
-          <div className="px-8 lg:px-24 md:px-28">
-            <Content body={legal.body} />
-          </div>
-        </Container>
-      </Layout>
+      <PageTransition>
+        <Layout preview={preview}>
+          <Container>
+            <div className="mt-12 text-center font-main text-30 md:text-33 lg:text-43">
+              Terms & Conditions
+            </div>
+            <div className="px-8 lg:px-24 md:px-28">
+              <Content body={legal.body} />
+            </div>
+          </Container>
+        </Layout>
+      </PageTransition>
     </>
   );
 };

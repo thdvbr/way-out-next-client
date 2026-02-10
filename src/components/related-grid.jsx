@@ -10,10 +10,10 @@ const RelatedGrid = ({ posts }) => (
     variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
   >
     <section className="mt-14 sm:mx-0">
-      <h2 className="font-title text-24 ml:text-40 xl:text-55 text-center mb-10 md:mb-16">
-        More to read
+      <h2 className="mb-10 text-center font-title text-24 ml:text-40 xl:text-55 md:mb-16">
+        Find more
       </h2>
-      <div className="px-2 grid grid-cols-2 grid-rows-2 sm:grid-cols-4 sm:grid-rows-1 sm:gap-2 ml:gap-4">
+      <div className="grid grid-cols-2 grid-rows-2 px-2 sm:grid-cols-4 sm:grid-rows-1 sm:gap-2 ml:gap-4">
         {posts.map((post) => (
           <RelatedItem
             key={post.slug}

@@ -4,7 +4,11 @@ import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
-  Container, HeroPost, MasonryGrid, Layout,
+  Container,
+  HeroPost,
+  MasonryGrid,
+  Layout,
+  PageTransition,
 } from '../components';
 import { useAppContext } from '../context/state';
 import useWindowWidth from '../utils/useWindowWidth';
@@ -54,18 +58,19 @@ export const Index = ({ allPosts, preview }) => {
         {' '}
         !
       </CookieConsent>
-      <Layout preview={preview}>
-        <Container>
-          {/* MOBILE */}
-          {width < 500 && (
-            <div>
-              <MasonryGrid data={allPosts} type="posts" />
-            </div>
-          )}
-          {/* DESKTOP */}
-          {width >= 500 && (
-            <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-              {/* {heroPost && (
+      <PageTransition>
+        <Layout preview={preview}>
+          <Container>
+            {/* MOBILE */}
+            {width < 500 && (
+              <div>
+                <MasonryGrid data={allPosts} type="posts" />
+              </div>
+            )}
+            {/* DESKTOP */}
+            {width >= 500 && (
+              <div className={`${searchIsOpen && 'sm:mt-8'}`}>
+                {/* {heroPost && (
                 <HeroPost
                   title={heroPost.title}
                   subtitle={heroPost.subtitle}
@@ -73,11 +78,12 @@ export const Index = ({ allPosts, preview }) => {
                   slug={heroPost.slug}
                 />
               )} */}
-              <MasonryGrid data={morePosts} categoryTitle={null} />
-            </div>
-          )}
-        </Container>
-      </Layout>
+                <MasonryGrid data={morePosts} categoryTitle={null} />
+              </div>
+            )}
+          </Container>
+        </Layout>
+      </PageTransition>
     </>
   );
 };

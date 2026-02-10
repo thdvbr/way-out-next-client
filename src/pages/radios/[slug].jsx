@@ -11,6 +11,7 @@ import {
   Tracklist,
   Tags,
   PlayButton,
+  PageTransition,
 } from '../../components';
 
 import { sanityClient, getClient } from '../../utils/sanity.server';
@@ -52,26 +53,28 @@ function Radio({ data = {}, preview }) {
   };
   return (
     <ThemeWrapper theme="dark">
-      <RadioLayout
-        theme="dark"
-        preview={preview}
-        url={radio.mixcloudUrl}
-        showPlayer={showPlayer}
-      >
-        {width < 1025 ? (
-          <MobileRadioView
-            radio={radio}
-            onPlayClick={handlePlayClick}
-            showPlayer={showPlayer}
-          />
-        ) : (
-          <DesktopRadioView
-            radio={radio}
-            onPlayClick={handlePlayClick}
-            showPlayer={showPlayer}
-          />
-        )}
-      </RadioLayout>
+      <PageTransition>
+        <RadioLayout
+          theme="dark"
+          preview={preview}
+          url={radio.mixcloudUrl}
+          showPlayer={showPlayer}
+        >
+          {width < 1025 ? (
+            <MobileRadioView
+              radio={radio}
+              onPlayClick={handlePlayClick}
+              showPlayer={showPlayer}
+            />
+          ) : (
+            <DesktopRadioView
+              radio={radio}
+              onPlayClick={handlePlayClick}
+              showPlayer={showPlayer}
+            />
+          )}
+        </RadioLayout>
+      </PageTransition>
     </ThemeWrapper>
   );
 }
