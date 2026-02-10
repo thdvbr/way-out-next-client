@@ -19,9 +19,9 @@ const SocialLinks = ({ socialLinks }) => {
     },
   ];
   return (
-    <div className="flex justify-center text-center underline font-title text-14 ml:text-16 xl:text-20">
+    <div className="flex items-center justify-center gap-8 text-center underline md:gap-12 font-title text-14 ml:text-16 xl:text-20">
       {platforms.map((platform) => (
-        <div key={platform.name} className="relative mr-8 md:mr-12">
+        <div key={platform.name} className="relative">
           {platform.url ? (
             <a
               href={platform.url}
