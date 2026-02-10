@@ -78,6 +78,26 @@ body {
   line-height: inherit; /* Inherit from parent */
 }
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+/* Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 6px;
+
+}
 
 .p-wrap {
   white-space: pre-wrap;
@@ -289,7 +309,7 @@ body {
 
 
 .footer-logo-container {
-  content: url(/assets/logos/way_out_vector_transparent-white_black-outline_.png);
+  content: url(/assets/logos/cropped_way_out_vector_transparent-white_.png);
   width: 4em;
 }
 
