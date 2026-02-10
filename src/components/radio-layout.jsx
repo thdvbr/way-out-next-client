@@ -101,8 +101,14 @@ export default function RadioLayout({
           <div
             className="absolute top-0 left-0 right-0 z-1 mixcloud-widget"
             style={{
+              height: '60px',
+              zIndex: 50, // Higher z-index
+              pointerEvents: 'auto', // Ensure clicks work
+              /* The commented out code `// visibility: showPlayer ? 'visible' : 'hidden', // height: showPlayer ?
+'60px' : 0,` is setting the visibility and height of an element based on the value of the
+`showPlayer` prop. */
               visibility: showPlayer ? 'visible' : 'hidden',
-              height: showPlayer ? 'auto' : 0,
+              height: showPlayer ? '60px' : 0,
             }}>
             <MixcloudWidget url={url} />
           </div>

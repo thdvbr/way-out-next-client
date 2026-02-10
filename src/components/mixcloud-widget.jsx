@@ -10,8 +10,8 @@ const MixcloudWidget = ({ url, width = '100%', height = 60 }) => {
       src={src}
       frameBorder="0"
       allow="autoplay; encrypted-media; clipboard-write"
-      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
       title="Mixcloud Player"
+      style={{ pointerEvents: 'auto' }}
     />
   );
 };
