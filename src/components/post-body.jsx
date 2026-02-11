@@ -11,22 +11,22 @@ import { SideAdImage } from './index';
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <p className="block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
+      <p className="my-2 block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
         {children}
       </p>
     ),
     agrandirNarrow: ({ children }) => (
-      <p className="block pb-4 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
+      <p className="block pb-4 my-2 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
         {children}
       </p>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <p className="block pb-4 leading-none ml:pb-6 font-copenhagen text-11 ">
+      <p className="block pb-4 my-2 leading-none ml:pb-6 font-copenhagen text-11 ">
         {children}
       </p>
     ),
     optiArtCraft: ({ children }) => (
-      <p className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+      <p className="block my-2 leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
         {children}
       </p>
     ),
@@ -39,7 +39,7 @@ const postComponents = {
         const restText = firstChild.slice(1);
 
         return (
-          <span className="block leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+          <span className="block my-2 leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
             <br />
             <span className="drop-cap-letter">{firstLetter}</span>
             {restText}
@@ -76,10 +76,9 @@ const postComponents = {
             />
             {value.caption && (
               <>
-                <p className="my-1 font-secondary text-12 ml:text-16 xl:text-20">
+                <p className="my-1 italic font-secondary text-12 ml:text-16 xl:text-20">
                   {value.caption}
                 </p>
-                <hr className="border-black" />
               </>
             )}
           </div>
@@ -91,6 +90,29 @@ const postComponents = {
       const id = getYouTubeId(url);
       return <LiteYouTubeEmbed id={id} title="YouTube Embed" />;
     },
+    listicleItem: ({ value }) => (
+      <div className="my-12 listicle-item">
+        {/* Horizontal line */}
+        <hr className="mb-4 border-black" />
+
+        <div className="flex items-center gap-5">
+          {/* Number - big yellow box */}
+          <div className="flex-shrink-0 px-2 py-2 bg-darkyellow">
+            <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
+              {value.number}
+            </span>
+          </div>
+          <h3 className="flex-1 font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
+            {value.title}
+          </h3>
+        </div>
+        {value.content && (
+          <div>
+            <PortableText value={value.content} components={postComponents} />
+          </div>
+        )}
+      </div>
+    ),
   },
   marks: {
     em: ({ children }) => <em>{children}</em>,

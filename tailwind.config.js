@@ -25,7 +25,8 @@ module.exports = {
         46: '11.5rem',
       },
           colors: {
-      yellow: '#FFFF00',
+            yellow: '#FFFF00',
+            darkyellow: '#F6EF0D'
     },
     },
     fontFamily: {
