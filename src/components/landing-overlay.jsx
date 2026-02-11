@@ -15,7 +15,7 @@ const LandingOverlay = ({ imageSrc }) => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) return undefined;
 
     const handleScroll = () => {
       if (window.scrollY > 50) {

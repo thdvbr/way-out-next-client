@@ -5,19 +5,15 @@ import { getClient, overlayDrafts } from '../utils/sanity.server';
 import { indexQuery } from '../utils/queries';
 import {
   Container,
-  HeroPost,
   MasonryGrid,
   Layout,
   PageTransition,
   LandingOverlay,
 } from '../components';
 import { useAppContext } from '../context/state';
-import useWindowWidth from '../utils/useWindowWidth';
 
 export const Index = ({ allPosts, preview }) => {
-  const width = useWindowWidth();
   const router = useRouter();
-  const heroPost = allPosts[0];
   // only create a new morePosts when allPosts actually changes
   const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
   const { searchIsOpen, setErrorMsg } = useAppContext();
@@ -50,36 +46,22 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}>
-        Hey, We use{' '}
+        }}
+      >
+        Hey, We use
+        {' '}
         <a href="/legal" className="underline">
           cookies
-        </a>{' '}
+        </a>
+        {' '}
         !
       </CookieConsent>
       <PageTransition>
         <Layout preview={preview}>
           <Container>
-            {/* MOBILE */}
-            {width < 500 && (
-              <div>
-                <MasonryGrid data={allPosts} type="posts" />
-              </div>
-            )}
-            {/* DESKTOP */}
-            {width >= 500 && (
-              <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-                {/* {heroPost && (
-                <HeroPost
-                  title={heroPost.title}
-                  subtitle={heroPost.subtitle}
-                  mainImage={heroPost.mainImage}
-                  slug={heroPost.slug}
-                />
-              )} */}
-                <MasonryGrid data={morePosts} categoryTitle={null} />
-              </div>
-            )}
+            <div className={`${searchIsOpen && 'sm:mt-8'}`}>
+              <MasonryGrid data={morePosts} categoryTitle={null} />
+            </div>
           </Container>
         </Layout>
       </PageTransition>
