@@ -56,9 +56,10 @@ const MasonryGrid = ({
   return (
     <>
       <motion.div
-        initial="initial"
-        animate="enter"
-        exit="exit"
+        initial={{ opacity: 0 }} // Start invisible
+        animate={{ opacity: 1 }} // Fade in
+        exit={{ opacity: 0 }} // Fade out
+        transition={{ duration: 0.8 }} // Slower = smoother
         variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
         <InfiniteScroll
           dataLength={posts.length}

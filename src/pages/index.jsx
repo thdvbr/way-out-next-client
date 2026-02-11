@@ -9,6 +9,7 @@ import {
   MasonryGrid,
   Layout,
   PageTransition,
+  LandingOverlay,
 } from '../components';
 import { useAppContext } from '../context/state';
 import useWindowWidth from '../utils/useWindowWidth';
@@ -29,6 +30,7 @@ export const Index = ({ allPosts, preview }) => {
   // needs to wait until searchResult is returned.
   return (
     <>
+      <LandingOverlay imageSrc="/assets/background/handdrawn_overlay.png" />
       <CookieConsent
         acceptOnScroll
         acceptOnScrollPercentage={60}
@@ -48,14 +50,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <PageTransition>
