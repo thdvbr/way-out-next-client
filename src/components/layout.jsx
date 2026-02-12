@@ -120,24 +120,25 @@ export default function Layout({
                 className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
                 style={{ bottom: '60px' }}>
                 {!isLoading && <Subscribe />}
-                {!isLoading && randomSliceBottomAd && !hasMorePosts && (
-                  <>
-                    <motion.div
-                      className="flex justify-center px-3 mb-2"
-                      ref={ref}
-                      animate={animation}
-                      variants={adVariants}
-                      initial="hidden">
-                      <BottomAdImage
-                        image={randomSliceBottomAd.adImageMobile}
-                        url={randomSliceBottomAd.adUrl}
-                        width={500}
-                      />
-                    </motion.div>
-
-                    <Footer theme={theme} />
-                  </>
-                )}
+                <div ref={ref}>
+                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                    <>
+                      <motion.div
+                        className="flex justify-center px-3 mb-2"
+                        ref={ref}
+                        animate={animation}
+                        variants={adVariants}
+                        initial="hidden">
+                        <BottomAdImage
+                          image={randomSliceBottomAd.adImageMobile}
+                          url={randomSliceBottomAd.adUrl}
+                          width={500}
+                        />
+                      </motion.div>
+                      <Footer theme={theme} />
+                    </>
+                  )}
+                </div>
               </div>
             )}{' '}
           </>
@@ -164,28 +165,28 @@ export default function Layout({
               {page === 'radiomain' ? (
                 <Footer theme={theme} />
               ) : (
-                <>
-                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
-                    <>
-                      <Container>
-                        <motion.div
-                          className="flex justify-center px-3 mt-10"
-                          ref={ref}
-                          animate={animation}
-                          variants={adVariants}
-                          initial="hidden">
-                          <BottomAdImage
-                            image={randomSliceBottomAd.adImage}
-                            url={randomSliceBottomAd.adUrl}
-                            width={1500}
-                          />
-                        </motion.div>
-                      </Container>
-
-                      <Footer theme={theme} />
-                    </>
-                  )}
-                </>
+                <div className="relative mt-10 overflow-visible">
+                  <div ref={ref}>
+                    {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                      <>
+                        <Container>
+                          <motion.div
+                            className="flex justify-center px-3 mt-10"
+                            animate={animation}
+                            variants={adVariants}
+                            initial="hidden">
+                            <BottomAdImage
+                              image={randomSliceBottomAd.adImage}
+                              url={randomSliceBottomAd.adUrl}
+                              width={1500}
+                            />
+                          </motion.div>
+                        </Container>
+                        <Footer theme={theme} />
+                      </>
+                    )}
+                  </div>
+                </div>
               )}
             </motion.div>
           </>

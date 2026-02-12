@@ -112,32 +112,33 @@ export default function PostLayout({ preview, children, theme }) {
             </motion.div>
           </>
         )}
-        {randomSliceBottomAd && (
-          <Container>
-            <motion.div
-              className="flex justify-center px-3 mt-10"
-              ref={ref}
-              animate={animation}
-              variants={adVariants}
-              initial="hidden">
-              {width > 500 ? (
-                <BottomAdImage
-                  image={randomSliceBottomAd.adImage}
-                  url={randomSliceBottomAd.adUrl}
-                  width={1360}
-                />
-              ) : (
-                <BottomAdImage
-                  image={randomSliceBottomAd.adImageMobile}
-                  url={randomSliceBottomAd.adUrl}
-                  width={500}
-                />
-              )}
-            </motion.div>
-          </Container>
-        )}
-        <Footer />
-        {/* </motion.div> */}
+        <div ref={ref}>
+          {randomSliceBottomAd && (
+            <Container>
+              <motion.div
+                className="flex justify-center px-3 mt-10"
+                animate={animation}
+                variants={adVariants}
+                initial="hidden">
+                {width > 500 ? (
+                  <BottomAdImage
+                    image={randomSliceBottomAd.adImage}
+                    url={randomSliceBottomAd.adUrl}
+                    width={1360}
+                  />
+                ) : (
+                  <BottomAdImage
+                    image={randomSliceBottomAd.adImageMobile}
+                    url={randomSliceBottomAd.adUrl}
+                    width={500}
+                  />
+                )}
+              </motion.div>
+            </Container>
+          )}
+          <Footer />
+          {/* </motion.div> */}
+        </div>
       </div>
     </>
   );
