@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
+import useWindowWidth from '../utils/useWindowWidth';
 import { indexQuery } from '../utils/queries';
 import {
   Container,
@@ -17,6 +18,7 @@ export const Index = ({ allPosts, preview }) => {
   // only create a new morePosts when allPosts actually changes
   const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
   const { searchIsOpen, setErrorMsg } = useAppContext();
+  const width = useWindowWidth();
 
   useEffect(() => {
     setErrorMsg('');
@@ -26,7 +28,13 @@ export const Index = ({ allPosts, preview }) => {
   // needs to wait until searchResult is returned.
   return (
     <>
-      <LandingOverlay imageSrc="/assets/background/handdrawn_overlay.png" />
+      <LandingOverlay
+        imageSrc={
+          width > 500
+            ? '/assets/background/handdrawn_overlay.png'
+            : '/assets/background/handdrawn_overlay_mobile.png'
+        }
+      />
       <CookieConsent
         acceptOnScroll
         acceptOnScrollPercentage={60}
@@ -46,14 +54,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <PageTransition>
