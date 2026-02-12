@@ -12,7 +12,7 @@ const ExternalLinks = ({ externalLinks }) => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:opacity-70">
+              className="underline hover:text-gold">
               {link.displayText}
             </a>
           </div>

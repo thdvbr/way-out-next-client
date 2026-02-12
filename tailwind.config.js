@@ -24,9 +24,10 @@ module.exports = {
         '36rem': '36rem',
         46: '11.5rem',
       },
-          colors: {
-            yellow: '#FFFF00',
-            darkyellow: '#F6EF0D'
+      colors: {
+        yellow: '#FFFF00',
+        darkyellow: '#F6EF0D',
+        gold: '#8A7536'
     },
     },
     fontFamily: {

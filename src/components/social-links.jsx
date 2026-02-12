@@ -27,8 +27,7 @@ const SocialLinks = ({ socialLinks }) => {
               href={platform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-70"
-            >
+              className="hover:text-gold">
               {platform.name}
             </a>
           ) : (
