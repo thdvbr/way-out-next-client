@@ -74,7 +74,7 @@ export const Post = ({ data = {}, preview }) => {
   };
 
   useEffect(() => {
-    setRandomSlicedMorePosts(randomize(morePosts || []).slice(1, 5));
+    setRandomSlicedMorePosts((morePosts || []).slice(0, 4));
     setRandomSliced2SideAds(sampleSize(sideAdData || [], 2));
     setRandomSliced1SideAd(sample(sideAdData || null));
   }, [router.asPath]);
@@ -172,13 +172,30 @@ export async function getStaticProps({ params, preview = false }) {
   const { post, morePosts } = await getClient(preview).fetch(postQuery, {
     slug: params.slug,
   });
+  if (!post) {
+    return { notFound: true };
+  }
+  const allItems = overlayDrafts(morePosts);
 
+  // Separate posts and radios
+  const posts = allItems.filter((i) => i._type === 'post');
+  const radios = allItems.filter((i) => i._type === 'radio');
+
+  // Shuffle both
+  const shuffledPosts = posts.sort(() => Math.random() - 0.5);
+  const shuffledRadios = radios.sort(() => Math.random() - 0.5);
+
+  // Take 3 posts and 1 radio (or adjust ratio as needed)
+  const related = [
+    ...shuffledPosts.slice(0, shuffledRadios.length > 0 ? 3 : 4), // 4 posts if no radios
+    ...shuffledRadios.slice(0, 1), // 1 radio if available
+  ].sort(() => Math.random() - 0.5);
   return {
     props: {
       preview,
       data: {
         post,
-        morePosts: overlayDrafts(morePosts),
+        morePosts: related,
       },
     },
     revalidate: 10,

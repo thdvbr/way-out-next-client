@@ -144,9 +144,9 @@ export const postQuery = `
   "post": *[_type == "post" && slug.current == $slug] | order(publishedAt desc, _updatedAt desc) | [0] {
     ${postFields}
   },
-  "morePosts": *[ slug.current != $slug] | order(publishedAt desc, _updatedAt desc) | [0...12] {
-    ${previewFields}
-  }
+    "morePosts": *[_type in ["post", "radio"] && slug.current != $slug] | order(publishedAt desc)[0...20]{
+  ${previewFields}
+}
 }`;
 
 export const postSlugsQuery = `
