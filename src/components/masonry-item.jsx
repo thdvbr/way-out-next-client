@@ -31,18 +31,19 @@ const MasonryItem = ({
         <Link
           as={as}
           href={href}
-          className="block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
-        >
+          className=" block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
           {title}
         </Link>
-        <span>
-          <div>
-            <hr className="float-left mr-2 transform translate-y-4 line sm:translate-y-2 md:translate-y-3 xl:translate-y-4" />
-            <span className="block font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8 sm:mb-2">
-              {subtitle}
-            </span>
-          </div>
-        </span>
+        {subtitle && (
+          <span>
+            <div>
+              <hr className="float-left mr-2 transform translate-y-4 line sm:translate-y-2 md:translate-y-3 xl:translate-y-4" />
+              <span className="block font-main leading-tight text-21 sm:text-15 lg:text-18.5 xl:text-24 lg:leading-6 xl:leading-8 sm:mb-2">
+                {subtitle}
+              </span>
+            </div>
+          </span>
+        )}
       </div>
     </div>
   );
