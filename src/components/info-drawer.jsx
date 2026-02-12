@@ -28,7 +28,6 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ preview }) => {
-  const width = useWindowWidth();
   const {
     infoIsOpen,
     setInfoIsOpen,
@@ -38,9 +37,31 @@ const InfoDrawer = ({ preview }) => {
     staffData,
   } = useAppContext();
   const { about, contact } = pageData;
-  const { x, y } = useCustomMouse();
+
   const staffsOdd = staffData.filter((e, i) => i % 2);
   const staffsEven = staffData.filter((e, i) => !(i % 2));
+
+  const { x, y } = useCustomMouse();
+  const [touchPos, setTouchPos] = useState({ x: 0, y: 0 });
+  const width = useWindowWidth();
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTouchPos({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    });
+  };
+
+  const [isTouch, setIsTouch] = useState(false);
+  // window doesnt exist on the server so using a state so only runs on client to avoid SSR issue
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  const gradientX = isTouch ? touchPos.x : x;
+  const gradientY = isTouch ? touchPos.y : y;
 
   const toggleAbout = () => {
     setInfoDrawerSection(infoDrawerSection === 'about' ? null : 'about');
@@ -122,8 +143,9 @@ const InfoDrawer = ({ preview }) => {
             {/* TODO: Add noise to radial gradiant */}
             <div
               className="absolute inset-0 p-5 text-black radial-gradient"
+              onTouchMove={width < 500 ? handleTouchMove : undefined}
               style={{
-                background: `radial-gradient(farthest-side at ${x}px ${y}px, #FFFF00, #D7D7D7)`,
+                background: `radial-gradient(farthest-side at ${gradientX}px ${gradientY}px, #FFFF00, #D7D7D7)`,
                 filter: 'url(#noise)',
               }}>
               {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
