@@ -65,7 +65,7 @@ export const Index = ({ allPosts, preview }) => {
         <Layout preview={preview}>
           <Container>
             <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-              <MasonryGrid data={morePosts} categoryTitle={null} />
+              <MasonryGrid data={allPosts} categoryTitle={null} />
             </div>
           </Container>
         </Layout>
