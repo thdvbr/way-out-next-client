@@ -243,6 +243,12 @@ body {
     border-right:2px solid black;
     border-bottom: 2px solid black;
   }
+
+  .masonry-item-text {
+    border-left: 2px solid white;
+    border-right:2px solid white;
+    border-bottom: 2px solid white;
+  }
 }
 
 ::-moz-selection {
