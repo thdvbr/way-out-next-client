@@ -26,6 +26,7 @@ title,
 subtitle,
 publishedAt,
 mainImage,
+featured,
 previewImage,
 "subCategory": subCategory->title,
   mainCategory->{
@@ -40,6 +41,7 @@ const radioFields = `
   _id,
   name,
   episodeLabel,
+  featured,
   title,
   subtitle,
   "slug": slug.current,
@@ -175,12 +177,13 @@ export const radioBySlugQuery = `
 `;
 
 export const interviewsQuery = `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc)  | [0...8] {
+*[_type == "post" && mainCategory->title == "Interview"] 
+| order(featured desc, publishedAt desc, _updatedAt desc) {
   ${postPreviewFields}
 }`;
 
 export const stuffWeLikeQuery = `
-*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(publishedAt desc, _updatedAt desc) | [0...8]  {
+*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(featured desc, publishedAt desc, _updatedAt desc) | [0...8]  {
   ${postPreviewFields}
 }`;
 
@@ -189,7 +192,7 @@ export const searchQuery = `
   ${postPreviewFields}
 }`;
 
-export const radioShowsQuery = `*[_type == "radio"] | order(publishedAt desc, _updatedAt desc) {
+export const radioShowsQuery = `*[_type == "radio"] | order(featured desc,publishedAt desc, _updatedAt desc) {
 ${radioFields}
 }`;
 
