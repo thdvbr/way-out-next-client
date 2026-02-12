@@ -65,7 +65,11 @@ export const Index = ({ allPosts, preview }) => {
         <Layout preview={preview}>
           <Container>
             <div className={`${searchIsOpen && 'sm:mt-8'}`}>
-              <MasonryGrid data={allPosts} categoryTitle={null} />
+              <MasonryGrid
+                data={allPosts}
+                interleave="true"
+                categoryTitle={null}
+              />
             </div>
           </Container>
         </Layout>
@@ -74,10 +78,35 @@ export const Index = ({ allPosts, preview }) => {
   );
 };
 
+function interleaveTwoPostsOneRadio(items) {
+  const featured = items.filter((i) => i.featured);
+  const rest = items.filter((i) => !i.featured);
+
+  const posts = rest.filter((i) => i._type === 'post');
+  const radios = rest.filter((i) => i._type === 'radio');
+
+  const interleaved = [];
+  let p = 0;
+  let r = 0;
+
+  while (p < posts.length || r < radios.length) {
+    if (p < posts.length) interleaved.push(posts[p++]);
+    if (p < posts.length) interleaved.push(posts[p++]);
+    if (r < radios.length) interleaved.push(radios[r++]);
+  }
+
+  // Featured items come first, then interleaved rest
+  return [...featured, ...interleaved];
+}
+
 export const getStaticProps = async ({ preview = false }) => {
-  const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
+  const data = await getClient(preview).fetch(indexQuery);
+  const allContent = interleaveTwoPostsOneRadio(overlayDrafts(data));
   return {
-    props: { allPosts, preview },
+    props: {
+      allPosts: allContent,
+      preview,
+    },
     revalidate: 10,
   };
 };

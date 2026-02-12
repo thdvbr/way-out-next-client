@@ -50,6 +50,34 @@ publishedAt,
   description,
   tags `;
 
+const radioPreviewFields = `
+    _id,
+    title,
+    subtitle,
+    publishedAt,
+    "slug": slug.current,
+    "previewImage": heroImage,
+    mixcloudUrl,
+`;
+
+const previewFields = `
+  _id,
+  _type,
+  title,
+  subtitle,
+  publishedAt,
+  featured,
+  "slug": slug.current,
+  "previewImage": coalesce(heroImage, previewImage),
+  mixcloudUrl,
+  "subCategory": subCategory->title,
+  mainCategory->{
+    _id,
+    title,
+    description
+  }
+`;
+
 const pageFields = `
 _id,
 name,
@@ -106,8 +134,9 @@ export const pageSlugsQuery = `
 
 // Fix ordering - use publishedAt instead of date, primary sort by pulishedat, secondary updatedat
 export const indexQuery = `
-*[_type == "post"] | order(publishedAt desc, _updatedAt desc) | [0...9] {
-  ${postPreviewFields}
+*[_type in ["post", "radio"]]
+| order(featured desc, publishedAt desc, _updatedAt desc) {
+  ${previewFields}
 }`;
 
 export const postQuery = `
@@ -115,8 +144,8 @@ export const postQuery = `
   "post": *[_type == "post" && slug.current == $slug] | order(publishedAt desc, _updatedAt desc) | [0] {
     ${postFields}
   },
-  "morePosts": *[_type == "post" && slug.current != $slug] | order(publishedAt desc, _updatedAt desc) | [0...12] {
-    ${postPreviewFields}
+  "morePosts": *[ slug.current != $slug] | order(publishedAt desc, _updatedAt desc) | [0...12] {
+    ${previewFields}
   }
 }`;
 
@@ -182,14 +211,12 @@ const moreStuffWeLikeQuery = (posts) => {
   }`;
 };
 
-const moreAllPostsQuery = (posts) => {
-  return `
-  *[_type == "post"] | order(publishedAt desc, _updatedAt desc) | [${
-  posts.length + 1
-}...${posts.length + 6}] {
-    ${postPreviewFields}
-  }`;
-};
+const moreAllPostsQuery = (posts) => `
+*[_type in ["post", "radio"]]
+| order(publishedAt desc, _updatedAt desc)
+| [${posts.length}...${posts.length + 8}] {
+  ${previewFields}
+}`;
 
 const moreRadioQuery = (posts) => {
   return `

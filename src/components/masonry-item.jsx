@@ -25,6 +25,7 @@ const MasonryItem = ({
           title={title}
           image={previewImage}
           mainCategory={mainCategory?.title}
+          mixcloudUrl={mixcloudUrl}
         />
       </div>
       <div className="max-w-xl py-4 pl-2 pr-5 sm:py-0 sm:pl-0 sm:pr-0 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">
