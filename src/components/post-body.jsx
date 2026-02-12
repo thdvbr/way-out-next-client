@@ -1,12 +1,73 @@
 /* eslint-disable */
 
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import getYouTubeId from 'get-youtube-id';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import { urlForImage } from '../utils/sanity';
 import { SideAdImage } from './index';
+
+const ListicleItem = ({ value }) => {
+  const [isNumberHovered, setIsNumberHovered] = useState(false);
+  const [isTitleHovered, setIsTitleHovered] = useState(false);
+
+  const numberIcon =
+    parseInt(value.number) % 2 === 0
+      ? '/assets/icons/handdrawn_circle.svg'
+      : '/assets/icons/handdrawn_x.svg';
+
+  return (
+    <div className="my-12 listicle-item">
+      <hr className="mb-4 border-black" />
+
+      <div className="flex items-center gap-5">
+        {/* Number box - own hover state */}
+        <div
+          className="relative flex-shrink-0 px-2 py-2 overflow-visible bg-darkyellow"
+          onMouseEnter={() => setIsNumberHovered(true)}
+          onMouseLeave={() => setIsNumberHovered(false)}>
+          <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
+            {value.number}
+          </span>
+          {isNumberHovered && (
+            <img
+              src={numberIcon}
+              className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+              alt=""
+            />
+          )}
+        </div>
+
+        {/* Title - own hover state */}
+        <div
+          className="relative flex-1"
+          onMouseEnter={() => setIsTitleHovered(true)}
+          onMouseLeave={() => setIsTitleHovered(false)}>
+          <h3 className="flex-1 font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
+            <span className="relative inline-block">
+              {value.title}
+              {isTitleHovered && (
+                <img
+                  src="/assets/icons/handdrawn_scribble.svg"
+                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                  alt=""
+                />
+              )}
+            </span>
+          </h3>
+        </div>
+      </div>
+
+      {value.content && (
+        <div>
+          <PortableText value={value.content} components={postComponents} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const postComponents = {
   block: {
@@ -66,13 +127,22 @@ const postComponents = {
       if (!value || !value.asset || !value.asset._ref) {
         return null;
       }
+      const blurDataURL = urlForImage(value.asset)
+        .width(20)
+        .quality(20)
+        .blur(50)
+        .url();
       return (
         <div className="flex justify-center">
           <div className="flex-col pt-4">
-            <img
+            <Image
               alt={value.alt || ''}
-              loading="lazy"
               src={urlForImage(value.asset).url()}
+              placeholder={blurDataURL ? 'blur' : 'empty'}
+              blurDataURL={blurDataURL}
+              width={value.asset?.metadata?.dimensions?.width || 800}
+              height={value.asset?.metadata?.dimensions?.height || 600}
+              style={{ width: '100%', height: 'auto' }}
             />
             {value.caption && (
               <>
@@ -90,29 +160,31 @@ const postComponents = {
       const id = getYouTubeId(url);
       return <LiteYouTubeEmbed id={id} title="YouTube Embed" />;
     },
-    listicleItem: ({ value }) => (
-      <div className="my-12 listicle-item">
-        {/* Horizontal line */}
-        <hr className="mb-4 border-black" />
+    listicleItem: ({ value }) => <ListicleItem value={value} />,
 
-        <div className="flex items-center gap-5">
-          {/* Number - big yellow box */}
-          <div className="flex-shrink-0 px-2 py-2 bg-darkyellow">
-            <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
-              {value.number}
-            </span>
-          </div>
-          <h3 className="flex-1 font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
-            {value.title}
-          </h3>
-        </div>
-        {value.content && (
-          <div>
-            <PortableText value={value.content} components={postComponents} />
-          </div>
-        )}
-      </div>
-    ),
+    // (
+    //   <div className="my-12 listicle-item">
+    //     {/* Horizontal line */}
+    //     <hr className="mb-4 border-black" />
+
+    //     <div className="flex items-center gap-5">
+    //       {/* Number - big yellow box */}
+    //       <div className="flex-shrink-0 px-2 py-2 bg-darkyellow">
+    //         <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
+    //           {value.number}
+    //         </span>
+    //       </div>
+    //       <h3 className="flex-1 font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
+    //         {value.title}
+    //       </h3>
+    //     </div>
+    //     {value.content && (
+    //       <div>
+    //         <PortableText value={value.content} components={postComponents} />
+    //       </div>
+    //     )}
+    //   </div>
+    // ),
   },
   marks: {
     em: ({ children }) => <em>{children}</em>,

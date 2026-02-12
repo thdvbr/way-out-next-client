@@ -5,8 +5,26 @@ const postFields = `
   subtitle,
   publishedAt,
   credits,
-  mainImage,
-  previewImage,
+  mainImage {
+  ...,
+  asset-> {
+    _id,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
+previewImage {
+  ...,
+  asset-> {
+    _id,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
   body,
   socialLinks,
   externalLinks,
@@ -27,7 +45,26 @@ subtitle,
 publishedAt,
 mainImage,
 featured,
-previewImage,
+mainImage {
+  ...,
+  asset-> {
+    _id,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
+previewImage {
+  ...,
+  asset-> {
+    _id,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
 "subCategory": subCategory->title,
   mainCategory->{
     _id,
@@ -45,7 +82,16 @@ const radioFields = `
   title,
   subtitle,
   "slug": slug.current,
-  heroImage,
+    heroImage {
+    ...,
+    asset-> {
+      _id,
+      metadata {
+        lqip,
+        dimensions
+      }
+    }
+  },
   mixcloudUrl,
   tracklist,
 publishedAt,
@@ -70,7 +116,16 @@ const previewFields = `
   publishedAt,
   featured,
   "slug": slug.current,
-  "previewImage": coalesce(heroImage, previewImage),
+  "previewImage": coalesce(heroImage, previewImage) {
+    ...,
+    asset-> {
+      _id,
+      metadata {
+        lqip,
+        dimensions
+      }
+    }
+  },
   mixcloudUrl,
   "subCategory": subCategory->title,
   mainCategory->{
@@ -98,7 +153,16 @@ role
 const adFields = `
 _id,
 "adCategory": adCategory->title,
-adImage,
+adImage {
+  ...,
+  asset-> {
+    _id,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
 adImageMobile,
 adUrl`;
 

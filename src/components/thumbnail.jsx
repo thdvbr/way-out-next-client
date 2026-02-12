@@ -36,20 +36,21 @@ const Thumbnail = ({
   const as = isRadio
     ? `/radios/${slug.current || slug}`
     : `/posts/${slug.current || slug}`;
+  const blurDataURL = source?.asset?.metadata?.lqip;
 
   // TODO: BlurDataURL warning, make blur work :( )
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{ overflow: 'hidden' }}
-    >
+      style={{ overflow: 'hidden' }}>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div>
         <Image
           {...imageProps}
           unoptimized
           alt={`Thumbnail for ${title}`}
-          placeholder="blur"
+          placeholder={blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={blurDataURL}
           // check for responsive option..
           // sizes={`${width}px, ${height}px`}
           sizes="(max-width: 800px) 100vw, 800px"

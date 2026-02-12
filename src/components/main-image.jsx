@@ -8,7 +8,7 @@ import { sanityClient } from '../utils/sanity.server';
 const MainImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder.width(
-      options.width || Math.min(options.originalImageDimensions.width, 800),
+      options.width || Math.min(options.originalImageDimensions.width, 800)
     );
   };
 
@@ -19,17 +19,20 @@ const MainImage = ({ title, slug, image: source }) => {
     imageBuilder: myCustomImageBuilder,
   });
 
+  const blurDataURL = source?.asset?.metadata?.lqip;
+
   const image = source ? (
     <>
       <motion.div
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
+        transition={{ delay: 0.2 }}>
         <Image
           {...imageProps}
           unoptimized
           alt={`Cover Image for ${title}`}
+          placeholder={blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={blurDataURL}
           sizes="(max-width: 2000px) 100vw, auto"
           style={{
             width: '100%',

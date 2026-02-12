@@ -16,10 +16,14 @@ const BottomAdImage = ({ image: source, url }) => {
     imageBuilder: myCustomImageBuilder,
   });
 
+  const blurDataURL = source?.asset?.metadata?.lqip;
+
   const image = source ? (
     <Image
       src={imageProps.src}
       alt="Bottom ad image"
+      placeholder={blurDataURL ? 'blur' : 'empty'}
+      blurDataURL={blurDataURL}
       fill
       unoptimized
       sizes="(min-width: 500px), 800px auto"
@@ -41,8 +45,7 @@ const BottomAdImage = ({ image: source, url }) => {
       }}
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ delay: 0.6 }}
-    >
+      transition={{ delay: 0.6 }}>
       <a href={url}>{image}</a>
     </motion.div>
   );
