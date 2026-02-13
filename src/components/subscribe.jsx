@@ -58,7 +58,7 @@ const Subscribe = ({ preview }) => {
           <form
             style={{ height: '120px' }}
             onSubmit={subscribe}
-            className="flex flex-col items-center justify-between px-3 text-center font-agrandir">
+            className="flex flex-col items-center justify-between px-3 text-center text-black font-agrandir">
             <label htmlFor="email-input" className="flex font-title text-18">
               Join our newsletter
             </label>
@@ -86,7 +86,7 @@ const Subscribe = ({ preview }) => {
             <form
               style={{ height: '60px' }}
               onSubmit={subscribe}
-              className="flex items-center justify-between px-3 text-center font-title text-15 ml:text-18">
+              className="flex items-center justify-between px-3 text-center text-black font-title text-15 ml:text-18">
               <label htmlFor="email-input" className="flex w-4/12 mr-auto">
                 Join our newsletter
               </label>
