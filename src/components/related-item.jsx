@@ -15,7 +15,7 @@ const RelatedItem = ({
   const as = isRadio ? `/radios/${slug}` : `/posts/${slug}`;
   return (
     <div className="">
-      <div className="px-2 pt-2 pb-2 z-70 lg:px-3 lg:pt-3 related-preview-block ">
+      <div className="px-2 pt-2 pb-4 z-70 lg:px-3 lg:pt-3 related-preview-block ">
         <div className="mb-0">
           <Thumbnail
             slug={slug}

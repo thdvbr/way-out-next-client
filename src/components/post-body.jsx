@@ -25,37 +25,36 @@ const ListicleItem = ({ value }) => {
       <div className="flex items-center gap-5">
         {/* Number box - own hover state */}
         <div
-          className="relative flex-shrink-0 px-2 py-2 overflow-visible bg-darkyellow"
+          className="relative flex-shrink-0 px-2 py-2"
           onMouseEnter={() => setIsNumberHovered(true)}
           onMouseLeave={() => setIsNumberHovered(false)}>
-          <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
-            {value.number}
-          </span>
+          <div className="px-1 py-1 bg-darkyellow">
+            <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
+              {value.number}
+            </span>
+          </div>
           {isNumberHovered && (
             <img
               src={numberIcon}
-              className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+              className="absolute inset-0 object-cover w-full h-full overflow-visible pointer-events-none"
               alt=""
             />
           )}
         </div>
-
         {/* Title - own hover state */}
         <div
           className="relative flex-1"
           onMouseEnter={() => setIsTitleHovered(true)}
           onMouseLeave={() => setIsTitleHovered(false)}>
-          <h3 className="flex-1 font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
-            <span className="relative inline-block">
-              {value.title}
-              {isTitleHovered && (
-                <img
-                  src="/assets/icons/handdrawn_scribble.svg"
-                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
-                  alt=""
-                />
-              )}
-            </span>
+          <h3 className="flex-1 relative inline-block font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
+            <span className="">{value.title}</span>
+            {isTitleHovered && (
+              <img
+                src="/assets/icons/handdrawn_scribble.svg"
+                className="absolute inset-0 object-cover w-full h-full overflow-visible pointer-events-none"
+                alt=""
+              />
+            )}
           </h3>
         </div>
       </div>
