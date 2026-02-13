@@ -42,7 +42,8 @@ const Thumbnail = ({
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{ overflow: 'hidden' }}>
+      style={{ overflow: 'hidden' }}
+    >
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div>
         <Image

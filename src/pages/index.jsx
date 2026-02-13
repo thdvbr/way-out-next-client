@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useEffect, useMemo } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';

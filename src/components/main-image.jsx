@@ -8,7 +8,7 @@ import { sanityClient } from '../utils/sanity.server';
 const MainImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder.width(
-      options.width || Math.min(options.originalImageDimensions.width, 800)
+      options.width || Math.min(options.originalImageDimensions.width, 800),
     );
   };
 
@@ -26,7 +26,8 @@ const MainImage = ({ title, slug, image: source }) => {
       <motion.div
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}>
+        transition={{ delay: 0.2 }}
+      >
         <Image
           {...imageProps}
           unoptimized

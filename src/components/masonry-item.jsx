@@ -32,7 +32,8 @@ const MasonryItem = ({
         <Link
           as={as}
           href={href}
-          className=" block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
+          className=" block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
+        >
           {title}
         </Link>
         {subtitle && (
