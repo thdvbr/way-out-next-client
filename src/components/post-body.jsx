@@ -127,22 +127,13 @@ const postComponents = {
       if (!value || !value.asset || !value.asset._ref) {
         return null;
       }
-      const blurDataURL = urlForImage(value.asset)
-        .width(20)
-        .quality(20)
-        .blur(50)
-        .url();
       return (
         <div className="flex justify-center">
           <div className="flex-col pt-4">
-            <Image
+            <img
               alt={value.alt || ''}
+              loading="lazy"
               src={urlForImage(value.asset).url()}
-              placeholder={blurDataURL ? 'blur' : 'empty'}
-              blurDataURL={blurDataURL}
-              width={value.asset?.metadata?.dimensions?.width || 800}
-              height={value.asset?.metadata?.dimensions?.height || 600}
-              style={{ width: '100%', height: 'auto' }}
             />
             {value.caption && (
               <>
