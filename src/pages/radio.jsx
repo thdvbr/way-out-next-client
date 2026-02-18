@@ -27,13 +27,10 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
             preview={preview}
             bottomAds={bottomAds}
             theme="dark"
-            page="radiomain"
-          >
-            <div className="mt-1 sm:mt-2 md:mt-3 sm:px-2">
-              <Container>
-                {allRadioShows && <RadioGrid data={allRadioShows} />}
-              </Container>
-            </div>
+            page="radiomain">
+            <Container>
+              {allRadioShows && <RadioGrid data={allRadioShows} />}
+            </Container>
           </Layout>
         </PageTransition>
       </ThemeWrapper>
@@ -43,7 +40,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allRadioShows = overlayDrafts(
-    await getClient(preview).fetch(radioShowsQuery),
+    await getClient(preview).fetch(radioShowsQuery)
   );
   return {
     props: { allRadioShows, preview },

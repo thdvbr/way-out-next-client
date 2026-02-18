@@ -161,7 +161,7 @@ export default function Layout({
                 </div>
                 <NavbarDesktop theme={theme} page={page} />
               </Container>
-              <main className="z-0 flex-1 w-screen -mt-3">{children}</main>
+              <main className="z-0 flex-1 -mt-3">{children}</main>
               {page === 'radiomain' ? (
                 <Footer theme={theme} />
               ) : (
