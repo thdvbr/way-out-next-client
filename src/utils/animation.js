@@ -66,15 +66,20 @@ export const joinVariants = {
   closed: { y: '-60px' },
 };
 
+// export const adVariants = {
+//   hidden: { x: '-100vw' },
+//   visible: {
+//     x: 0,
+//     transition: {
+//       type: 'spring',
+//       duration: 1,
+//       bounce: 0.3,
+//       delay: 0.3,
+//     },
+//   },
+// };
+
 export const adVariants = {
-  hidden: { x: '-100vw' },
-  visible: {
-    x: 0,
-    transition: {
-      type: 'spring',
-      duration: 1,
-      bounce: 0.3,
-      delay: 0.3,
-    },
-  },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };

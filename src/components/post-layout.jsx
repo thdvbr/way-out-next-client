@@ -31,8 +31,15 @@ export default function PostLayout({ preview, children, theme }) {
     useAppContext();
   const { asPath } = useRouter();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
-  const { ref } = useInView();
   const animation = useAnimation();
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      animation.start('visible');
+    }
+  }, [inView, animation]);
 
   useEffect(() => {
     if (preview) {
