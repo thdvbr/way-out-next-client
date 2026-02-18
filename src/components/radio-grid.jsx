@@ -9,7 +9,8 @@ const RadioGrid = ({ data }) => {
       initial="initial"
       animate="enter"
       exit="exit"
-      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
+      variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+    >
       <Container>
         <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((radio) => (
