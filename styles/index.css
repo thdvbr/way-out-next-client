@@ -262,6 +262,16 @@ body {
   background: #e9e9e0;
 }
 
+/* Dark mode - flipped */
+.dark ::-moz-selection {
+  color: #e9e9e0;
+  background: #fffe54;
+}
+
+.dark ::selection {
+  color: #e9e9e0;
+  background: #fffe54;
+}
 
 .svg-scale {
   width: 100%;
