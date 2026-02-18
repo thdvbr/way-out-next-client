@@ -21,7 +21,7 @@ const ListicleItem = ({ value }) => {
 
       <div className="flex items-center gap-4">
         {/* Number box - own hover state */}
-        <div className="relative flex-shrink-0 px-2 py-2 group">
+        <div className="relative flex-shrink-0 overflow-visible group sm:p-1">
           <div className="px-1 py-1 bg-darkyellow">
             <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
               {value.number}
@@ -29,18 +29,25 @@ const ListicleItem = ({ value }) => {
           </div>
           <img
             src={numberIcon}
-            className="absolute inset-0 object-cover w-full h-full overflow-visible opacity-0 pointer-events-none group-hover:opacity-100"
+            style={{
+              position: 'absolute',
+              top: '6px',
+              left: '-5px',
+              transform: 'scale(1.5)',
+              transformOrigin: 'center center',
+            }}
+            className="absolute opacity-0 pointer-events-none group-hover:opacity-100"
             alt=""
           />
         </div>
         {/* Title - own hover state */}
-        <div className="relative flex-1 group">
+        <div className="relative flex-1 overflow-visible group">
           <h3 className="flex-1 relative inline-block font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
             <span className="">{value.title}</span>
 
             <img
               src="/assets/icons/handdrawn_scribble.svg"
-              className="absolute inset-0 object-cover w-full h-full overflow-visible opacity-0 pointer-events-none group-hover:opacity-100"
+              className="absolute inset-0 left-0 w-full opacity-0 pointer-events-none -top-2 group-hover:opacity-100"
               alt=""
             />
           </h3>
