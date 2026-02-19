@@ -36,7 +36,7 @@ const SearchResult = () => {
         .then((res) => {
           setSearchResult(res.results);
           res.results.length === 0
-            ? setErrorMsg('Nothing Found')
+            ? setErrorMsg('Nothing Found.')
             : setErrorMsg('');
           setIsLoading(false);
         });
@@ -56,7 +56,7 @@ const SearchResult = () => {
         variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
         <Masonry
           breakpointCols={breakpointColumnsObj}
-          className={`${searchIsOpen && 'sm:mt-5'} my-masonry-grid`}
+          className="my-masonry-grid"
           columnClassName="my-masonry-grid_column">
           {searchResult.map((post) => (
             <motion.div key={post.slug} variants={cardVariants}>
