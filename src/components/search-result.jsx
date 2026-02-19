@@ -58,14 +58,14 @@ const SearchResult = () => {
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column">
-          {searchResult.map((post) => (
-            <motion.div key={post.slug} variants={cardVariants}>
+          {searchResult.map((item) => (
+            <motion.div key={item.slug} variants={cardVariants}>
               <MasonryItem
-                key={post.slug}
-                title={post.title}
-                subtitle={post.subtitle}
-                previewImage={post.previewImage}
-                slug={post.slug}
+                key={item.slug}
+                title={item.title}
+                subtitle={item.subtitle}
+                previewImage={item.previewImage}
+                slug={item._type === 'radio' ? `radio/${item.slug}` : item.slug}
               />
             </motion.div>
           ))}

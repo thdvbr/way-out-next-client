@@ -9,9 +9,14 @@ const handler = async (req, res) => {
     searchTerm: req.query.q,
   });
   if (!results) {
-    return res.status(404).json({ message: 'No search result' });
+    return res.status(404).json({ message: 'Nothing found.' });
   }
-  res.end(JSON.stringify({ results }));
+   const merged = [
+    ...(results.posts || []),
+    ...(results.radio || []),
+  ];
+
+  res.end(JSON.stringify({ results: merged }));
 };
 
 export default handler;

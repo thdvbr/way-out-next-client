@@ -252,8 +252,19 @@ export const stuffWeLikeQuery = `
 }`;
 
 export const searchQuery = `
-*[_type == "post" && [title, subtitle, body[].children[].text ] match [$searchTerm]] {
-  ${postPreviewFields}
+{
+  "posts": *[_type == "post" && [title, subtitle, body[].children[].text] match [$searchTerm]] {
+    ${previewFields}
+  },
+"radio": *[_type == "radio" && (
+  title match $searchTerm ||
+  subtitle match $searchTerm ||
+  description match $searchTerm ||
+  count((tags)[@ match $searchTerm]) > 0 ||
+  count((tracklist[].artist)[@ match $searchTerm]) > 0
+)] {
+  ${previewFields}
+}
 }`;
 
 export const radioShowsQuery = `*[_type == "radio"] | order(featured desc,publishedAt desc, _updatedAt desc) {
