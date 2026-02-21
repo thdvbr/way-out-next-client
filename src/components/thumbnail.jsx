@@ -13,12 +13,15 @@ const Thumbnail = ({
   image: source,
   width,
   height,
+  objectFit,
+  // objectFit = 'cover',
   type,
   mixcloudUrl, // Radio shows have this field
   mainCategory, // Posts have this field
 }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
-    return imageUrlBuilder.width(width).height(height);
+    // If contain, only constrain width — let Sanity keep full image without cropping
+    return imageUrlBuilder.width(width).fit('max');
   };
 
   const imageProps = useNextSanityImage(sanityClient, source, {
@@ -42,25 +45,31 @@ const Thumbnail = ({
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{ overflow: 'hidden' }}
-    >
+      style={{
+        position: 'relative',
+        aspectRatio: '1 / 1',
+        width: '100%',
+        overflow: 'hidden',
+      }}>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
-      <div>
-        <Image
-          {...imageProps}
-          unoptimized
-          alt={`Thumbnail for ${title}`}
-          placeholder={blurDataURL ? 'blur' : 'empty'}
-          blurDataURL={blurDataURL}
-          // check for responsive option..
-          // sizes={`${width}px, ${height}px`}
-          sizes="(max-width: 800px) 100vw, 800px"
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-        />
-      </div>
+      <Image
+        {...imageProps}
+        unoptimized
+        alt={`Thumbnail for ${title}`}
+        placeholder={blurDataURL ? 'blur' : 'empty'}
+        blurDataURL={blurDataURL}
+        // check for responsive option..
+        // sizes={`${width}px, ${height}px`}
+        sizes="(max-width: 800px) 100vw, 800px"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: objectFit,
+        }}
+      />
       {/* </motion.div> */}
     </div>
   ) : (

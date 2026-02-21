@@ -35,7 +35,12 @@ export default function RadioLayout({
 
   return (
     <>
-      <div className="flex flex-col h-screen overflow-hidden h-screen-safe">
+      <div
+        className={
+          width < 1025
+            ? 'flex flex-col h-screen overflow-hidden h-screen-safe'
+            : ''
+        }>
         {preview && <AlertPreview />}
         <Head>
           <title>Way Out Mag - Radio</title>
@@ -48,7 +53,7 @@ export default function RadioLayout({
         {/* MOBILE and TABLETS */}
         {width < 1025 && (
           <>
-            <div className="top-0 z-30 flex-shrink-0">
+            <div className="top-0 flex-shrink-0 z-60">
               <Container>
                 <NavbarMobile theme={theme} />
                 <InfoDrawer />
@@ -57,65 +62,71 @@ export default function RadioLayout({
             <main className="flex flex-1 min-h-0 mx-auto overflow-y-auto ">
               {children}
             </main>
+            <div
+              className="relative flex-shrink-0 sticky-footer-radio"
+              style={{
+                paddingBottom: 'env(safe-area-inset-bottom)',
+                height: showPlayer ? '109.38px' : '50.38px',
+              }}>
+              {/* Sticky Player - only show if showPlayer is true */}
+              {/* Always render the widget, but hide until showPlayer is true */}
+              <div
+                className="absolute top-0 left-0 right-0 z-1 mixcloud-widget"
+                style={{
+                  height: '60px',
+                  zIndex: 30, // Higher z-index
+                  pointerEvents: 'auto', // Ensure clicks work
+                  /* The commented out code `// visibility: showPlayer ? 'visible' : 'hidden', // height: showPlayer ?
+'60px' : 0,` is setting the visibility and height of an element based on the value of the
+`showPlayer` prop. */
+                  visibility: showPlayer ? 'visible' : 'hidden',
+                  height: showPlayer ? '60px' : 0,
+                }}>
+                <MixcloudWidget url={url} />
+              </div>
+              <div className="absolute left-0 right-0">
+                <Footer theme={theme} showPlayer={showPlayer} />
+              </div>
+            </div>
           </>
         )}
 
         {/* DESKTOP */}
         {width >= 1025 && (
           <>
-            <InfoDrawer />
-            <motion.div
-              style={{ marginBottom: '-60px' }}
-              initial={false}
-              variants={joinVariants}
-              animate={joinIsOpen ? 'opened' : 'closed'}
-              transition={{ type: 'spring', duration: 0.5 }}
-              className="flex flex-col flex-1 min-h-0">
-              <Subscribe />
+            <div className="overflow-hidden">
+              <InfoDrawer />
+              <motion.div
+                initial={false}
+                variants={joinVariants}
+                animate={joinIsOpen ? 'opened' : 'closed'}
+                transition={{ type: 'spring', duration: 0.5 }}>
+                <Subscribe />
 
-              <div className="flex-shrink-0">
-                <Container>
-                  <div className="px-3">
-                    <Header theme={theme} />
-                  </div>
-                  <NavbarDesktop theme={theme} />
-                </Container>
+                <div className="flex-shrink-0">
+                  <Container>
+                    <div className="px-3">
+                      <Header theme={theme} />
+                    </div>
+                    <NavbarDesktop theme={theme} />
 
-                <main className="flex-1 min-h-0 px-3 mx-auto mb-32 xl:container md:px-8 ml:px-40">
-                  {children}
-                </main>
-              </div>
-            </motion.div>
+                    <main className="my-8">{children}</main>
+                  </Container>
+                  <Footer theme={theme} showPlayer={showPlayer} />
+                </div>
+              </motion.div>
+            </div>
+            {/* Mixcloud fixed to bottom of viewport */}
+            <div
+              className="fixed bottom-0 left-0 right-0 z-40"
+              style={{
+                visibility: showPlayer ? 'visible' : 'hidden',
+                height: showPlayer ? '60px' : 0,
+              }}>
+              <MixcloudWidget url={url} />
+            </div>
           </>
         )}
-
-        {/* Footer section - constrained height */}
-        <div
-          className="relative flex-shrink-0 sticky-footer-radio"
-          style={{
-            paddingBottom: 'env(safe-area-inset-bottom)',
-            height: showPlayer ? '109.38px' : '50.38px',
-          }}>
-          {/* Sticky Player - only show if showPlayer is true */}
-          {/* Always render the widget, but hide until showPlayer is true */}
-          <div
-            className="absolute top-0 left-0 right-0 z-1 mixcloud-widget"
-            style={{
-              height: '60px',
-              zIndex: 50, // Higher z-index
-              pointerEvents: 'auto', // Ensure clicks work
-              /* The commented out code `// visibility: showPlayer ? 'visible' : 'hidden', // height: showPlayer ?
-'60px' : 0,` is setting the visibility and height of an element based on the value of the
-`showPlayer` prop. */
-              visibility: showPlayer ? 'visible' : 'hidden',
-              height: showPlayer ? '60px' : 0,
-            }}>
-            <MixcloudWidget url={url} />
-          </div>
-          <div className="absolute left-0 right-0">
-            <Footer theme={theme} showPlayer={showPlayer} />
-          </div>
-        </div>
       </div>
     </>
   );

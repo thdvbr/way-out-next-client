@@ -23,6 +23,7 @@ module.exports = {
         '26rem': '26rem',
         '36rem': '36rem',
         46: '11.5rem',
+        '60px': '60px',
       },
       colors: {
         yellow: '#FFFF00',

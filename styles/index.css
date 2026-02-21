@@ -572,11 +572,9 @@ button:focus {
 }
 
 .desktop-radio-content-container{
-padding-top: 10px;
-padding-bottom:18px;
+height: 630px;
  /* padding-left: 75px;
   padding-right: 75px;     */
-height: 500px;
 }
 /* for tablets  */
 /* @media only screen and (min-height: 1000px ){
@@ -588,10 +586,13 @@ height: 800px;
 } */
 
 .radio-thumbnail-square {
-  width: 490px;
-  height: 490px;
+  width: 620px;
+  max-width: 620px;
+  height: auto; 
+  aspect-ratio: 1 / 1;
+  overflow: hidden; 
 }
-
+/* 
 @media only screen and (max-height: 800px){
       .radio-thumbnail-square {
     width: 470px;
@@ -600,17 +601,14 @@ height: 800px;
   .desktop-radio-content-container{
     height: 470px;
   }
-}
+} */
 @media only screen and (min-width: 1536px){
-    .radio-thumbnail-square {
+    /* .radio-thumbnail-square {
     width: 620px;
     height: 620px;
-  }
+  } */
   .desktop-radio-content-container{
-padding-top: 18px;
- /* padding-left: 75px;
-  padding-right: 75px;     */
-height: 640px;
+height: 750px;
 }
 }
 
@@ -624,7 +622,7 @@ height: 640px;
   }
 } */
 
-
+/* 
 @media only screen and (max-width: 1160px){
     .radio-thumbnail-square {
     width: 400px;
@@ -633,7 +631,7 @@ height: 640px;
 .desktop-radio-content-container{
   height: 420px;
 }
-}
+} */
 
 @media only screen and (max-width: 768px){
 .radio-preview-block:active .radio-preview-text-box{

@@ -58,8 +58,7 @@ function Radio({ data = {}, preview }) {
           theme="dark"
           preview={preview}
           url={radio.mixcloudUrl}
-          showPlayer={showPlayer}
-        >
+          showPlayer={showPlayer}>
           {width < 1025 ? (
             <MobileRadioView
               radio={radio}
@@ -89,8 +88,7 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}
-      >
+        }}>
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
@@ -131,31 +129,31 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
 // ===== DESKTOP VIEW =====
 function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
   return (
-    <div className="flex flex-row justify-between gap-8 px-3 desktop-radio-content-container ">
+    <div className="flex flex-row justify-between gap-8 px-3 desktop-radio-content-container">
       {/* Left: Content */}
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}
-        <div className="flex-shrink-0 mb-3">
-          <div className="my-3 font-agrandir text-13 xl:text-16">
+        <div className="flex-shrink-0">
+          <div className="mb-7 font-agrandir text-13 xl:text-16">
             {radio.episodeLabel}
           </div>
-          <h1 className="leading-tight text-28 font-title xl:text-43">
+          <h1 className="mb-1 leading-tight text-37 font-title xl:text-43">
             {radio.title}
           </h1>
-          <h2 className="mb-5 leading-tight text-24 font-agrandir xl:text-33">
+          <h2 className="leading-tight mb-7 text-24 font-agrandir xl:text-33">
             {radio.subtitle}
           </h2>
           {radio.tags && (
-            <div className="mb-8">
+            <div className="mb-12">
               <Tags tags={radio.tags} />
             </div>
           )}
-          <hr className="border-white" />
+          <hr className="mb-6 border-white" />
         </div>
         {/* Scrollable Container */}
-        <div className="flex-1 min-h-0 pt-4 overflow-y-auto">
+        <div className="flex-1 min-h-0 overflow-y-auto">
           {/* Play + Description */}
-          <div className="flex gap-6 mb-6">
+          <div className="flex gap-12">
             <button onClick={onPlayClick}>
               <PlayButton
                 style={{ filter: showPlayer ? 'invert(1)' : 'none' }}
@@ -166,7 +164,7 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
             </div>
           </div>
 
-          <hr className="mb-6 border-white" />
+          <hr className="my-6 border-white" />
 
           {/* Tracklist */}
           <div>
@@ -176,13 +174,15 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
       </section>
 
       {/* Right: Thumbnail */}
-      <section className="flex-shrink-0 order-2 w-1/2 overflow-hidden radio-thumbnail-square">
-        <div className="mb-32">
+      <section className="relative self-stretch flex-shrink-0 order-2 w-1/2">
+        <div className="absolute inset-0 overflow-hidden">
           <Thumbnail
             slug=""
             image={radio.heroImage}
             width="1000"
             height="1000"
+            objectFit="cover"
+            fillContainer={true}
           />
         </div>
       </section>
