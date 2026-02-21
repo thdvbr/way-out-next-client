@@ -26,12 +26,11 @@ const RelatedItem = ({
             mixcloudUrl={mixcloudUrl}
           />
         </div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <hr className="float-left related-line" />
           <span
             className="my-1 font-secondary text-9 sm:text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-9 leading-snug"
-            style={{ color: '#8a7536' }}
-          >
+            style={{ color: '#8a7536' }}>
             {subCategory}
           </span>
         </div>
@@ -39,8 +38,7 @@ const RelatedItem = ({
           <Link
             as={as}
             href={href}
-            className="block hover:underline font-main-bold text-15 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9"
-          >
+            className="block hover:underline font-main-bold text-15 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9">
             {/* TODO: leading doesnt work here why?? */}
 
             {title}
