@@ -18,10 +18,14 @@ const Thumbnail = ({
   type,
   mixcloudUrl, // Radio shows have this field
   mainCategory, // Posts have this field
+  fillContainer = false,
 }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
     // If contain, only constrain width — let Sanity keep full image without cropping
-    return imageUrlBuilder.width(width).fit('max');
+    if (fillContainer) {
+      return imageUrlBuilder.width(width).fit('max');
+    }
+    return imageUrlBuilder.width(width).height(height);
   };
 
   const imageProps = useNextSanityImage(sanityClient, source, {
@@ -45,38 +49,50 @@ const Thumbnail = ({
   const image = source ? (
     <div
       className="thumbnail-border thumbnail-drop-shadow"
-      style={{
-        position: 'relative',
-        aspectRatio: '1 / 1',
-        width: '100%',
-        overflow: 'hidden',
-      }}>
+      style={
+        fillContainer
+          ? {
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+            }
+          : {
+              overflow: 'hidden', // ← original
+            }
+      }>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
-      <Image
-        {...imageProps}
-        unoptimized
-        alt={`Thumbnail for ${title}`}
-        placeholder={blurDataURL ? 'blur' : 'empty'}
-        blurDataURL={blurDataURL}
-        // check for responsive option..
-        // sizes={`${width}px, ${height}px`}
-        sizes="(max-width: 800px) 100vw, 800px"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: objectFit,
-        }}
-      />
+      <div style={fillContainer ? { position: 'absolute', inset: 0 } : {}}>
+        <Image
+          {...imageProps}
+          unoptimized
+          alt={`Thumbnail for ${title}`}
+          placeholder={blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={blurDataURL}
+          // check for responsive option..
+          // sizes={`${width}px, ${height}px`}
+          sizes="(max-width: 800px) 100vw, 800px"
+          style={
+            fillContainer
+              ? {
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }
+              : {
+                  width: '100%',
+                  height: 'auto', // ← original
+                }
+          }
+        />
+      </div>
       {/* </motion.div> */}
     </div>
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
   return (
-    <div>
+    <div style={fillContainer ? { height: '100%' } : {}}>
       {slug ? (
         <Link as={as} href={href} aria-label={title}>
           {image}
