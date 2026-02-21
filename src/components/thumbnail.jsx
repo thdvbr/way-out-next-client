@@ -52,15 +52,16 @@ const Thumbnail = ({
       style={
         fillContainer
           ? {
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              overflow: 'hidden',
-            }
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+          }
           : {
-              overflow: 'hidden', // ← original
-            }
-      }>
+            overflow: 'hidden', // ← original
+          }
+      }
+    >
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div style={fillContainer ? { position: 'absolute', inset: 0 } : {}}>
         <Image
@@ -75,14 +76,14 @@ const Thumbnail = ({
           style={
             fillContainer
               ? {
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }
               : {
-                  width: '100%',
-                  height: 'auto', // ← original
-                }
+                width: '100%',
+                height: 'auto', // ← original
+              }
           }
         />
       </div>

@@ -62,7 +62,7 @@ export const stagger = {
 };
 
 export const joinVariants = {
-  opened: { marginTop:  0 },
+  opened: { marginTop: 0 },
   closed: { marginTop: '-60px' },
 };
 
