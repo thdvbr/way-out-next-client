@@ -32,7 +32,7 @@ const RadioItem = ({
       </div>
       <div className="flex flex-col flex-grow px-1 pt-3 pb-3 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black md:group-hover:bg-yellow radio-preview-text-box">
         {episodeLabel && (
-          <p className="mb-3 text-13 md:group-hover:text-black radio-preview-episode-label">
+          <p className="mb-3 tracking-wider text-13 md:group-hover:text-black radio-preview-episode-label">
             {episodeLabel}
           </p>
         )}
@@ -50,7 +50,7 @@ const RadioItem = ({
           {tags?.map((tag, index) => (
             <li
               key={tag._key || tag + '-' + index}
-              className="mt-3 px-2 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 font-agrandir md:group-hover:bg-black md:group-hover:border-black md:group-hover:text-white radio-tags">
+              className="mt-3 px-2 mr-1 py-0.5 border-white rounded-sm bg-white text-black text-12 tracking-wider font-agrandir md:group-hover:bg-black md:group-hover:border-black md:group-hover:text-white radio-tags">
               {tag}
             </li>
           ))}

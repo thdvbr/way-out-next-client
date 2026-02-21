@@ -134,13 +134,13 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
       <section className="flex flex-col flex-1 order-1 min-h-0">
         {/* Fixed Metadata */}
         <div className="flex-shrink-0">
-          <div className="mb-7 font-agrandir text-13 xl:text-16">
+          <div className="tracking-wider mb-7 font-agrandir text-13 xl:text-16">
             {radio.episodeLabel}
           </div>
           <h1 className="mb-1 leading-tight text-37 font-title xl:text-43">
             {radio.title}
           </h1>
-          <h2 className="leading-tight mb-7 text-24 font-agrandir xl:text-33">
+          <h2 className="leading-tight tracking-wider mb-7 text-24 font-agrandir xl:text-33">
             {radio.subtitle}
           </h2>
           {radio.tags && (
