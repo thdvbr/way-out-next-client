@@ -33,14 +33,11 @@ const LandingOverlay = ({ imageSrc }) => {
         <motion.div
           initial={{ opacity: 0 }} // Start invisible
           animate={{ opacity: 1 }} // Fade in
-          exit={{ opacity: 0 }} // Fade out
-          transition={{ duration: 0.8 }} // Slower = smoother
-          //   initial={{ opacity: 0, filter: 'blur(10px)' }}
-          //   animate={{ opacity: 1, filter: 'blur(0px)' }}
-          //   exit={{ opacity: 0 }}
-          //   transition={{ duration: 1.2 }}
-          className="fixed inset-0 z-50 pointer-events-none"
-        >
+          // exit={{ opacity: 0 }} // Fade out
+          // transition={{ duration: 0.8 }} // Slower = smoother
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="fixed inset-0 z-50 pointer-events-none">
           <img src={imageSrc} alt="" className="object-cover w-full h-full" />
         </motion.div>
       )}
