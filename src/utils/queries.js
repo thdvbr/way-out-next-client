@@ -68,7 +68,6 @@ publishedAt,
   description,
   tags `;
 
-
 const radioShowFields = `  
   _id,
   name,

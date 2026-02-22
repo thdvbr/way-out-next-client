@@ -57,7 +57,8 @@ function Radio({ data = {}, preview }) {
           theme="dark"
           preview={preview}
           url={radio.mixcloudUrl}
-          showPlayer={showPlayer}>
+          showPlayer={showPlayer}
+        >
           {width < 1025 ? (
             <MobileRadioView
               radio={radio}
@@ -88,7 +89,8 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}>
+        }}
+      >
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
@@ -105,7 +107,8 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
           className="px-8 pb-2 mb-3 "
           onClick={onPlayClick}
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}>
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {' '}
           <PlayButton
             style={{ filter: showPlayer || isHovered ? 'invert(1)' : 'none' }}
@@ -164,7 +167,8 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
             <button
               onClick={onPlayClick}
               onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}>
+              onMouseLeave={() => setIsHovered(false)}
+            >
               <PlayButton
                 style={{
                   filter: showPlayer || isHovered ? 'invert(1)' : 'none',
