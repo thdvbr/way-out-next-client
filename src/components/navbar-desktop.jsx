@@ -18,11 +18,10 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
 
   const isDark = theme === 'dark';
   const isRadioMain = page === 'radiomain';
-
   const borderClass = isDark
     ? isRadioMain
       ? 'border-t border-white'
-      : 'border-t border-white border-b'
+      : `border-t border-white ${!searchIsOpen ? 'border-b' : ''}`
     : '';
 
   const handleSearchOpen = () => {
