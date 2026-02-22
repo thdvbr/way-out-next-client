@@ -192,7 +192,7 @@ export const pageSlugsQuery = `
 // Fix ordering - use publishedAt instead of date, primary sort by pulishedat, secondary updatedat
 export const indexQuery = `
 *[_type in ["post", "radio"]]
-| order(featured desc, publishedAt desc, _updatedAt desc) {
+| order(featured desc, publishedAt desc, _updatedAt desc) [0...12]{
   ${previewFields}
 }`;
 
@@ -233,7 +233,7 @@ export const radioBySlugQuery = `
 
 export const interviewsQuery = `
 *[_type == "post" && mainCategory->title == "Interview"] 
-| order(featured desc, publishedAt desc, _updatedAt desc) {
+| order(featured desc, publishedAt desc, _updatedAt desc)  [0...8] {
   ${postPreviewFields}
 }`;
 
@@ -282,7 +282,7 @@ const moreStuffWeLikeQuery = (posts) => {
 
 const moreAllPostsQuery = (posts) => `
 *[_type in ["post", "radio"]]
-| order(publishedAt desc, _updatedAt desc)
+| order(featured desc, publishedAt desc, _updatedAt desc)
 | [${posts.length}...${posts.length + 8}] {
   ${previewFields}
 }`;
@@ -297,10 +297,6 @@ const moreRadioQuery = (posts) => {
 
 // UPDATED: Use categoryTitle instead of type
 export const getMoreQuery = (categoryTitle, posts) => {
-  // For radio, check if posts have radio fields
-  if (posts[0]?.mixcloudUrl) {
-    return moreRadioQuery(posts);
-  }
   // Filter by category title
   // TODO: Change name later for stuffwelike
   switch (categoryTitle) {
@@ -308,6 +304,8 @@ export const getMoreQuery = (categoryTitle, posts) => {
       return moreStuffWeLikeQuery(posts);
     case 'interviews':
       return moreInterviewsQuery(posts);
+    case 'radio':          // ← explicit radio category
+      return moreRadioQuery(posts);
     case null:
     case undefined:
       return moreAllPostsQuery(posts);

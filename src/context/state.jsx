@@ -21,7 +21,7 @@ export function AppWrapper({
   // Ads data: only set after component mounts to prevent SSR mismatch
   const [bottomAdData, setBottomAdData] = useState([]);
   const [sideAdData, setSideAdData] = useState([]);
-  const [hasMorePosts, setHasMorePosts] = useState(true);
+  const [hasMorePosts, setHasMorePosts] = useState(false);
   const [infoDrawerSection, setInfoDrawerSection] = useState(null);
 
   // Hydration-safe: initialize ads client-side

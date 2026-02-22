@@ -48,7 +48,7 @@ export default function PostLayout({ preview, children, theme }) {
   }, []);
 
   useEffect(() => {
-    console.log('Layout useEffect triggered!', { bottomAdData, asPath });
+    // console.log('Layout useEffect triggered!', { bottomAdData, asPath });
     if (bottomAdData && bottomAdData.length > 0) {
       const newRandomSlice = sample(bottomAdData);
       setRandomSliceBottomAd(newRandomSlice);

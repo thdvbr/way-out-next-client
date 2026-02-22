@@ -9,6 +9,7 @@ import MasonryItem from './masonry-item';
 import { useAppContext } from '../context/state';
 import { getMoreQuery } from '../utils/queries';
 import { cardVariants } from '../utils/animation';
+import interleaveTwoPostsOneRadio from '../utils/interleave';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -24,20 +25,31 @@ const MasonryGrid = ({
 }) => {
   const { hasMorePosts, setHasMorePosts } = useAppContext();
   const [posts, setPosts] = useState(data);
-  const [visibleCount, setVisibleCount] = useState(9);
 
-  const prevDataRef = useRef();
-
+  // Assume there are more posts when component mounts
   useEffect(() => {
-    setHasMorePosts(data.length > visibleCount);
-  }, [data, visibleCount]);
+    setHasMorePosts(true);
+  }, []);
 
-  const visiblePosts = data.slice(0, visibleCount);
+  const getMorePost = async () => {
+    const newItems = await getClient(false).fetch(
+      getMoreQuery(categoryTitle, posts)
+    );
+    console.log('newItems:', newItems);
+    console.log('posts.length offset:', posts.length);
 
-  const getMorePost = () => {
-    const newCount = visibleCount + 9;
-    setVisibleCount(newCount);
-    if (newCount >= data.length) {
+    if (newItems.length === 0) {
+      setHasMorePosts(false);
+      return;
+    }
+
+    const processed = interleave
+      ? interleaveTwoPostsOneRadio(newItems)
+      : newItems;
+
+    setPosts([...posts, ...processed]);
+
+    if (newItems.length < 8) {
       setHasMorePosts(false);
     }
   };
@@ -51,14 +63,14 @@ const MasonryGrid = ({
         transition={{ duration: 0.8 }} // Slower = smoother
         variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
         <InfiniteScroll
-          dataLength={visiblePosts.length}
+          dataLength={posts.length}
           next={getMorePost}
           hasMore={hasMorePosts}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
-            {visiblePosts.map((post) => (
+            {posts.map((post) => (
               <ItemComponent key={post._id} {...post} />
             ))}
           </Masonry>

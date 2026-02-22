@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import useWindowWidth from '../utils/useWindowWidth';
 import { indexQuery } from '../utils/queries';
+import interleaveTwoPostsOneRadio from '../utils/interleave';
 import {
   Container,
   MasonryGrid,
@@ -55,14 +56,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <PageTransition>
@@ -81,27 +79,6 @@ export const Index = ({ allPosts, preview }) => {
     </>
   );
 };
-
-function interleaveTwoPostsOneRadio(items) {
-  const featured = items.filter((i) => i.featured);
-  const rest = items.filter((i) => !i.featured);
-
-  const posts = rest.filter((i) => i._type === 'post');
-  const radios = rest.filter((i) => i._type === 'radio');
-
-  const interleaved = [];
-  let p = 0;
-  let r = 0;
-
-  while (p < posts.length || r < radios.length) {
-    if (p < posts.length) interleaved.push(posts[p++]);
-    if (p < posts.length) interleaved.push(posts[p++]);
-    if (r < radios.length) interleaved.push(radios[r++]);
-  }
-
-  // Featured items come first, then interleaved rest
-  return [...featured, ...interleaved];
-}
 
 export const getStaticProps = async ({ preview = false }) => {
   const data = await getClient(preview).fetch(indexQuery);
