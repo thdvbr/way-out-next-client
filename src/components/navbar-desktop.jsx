@@ -29,6 +29,11 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
   };
 
   const router = useRouter();
+  useEffect(() => {
+    if (!router.asPath.startsWith('/search')) {
+      setSearchIsOpen(false);
+    }
+  }, [router.asPath]);
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">

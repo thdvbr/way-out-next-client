@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Logo from './logo-svg';
 import SearchBar from './search-bar';
@@ -7,9 +8,8 @@ import { useAppContext } from '../context/state';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = ({ theme = 'light' }) => {
-  const {
-    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
-  } = useAppContext();
+  const { infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen } =
+    useAppContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -17,6 +17,13 @@ const NavbarMobile = ({ theme = 'light' }) => {
 
   const isDark = theme === 'dark';
   const bgClass = isDark ? 'bg-black text-white' : 'bg-white text-black';
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!router.asPath.startsWith('/search')) {
+      setSearchIsOpen(false);
+    }
+  }, [router.asPath]);
 
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
@@ -63,8 +70,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full"
-            >
+              className="w-full">
               <SearchBar />
             </motion.div>
           )}
@@ -72,24 +78,20 @@ const NavbarMobile = ({ theme = 'light' }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="pt-4 pb-8 lg:hidden"
-        >
+          className="pt-4 pb-8 lg:hidden">
           <span>Menu</span>
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.07rem' }}
-        >
+          style={{ bottom: '-13.07rem' }}>
           {/* TODO: fix hide overflow */}
           <div
-            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}
-          >
+            className={`flex flex-col pl-4 pr-8 ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}>
             <Link
               href="/interviews"
               className="relative block py-4"
               onTouchStart={() => setActiveItem('interviews')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Interviews
                 <img
@@ -104,8 +106,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               href="/stuff-we-like"
               className="relative block py-4"
               onTouchStart={() => setActiveItem('opinions')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Opinions
                 <img
@@ -120,8 +121,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               href="/radio"
               className="relative block py-4"
               onTouchStart={() => setActiveItem('radio')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Radio
                 <img
@@ -137,8 +137,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               type="button"
               onClick={() => setInfoIsOpen(!infoIsOpen)}
               onTouchStart={() => setActiveItem('info')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Info
                 <img

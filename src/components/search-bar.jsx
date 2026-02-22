@@ -2,18 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useAppContext } from '../context/state';
 
 const SearchBar = () => {
-  const { setSearchIsOpen } = useAppContext();
   const router = useRouter();
   const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if (!router.asPath.startsWith('/search')) {
-      setSearchIsOpen(false);
-    }
-  }, [router.asPath]);
 
   // TODO : FORM VALIDATION
   return (
