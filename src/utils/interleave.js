@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 export default function interleaveTwoPostsOneRadio(items) {
   const featured = items.filter((i) => i.featured);
   const rest = items.filter((i) => !i.featured);

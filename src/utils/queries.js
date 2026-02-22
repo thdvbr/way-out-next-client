@@ -304,7 +304,7 @@ export const getMoreQuery = (categoryTitle, posts) => {
       return moreStuffWeLikeQuery(posts);
     case 'interviews':
       return moreInterviewsQuery(posts);
-    case 'radio':          // ← explicit radio category
+    case 'radio': // ← explicit radio category
       return moreRadioQuery(posts);
     case null:
     case undefined:
