@@ -3,6 +3,9 @@ export default function interleaveTwoPostsOneRadio(items) {
   const featured = items.filter((i) => i.featured);
   const rest = items.filter((i) => !i.featured);
 
+  // Shuffle featured so radios don't always appear first
+  const shuffledFeatured = [...featured].sort(() => Math.random() - 0.5);
+
   const posts = rest.filter((i) => i._type === 'post');
   const radios = rest.filter((i) => i._type === 'radio');
 
@@ -17,5 +20,5 @@ export default function interleaveTwoPostsOneRadio(items) {
   }
 
   // Featured items come first, then interleaved rest
-  return [...featured, ...interleaved];
+  return [...shuffledFeatured, ...interleaved];
 }
