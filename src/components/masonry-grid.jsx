@@ -4,10 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Masonry from 'react-masonry-css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { motion } from 'framer-motion';
-import { getClient } from '../utils/sanity.server';
 import MasonryItem from './masonry-item';
 import { useAppContext } from '../context/state';
-import { getMoreQuery } from '../utils/queries';
 import { cardVariants } from '../utils/animation';
 import interleaveTwoPostsOneRadio from '../utils/interleave';
 
@@ -32,11 +30,10 @@ const MasonryGrid = ({
   }, []);
 
   const getMorePost = async () => {
-    const newItems = await getClient(false).fetch(
-      getMoreQuery(categoryTitle, posts)
+    const res = await fetch(
+      `/api/load-more?categoryTitle=${categoryTitle}&offset=${posts.length}`
     );
-    console.log('newItems:', newItems);
-    console.log('posts.length offset:', posts.length);
+    const newItems = await res.json();
 
     if (newItems.length === 0) {
       setHasMorePosts(false);
@@ -48,10 +45,7 @@ const MasonryGrid = ({
       : newItems;
 
     setPosts([...posts, ...processed]);
-
-    if (newItems.length < 8) {
-      setHasMorePosts(false);
-    }
+    if (newItems.length < 8) setHasMorePosts(false);
   };
 
   return (

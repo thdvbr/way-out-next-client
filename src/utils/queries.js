@@ -262,57 +262,49 @@ export const radioShowsQuery = `*[_type == "radio"] | order(featured desc,publis
 ${radioFields}
 }`;
 
-const moreInterviewsQuery = (posts) => {
-  return `
-*[_type == "post" && mainCategory->title == "Interview" ] | order(publishedAt desc, _updatedAt desc) | [${
-  posts.length
-}...${posts.length + 5}] {
-  ${postPreviewFields}
-}`;
-};
-
-const moreStuffWeLikeQuery = (posts) => {
-  return `
-  *[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(publishedAt desc, _updatedAt desc) | [${
-  posts.length
-}...${posts.length + 5}] {
-      ${postPreviewFields}
-  }`;
-};
-
-const moreAllPostsQuery = (posts) => `
+const moreAllPostsQuery = (offset) => `
 *[_type in ["post", "radio"]]
 | order(featured desc, publishedAt desc, _updatedAt desc)
-| [${posts.length}...${posts.length + 8}] {
+| [${offset}...${offset + 8}] {
   ${previewFields}
 }`;
 
-const moreRadioQuery = (posts) => {
-  return `
-*[_type == "radio"] | order(publishedAt desc) [${posts.length}...${posts.length + 8}] {
-  ${radioFields}
-}
-`;
-};
+const moreInterviewsQuery = (offset) => `
+*[_type == "post" && mainCategory->title == "Interview"]
+| order(publishedAt desc, _updatedAt desc)
+| [${offset}...${offset + 5}] {
+  ${postPreviewFields}
+}`;
 
-// UPDATED: Use categoryTitle instead of type
-export const getMoreQuery = (categoryTitle, posts) => {
-  // Filter by category title
-  // TODO: Change name later for stuffwelike
+const moreStuffWeLikeQuery = (offset) => `
+*[_type == "post" && mainCategory->title == "Stuff We Like"]
+| order(publishedAt desc, _updatedAt desc)
+| [${offset}...${offset + 5}] {
+  ${postPreviewFields}
+}`;
+
+const moreRadioQuery = (offset) => `
+*[_type == "radio"] | order(publishedAt desc)
+| [${offset}...${offset + 8}] {
+  ${radioFields}
+}`;
+
+export const getMoreQuery = (categoryTitle, offset) => {
   switch (categoryTitle) {
     case 'stuffWeLike':
-      return moreStuffWeLikeQuery(posts);
+      return moreStuffWeLikeQuery(offset);
     case 'interviews':
-      return moreInterviewsQuery(posts);
-    case 'radio': // ← explicit radio category
-      return moreRadioQuery(posts);
+      return moreInterviewsQuery(offset);
+    case 'radio':
+      return moreRadioQuery(offset);
     case null:
     case undefined:
-      return moreAllPostsQuery(posts);
+      return moreAllPostsQuery(offset);
     default:
-      // Dynamic category support!
       return `
-*[_type == "post" && mainCategory->title == "${categoryTitle}"] | order(publishedAt desc) | [${posts.length}...${posts.length + 8}] {
+*[_type == "post" && mainCategory->title == "${categoryTitle}"]
+| order(publishedAt desc)
+| [${offset}...${offset + 8}] {
   ${postPreviewFields}
 }`;
   }
