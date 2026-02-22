@@ -144,10 +144,10 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
           <div className="tracking-wider mb-7 font-agrandir text-13 xl:text-16">
             {radio.episodeLabel}
           </div>
-          <h1 className="mb-1 leading-tight text-37 font-title xl:text-43">
+          <h1 className="mb-1 leading-tight whitespace-pre-line text-37 font-title xl:text-43">
             {radio.title}
           </h1>
-          <h2 className="leading-tight tracking-wider mb-7 text-24 font-agrandir xl:text-33">
+          <h2 className="leading-tight tracking-wider whitespace-pre-line mb-7 text-24 font-agrandir xl:text-33">
             {radio.subtitle}
           </h2>
           {radio.tags && (
