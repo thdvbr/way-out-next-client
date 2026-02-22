@@ -153,16 +153,7 @@ role
 const adFields = `
 _id,
 "adCategory": adCategory->title,
-adImage {
-  ...,
-  asset-> {
-    _id,
-    metadata {
-      lqip,
-      dimensions
-    }
-  }
-},
+adImage,
 adImageMobile,
 adUrl`;
 
