@@ -19,10 +19,9 @@ const ListicleItem = ({ value }) => {
     <div className="my-12 listicle-item">
       <hr className="mb-2 border-black sm:mb-4" />
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 group">
         {/* Number box - own hover state */}
-        <div
-          className={`relative flex-shrink-0 overflow-visible sm:p-1 ${numberHovered ? 'group' : ''}`}>
+        <div className={`relative flex-shrink-0 overflow-visible sm:p-1`}>
           <div className="px-1 py-1 bg-darkyellow">
             <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
               {value.number}
@@ -39,19 +38,18 @@ const ListicleItem = ({ value }) => {
               height: '100%', // add this
               width: 'auto', // add this
             }}
-            className="absolute opacity-0 pointer-events-none group-hover:opacity-100"
+            className={`absolute pointer-events-none ${numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
             alt=""
           />
         </div>
         {/* Title - own hover state */}
-        <div
-          className={`relative flex-1 overflow-visible ${!numberHovered ? 'group' : ''}`}>
+        <div className={`relative flex-1 overflow-visible`}>
           <h3 className="flex-1 relative inline-block font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
             <span className="">{value.title}</span>
 
             <img
               src="/assets/icons/handdrawn_scribble.svg"
-              className="absolute inset-0 left-0 w-full opacity-0 pointer-events-none -top-2 group-hover:opacity-100"
+              className={`absolute inset-0 left-0 w-full pointer-events-none -top-2 ${!numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
               alt=""
             />
           </h3>
