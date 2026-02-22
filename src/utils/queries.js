@@ -5,7 +5,7 @@ const postFields = `
   subtitle,
   publishedAt,
   credits,
-  mainImage
+  mainImage,
   body,
   socialLinks,
   externalLinks,
