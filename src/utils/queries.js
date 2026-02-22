@@ -5,26 +5,7 @@ const postFields = `
   subtitle,
   publishedAt,
   credits,
-  mainImage {
-  ...,
-  asset-> {
-    _id,
-    metadata {
-      lqip,
-      dimensions
-    }
-  }
-},
-previewImage {
-  ...,
-  asset-> {
-    _id,
-    metadata {
-      lqip,
-      dimensions
-    }
-  }
-},
+  mainImage
   body,
   socialLinks,
   externalLinks,
@@ -43,18 +24,7 @@ name,
 title,
 subtitle,
 publishedAt,
-mainImage,
 featured,
-mainImage {
-  ...,
-  asset-> {
-    _id,
-    metadata {
-      lqip,
-      dimensions
-    }
-  }
-},
 previewImage {
   ...,
   asset-> {
@@ -98,16 +68,23 @@ publishedAt,
   description,
   tags `;
 
-const radioPreviewFields = `
-    _id,
-    title,
-    subtitle,
-    publishedAt,
-    "slug": slug.current,
-    "previewImage": heroImage,
-    mixcloudUrl,
-`;
 
+const radioShowFields = `  
+  _id,
+  name,
+  episodeLabel,
+  featured,
+  title,
+  subtitle,
+  "slug": slug.current,
+  heroImage,
+  mixcloudUrl,
+  tracklist,
+publishedAt,
+  description,
+  tags `;
+
+// this one is for search result using masonry grid format
 const previewFields = `
   _id,
   _type,
@@ -218,7 +195,7 @@ export const postBySlugQuery = `
 export const radioQuery = `
 *[_type == "radio" && slug.current == $slug]
   | order(publishedAt desc, _updatedAt desc)[0] {
-    ${radioFields}
+    ${radioShowFields}
   }
 `;
 export const radioSlugsQuery = `
