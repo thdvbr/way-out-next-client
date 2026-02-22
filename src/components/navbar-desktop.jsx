@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
