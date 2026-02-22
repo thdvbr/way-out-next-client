@@ -83,7 +83,7 @@ const postComponents = {
       </p>
     ),
     optiArtCraft: ({ children }) => (
-      <p className="block my-2 leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+      <p className="block pb-4 my-2 leading-5 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
         {children}
       </p>
     ),
@@ -199,6 +199,7 @@ const postComponents = {
       );
     },
   },
+  hardBreak: () => <br />,
 };
 
 export default function PostBody({
