@@ -36,7 +36,6 @@ function Radio({ data = {}, preview }) {
   // !!slug === true only if slug exists
   // State to track if player should be visible
   const [showPlayer, setShowPlayer] = useState(false);
-
   // choose the source of truth
   const radio = preview ? previewData : data.radio;
   if (!router.isFallback && !slug) {
@@ -58,8 +57,7 @@ function Radio({ data = {}, preview }) {
           theme="dark"
           preview={preview}
           url={radio.mixcloudUrl}
-          showPlayer={showPlayer}
-        >
+          showPlayer={showPlayer}>
           {width < 1025 ? (
             <MobileRadioView
               radio={radio}
@@ -81,6 +79,7 @@ function Radio({ data = {}, preview }) {
 
 // ===== MOBILE VIEW =====
 function MobileRadioView({ radio, onPlayClick, showPlayer }) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="flex flex-col items-center gap-4 px-2 text-center">
       {/* Thumbnail */}
@@ -89,8 +88,7 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}
-      >
+        }}>
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
@@ -103,9 +101,15 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         </div>
 
         {/* Play Button */}
-        <button className="px-8 pb-2 mb-3 " onClick={onPlayClick}>
+        <button
+          className="px-8 pb-2 mb-3 "
+          onClick={onPlayClick}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}>
           {' '}
-          <PlayButton style={{ filter: showPlayer ? 'invert(1)' : 'none' }} />
+          <PlayButton
+            style={{ filter: showPlayer || isHovered ? 'invert(1)' : 'none' }}
+          />
         </button>
 
         {/* Tags */}
@@ -130,6 +134,7 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
 
 // ===== DESKTOP VIEW =====
 function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="flex flex-row justify-between gap-8 px-3 desktop-radio-content-container">
       {/* Left: Content */}
@@ -156,9 +161,14 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
         <div className="flex-1 min-h-0 overflow-y-auto">
           {/* Play + Description */}
           <div className="flex gap-12">
-            <button onClick={onPlayClick}>
+            <button
+              onClick={onPlayClick}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}>
               <PlayButton
-                style={{ filter: showPlayer ? 'invert(1)' : 'none' }}
+                style={{
+                  filter: showPlayer || isHovered ? 'invert(1)' : 'none',
+                }}
               />
             </button>
             <div className="flex-1 leading-6 font-secondary text-15 xl:text-20">
