@@ -30,7 +30,7 @@ const RadioItem = ({
           />
         )}
       </div>
-      <div className="flex flex-col flex-grow px-1 pt-3 pb-3 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black md:group-hover:bg-yellow radio-preview-text-box">
+      <div className="flex flex-col flex-grow px-2 pt-2 pb-2 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black md:group-hover:bg-yellow radio-preview-text-box">
         {episodeLabel && (
           <p className="mb-3 tracking-wider text-13 md:group-hover:text-black radio-preview-episode-label">
             {episodeLabel}
