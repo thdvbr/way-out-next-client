@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useWindowWidth from '../utils/useWindowWidth';
 
-const LandingOverlay = ({ imageSrc }) => {
+const OVERLAY_IMAGES = {
+  desktop: [
+    '/assets/background/overlay_desktop_1.png',
+    '/assets/background/overlay_desktop_1.png',
+    '/assets/background/overlay_desktop_1.png',
+  ],
+  mobile: [
+    '/assets/background/overlay_mobile_1.png',
+    '/assets/background/overlay_mobile_1.png',
+    '/assets/background/overlay_mobile_1.png',
+  ],
+};
+
+const LandingOverlay = () => {
+  const width = useWindowWidth();
+  const isMobile = width <= 500;
   const [isVisible, setIsVisible] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
 
   useEffect(() => {
-    // Check if overlay was already shown this session
+    if (!width) return; // wait until width is measured
     const hasSeenOverlay = sessionStorage.getItem('hasSeenLandingOverlay');
 
     if (!hasSeenOverlay) {
+      const images = isMobile ? OVERLAY_IMAGES.mobile : OVERLAY_IMAGES.desktop;
+      const randomImage = images[Math.floor(Math.random() * images.length)];
+
+      setImageSrc(randomImage);
       setIsVisible(true);
       sessionStorage.setItem('hasSeenLandingOverlay', 'true');
     }
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     if (!isVisible) return undefined;
@@ -29,7 +50,7 @@ const LandingOverlay = ({ imageSrc }) => {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && imageSrc && (
         <motion.div
           initial={{ opacity: 0 }} // Start invisible
           animate={{ opacity: 1 }} // Fade in

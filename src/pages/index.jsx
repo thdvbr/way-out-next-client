@@ -30,13 +30,7 @@ export const Index = ({ allPosts, preview }) => {
   // needs to wait until searchResult is returned.
   return (
     <>
-      <LandingOverlay
-        imageSrc={
-          width > 500
-            ? '/assets/background/handdrawn_overlay.png'
-            : '/assets/background/handdrawn_overlay_mobile.png'
-        }
-      />
+      <LandingOverlay />
       <CookieConsent
         acceptOnScroll
         acceptOnScrollPercentage={60}
