@@ -45,7 +45,7 @@ const RelatedItem = ({
 
             {title}
           </Link>
-          <p className="block font-main-light-italic text-15 sm:text-16 md:text-18 md:leading-5 leading-4 xl:text-25.5 xl:leading-8 lg:text-18.5">
+          <p className=" md:mt-1 block font-main-light-italic text-15 sm:text-16 md:text-18 md:leading-6 leading-5 xl:text-25.5 xl:leading-8 lg:text-18.5">
             {subtitle}
           </p>
         </div>
