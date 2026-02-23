@@ -22,7 +22,7 @@ import {
   Footer,
 } from './index';
 import Header from './header';
-import { joinVariants, adVariants } from '../utils/animation';
+import { joinVariants } from '../utils/animation';
 
 export default function Layout({
   preview,
@@ -30,13 +30,18 @@ export default function Layout({
   theme = 'light',
   showBottomAd = true,
 }) {
-  const { joinIsOpen, errorMsg, isLoading, hasMorePosts } = useUIContext();
+  const { joinIsOpen, errorMsg, isLoading, hasMorePosts, setHasMorePosts } =
+    useUIContext();
   const { bottomAdData } = useDataContext();
   const { asPath, pathname } = useRouter();
 
   const { ref, inView } = useInView();
   const animation = useAnimation();
-  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
+  const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
+
+  // useEffect(() => {
+  //   setHasMorePosts(false);
+  // }, [asPath]);
 
   useEffect(() => {
     if (inView) {
@@ -103,6 +108,11 @@ export default function Layout({
               className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
               style={{ bottom: '60px' }}>
               <div ref={ref}>
+                {console.log('desktop ad check:', {
+                  isLoading,
+                  hasMorePosts,
+                  hasAd: !!randomSliceBottomAd?.adImage,
+                })}
                 {!isLoading && !hasMorePosts && (
                   <>
                     <Subscribe />
@@ -110,9 +120,9 @@ export default function Layout({
                       <motion.div
                         className="flex justify-center px-3 mb-2"
                         ref={ref}
-                        animate={animation}
-                        variants={adVariants}
-                        initial="hidden">
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}>
                         <BottomAdImage
                           image={randomSliceBottomAd.adImageMobile}
                           url={randomSliceBottomAd.adUrl}
@@ -159,9 +169,9 @@ export default function Layout({
                       <Container>
                         <motion.div
                           className="flex justify-center px-3 mt-10"
-                          animate={animation}
-                          variants={adVariants}
-                          initial="hidden">
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}>
                           <BottomAdImage
                             image={randomSliceBottomAd.adImage}
                             url={randomSliceBottomAd.adUrl}
