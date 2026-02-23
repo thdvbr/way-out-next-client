@@ -7,7 +7,8 @@ import { BsArrowRight } from 'react-icons/bs';
 // const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
 
 const Subscribe = ({ preview }) => {
-  const input = useRef(null);
+  const mobileInput = useRef(null);
+  const desktopInput = useRef(null);
   // response from the mailchimp api
   const [message, setMessage] = useState('');
 
@@ -19,12 +20,12 @@ const Subscribe = ({ preview }) => {
     }
   }, [message]);
 
-  const subscribe = async (e) => {
+  const subscribe = async (e, inputRef) => {
     e.preventDefault();
 
     const res = await fetch('/api/subscribe', {
       body: JSON.stringify({
-        email: input.current.value,
+        email: inputRef.current.value,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ const Subscribe = ({ preview }) => {
         <div className="px-3 mt-3 mb-10">
           <form
             style={{ height: '120px' }}
-            onSubmit={subscribe}
+            onSubmit={(e) => subscribe(e, mobileInput)}
             className="flex flex-col items-center justify-between px-3 text-center text-black font-agrandir">
             <label htmlFor="email-input" className="flex font-title text-18">
               Join our newsletter
@@ -64,13 +65,15 @@ const Subscribe = ({ preview }) => {
               style={{ width: '80%' }}
               id="email-input"
               name="email"
-              ref={input}
+              ref={mobileInput}
               required
               type="email"
               className="subscribe-input font-agrandir"
             />
-            {message || (
-              <button type="submit" className="flex underline">
+            {message ? (
+              <div className="font-title text-gold ">{message}</div>
+            ) : (
+              <button type="submit" className="flex underline font-agrandir">
                 Sign up
               </button>
             )}
@@ -83,15 +86,16 @@ const Subscribe = ({ preview }) => {
           <div className="px-3 mx-auto xl:container md:px-8 ml:px-20 lg:px-28">
             <form
               style={{ height: '60px' }}
-              onSubmit={subscribe}
-              className="flex items-center justify-between px-3 text-center text-black font-title text-15 ml:text-18">
+              onSubmit={(e) => subscribe(e, desktopInput)}
+              onClick={() => desktopInput.current?.focus()}
+              className="flex items-center justify-between px-3 text-center text-black cursor-text font-title text-15 ml:text-18">
               <label htmlFor="email-input" className="flex w-4/12 mr-auto">
                 Join our newsletter
               </label>
               <input
                 id="email-input"
                 name="email"
-                ref={input}
+                ref={desktopInput}
                 required
                 type="email"
                 className="w-6/12 mb-1 subscribe-input font-agrandir"

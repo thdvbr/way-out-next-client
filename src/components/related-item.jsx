@@ -35,7 +35,7 @@ const RelatedItem = ({
             {subCategory}
           </span>
         </div>
-        <div className="max-w-xs tracking-tight lg:mr-8">
+        <div className="max-w-xs mt-2 tracking-tight md:mt-0.5 lg:mr-8">
           <Link
             as={as}
             href={href}

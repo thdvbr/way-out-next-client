@@ -34,6 +34,7 @@ export default async (req, res) => {
     }
     return res.status(201).json({ error: '' });
   } catch (error) {
-    return res.status(500).json({ error: 'Error! Try again.' });
+    console.log(error.response?.data);
+    return res.status(500).json({ error: error.response?.data?.detail || 'Error! Try again.' });
   }
 };
