@@ -1,6 +1,6 @@
-import React, {
-  createContext, useContext, useState, useEffect,
-} from 'react';
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/jsx-closing-bracket-location */
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const DataContext = createContext();
 
@@ -11,12 +11,12 @@ export function DataProvider({
   bottomAds,
   sideAds,
 }) {
-  const [bottomAdData, setBottomAdData] = useState([]);
-  const [sideAdData, setSideAdData] = useState([]);
+  const [bottomAdData, setBottomAdData] = useState(bottomAds || []);
+  const [sideAdData, setSideAdData] = useState(sideAds || []);
 
   useEffect(() => {
-    setBottomAdData(bottomAds);
-    setSideAdData(sideAds);
+    if (bottomAds?.length) setBottomAdData(bottomAds);
+    if (sideAds?.length) setSideAdData(sideAds);
   }, [bottomAds, sideAds]);
 
   return (
@@ -26,8 +26,7 @@ export function DataProvider({
         sideAdData,
         pageData,
         staffData,
-      }}
-    >
+      }}>
       {children}
     </DataContext.Provider>
   );
