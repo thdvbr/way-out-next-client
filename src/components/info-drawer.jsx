@@ -32,10 +32,10 @@ const InfoDrawer = ({ preview }) => {
   const { infoIsOpen, setInfoIsOpen, infoDrawerSection, setInfoDrawerSection } =
     useUIContext();
   const { pageData, staffData } = useDataContext();
-  const { about, contact } = pageData;
+  const { about, contact } = pageData || {};
 
-  const staffsOdd = staffData.filter((e, i) => i % 2);
-  const staffsEven = staffData.filter((e, i) => !(i % 2));
+  const staffsOdd = (staffData || []).filter((e, i) => i % 2);
+  const staffsEven = (staffData || []).filter((e, i) => !(i % 2));
 
   const { x, y } = useCustomMouse();
   const [touchPos, setTouchPos] = useState({ x: 0, y: 0 });
