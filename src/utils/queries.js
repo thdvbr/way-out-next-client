@@ -6,7 +6,35 @@ const postFields = `
   publishedAt,
   credits,
   mainImage,
-  body,
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset-> {
+        _id,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    },
+    _type == "listicleItem" => {
+    ...,
+    content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset-> {
+          _id,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      }
+    }
+  }
+  },
   socialLinks,
   externalLinks,
   "subCategory": subCategory->title,

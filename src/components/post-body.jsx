@@ -120,16 +120,26 @@ const postComponents = {
   },
   types: {
     image: ({ value }) => {
-      if (!value || !value.asset || !value.asset._ref) {
+      if (!value || !value.asset) {
         return null;
       }
+      const dimensions = value.asset?.metadata?.dimensions;
+      const isPortrait =
+        dimensions && dimensions.height > dimensions.width * 1.2; // noticeably taller
+      const isSquare =
+        dimensions &&
+        Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2; // roughly square
+      const sizeClass = isPortrait ? 'w-2/3' : isSquare ? 'w-3/4' : 'w-full';
+
       return (
         <div className="flex justify-center">
-          <div className="flex-col pt-2 sm:pt-4">
-            <img
+          <div className={`flex-col pt-2 sm:pt-4 ${sizeClass}`}>
+            <Image
+              src={value.asset.url || urlForImage(value.asset).url()}
               alt={value.alt || ''}
-              loading="lazy"
-              src={urlForImage(value.asset).url()}
+              width={dimensions?.width || 800}
+              height={dimensions?.height || 600}
+              className="w-full h-auto"
             />
             {value.caption && (
               <>
