@@ -129,7 +129,11 @@ const postComponents = {
       const isSquare =
         dimensions &&
         Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2; // roughly square
-      const sizeClass = isPortrait ? 'w-2/3' : isSquare ? 'w-3/4' : 'w-full';
+      const sizeClass = isPortrait
+        ? 'w-full sm:w-2/3'
+        : isSquare
+          ? 'w-full sm:w-3/4'
+          : 'w-full';
 
       return (
         <div className="flex justify-center">
