@@ -1,34 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Way Out — Next.js Client
+
+Frontend for [Way Out Magazine](https://way-out-next-client.vercel.app), a Berlin-based culture and music publication. Built with Next.js and powered by a Sanity CMS backend.
+
+## Tech Stack
+
+- **Framework:** Next.js (Pages Router)
+- **CMS:** Sanity.io (via `next-sanity`)
+- **Styling:** Tailwind CSS + custom CSS
+- **Animations:** Framer Motion
+- **Layout:** React Masonry CSS + Infinite Scroll
+- **Deployment:** Vercel
+
+## Features
+
+- Mixed content feed (posts + radio episodes) with infinite scroll and interleaved layout
+- Category pages: Interviews, Stuff We Like, Radio
+- Full-text search across posts and radio episodes
+- Mixcloud widget integration for radio episodes with tracklists
+- Dark mode support
+- Cookie consent
+- Sanity preview mode
+- Email subscription
+- Ad system (side and bottom placements)
+
+## Project Structure
+
+```
+way-out-next-client/
+├── public/
+│   └── assets/
+│       ├── background/        # Hero images, overlays, card textures
+│       ├── favicons/          # All favicon sizes
+│       ├── icons/             # Hand-drawn SVG icons per category
+│       ├── logos/             # Way Out logo variants
+│       ├── placeholder/       # Responsive placeholder images
+│       └── typography/        # Custom font files (Agrandir, Averia Serif, Copenhagen Grotesk)
+├── src/
+│   ├── components/            # UI components
+│   │   ├── layout.jsx         # Root layout wrapper
+│   │   ├── header.jsx         # Site header
+│   │   ├── footer.jsx         # Site footer (+ SVG variants for dark mode)
+│   │   ├── navbar-desktop.jsx
+│   │   ├── navbar-mobile.jsx
+│   │   ├── masonry-grid.jsx   # Infinite scroll masonry feed
+│   │   ├── masonry-item.jsx   # Individual card in grid
+│   │   ├── hero-post.jsx      # Featured post hero
+│   │   ├── post-body.jsx      # Sanity portable text renderer
+│   │   ├── post-header.jsx
+│   │   ├── post-layout.jsx
+│   │   ├── radio-grid.jsx     # Radio episode grid
+│   │   ├── radio-item.jsx
+│   │   ├── radio-layout.jsx
+│   │   ├── mixcloud-widget.jsx
+│   │   ├── tracklist.jsx
+│   │   ├── search-bar.jsx
+│   │   ├── search-result.jsx
+│   │   ├── info-drawer.jsx    # Slide-out info/about panel
+│   │   ├── subscribe.jsx      # Email subscription form
+│   │   ├── social-sharing.jsx
+│   │   ├── tags.jsx
+│   │   ├── page-transition.jsx # Framer Motion page transitions
+│   │   ├── landing-overlay.jsx # Decorative hand-drawn overlay
+│   │   ├── theme-wrapper.jsx
+│   │   └── index.js           # Barrel export for all components
+│   ├── context/
+│   │   └── state.jsx          # Global app state (Context API)
+│   ├── pages/
+│   │   ├── _app.jsx           # App wrapper, global data fetching
+│   │   ├── index.jsx          # Home — mixed post/radio feed
+│   │   ├── interviews.jsx     # Interviews category page
+│   │   ├── radio.jsx          # Radio shows listing
+│   │   ├── search.jsx         # Search results page
+│   │   ├── stuff-we-like.jsx  # Stuff We Like category page
+│   │   ├── legal.jsx          # Legal/privacy page
+│   │   ├── posts/[slug].jsx   # Individual post page
+│   │   ├── radios/[slug].jsx  # Individual radio episode page
+│   │   └── api/
+│   │       ├── load-more.js   # Infinite scroll pagination endpoint
+│   │       ├── search.js      # Search endpoint
+│   │       ├── subscribe.js   # Email subscription endpoint
+│   │       ├── preview.js     # Sanity preview mode toggle
+│   │       └── exit-preview.js
+│   └── utils/
+│       ├── queries.js         # All GROQ queries for Sanity
+│       ├── sanity.js          # Client-side Sanity helpers (image builder, preview hook)
+│       ├── sanity.server.js   # Server-side Sanity clients
+│       ├── config.js          # Sanity project config
+│       ├── helpers.js         # Utility functions (debounce etc.)
+│       ├── animation.js       # Framer Motion variants
+│       ├── formatDate.js      # Date formatting
+│       ├── interleave.js      # Post/radio interleaving logic for feed
+│       ├── random.js          # Random utility
+│       ├── useWindowDimensions.js
+│       └── useWindowWidth.js
+└── styles/
+    └── index.css              # Global styles + Tailwind directives + custom fonts
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Environment Variables
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+SANITY_API_TOKEN=        # for preview mode
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Deployment
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Deployed on [Vercel](https://vercel.com). ISR (Incremental Static Regeneration) is used on content pages with a 10-second revalidation window.
