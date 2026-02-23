@@ -1,12 +1,17 @@
 import React from 'react';
 import { Container, SearchResult, Layout } from '../components';
 import { getClient } from '../utils/sanity.server';
-import { bottomAdQuery } from '../utils/queries';
+import {
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+  sideAdQuery,
+} from '../utils/queries';
 
-export const Search = ({ preview, bottomAds }) => {
+export const Search = ({ preview }) => {
   return (
     <>
-      <Layout preview={preview} bottomAds={bottomAds}>
+      <Layout preview={preview}>
         <Container>
           <SearchResult />
         </Container>
@@ -17,8 +22,11 @@ export const Search = ({ preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const pageData = await getClient(preview).fetch(pageQuery);
+  const staffData = await getClient(preview).fetch(staffQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
-    props: { bottomAds, preview },
+    props: { preview, pageData, staffData, bottomAds, sideAds },
     revalidate: 10,
   };
 };

@@ -15,7 +15,14 @@ import {
 } from '../../components';
 
 import { sanityClient, getClient } from '../../utils/sanity.server';
-import { radioQuery, radioSlugsQuery } from '../../utils/queries';
+import {
+  radioQuery,
+  radioSlugsQuery,
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+  sideAdQuery,
+} from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 
 // 1. skeleton, layout
@@ -57,8 +64,7 @@ function Radio({ data = {}, preview }) {
           theme="dark"
           preview={preview}
           url={radio.mixcloudUrl}
-          showPlayer={showPlayer}
-        >
+          showPlayer={showPlayer}>
           {width < 1025 ? (
             <MobileRadioView
               radio={radio}
@@ -89,8 +95,7 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         style={{
           WebkitTransform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-        }}
-      >
+        }}>
         <Thumbnail slug="" image={radio.heroImage} width="800" height="800" />
       </section>
       {/* Content */}
@@ -107,8 +112,7 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
           className="px-8 pb-2 mb-3 "
           onClick={onPlayClick}
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+          onMouseLeave={() => setIsHovered(false)}>
           {' '}
           <PlayButton
             style={{ filter: showPlayer || isHovered ? 'invert(1)' : 'none' }}
@@ -167,8 +171,7 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
             <button
               onClick={onPlayClick}
               onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
+              onMouseLeave={() => setIsHovered(false)}>
               <PlayButton
                 style={{
                   filter: showPlayer || isHovered ? 'invert(1)' : 'none',
@@ -210,6 +213,11 @@ export async function getStaticProps({ params, preview = false }) {
   const radio = await getClient(preview).fetch(radioQuery, {
     slug: params.slug,
   });
+  const pageData = await getClient(preview).fetch(pageQuery);
+  const staffData = await getClient(preview).fetch(staffQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
+
   if (!radio) {
     return { notFound: true };
   }
@@ -218,6 +226,10 @@ export async function getStaticProps({ params, preview = false }) {
     props: {
       preview,
       data: { radio },
+      pageData,
+      staffData,
+      bottomAds,
+      sideAds,
     },
     revalidate: 10,
   };

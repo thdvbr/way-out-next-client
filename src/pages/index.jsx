@@ -4,7 +4,13 @@ import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import useWindowWidth from '../utils/useWindowWidth';
-import { indexQuery } from '../utils/queries';
+import {
+  indexQuery,
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+  sideAdQuery,
+} from '../utils/queries';
 import interleaveTwoPostsOneRadio from '../utils/interleave';
 import {
   Container,
@@ -18,9 +24,8 @@ import { useAppContext } from '../context/state';
 export const Index = ({ allPosts, preview }) => {
   const router = useRouter();
   // only create a new morePosts when allPosts actually changes
-  const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
+  // const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
   const { searchIsOpen, setErrorMsg } = useAppContext();
-  const width = useWindowWidth();
 
   useEffect(() => {
     setErrorMsg('');
@@ -50,14 +55,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <PageTransition>
@@ -80,10 +82,19 @@ export const Index = ({ allPosts, preview }) => {
 export const getStaticProps = async ({ preview = false }) => {
   const data = await getClient(preview).fetch(indexQuery);
   const allContent = interleaveTwoPostsOneRadio(overlayDrafts(data));
+
+  const pageData = await getClient(preview).fetch(pageQuery);
+  const staffData = await getClient(preview).fetch(staffQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
     props: {
       allPosts: allContent,
       preview,
+      pageData,
+      staffData,
+      bottomAds,
+      sideAds,
     },
     revalidate: 10,
   };

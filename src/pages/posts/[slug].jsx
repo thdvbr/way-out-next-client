@@ -12,7 +12,14 @@ import {
   getClient,
   overlayDrafts,
 } from '../../utils/sanity.server';
-import { postQuery, postSlugsQuery } from '../../utils/queries';
+import {
+  postQuery,
+  postSlugsQuery,
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+  sideAdQuery,
+} from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
 import {
   PostHeader,
@@ -89,14 +96,17 @@ export const Post = ({ data = {}, preview }) => {
   // }, []);
 
   useEffect(() => {
-    document.addEventListener('scroll', () => {
+    const handleScroll = () => {
       const isOnTop = window.scrollY > 100;
       if (isTop !== isOnTop && !preview) {
         setIsTop(isOnTop);
         setJoinIsOpen(false);
       }
-    });
-  });
+    };
+    document.addEventListener('scroll', handleScroll);
+    // cleanup
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, [isTop, preview]);
 
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />;
@@ -190,6 +200,11 @@ export async function getStaticProps({ params, preview = false }) {
     ...shuffledPosts.slice(0, shuffledRadios.length > 0 ? 3 : 4), // 4 posts if no radios
     ...shuffledRadios.slice(0, 1), // 1 radio if available
   ].sort(() => Math.random() - 0.5);
+
+  const pageData = await getClient(preview).fetch(pageQuery);
+  const staffData = await getClient(preview).fetch(staffQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
     props: {
       preview,
@@ -197,6 +212,10 @@ export async function getStaticProps({ params, preview = false }) {
         post,
         morePosts: related,
       },
+      pageData,
+      staffData,
+      bottomAds,
+      sideAds,
     },
     revalidate: 10,
   };

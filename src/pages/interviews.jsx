@@ -2,10 +2,14 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import { interviewsQuery } from '../utils/queries';
 import {
-  Container, MasonryGrid, Layout, PageTransition,
-} from '../components';
+  interviewsQuery,
+  pageQuery,
+  staffQuery,
+  bottomAdQuery,
+  sideAdQuery,
+} from '../utils/queries';
+import { Container, MasonryGrid, Layout, PageTransition } from '../components';
 import { useAppContext } from '../context/state';
 
 // how to handle page redirect after search?
@@ -36,10 +40,15 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery),
+    await getClient(preview).fetch(interviewsQuery)
   );
+
+  const pageData = await getClient(preview).fetch(pageQuery);
+  const staffData = await getClient(preview).fetch(staffQuery);
+  const bottomAds = await getClient(preview).fetch(bottomAdQuery);
+  const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview, pageData, staffData, bottomAds, sideAds },
     revalidate: 10,
   };
 };
