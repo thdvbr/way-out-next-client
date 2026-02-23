@@ -2,6 +2,7 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -111,69 +112,71 @@ export const Post = ({ data = {}, preview }) => {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <PageTransition>
-      <PostLayout preview={preview}>
-        <div className="px-3">
-          {post && (
-            <>
-              {/* <SectionSeparator /> */}
-              <article>
+    <>
+      <PageTransition>
+        <PostLayout preview={preview} post={post}>
+          <div className="px-3">
+            {post && (
+              <>
+                {/* <SectionSeparator /> */}
+                <article>
+                  <motion.div
+                    variants={postHeaderVariants}
+                    initial="hidden"
+                    animate="enter"
+                    exit="exit">
+                    <PostHeader
+                      title={post.title}
+                      subtitle={post.subtitle}
+                      mainImage={post.mainImage}
+                      subCategory={post.subCategory}
+                      publishedAt={post.publishedAt}
+                      credits={post.credits}
+                    />
+                  </motion.div>
+                  <motion.div
+                    variants={postBodyVariants}
+                    initial="hidden"
+                    animate="enter"
+                    exit="exit"
+                    className="lg:px-28 md:px-24 sm:px-20">
+                    <PostBody
+                      body={post.body}
+                      adShortPost={randomSliced1SideAd}
+                      adLongPost={randomSliced2SideAds}
+                    />
+                    <div className="xl:text-22.5 xl:leading-7 text-center my-12 tracking-wider">
+                      {(post.externalLinks || post.socialLinks) && (
+                        <p className="font-secondary mb-3 font-extrabold text-16 ml:text-20 xl:text-26.5 xl:leading-8">
+                          Connect here
+                        </p>
+                      )}
+                      {post.externalLinks && (
+                        <ExternalLinks externalLinks={post.externalLinks} />
+                      )}
+                    </div>
+                    {post.socialLinks && (
+                      <SocialLinks socialLinks={post.socialLinks} />
+                    )}
+                  </motion.div>
+                </article>
+              </>
+            )}
+            <motion.div variants={stagger}>
+              {randomSlicedMorePosts && (
                 <motion.div
-                  variants={postHeaderVariants}
-                  initial="hidden"
+                  variants={morePostVariants}
+                  initial="initial"
                   animate="enter"
                   exit="exit">
-                  <PostHeader
-                    title={post.title}
-                    subtitle={post.subtitle}
-                    mainImage={post.mainImage}
-                    subCategory={post.subCategory}
-                    publishedAt={post.publishedAt}
-                    credits={post.credits}
-                  />
+                  <RelatedGrid posts={randomSlicedMorePosts} />
                 </motion.div>
-                <motion.div
-                  variants={postBodyVariants}
-                  initial="hidden"
-                  animate="enter"
-                  exit="exit"
-                  className="lg:px-28 md:px-24 sm:px-20">
-                  <PostBody
-                    body={post.body}
-                    adShortPost={randomSliced1SideAd}
-                    adLongPost={randomSliced2SideAds}
-                  />
-                  <div className="xl:text-22.5 xl:leading-7 text-center my-12 tracking-wider">
-                    {(post.externalLinks || post.socialLinks) && (
-                      <p className="font-secondary mb-3 font-extrabold text-16 ml:text-20 xl:text-26.5 xl:leading-8">
-                        Connect here
-                      </p>
-                    )}
-                    {post.externalLinks && (
-                      <ExternalLinks externalLinks={post.externalLinks} />
-                    )}
-                  </div>
-                  {post.socialLinks && (
-                    <SocialLinks socialLinks={post.socialLinks} />
-                  )}
-                </motion.div>
-              </article>
-            </>
-          )}
-          <motion.div variants={stagger}>
-            {randomSlicedMorePosts && (
-              <motion.div
-                variants={morePostVariants}
-                initial="initial"
-                animate="enter"
-                exit="exit">
-                <RelatedGrid posts={randomSlicedMorePosts} />
-              </motion.div>
-            )}
-          </motion.div>
-        </div>
-      </PostLayout>
-    </PageTransition>
+              )}
+            </motion.div>
+          </div>
+        </PostLayout>
+      </PageTransition>
+    </>
   );
 };
 

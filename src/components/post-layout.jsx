@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import Header from './header';
 import { adVariants } from '../utils/animation';
+import { urlForImage } from '../utils/sanity';
 import { useUIContext } from '../context/ui-context';
 import { useDataContext } from '../context/data-context';
 // eslint-disable-next-line import/no-cycle
@@ -26,7 +27,7 @@ import {
 import { joinVariants } from '../utils/animation';
 import useWindowWidth from '../utils/useWindowWidth';
 
-export default function PostLayout({ preview, children, theme }) {
+export default function PostLayout({ preview, children, theme, post }) {
   const width = useWindowWidth();
   const { isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } = useUIContext();
   const { bottomAdData } = useDataContext();
@@ -62,11 +63,24 @@ export default function PostLayout({ preview, children, theme }) {
       <div className="min-h-screen">
         {preview && <AlertPreview />}
         <Head>
-          <title>Way Out Mag</title>
+          <title>{post?.title} — Way Out Mag</title>
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <meta name="description" content={post?.subtitle || post?.title} />
+          <meta property="og:title" content={post?.title} />
+          <meta
+            property="og:description"
+            content={post?.subtitle || post?.title}
+          />
+          <meta property="og:type" content="article" />
+          {post?.mainImage && (
+            <meta
+              property="og:image"
+              content={urlForImage(post.mainImage).width(1200).url()}
+            />
+          )}
         </Head>
         {/* MOBILE */}
         <div className="block sm:hidden">

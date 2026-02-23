@@ -26,7 +26,7 @@ export const Interviews = ({ allPosts, preview }) => {
   return (
     <>
       <PageTransition>
-        <Layout preview={preview}>
+        <Layout preview={preview} title="Interviews — Way Out Mag">
           <Container>
             {allPosts && (
               <MasonryGrid categoryTitle="Interview" data={allPosts} />
@@ -51,7 +51,12 @@ export const getStaticProps = async ({ preview = false }) => {
   const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
     props: {
-      allPosts, preview, pageData, staffData, bottomAds, sideAds,
+      allPosts,
+      preview,
+      pageData,
+      staffData,
+      bottomAds,
+      sideAds,
     },
     revalidate: 10,
   };

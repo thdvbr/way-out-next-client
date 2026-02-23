@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
@@ -67,13 +67,11 @@ export const Index = ({ allPosts, preview }) => {
       <PageTransition>
         <Layout preview={preview}>
           <Container>
-            {/* <div className={`${searchIsOpen && 'sm:mt-8'}`}> */}
             <MasonryGrid
               data={allPosts}
               interleave="true"
               categoryTitle={null}
             />
-            {/* </div> */}
           </Container>
         </Layout>
       </PageTransition>

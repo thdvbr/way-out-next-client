@@ -29,6 +29,7 @@ export default function Layout({
   children,
   theme = 'light',
   showBottomAd = true,
+  title = 'Way Out Mag',
 }) {
   const { joinIsOpen, errorMsg, isLoading, hasMorePosts, setHasMorePosts } =
     useUIContext();
@@ -86,7 +87,7 @@ export default function Layout({
           transition={{ type: 'spring', duration: 1 }}> */}
         {preview && <AlertPreview />}
         <Head>
-          <title>Way Out Mag</title>
+          <title>{title}</title>
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"

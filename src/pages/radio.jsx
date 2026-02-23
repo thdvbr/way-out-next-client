@@ -33,6 +33,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
             bottomAds={bottomAds}
             theme="dark"
             showBottomAd={false}
+            title="Radio — Way Out Mag"
           >
             <Container>
               {allRadioShows && <RadioGrid data={allRadioShows} />}
@@ -55,7 +56,12 @@ export const getStaticProps = async ({ preview = false }) => {
   const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
     props: {
-      allRadioShows, preview, pageData, staffData, bottomAds, sideAds,
+      allRadioShows,
+      preview,
+      pageData,
+      staffData,
+      bottomAds,
+      sideAds,
     },
     revalidate: 10,
   };

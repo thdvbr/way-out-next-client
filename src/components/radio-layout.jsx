@@ -16,6 +16,7 @@ import {
   MixcloudWidget,
 } from './index';
 import { joinVariants } from '../utils/animation';
+import { urlForImage } from '../utils/sanity';
 import useWindowWidth from '../utils/useWindowWidth';
 
 export default function RadioLayout({
@@ -24,6 +25,7 @@ export default function RadioLayout({
   theme,
   url,
   showPlayer,
+  radio,
 }) {
   const width = useWindowWidth();
   const isMobile = width !== undefined && width < 1025;
@@ -44,11 +46,24 @@ export default function RadioLayout({
         }>
         {preview && <AlertPreview />}
         <Head>
-          <title>Way Out Mag - Radio</title>
+          <title>{radio?.title} — Way Out Mag</title>
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width viewport-fit=cover"
           />
+          <meta name="description" content={radio?.subtitle || radio?.title} />
+          <meta property="og:title" content={radio?.title} />
+          <meta
+            property="og:description"
+            content={radio?.subtitle || radio?.title}
+          />
+          <meta property="og:type" content="article" />
+          {radio?.heroImage && (
+            <meta
+              property="og:image"
+              content={urlForImage(radio.heroImage).width(1200).url()}
+            />
+          )}
         </Head>
 
         {/* MOBILE and TABLETS */}

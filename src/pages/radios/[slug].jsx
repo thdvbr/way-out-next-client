@@ -65,20 +65,22 @@ function Radio({ data = {}, preview }) {
           preview={preview}
           url={radio.mixcloudUrl}
           showPlayer={showPlayer}
+          radio={radio}
         >
-          {width < 1025 ? (
+          <div className="block ml:hidden">
             <MobileRadioView
               radio={radio}
               onPlayClick={handlePlayClick}
               showPlayer={showPlayer}
             />
-          ) : (
+          </div>
+          <div className="hidden ml:block">
             <DesktopRadioView
               radio={radio}
               onPlayClick={handlePlayClick}
               showPlayer={showPlayer}
             />
-          )}
+          </div>
         </RadioLayout>
       </PageTransition>
     </ThemeWrapper>
