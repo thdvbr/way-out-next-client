@@ -58,12 +58,12 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
         </div>
         <div>
           <Link
-            href="/stuff-we-like"
+            href="/opinions"
             className={`sm:py-0 relative group inline-block mr-6`}>
             Opinions
             <img
               src="/assets/icons/cross-opinions.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/stuff-we-like' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinions' && 'opacity-100'}`}
               alt=""
             />
           </Link>

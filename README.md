@@ -71,7 +71,7 @@ way-out-next-client/
 │   │   ├── interviews.jsx     # Interviews category page
 │   │   ├── radio.jsx          # Radio shows listing
 │   │   ├── search.jsx         # Search results page
-│   │   ├── stuff-we-like.jsx  # Stuff We Like category page
+│   │   ├── opinions.jsx       # Opinions category page
 │   │   ├── legal.jsx          # Legal/privacy page
 │   │   ├── posts/[slug].jsx   # Individual post page
 │   │   ├── radios/[slug].jsx  # Individual radio episode page

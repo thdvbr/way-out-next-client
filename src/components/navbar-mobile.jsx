@@ -109,7 +109,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
             </Link>
 
             <Link
-              href="/stuff-we-like"
+              href="/opinions"
               className="relative block py-4 ml-4 mr-8"
               onTouchStart={() => setActiveItem('opinions')}
               onTouchEnd={() => setActiveItem(null)}
