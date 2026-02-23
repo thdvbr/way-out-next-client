@@ -101,7 +101,9 @@ const Subscribe = ({ preview }) => {
                 className="w-6/12 mb-1 subscribe-input font-agrandir"
               />
               <div className="w-3/12">
-                {message || (
+                {message ? (
+                  <div className="font-title ">{message}</div>
+                ) : (
                   <button type="submit" className="flex ml-auto">
                     <BsArrowRight size={32} />
                   </button>
