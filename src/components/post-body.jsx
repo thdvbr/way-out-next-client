@@ -68,22 +68,22 @@ const ListicleItem = ({ value }) => {
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <p className="my-2 block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
+      <p className="my-2 px-5 block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
         {children}
       </p>
     ),
     agrandirNarrow: ({ children }) => (
-      <p className="block pb-4 my-2 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
+      <p className="block px-5 pb-4 my-2 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
         {children}
       </p>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <p className="block pb-4 my-2 leading-none ml:pb-6 font-copenhagen text-11 ">
+      <p className="block px-5 pb-4 my-2 leading-none ml:pb-6 font-copenhagen text-11 ">
         {children}
       </p>
     ),
     optiArtCraft: ({ children }) => (
-      <p className="block pb-4 my-2 leading-5 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+      <p className="block px-5 pb-4 my-2 leading-5 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
         {children}
       </p>
     ),
@@ -105,7 +105,7 @@ const postComponents = {
         );
       }
       return (
-        <span className="block leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+        <span className="block px-5 leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
           <br />
           {children}
         </span>
@@ -113,7 +113,7 @@ const postComponents = {
     },
 
     quote: ({ children }) => (
-      <p className="block pb-4 mx-4 my-8 leading-6 ml:my-16 ml:pb-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
+      <p className="block px-6 pb-4 mx-4 my-8 leading-6 ml:my-16 ml:pb-6 font-title text-20 sm:text-24 sm:leading-7 ml:text-30 ml:leading-9 ml:mx-8 xl:leading-tight xl:text-40 xl:mx-16">
         {children}
       </p>
     ),
@@ -255,7 +255,7 @@ export default function PostBody({
         </div>
       )}
 
-      <div className="mx-3 p-wrap" ref={bodyRef}>
+      <div className="p-wrap" ref={bodyRef}>
         {/* imageOptions={{w: 320, h: 240, fit: 'max'}}  */}
         <PortableText value={body} components={postComponents} />
       </div>

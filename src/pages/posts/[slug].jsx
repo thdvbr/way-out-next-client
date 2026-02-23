@@ -137,7 +137,7 @@ export const Post = ({ data = {}, preview }) => {
                   initial="hidden"
                   animate="enter"
                   exit="exit"
-                  className="px-2 lg:px-28 md:px-24 sm:px-20">
+                  className="lg:px-28 md:px-24 sm:px-20">
                   <PostBody
                     body={post.body}
                     adShortPost={randomSliced1SideAd}
