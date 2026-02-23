@@ -77,6 +77,7 @@ export default function PostLayout({ preview, children, theme }) {
               </Container>
             </div>
             <main className="inset-0 z-0 w-screen">{children}</main>
+            <Subscribe />
           </>
         )}
         {/* desktop */}
