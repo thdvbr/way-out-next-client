@@ -108,11 +108,6 @@ export default function Layout({
               className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
               style={{ bottom: '60px' }}>
               <div ref={ref}>
-                {console.log('desktop ad check:', {
-                  isLoading,
-                  hasMorePosts,
-                  hasAd: !!randomSliceBottomAd?.adImage,
-                })}
                 {!isLoading && !hasMorePosts && (
                   <>
                     <Subscribe />
@@ -164,27 +159,29 @@ export default function Layout({
             {showBottomAd && (
               <div className="relative mt-10 overflow-visible">
                 <div ref={ref}>
-                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                  {!isLoading && !hasMorePosts && (
                     <>
-                      <Container>
-                        <motion.div
-                          className="flex justify-center px-3 mt-10"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5 }}>
-                          <BottomAdImage
-                            image={randomSliceBottomAd.adImage}
-                            url={randomSliceBottomAd.adUrl}
-                            width={1500}
-                          />
-                        </motion.div>
-                      </Container>
+                      {randomSliceBottomAd && (
+                        <Container>
+                          <motion.div
+                            className="flex justify-center px-3 mt-10"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}>
+                            <BottomAdImage
+                              image={randomSliceBottomAd.adImage}
+                              url={randomSliceBottomAd.adUrl}
+                              width={1500}
+                            />
+                          </motion.div>
+                        </Container>
+                      )}
+                      <Footer theme={theme} />
                     </>
                   )}
                 </div>
               </div>
             )}
-            <Footer theme={theme} />
           </motion.div>
         </div>
       </div>
