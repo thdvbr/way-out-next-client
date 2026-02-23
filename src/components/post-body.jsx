@@ -96,7 +96,7 @@ const postComponents = {
         const restText = firstChild.slice(1);
 
         return (
-          <span className="block my-2 leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+          <span className="block px-5 my-2 leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
             <br />
             <span className="drop-cap-letter">{firstLetter}</span>
             {restText}
