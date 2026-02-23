@@ -30,7 +30,8 @@ import {
   SocialLinks,
   PageTransition,
 } from '../../components';
-import { useAppContext } from '../../context/state';
+import { useUIContext } from '../../context/ui-context';
+import { useDataContext } from '../../context/data-context';
 import {
   postHeaderVariants,
   postBodyVariants,
@@ -49,8 +50,8 @@ export const Post = ({ data = {}, preview }) => {
     initialData: data,
     enabled: preview && slug,
   });
-  const { isTop, setIsTop, setJoinIsOpen, bottomAdData, sideAdData } =
-    useAppContext();
+  const { isTop, setIsTop, setJoinIsOpen } = useUIContext();
+  const { sideAdData } = useDataContext();
 
   const { inView } = useInView();
   const animation = useAnimation();

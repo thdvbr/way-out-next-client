@@ -10,14 +10,14 @@ import {
   sideAdQuery,
 } from '../utils/queries';
 import { Container, MasonryGrid, Layout, PageTransition } from '../components';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 
 // how to handle page redirect after search?
 // should search on interview page only search inside of interviews?
 
 export const Interviews = ({ allPosts, preview }) => {
   const router = useRouter();
-  const { setErrorMsg } = useAppContext();
+  const { setErrorMsg } = useUIContext();
   useEffect(() => {
     setErrorMsg('');
   }, [router.asPath]);

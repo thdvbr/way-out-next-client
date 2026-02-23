@@ -8,7 +8,8 @@ import { Content, Staff } from './index';
 import useWindowWidth from '../utils/useWindowWidth';
 
 // import useMouse from '@react-hook/mouse-position';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
+import { useDataContext } from '../context/data-context';
 
 // TODO: Use text from CMS;
 // TODO: Sign up form?
@@ -28,14 +29,9 @@ const useCustomMouse = () => {
 };
 
 const InfoDrawer = ({ preview }) => {
-  const {
-    infoIsOpen,
-    setInfoIsOpen,
-    infoDrawerSection,
-    setInfoDrawerSection,
-    pageData,
-    staffData,
-  } = useAppContext();
+  const { infoIsOpen, setInfoIsOpen, infoDrawerSection, setInfoDrawerSection } =
+    useUIContext();
+  const { pageData, staffData } = useDataContext();
   const { about, contact } = pageData;
 
   const staffsOdd = staffData.filter((e, i) => i % 2);

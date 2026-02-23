@@ -15,11 +15,11 @@ import {
   bottomAdQuery,
   sideAdQuery,
 } from '../utils/queries';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 
 export const Radio = ({ allRadioShows, preview, bottomAds }) => {
   const router = useRouter();
-  const { setErrorMsg } = useAppContext();
+  const { setErrorMsg } = useUIContext();
 
   useEffect(() => {
     setErrorMsg('');

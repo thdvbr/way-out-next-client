@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Layout, Content, PageTransition } from '../components';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
+import { useDataContext } from '../context/data-context';
 import { getClient } from '../utils/sanity.server';
 import {
   pageQuery,
@@ -9,7 +10,8 @@ import {
   sideAdQuery,
 } from '../utils/queries';
 export const Legal = ({ preview }) => {
-  const { setInfoIsOpen, pageData } = useAppContext();
+  const { setInfoIsOpen } = useUIContext();
+  const { pageData } = useDataContext();
   const { legal } = pageData;
   useEffect(() => {
     setInfoIsOpen(false);

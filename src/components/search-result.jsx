@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Masonry from 'react-masonry-css';
 import { motion } from 'framer-motion';
 import MasonryItem from './masonry-item';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 import { cardVariants } from '../utils/animation';
 
 const breakpointColumnsObj = {
@@ -15,8 +15,7 @@ const breakpointColumnsObj = {
 };
 
 const SearchResult = () => {
-  const { searchIsOpen, errorMsg, setErrorMsg, isLoading, setIsLoading } =
-    useAppContext();
+  const { errorMsg, setErrorMsg, isLoading, setIsLoading } = useUIContext();
   const [searchResult, setSearchResult] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [errorMsg, setErrorMsg] = useState('');

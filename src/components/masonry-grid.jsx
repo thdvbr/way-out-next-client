@@ -5,7 +5,7 @@ import Masonry from 'react-masonry-css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { motion } from 'framer-motion';
 import MasonryItem from './masonry-item';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 import { cardVariants } from '../utils/animation';
 import interleaveTwoPostsOneRadio from '../utils/interleave';
 
@@ -21,7 +21,7 @@ const MasonryGrid = ({
   interleave = false, // true for index page, false for others
   ItemComponent = MasonryItem,
 }) => {
-  const { hasMorePosts, setHasMorePosts } = useAppContext();
+  const { hasMorePosts, setHasMorePosts } = useUIContext();
   const [posts, setPosts] = useState(data);
 
   // if the initial data has fewer than 8 items, hasMorePosts starts as false and the footer/ad show immediately

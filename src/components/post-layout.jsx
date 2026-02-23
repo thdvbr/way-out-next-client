@@ -10,7 +10,8 @@ import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
 import Header from './header';
 import { adVariants } from '../utils/animation';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
+import { useDataContext } from '../context/data-context';
 // eslint-disable-next-line import/no-cycle
 import {
   InfoDrawer,
@@ -27,8 +28,8 @@ import useWindowWidth from '../utils/useWindowWidth';
 
 export default function PostLayout({ preview, children, theme }) {
   const width = useWindowWidth();
-  const { isTop, searchIsOpen, joinIsOpen, setJoinIsOpen, bottomAdData } =
-    useAppContext();
+  const { isTop, searchIsOpen, joinIsOpen, setJoinIsOpen } = useUIContext();
+  const { bottomAdData } = useDataContext();
   const { asPath } = useRouter();
   const [randomSliceBottomAd, setRandomSliceBottomAd] = useState({});
   const animation = useAnimation();

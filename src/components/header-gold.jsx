@@ -3,11 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 
 export default function HeaderGold() {
   const { scrollYProgress } = useViewportScroll();
-  const { joinIsOpen, setJoinIsOpen, setInfoIsOpen } = useAppContext();
+  const { joinIsOpen, setJoinIsOpen, setInfoIsOpen } = useUIContext();
   // returns where Y is in a range, from 0 to 1
   // second array [0,1] = where our start and end of scroll is
   const opacity = useTransform(scrollYProgress, [-1, 0.03], [0, 1]);

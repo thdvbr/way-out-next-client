@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import '../../styles/index.css';
-import App from 'next/app';
 import { AnimatePresence } from 'framer-motion';
-import { AppWrapper } from '../context/state';
+import { UIProvider } from '../context/ui-context';
+import { DataProvider } from '../context/data-context';
 
 function MyApp({ Component, pageProps, router }) {
   const { pageData, staffData, bottomAds, sideAds, ...rest } = pageProps;
@@ -36,13 +36,15 @@ function MyApp({ Component, pageProps, router }) {
         />
       </Head>
       <AnimatePresence exitBeforeEnter initial={false}>
-        <AppWrapper
-          pageData={pageData}
-          staffData={staffData}
-          bottomAds={bottomAds}
-          sideAds={sideAds}>
-          <Component {...rest} key={router.route} />
-        </AppWrapper>
+        <UIProvider>
+          <DataProvider
+            pageData={pageData}
+            staffData={staffData}
+            bottomAds={bottomAds}
+            sideAds={sideAds}>
+            <Component {...rest} key={router.route} />
+          </DataProvider>
+        </UIProvider>
       </AnimatePresence>
     </>
   );

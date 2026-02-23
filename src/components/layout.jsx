@@ -7,7 +7,8 @@ import { sample } from '../utils/random';
 import { useInView } from 'react-intersection-observer';
 import { useRouter } from 'next/router';
 import AlertPreview from './alert-preview';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
+import { useDataContext } from '../context/data-context';
 import useWindowWidth from '../utils/useWindowWidth';
 
 // eslint-disable-next-line import/no-cycle
@@ -31,20 +32,8 @@ export default function Layout({
   showBottomAd = true,
 }) {
   const width = useWindowWidth();
-  const infoVariants = {
-    opened: { x: width > 500 ? '-30vw' : 0 },
-    closed: { x: 0 },
-  };
-  const {
-    infoIsOpen,
-    joinIsOpen,
-    setJoinIsOpen,
-    bottomAdData,
-    errorMsg,
-    isLoading,
-    hasMorePosts,
-    setHasMorePosts,
-  } = useAppContext();
+  const { joinIsOpen, errorMsg, isLoading, hasMorePosts } = useUIContext();
+  const { bottomAdData } = useDataContext();
   const { asPath, pathname } = useRouter();
 
   const { ref, inView } = useInView();

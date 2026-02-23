@@ -19,13 +19,13 @@ import {
   PageTransition,
   LandingOverlay,
 } from '../components';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 
 export const Index = ({ allPosts, preview }) => {
   const router = useRouter();
   // only create a new morePosts when allPosts actually changes
   // const morePosts = useMemo(() => allPosts.slice(1), [allPosts]);
-  const { searchIsOpen, setErrorMsg } = useAppContext();
+  const { setErrorMsg } = useUIContext();
 
   useEffect(() => {
     setErrorMsg('');

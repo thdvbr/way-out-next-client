@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { motion } from 'framer-motion';
 import AlertPreview from './alert-preview';
 import Header from './header';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 import {
   InfoDrawer,
   NavbarMobile,
@@ -26,7 +26,7 @@ export default function RadioLayout({
   showPlayer,
 }) {
   const width = useWindowWidth();
-  const { joinIsOpen, setJoinIsOpen } = useAppContext();
+  const { joinIsOpen, setJoinIsOpen } = useUIContext();
 
   useEffect(() => {
     // Don't open join on radio pages

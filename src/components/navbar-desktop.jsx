@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useAppContext } from '../context/state';
+import { useUIContext } from '../context/ui-context';
 import SearchBar from './search-bar';
 
 const NavbarDesktop = ({ theme = 'light', page = '' }) => {
@@ -14,7 +14,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
     infoIsOpen,
     setInfoIsOpen,
     setJoinIsOpen,
-  } = useAppContext();
+  } = useUIContext();
 
   const isDark = theme === 'dark';
   const isRadioMain = page === 'radiomain';
