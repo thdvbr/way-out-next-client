@@ -23,6 +23,13 @@ const MasonryGrid = ({
 }) => {
   const { hasMorePosts, setHasMorePosts } = useUIContext();
   const [posts, setPosts] = useState(data);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div className="min-h-screen" />;
 
   // if the initial data has fewer than 8 items, hasMorePosts starts as false and the footer/ad show immediately
   useEffect(() => {
