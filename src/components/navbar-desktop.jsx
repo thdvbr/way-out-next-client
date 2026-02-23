@@ -17,7 +17,8 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
   } = useUIContext();
 
   const isDark = theme === 'dark';
-  const isRadioMain = page === 'radiomain';
+  const router = useRouter();
+  const isRadioMain = router.pathname === '/radio';
   const borderClass = isDark
     ? isRadioMain
       ? 'border-t border-white'
@@ -27,8 +28,6 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
   };
-
-  const router = useRouter();
   useEffect(() => {
     if (!router.asPath.startsWith('/search')) {
       setSearchIsOpen(false);
