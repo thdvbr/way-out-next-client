@@ -9,7 +9,9 @@ import {
   bottomAdQuery,
   sideAdQuery,
 } from '../utils/queries';
-import { Container, MasonryGrid, Layout, PageTransition } from '../components';
+import {
+  Container, MasonryGrid, Layout, PageTransition,
+} from '../components';
 import { useUIContext } from '../context/ui-context';
 
 export const StuffWeLike = ({ allPosts, preview, bottomAds }) => {
@@ -37,7 +39,7 @@ export const StuffWeLike = ({ allPosts, preview, bottomAds }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(stuffWeLikeQuery)
+    await getClient(preview).fetch(stuffWeLikeQuery),
   );
 
   const pageData = await getClient(preview).fetch(pageQuery);
@@ -45,7 +47,9 @@ export const getStaticProps = async ({ preview = false }) => {
   const bottomAds = await getClient(preview).fetch(bottomAdQuery);
   const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
-    props: { allPosts, preview, pageData, staffData, bottomAds, sideAds },
+    props: {
+      allPosts, preview, pageData, staffData, bottomAds, sideAds,
+    },
     revalidate: 10,
   };
 };

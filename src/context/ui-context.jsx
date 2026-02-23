@@ -31,7 +31,8 @@ export function UIProvider({ children }) {
         setHasMorePosts,
         infoDrawerSection,
         setInfoDrawerSection,
-      }}>
+      }}
+    >
       {children}
     </UIContext.Provider>
   );

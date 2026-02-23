@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, {
+  createContext, useContext, useState, useEffect,
+} from 'react';
 
 const DataContext = createContext();
 
@@ -24,7 +26,8 @@ export function DataProvider({
         sideAdData,
         pageData,
         staffData,
-      }}>
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

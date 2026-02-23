@@ -26,7 +26,9 @@ export const getStaticProps = async ({ preview = false }) => {
   const staffData = await getClient(preview).fetch(staffQuery);
   const sideAds = await getClient(preview).fetch(sideAdQuery);
   return {
-    props: { preview, pageData, staffData, bottomAds, sideAds },
+    props: {
+      preview, pageData, staffData, bottomAds, sideAds,
+    },
     revalidate: 10,
   };
 };

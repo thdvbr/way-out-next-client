@@ -6,7 +6,9 @@ import { UIProvider } from '../context/ui-context';
 import { DataProvider } from '../context/data-context';
 
 function MyApp({ Component, pageProps, router }) {
-  const { pageData, staffData, bottomAds, sideAds, ...rest } = pageProps;
+  const {
+    pageData, staffData, bottomAds, sideAds, ...rest
+  } = pageProps;
   return (
     <>
       {' '}
@@ -41,7 +43,8 @@ function MyApp({ Component, pageProps, router }) {
             pageData={pageData}
             staffData={staffData}
             bottomAds={bottomAds}
-            sideAds={sideAds}>
+            sideAds={sideAds}
+          >
             <Component {...rest} key={router.route} />
           </DataProvider>
         </UIProvider>
