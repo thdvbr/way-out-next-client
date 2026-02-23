@@ -44,7 +44,7 @@ const Subscribe = ({ preview }) => {
 
     // clear the input value and show a success message.
 
-    input.current.value = '';
+    inputRef.current.value = '';
     setMessage('Got it!');
   };
 
