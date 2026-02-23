@@ -68,22 +68,22 @@ const ListicleItem = ({ value }) => {
 const postComponents = {
   block: {
     averiaSerif: ({ children }) => (
-      <p className="my-2 px-5 block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
+      <p className="my-2 px-5 sm:px-0 block font-main leading-5 text-17 ml:text-20 ml:leading-6 xl:text-26.5 xl:leading-8 pb-4 ml:pb-6">
         {children}
       </p>
     ),
     agrandirNarrow: ({ children }) => (
-      <p className="block px-5 pb-4 my-2 leading-5 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
+      <p className="block px-5 pb-4 my-2 leading-5 sm:px-0 ml:pb-6 font-secondary text-17 ml:text-21 ml:leading-6 xl:text-28 xl:leading-8">
         {children}
       </p>
     ),
     copenhagenGrotesk: ({ children }) => (
-      <p className="block px-5 pb-4 my-2 leading-none ml:pb-6 font-copenhagen text-11 ">
+      <p className="block px-5 pb-4 my-2 leading-none sm:px-0 ml:pb-6 font-copenhagen text-11 ">
         {children}
       </p>
     ),
     optiArtCraft: ({ children }) => (
-      <p className="block px-5 pb-4 my-2 leading-5 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+      <p className="block px-5 pb-4 my-2 leading-5 sm:px-0 ml:pb-6 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
         {children}
       </p>
     ),
@@ -96,7 +96,7 @@ const postComponents = {
         const restText = firstChild.slice(1);
 
         return (
-          <span className="block px-5 my-2 leading-5 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+          <span className="block px-5 my-2 leading-5 sm:px-0 drop-cap font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
             <br />
             <span className="drop-cap-letter">{firstLetter}</span>
             {restText}
@@ -105,7 +105,7 @@ const postComponents = {
         );
       }
       return (
-        <span className="block px-5 leading-5 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
+        <span className="block px-5 leading-5 sm:px-0 font-title text-17 sm:text-19 ml:text-22 xl:text-29 sm:leading-6 ml:leading-7 xl:leading-9">
           <br />
           {children}
         </span>
