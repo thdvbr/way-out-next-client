@@ -268,20 +268,23 @@ const moreRadioQuery = (offset) => `
 export const getMoreQuery = (categoryTitle, offset) => {
   switch (categoryTitle) {
     case 'stuffWeLike':
-      return moreStuffWeLikeQuery(offset);
+      return { query: moreStuffWeLikeQuery(offset), params: {} };
     case 'interviews':
-      return moreInterviewsQuery(offset);
+      return { query: moreInterviewsQuery(offset), params: {} };
     case 'radio':
-      return moreRadioQuery(offset);
+      return { query: moreRadioQuery(offset), params: {} };
     case null:
     case undefined:
-      return moreAllPostsQuery(offset);
+      return { query: moreAllPostsQuery(offset), params: {} };
     default:
-      return `
-*[_type == "post" && mainCategory->title == "${categoryTitle}"]
+      return {
+        query: `
+*[_type == "post" && mainCategory->title == $categoryTitle]
 | order(publishedAt desc)
 | [${offset}...${offset + 8}] {
   ${postPreviewFields}
-}`;
+}`,
+        params: { categoryTitle },
+      };
   }
 };

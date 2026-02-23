@@ -3,10 +3,10 @@ import { getMoreQuery } from '../../utils/queries';
 
 export default async function handler(req, res) {
   const { categoryTitle, offset } = req.query;
-  const query = getMoreQuery(
+  const { query, params } = getMoreQuery(
     categoryTitle === 'null' ? null : categoryTitle,
     parseInt(offset, 10),
   );
-  const data = await getClient(false).fetch(query);
+  const data = await getClient(false).fetch(query, params);
   res.status(200).json(data);
 }
