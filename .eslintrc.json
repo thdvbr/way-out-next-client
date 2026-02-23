@@ -13,6 +13,7 @@
     "rules": {
         "arrow-body-style": "off",
         "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+        "react/jsx-closing-bracket-location": "off",
         "react/prop-types": 0,
         "no-underscore-dangle" : 0,
         "no-unused-vars": "warn",
