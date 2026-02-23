@@ -38,7 +38,6 @@ import {
   morePostVariants,
   stagger,
 } from '../../utils/animation';
-import useWindowWidth from '../../utils/useWindowWidth';
 
 export const Post = ({ data = {}, preview }) => {
   const router = useRouter();
@@ -57,7 +56,6 @@ export const Post = ({ data = {}, preview }) => {
   const animation = useAnimation();
   // const randomSlice1 = sample(bottomAdData);
 
-  const width = useWindowWidth();
   const [randomSlicedMorePosts, setRandomSlicedMorePosts] = useState([]);
   // const [randomSliceBottomAd, setRandomSliceBottomAd] = useState(null);
   const [randomSliced2SideAds, setRandomSliced2SideAds] = useState([]);

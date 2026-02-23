@@ -3,7 +3,6 @@ import React, { useEffect, useMemo } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
-import useWindowWidth from '../utils/useWindowWidth';
 import {
   indexQuery,
   pageQuery,
@@ -55,14 +54,11 @@ export const Index = ({ allPosts, preview }) => {
           width: '100vw',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
-        Hey, We use
-        {' '}
+        }}>
+        Hey, We use{' '}
         <a href="/legal" className="underline">
           cookies
-        </a>
-        {' '}
+        </a>{' '}
         !
       </CookieConsent>
       <PageTransition>

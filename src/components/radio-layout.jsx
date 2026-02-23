@@ -26,6 +26,9 @@ export default function RadioLayout({
   showPlayer,
 }) {
   const width = useWindowWidth();
+  const isMobile = width !== undefined && width < 1025;
+  const isDesktop = width !== undefined && width >= 1025;
+
   const { joinIsOpen, setJoinIsOpen } = useUIContext();
 
   useEffect(() => {
@@ -37,9 +40,7 @@ export default function RadioLayout({
     <>
       <div
         className={
-          width < 1025
-            ? 'flex flex-col h-screen overflow-hidden h-screen-safe'
-            : ''
+          isMobile ? 'flex flex-col h-screen overflow-hidden h-screen-safe' : ''
         }>
         {preview && <AlertPreview />}
         <Head>
@@ -51,7 +52,7 @@ export default function RadioLayout({
         </Head>
 
         {/* MOBILE and TABLETS */}
-        {width < 1025 && (
+        {isMobile && (
           <>
             <div className="top-0 flex-shrink-0 z-60">
               <Container>
@@ -92,7 +93,7 @@ export default function RadioLayout({
         )}
 
         {/* DESKTOP */}
-        {width >= 1025 && (
+        {isDesktop && (
           <>
             <div className="overflow-hidden">
               <InfoDrawer />

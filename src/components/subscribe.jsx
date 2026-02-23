@@ -2,13 +2,11 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import useWindowWidth from '../utils/useWindowWidth';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import SubscribeSvg from './subscribe-svg';
 // const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
 
 const Subscribe = ({ preview }) => {
-  const width = useWindowWidth();
   const input = useRef(null);
   // response from the mailchimp api
   const [message, setMessage] = useState('');
@@ -53,7 +51,7 @@ const Subscribe = ({ preview }) => {
     // <div style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")` }}>
     <>
       {/* MOBILE */}
-      {width < 500 && (
+      <div className="block sm:hidden">
         <div className="px-3 mt-3 mb-10">
           <form
             style={{ height: '120px' }}
@@ -78,10 +76,10 @@ const Subscribe = ({ preview }) => {
             )}
           </form>
         </div>
-      )}
+      </div>
       {/* DESKTOP */}
-      {!preview && width >= 500 && (
-        <div className="z-40 join-search-bg">
+      {!preview && (
+        <div className="z-40 hidden sm:block join-search-bg">
           <div className="px-3 mx-auto xl:container md:px-8 ml:px-20 lg:px-28">
             <form
               style={{ height: '60px' }}
