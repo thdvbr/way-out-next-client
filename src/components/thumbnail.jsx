@@ -36,7 +36,7 @@ const Thumbnail = ({
   });
 
   // Determine if this is a radio show or a post
-  const isRadio = !!mixcloudUrl;
+  const isRadio = !!mixcloudUrl || type === 'radio';
 
   // Generate the correct link path
   const href = isRadio ? '/radios/[slug]' : '/posts/[slug]';

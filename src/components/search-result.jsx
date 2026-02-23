@@ -64,7 +64,8 @@ const SearchResult = () => {
                 title={item.title}
                 subtitle={item.subtitle}
                 previewImage={item.previewImage}
-                slug={item._type === 'radio' ? `radio/${item.slug}` : item.slug}
+                slug={item.slug}
+                type={item._type}
               />
             </motion.div>
           ))}

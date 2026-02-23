@@ -9,14 +9,16 @@ const MasonryItem = ({
   slug,
   mainCategory,
   mixcloudUrl, // To detect if it's radio
+  type,
 }) => {
   // Determine if this is a radio show or a post
-  const isRadio = !!mixcloudUrl;
+  const isRadio = !!mixcloudUrl || type === 'radio';
   // Route to /radio/[slug] for radio, /posts/[slug] for posts
   const href = isRadio ? '/radios/[slug]' : '/posts/[slug]';
   const as = isRadio
     ? `/radios/${slug.current || slug}`
     : `/posts/${slug.current || slug}`;
+
   return (
     <div className="pb-2 sm:pb-0 sm:py-2 preview-block">
       <div className="sm:mb-2">
@@ -26,14 +28,14 @@ const MasonryItem = ({
           image={previewImage}
           mainCategory={mainCategory?.title}
           mixcloudUrl={mixcloudUrl}
+          type={type}
         />
       </div>
       <div className="max-w-xl py-4 pl-2 pr-5 sm:py-0 sm:pl-0 sm:pr-0 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">
         <Link
           as={as}
           href={href}
-          className=" block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28"
-        >
+          className=" block font-title text-25 leading-tight sm:text-17.25 lg:leading-7 xl:leading-9 lg:text-21 xl:text-28">
           {title}
         </Link>
         {subtitle && (
