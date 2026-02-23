@@ -24,9 +24,9 @@ const MasonryGrid = ({
   const { hasMorePosts, setHasMorePosts } = useAppContext();
   const [posts, setPosts] = useState(data);
 
-  // Assume there are more posts when component mounts
+  // if the initial data has fewer than 8 items, hasMorePosts starts as false and the footer/ad show immediately
   useEffect(() => {
-    setHasMorePosts(true);
+    setHasMorePosts(data.length >= 8);
   }, []);
 
   const getMorePost = async () => {

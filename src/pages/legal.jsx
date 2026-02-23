@@ -17,7 +17,7 @@ export const Legal = ({ preview }) => {
   return (
     <>
       <PageTransition>
-        <Layout preview={preview}>
+        <Layout preview={preview} showBottomAd={false}>
           <Container>
             <div className="mt-12 text-center font-main text-30 md:text-33 lg:text-43">
               Terms & Conditions

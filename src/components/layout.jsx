@@ -28,7 +28,7 @@ export default function Layout({
   preview,
   children,
   theme = 'light',
-  page = '',
+  showBottomAd = true,
 }) {
   const width = useWindowWidth();
   const infoVariants = {
@@ -113,36 +113,42 @@ export default function Layout({
               </Container>
             </div>
             <main className="inset-0 z-0 w-screen">{children}</main>
-            {page === 'radiomain' ? (
-              <Footer theme={theme} />
-            ) : (
+            {showBottomAd ? (
               <div
                 className={`${errorMsg !== '' && 'absolute inset-x-0'}`}
                 style={{ bottom: '60px' }}>
-                {!isLoading && <Subscribe />}
                 <div ref={ref}>
-                  {!isLoading && randomSliceBottomAd && !hasMorePosts && (
+                  {!isLoading && !hasMorePosts && (
                     <>
-                      <motion.div
-                        className="flex justify-center px-3 mb-2"
-                        ref={ref}
-                        animate={animation}
-                        variants={adVariants}
-                        initial="hidden">
-                        <BottomAdImage
-                          image={randomSliceBottomAd.adImageMobile}
-                          url={randomSliceBottomAd.adUrl}
-                          width={500}
-                        />
-                      </motion.div>
+                      <Subscribe />
+                      {randomSliceBottomAd && (
+                        <motion.div
+                          className="flex justify-center px-3 mb-2"
+                          ref={ref}
+                          animate={animation}
+                          variants={adVariants}
+                          initial="hidden">
+                          <BottomAdImage
+                            image={randomSliceBottomAd.adImageMobile}
+                            url={randomSliceBottomAd.adUrl}
+                            width={500}
+                          />
+                        </motion.div>
+                      )}
                       <Footer theme={theme} />
                     </>
                   )}
                 </div>
               </div>
-            )}{' '}
+            ) : (
+              <>
+                <Subscribe />
+                <Footer theme={theme} />
+              </>
+            )}
           </>
         )}
+
         {/* desktop */}
         {width >= 500 && (
           <>
@@ -159,12 +165,10 @@ export default function Layout({
                   <Header theme={theme} />
                   <SectionSeparator />
                 </div>
-                <NavbarDesktop theme={theme} page={page} />
+                <NavbarDesktop theme={theme} />
               </Container>
               <main className="z-0 flex-1 -mt-3">{children}</main>
-              {page === 'radiomain' ? (
-                <Footer theme={theme} />
-              ) : (
+              {showBottomAd && (
                 <div className="relative mt-10 overflow-visible">
                   <div ref={ref}>
                     {!isLoading && randomSliceBottomAd && !hasMorePosts && (
@@ -182,12 +186,12 @@ export default function Layout({
                             />
                           </motion.div>
                         </Container>
-                        <Footer theme={theme} />
                       </>
                     )}
                   </div>
                 </div>
               )}
+              <Footer theme={theme} />
             </motion.div>
           </>
         )}

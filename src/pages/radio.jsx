@@ -7,7 +7,6 @@ import {
   ThemeWrapper,
   PageTransition,
 } from '../components';
-import RadioItem from '../components/radio-item';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
   radioShowsQuery,
@@ -33,7 +32,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
             preview={preview}
             bottomAds={bottomAds}
             theme="dark"
-            page="radiomain">
+            showBottomAd={false}>
             <Container>
               {allRadioShows && <RadioGrid data={allRadioShows} />}
             </Container>
