@@ -195,16 +195,18 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
       </section>
 
       {/* Right: Thumbnail */}
-      <section className="relative self-stretch flex-shrink-0 order-2 w-1/2">
-        <div className="absolute inset-0 overflow-hidden">
-          <Thumbnail
-            slug=""
-            image={radio.heroImage}
-            width="1000"
-            height="1000"
-            objectFit="cover"
-            fillContainer
-          />
+      <section className="flex-shrink-0 order-2 w-1/2">
+        <div className="relative w-full" style={{ paddingTop: '100%' }}>
+          <div className="absolute inset-0">
+            <Thumbnail
+              slug=""
+              image={radio.heroImage}
+              width="1000"
+              height="1000"
+              objectFit="cover"
+              fillContainer
+            />
+          </div>
         </div>
       </section>
     </div>

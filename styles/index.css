@@ -572,7 +572,7 @@ button:focus {
 }
 
 .desktop-radio-content-container{
-height: 630px;
+ height: calc(100vh - 150px); 
  /* padding-left: 75px;
   padding-right: 75px;     */
 }
@@ -607,9 +607,9 @@ height: 800px;
     width: 620px;
     height: 620px;
   } */
-  .desktop-radio-content-container{
+  /* .desktop-radio-content-container{
 height: 750px;
-}
+} */
 }
 
 /* @media only screen and (max-width: 1280px){
