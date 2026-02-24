@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useWindowWidth from '../utils/useWindowWidth';
+import { useUIContext } from '../context/ui-context';
 
 const OVERLAY_IMAGES = {
   desktop: [
@@ -20,6 +21,13 @@ const LandingOverlay = () => {
   const isMobile = width <= 500;
   const [isVisible, setIsVisible] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
+  const { searchIsOpen, infoIsOpen } = useUIContext();
+
+  useEffect(() => {
+    if (searchIsOpen || infoIsOpen) {
+      setIsVisible(false);
+    }
+  }, [searchIsOpen, infoIsOpen]);
 
   useEffect(() => {
     if (!width) return; // wait until width is measured
@@ -58,8 +66,7 @@ const LandingOverlay = () => {
           // transition={{ duration: 0.8 }} // Slower = smoother
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-50 pointer-events-none"
-        >
+          className="fixed inset-0 z-50 pointer-events-none">
           <img src={imageSrc} alt="" className="object-cover w-full h-full" />
         </motion.div>
       )}
