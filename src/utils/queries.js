@@ -5,7 +5,17 @@ const postFields = `
   subtitle,
   publishedAt,
   credits,
-  mainImage,
+  mainImage {
+  ...,
+  asset-> {
+    _id,
+    url,
+    metadata {
+      lqip,
+      dimensions
+    }
+  }
+},
   body[]{
     ...,
     _type == "image" => {

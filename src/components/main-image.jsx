@@ -6,6 +6,19 @@ import Image from 'next/image';
 import { sanityClient } from '../utils/sanity.server';
 
 const MainImage = ({ title, slug, image: source }) => {
+  const dimensions = source?.asset?.metadata?.dimensions;
+  const isPortrait = dimensions && dimensions.height > dimensions.width * 1.2;
+
+  const isSquare = dimensions
+    && Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
+
+  // eslint-disable-next-line no-nested-ternary
+  const sizeClass = isPortrait
+    ? 'w-full sm:w-3/4 sm:mx-auto'
+    : isSquare
+      ? 'w-full sm:w-4/5 sm:mx-auto'
+      : 'w-full';
+
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder.width(
       options.width || Math.min(options.originalImageDimensions.width, 800),
@@ -26,8 +39,7 @@ const MainImage = ({ title, slug, image: source }) => {
       <motion.div
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-      >
+        transition={{ delay: 0.2 }}>
         <Image
           {...imageProps}
           unoptimized
@@ -49,7 +61,7 @@ const MainImage = ({ title, slug, image: source }) => {
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
   return (
-    <div>
+    <div className={sizeClass}>
       {slug ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
           {image}
