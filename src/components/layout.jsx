@@ -133,7 +133,7 @@ export default function Layout({
             </div>
           ) : (
             <>
-              <Subscribe />
+              <Subscribe theme={theme} />
               <Footer theme={theme} />
             </>
           )}
@@ -157,7 +157,7 @@ export default function Layout({
               <NavbarDesktop theme={theme} />
             </Container>
             <main className="z-0 flex-1 -mt-3">{children}</main>
-            {showBottomAd && (
+            {showBottomAd ? (
               <div className="relative mt-10 overflow-visible">
                 <div ref={ref}>
                   {!isLoading && !hasMorePosts && (
@@ -182,6 +182,8 @@ export default function Layout({
                   )}
                 </div>
               </div>
+            ) : (
+              <Footer theme={theme} />
             )}
           </motion.div>
         </div>

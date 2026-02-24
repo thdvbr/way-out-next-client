@@ -6,7 +6,10 @@ import { BsArrowRight } from 'react-icons/bs';
 // import SubscribeSvg from './subscribe-svg';
 // const svgString = encodeURIComponent(renderToStaticMarkup(<SubscribeSvg />));
 
-const Subscribe = ({ preview }) => {
+const Subscribe = ({ preview, theme = 'light' }) => {
+  const isDark = theme === 'dark';
+  const textColor = isDark ? 'text-white' : 'text-black';
+
   const mobileInput = useRef(null);
   const desktopInput = useRef(null);
   // response from the mailchimp api
@@ -53,11 +56,11 @@ const Subscribe = ({ preview }) => {
     <>
       {/* MOBILE */}
       <div className="block sm:hidden">
-        <div className="px-3 mt-3 mb-10">
+        <div className={`${isDark ? 'pt-8 px-3' : 'px-3 mt-3 mb-10'}`}>
           <form
             style={{ height: '120px' }}
             onSubmit={(e) => subscribe(e, mobileInput)}
-            className="flex flex-col items-center justify-between px-3 text-center text-black font-agrandir">
+            className={`flex flex-col items-center justify-between px-3 text-center font-agrandir ${textColor}`}>
             <label htmlFor="email-input" className="flex font-title text-18">
               Join our newsletter
             </label>
@@ -68,7 +71,7 @@ const Subscribe = ({ preview }) => {
               ref={mobileInput}
               required
               type="email"
-              className="subscribe-input font-agrandir"
+              className={`${isDark ? 'subscribe-input-dark' : 'subscribe-input'} font-agrandir`}
             />
             {message ? (
               <div className="font-title text-gold ">{message}</div>
@@ -88,7 +91,7 @@ const Subscribe = ({ preview }) => {
               style={{ height: '60px' }}
               onSubmit={(e) => subscribe(e, desktopInput)}
               onClick={() => desktopInput.current?.focus()}
-              className="flex items-center justify-between px-3 text-center text-black cursor-text font-title text-15 ml:text-18">
+              className={`flex items-center justify-between px-3 text-center text-black cursor-text font-title text-15 ml:text-18 `}>
               <label htmlFor="email-input" className="flex w-4/12 mr-auto">
                 Join our newsletter
               </label>

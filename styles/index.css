@@ -404,6 +404,12 @@ button:focus {
   background-color: transparent;
   width: 60vw;
 }
+.subscribe-input-dark {
+  border: 0px solid #ffffff;
+  border-bottom-width: 2px;
+  background-color: transparent;
+  width: 60vw;
+}
 
 *:focus {
   outline: none;
