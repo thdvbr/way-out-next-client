@@ -9,9 +9,8 @@ const MainImage = ({ title, slug, image: source }) => {
   const dimensions = source?.asset?.metadata?.dimensions;
   const isPortrait = dimensions && dimensions.height > dimensions.width * 1.2;
 
-  const isSquare =
-    dimensions &&
-    Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
+  const isSquare = dimensions
+    && Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
 
   // eslint-disable-next-line no-nested-ternary
   const sizeClass = isPortrait
@@ -23,7 +22,7 @@ const MainImage = ({ title, slug, image: source }) => {
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder
       .width(
-        Math.min(options.width || options.originalImageDimensions.width, 1800)
+        Math.min(options.width || options.originalImageDimensions.width, 1800),
       )
       .fit('max')
       .auto('format');
