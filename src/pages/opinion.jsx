@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getClient, overlayDrafts } from '../utils/sanity.server';
 import {
-  interviewsQuery,
+  stuffWeLikeQuery,
   pageQuery,
   staffQuery,
   bottomAdQuery,
@@ -14,22 +14,24 @@ import {
 } from '../components';
 import { useUIContext } from '../context/ui-context';
 
-// how to handle page redirect after search?
-// should search on interview page only search inside of interviews?
-
-export const Interviews = ({ allPosts, preview }) => {
+export const Opinion = ({ allPosts, preview, bottomAds }) => {
   const router = useRouter();
   const { setErrorMsg } = useUIContext();
+
   useEffect(() => {
     setErrorMsg('');
   }, [router.asPath]);
+
   return (
     <>
       <PageTransition>
-        <Layout preview={preview} title="Interviews — Way Out Mag">
+        <Layout
+          preview={preview}
+          bottomAds={bottomAds}
+          title="Opinions — Way Out Mag">
           <Container>
             {allPosts && (
-              <MasonryGrid categoryTitle="Interview" data={allPosts} />
+              <MasonryGrid categoryTitle="stuffWeLike" data={allPosts} />
             )}
           </Container>
         </Layout>
@@ -40,7 +42,7 @@ export const Interviews = ({ allPosts, preview }) => {
 
 export const getStaticProps = async ({ preview = false }) => {
   const allPosts = overlayDrafts(
-    await getClient(preview).fetch(interviewsQuery),
+    await getClient(preview).fetch(stuffWeLikeQuery),
   );
 
   const pageData = await getClient(preview).fetch(pageQuery);
@@ -60,4 +62,4 @@ export const getStaticProps = async ({ preview = false }) => {
   };
 };
 
-export default Interviews;
+export default Opinion;

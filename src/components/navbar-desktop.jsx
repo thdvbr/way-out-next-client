@@ -47,23 +47,23 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
           </span>
         </button>
         <div>
-          <Link href="/interviews" className="relative sm:py-0 group">
-            Interviews
+          <Link href="/interview" className="relative sm:py-0 group">
+            Interview
             <img
               src="/assets/icons/cross-interviews.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interviews' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interview' && 'opacity-100'}`}
               alt=""
             />
           </Link>
         </div>
         <div>
           <Link
-            href="/opinions"
+            href="/opinion"
             className={`sm:py-0 relative group inline-block mr-6`}>
-            Opinions
+            Opinion
             <img
               src="/assets/icons/cross-opinions.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinions' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinion' && 'opacity-100'}`}
               alt=""
             />
           </Link>

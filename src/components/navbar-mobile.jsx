@@ -71,8 +71,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               animate={{ x: 0 }}
               initial={{ x: -30 }}
               transition={{ ease: 'easeOut', duration: 0.7 }}
-              className="w-full"
-            >
+              className="w-full">
               <SearchBar />
             </motion.div>
           )}
@@ -80,26 +79,22 @@ const NavbarMobile = ({ theme = 'light' }) => {
         <button
           type="button"
           onClick={handleClick}
-          className="pt-4 pb-8 lg:hidden"
-        >
+          className="pt-4 pb-8 lg:hidden">
           <span>Menu</span>
         </button>
         <div
           className={`${visible ? 'absolute' : 'hidden'} -right-4`}
-          style={{ bottom: '-13.07rem' }}
-        >
+          style={{ bottom: '-13.07rem' }}>
           {/* TODO: fix hide overflow */}
           <div
-            className={`flex flex-col ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}
-          >
+            className={`flex flex-col ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}>
             <Link
-              href="/interviews"
+              href="/interview"
               className="relative block py-4 ml-4 mr-8"
               onTouchStart={() => setActiveItem('interviews')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
-                Interviews
+                Interview
                 <img
                   src="/assets/icons/cross-interviews.svg"
                   className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'interviews' ? 'opacity-100' : 'opacity-0'}`}
@@ -109,13 +104,12 @@ const NavbarMobile = ({ theme = 'light' }) => {
             </Link>
 
             <Link
-              href="/opinions"
+              href="/opinion"
               className="relative block py-4 ml-4 mr-8"
               onTouchStart={() => setActiveItem('opinions')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
-                Opinions
+                Opinion
                 <img
                   src="/assets/icons/cross-opinions.svg"
                   className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'opinions' ? 'opacity-100' : 'opacity-0'}`}
@@ -128,8 +122,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               href="/radio"
               className="relative block py-4 ml-4 mr-8"
               onTouchStart={() => setActiveItem('radio')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Radio
                 <img
@@ -145,8 +138,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               type="button"
               onClick={() => setInfoIsOpen(!infoIsOpen)}
               onTouchStart={() => setActiveItem('info')}
-              onTouchEnd={() => setActiveItem(null)}
-            >
+              onTouchEnd={() => setActiveItem(null)}>
               <span className="relative inline-block group">
                 Info
                 <img
