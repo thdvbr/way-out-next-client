@@ -9,8 +9,9 @@ const MainImage = ({ title, slug, image: source }) => {
   const dimensions = source?.asset?.metadata?.dimensions;
   const isPortrait = dimensions && dimensions.height > dimensions.width * 1.2;
 
-  const isSquare = dimensions
-    && Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
+  const isSquare =
+    dimensions &&
+    Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
 
   // eslint-disable-next-line no-nested-ternary
   const sizeClass = isPortrait
@@ -20,9 +21,12 @@ const MainImage = ({ title, slug, image: source }) => {
       : 'w-full';
 
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
-    return imageUrlBuilder.width(
-      options.width || Math.min(options.originalImageDimensions.width, 800),
-    );
+    return imageUrlBuilder
+      .width(
+        Math.min(options.width || options.originalImageDimensions.width, 1800)
+      )
+      .fit('max')
+      .auto('format');
   };
 
   const imageProps = useNextSanityImage(sanityClient, source, {

@@ -5,14 +5,14 @@ import { useUIContext } from '../context/ui-context';
 
 const OVERLAY_IMAGES = {
   desktop: [
-    '/assets/background/overlay_desktop_test.svg',
-    '/assets/background/overlay_desktop_test.svg',
-    '/assets/background/overlay_desktop_test.svg',
+    '/assets/background/overlay_desktop_test.png',
+    '/assets/background/overlay_desktop_test.png',
+    '/assets/background/overlay_desktop_test.png',
   ],
   mobile: [
-    '/assets/background/overlay_mobile_test.svg',
-    '/assets/background/overlay_mobile_test.svg',
-    '/assets/background/overlay_mobile_test.svg',
+    '/assets/background/overlay_mobile_test.png',
+    '/assets/background/overlay_mobile_test.png',
+    '/assets/background/overlay_mobile_test.png',
   ],
 };
 

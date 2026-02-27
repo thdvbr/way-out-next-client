@@ -139,10 +139,19 @@ const postComponents = {
         <div className="flex justify-center">
           <div className={`flex-col pt-2 sm:pt-4 ${sizeClass}`}>
             <Image
-              src={value.asset.url || urlForImage(value.asset).url()}
+              src={urlForImage(value.asset)
+                .width(1800)
+                .fit('max')
+                .auto('format')
+                .url()}
               alt={value.alt || ''}
               width={dimensions?.width || 800}
               height={dimensions?.height || 600}
+              sizes={
+                isPortrait
+                  ? '(max-width: 640px) 100vw, 50vw'
+                  : '(max-width: 640px) 100vw, 75vw'
+              }
               className="w-full h-auto"
             />
             {value.caption && (
