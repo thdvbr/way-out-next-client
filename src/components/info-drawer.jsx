@@ -106,7 +106,34 @@ const InfoDrawer = ({ preview }) => {
           </svg> */}
           <svg width="0" height="0" style={{ position: 'absolute' }}>
             <filter
-              id="noise"
+              id="noise-desktop"
+              x="0%"
+              y="0%"
+              width="100%"
+              height="100%"
+              filterUnits="objectBoundingBox">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.9"
+                numOctaves="6"
+                stitchTiles="stitch"
+                result="noise"
+              />
+              <feComponentTransfer in="noise" result="brighterNoise">
+                <feFuncR type="linear" slope="0.5" intercept="0.2" />
+                <feFuncG type="linear" slope="0.5" intercept="0.2" />
+                <feFuncB type="linear" slope="0.5" intercept="0.2" />
+              </feComponentTransfer>
+              {/* <feColorMatrix
+                type="saturate"
+                values="0"
+                in="noise"
+                result="grayNoise"
+              /> */}
+              <feBlend in="SourceGraphic" in2="brighterNoise" mode="overlay" />
+            </filter>
+            <filter
+              id="noise-mobile"
               x="0%"
               y="0%"
               width="100%"
@@ -117,6 +144,7 @@ const InfoDrawer = ({ preview }) => {
                 baseFrequency="5.4"
                 numOctaves="6"
                 stitchTiles="stitch"
+                result="noise"
               />
               <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
             </filter>
@@ -139,66 +167,86 @@ const InfoDrawer = ({ preview }) => {
             {/* TODO: Add noise to radial gradiant */}
             <div
               className="absolute inset-0 p-5 text-black radial-gradient"
-              onTouchMove={width < 500 ? handleTouchMove : undefined}
+              onTouchMove={isTouch ? handleTouchMove : undefined}
               style={{
                 background: `radial-gradient(farthest-side at ${gradientX}px ${gradientY}px, #FFFF00, #D7D7D7)`,
-                filter: 'url(#noise)',
               }}>
-              {/* <div>{JSON.stringify(mouse, null, 2)}</div> */}
-              <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
-                <button type="button" onClick={toggleInfo}>
-                  <MdClose size={32} />
-                </button>
-              </div>
-              <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
-                <div className="w-8/12">
-                  {infoDrawerSection === 'about' && (
-                    <div className="pt-2 text-justify text-14 sm:text-18">
-                      <Content body={about.body} />
-                    </div>
-                  )}
-                  {infoDrawerSection === 'contact' && (
-                    <div className="pt-2 text-justify text-14 sm:text-18">
-                      <Content body={contact.body} />
-                      <Link href="/legal" className="underline font-secondary">
-                        Legal
-                      </Link>
-                    </div>
-                  )}
-                  {infoDrawerSection === 'staff' && (
-                    <>
-                      <div className="flex justify-between pt-2">
-                        <div className="text-left">
-                          {staffsOdd.map((staff) => (
-                            <div key={staff._id} className="pb-4">
-                              <Staff name={staff.staffName} role={staff.role} />
-                            </div>
-                          ))}
-                        </div>
-                        <div className="text-right">
-                          {staffsEven.map((staff) => (
-                            <div key={staff._id} className="pb-4">
-                              <Staff name={staff.staffName} role={staff.role} />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
+              {/* noise overlay with same background */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: `radial-gradient(farthest-side at ${gradientX}px ${gradientY}px, #FFFF00, #D7D7D7)`,
+                  filter: `url(#${width > 768 ? 'noise-desktop' : 'noise-mobile'})`,
+                  pointerEvents: 'none',
+                  opacity: 0.7,
+                  zIndex: 0,
+                }}
+              />
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
+                  <button type="button" onClick={toggleInfo}>
+                    <MdClose size={32} />
+                  </button>
                 </div>
-                <div className="w-4/12">
-                  <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
-                    <button type="button" onClick={toggleAbout}>
-                      {about.title}
-                    </button>
-                    <span className="br" />
-                    <button type="button" onClick={toggleContact}>
-                      {contact.title}
-                    </button>
-                    <span className="br" />
-                    <button type="button" onClick={toggleStaff}>
-                      Staff
-                    </button>
+                <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
+                  <div className="w-8/12">
+                    {infoDrawerSection === 'about' && (
+                      <div className="pt-2 text-justify text-14 sm:text-18">
+                        <Content body={about.body} />
+                      </div>
+                    )}
+                    {infoDrawerSection === 'contact' && (
+                      <div className="pt-2 text-justify text-14 sm:text-18">
+                        <Content body={contact.body} />
+                        <Link
+                          href="/legal"
+                          className="underline font-secondary">
+                          Legal
+                        </Link>
+                      </div>
+                    )}
+                    {infoDrawerSection === 'staff' && (
+                      <>
+                        <div className="flex justify-between pt-2">
+                          <div className="text-left">
+                            {staffsOdd.map((staff) => (
+                              <div key={staff._id} className="pb-4">
+                                <Staff
+                                  name={staff.staffName}
+                                  role={staff.role}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                          <div className="text-right">
+                            {staffsEven.map((staff) => (
+                              <div key={staff._id} className="pb-4">
+                                <Staff
+                                  name={staff.staffName}
+                                  role={staff.role}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="w-4/12">
+                    <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
+                      <button type="button" onClick={toggleAbout}>
+                        {about.title}
+                      </button>
+                      <span className="br" />
+                      <button type="button" onClick={toggleContact}>
+                        {contact.title}
+                      </button>
+                      <span className="br" />
+                      <button type="button" onClick={toggleStaff}>
+                        Staff
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
