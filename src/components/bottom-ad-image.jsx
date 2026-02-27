@@ -25,8 +25,7 @@ const BottomAdImage = ({ image: source, url }) => {
       placeholder={blurDataURL ? 'blur' : 'empty'}
       blurDataURL={blurDataURL}
       fill
-      unoptimized
-      sizes="(min-width: 500px), 800px auto"
+      sizes="100vw"
       style={{
         objectFit: 'cover',
       }}
@@ -45,8 +44,7 @@ const BottomAdImage = ({ image: source, url }) => {
       }}
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ delay: 0.6 }}
-    >
+      transition={{ delay: 0.6 }}>
       <a href={url}>{image}</a>
     </motion.div>
   );

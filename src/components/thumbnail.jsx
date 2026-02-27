@@ -21,11 +21,10 @@ const Thumbnail = ({
   fillContainer = false,
 }) => {
   const myCustomImageBuilder = (imageUrlBuilder) => {
-    // If contain, only constrain width — let Sanity keep full image without cropping
     if (fillContainer) {
-      return imageUrlBuilder.width(width).fit('max');
+      return imageUrlBuilder.width(800).fit('max');
     }
-    return imageUrlBuilder.width(width).height(height);
+    return imageUrlBuilder.width(800);
   };
 
   const imageProps = useNextSanityImage(sanityClient, source, {
@@ -60,19 +59,17 @@ const Thumbnail = ({
           : {
             overflow: 'hidden', // ← original
           }
-      }
-    >
+      }>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div style={fillContainer ? { position: 'absolute', inset: 0 } : {}}>
         <Image
           {...imageProps}
-          unoptimized
           alt={`Thumbnail for ${title}`}
           placeholder={blurDataURL ? 'blur' : 'empty'}
           blurDataURL={blurDataURL}
           // check for responsive option..
           // sizes={`${width}px, ${height}px`}
-          sizes="(max-width: 800px) 100vw, 800px"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           style={
             fillContainer
               ? {

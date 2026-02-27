@@ -42,11 +42,10 @@ const MainImage = ({ title, slug, image: source }) => {
         transition={{ delay: 0.2 }}>
         <Image
           {...imageProps}
-          unoptimized
           alt={`Cover Image for ${title}`}
           placeholder={blurDataURL ? 'blur' : 'empty'}
           blurDataURL={blurDataURL}
-          sizes="(max-width: 2000px) 100vw, auto"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 50vw"
           style={{
             width: '100%',
             height: 'auto',

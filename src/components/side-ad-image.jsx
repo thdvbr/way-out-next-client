@@ -13,7 +13,9 @@ const SideAdImage = ({ image, url }) => {
   const adImage = image && (
     <img
       className="sm:w-16 md:w-20 ml:w-24 lg:w-28 xl:w-30"
-      src={urlFor(image).width(110).url()}
+      src={urlFor(image).width(120).url()}
+      alt="Side ad"
+      loading="lazy"
     />
   );
   return (
