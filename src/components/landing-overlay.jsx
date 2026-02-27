@@ -6,13 +6,13 @@ import { useUIContext } from '../context/ui-context';
 const OVERLAY_IMAGES = {
   desktop: [
     '/assets/background/overlay_desktop_1.png',
-    '/assets/background/overlay_desktop_1.png',
-    '/assets/background/overlay_desktop_1.png',
+    '/assets/background/overlay_desktop_2.svg',
+    '/assets/background/overlay_desktop_2.svg',
   ],
   mobile: [
     '/assets/background/overlay_mobile_1.png',
-    '/assets/background/overlay_mobile_1.png',
-    '/assets/background/overlay_mobile_1.png',
+    '/assets/background/overlay_mobile_2.svg',
+    '/assets/background/overlay_mobile_2.svg',
   ],
 };
 
