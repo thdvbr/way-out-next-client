@@ -45,7 +45,11 @@ const BottomAdImage = ({ image: source, url }) => {
       initial={{ x: -60, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.6 }}>
-      <a href={url}>{image}</a>
+      <a
+        href={url}
+        style={{ position: 'absolute', inset: 0, display: 'block' }}>
+        {image}
+      </a>
     </motion.div>
   );
 };

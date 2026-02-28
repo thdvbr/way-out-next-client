@@ -20,19 +20,23 @@ const Thumbnail = ({
   mainCategory, // Posts have this field
   fillContainer = false,
 }) => {
-  const myCustomImageBuilder = (imageUrlBuilder) => {
-    if (fillContainer) {
-      return imageUrlBuilder.width(800).fit('max');
-    }
-    return imageUrlBuilder.width(800);
+  const myCustomImageBuilder = (imageUrlBuilder, options) => {
+    return imageUrlBuilder
+      .width(Math.min(options.width, 800))
+      .fit('max')
+      .auto('format');
   };
 
-  const imageProps = useNextSanityImage(sanityClient, source, {
+  const imageProps = useNextSanityImage(sanityClient, source || null, {
     blurUpImageWidth: 124,
     blurUpImageQuality: 40,
     blurUpAmount: 200,
     imageBuilder: myCustomImageBuilder,
   });
+
+  if (!source?.asset) {
+    return <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />;
+  }
 
   // Determine if this is a radio show or a post
   const isRadio = !!mixcloudUrl || type === 'radio';
@@ -51,14 +55,14 @@ const Thumbnail = ({
       style={
         fillContainer
           ? {
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-          }
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+            }
           : {
-            overflow: 'hidden', // ← original
-          }
+              overflow: 'hidden', // ← original
+            }
       }>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div style={fillContainer ? { position: 'absolute', inset: 0 } : {}}>
@@ -73,14 +77,14 @@ const Thumbnail = ({
           style={
             fillContainer
               ? {
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }
               : {
-                width: '100%',
-                height: 'auto', // ← original
-              }
+                  width: '100%',
+                  height: 'auto', // ← original
+                }
           }
         />
       </div>

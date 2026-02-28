@@ -9,8 +9,9 @@ const MainImage = ({ title, slug, image: source }) => {
   const dimensions = source?.asset?.metadata?.dimensions;
   const isPortrait = dimensions && dimensions.height > dimensions.width * 1.2;
 
-  const isSquare = dimensions
-    && Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
+  const isSquare =
+    dimensions &&
+    Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2;
 
   // eslint-disable-next-line no-nested-ternary
   const sizeClass = isPortrait
@@ -21,19 +22,21 @@ const MainImage = ({ title, slug, image: source }) => {
 
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder
-      .width(
-        Math.min(options.width || options.originalImageDimensions.width, 1800),
-      )
+      .width(Math.min(options.width, 1800))
       .fit('max')
       .auto('format');
   };
 
-  const imageProps = useNextSanityImage(sanityClient, source, {
+  const imageProps = useNextSanityImage(sanityClient, source || null, {
     blurUpImageWidth: 124,
     blurUpImageQuality: 40,
     blurUpAmount: 200,
     imageBuilder: myCustomImageBuilder,
   });
+
+  if (!source?.asset) {
+    return <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />;
+  }
 
   const blurDataURL = source?.asset?.metadata?.lqip;
 
