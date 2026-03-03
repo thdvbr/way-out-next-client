@@ -27,13 +27,12 @@ const SocialLinks = ({ socialLinks }) => {
               href={platform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gold"
-            >
+              className="hover:text-gold">
               {platform.name}
             </a>
           ) : (
             <div className="relative inline-block">
-              <span className="opacity-50">{platform.name}</span>
+              <span>{platform.name}</span>
               <img
                 src={platform.crossIcon}
                 className="absolute inset-0 object-cover w-full h-full pointer-events-none"
