@@ -8,8 +8,9 @@ import { useUIContext } from '../context/ui-context';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = ({ theme = 'light' }) => {
-  const { infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen } =
-    useUIContext();
+  const {
+    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
+  } = useUIContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
