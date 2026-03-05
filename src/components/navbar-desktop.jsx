@@ -38,8 +38,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
 
   return (
     <div className="px-3 sticky top-0 font-title sm:text-15 lg:text-17 xl:text-22.5">
-      <nav
-        className={`relative flex justify-between sm:py-2 ml:py-3 sm:w-full ${borderClass}`}>
+      <nav className={`relative flex justify-between sm:w-full ${borderClass}`}>
         <button
           type="button"
           onClick={handleSearchOpen}
@@ -49,11 +48,13 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
           </span>
         </button>
         <div>
-          <Link href="/interview" className="relative sm:py-0 group">
+          <Link
+            href="/interview"
+            className="relative inline-block px-6 sm:py-2 ml:py-3 group">
             Interview
             <img
               src="/assets/icons/cross-interviews.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interview' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interview' && 'opacity-100'}`}
               alt=""
             />
           </Link>
@@ -61,21 +62,23 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
         <div>
           <Link
             href="/opinion"
-            className={`sm:py-0 relative group inline-block mr-6`}>
+            className={`sm:py-2 ml:py-3 relative group inline-block px-2 mr-6`}>
             Opinion
             <img
               src="/assets/icons/cross-opinions.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinion' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinion' && 'opacity-100'}`}
               alt=""
             />
           </Link>
         </div>
         <div>
-          <Link href="/radio" className={`sm:py-0 relative group`}>
+          <Link
+            href="/radio"
+            className={`sm:py-2 ml:py-3 px-2 inline-block  relative group`}>
             <span>Radio</span>
             <img
               src="/assets/icons/cross-radio.svg"
-              className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/radio' && 'opacity-100'}`}
+              className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/radio' && 'opacity-100'}`}
               alt=""
             />
           </Link>
@@ -86,11 +89,11 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
             setInfoIsOpen(!infoIsOpen);
             setJoinIsOpen(false);
           }}
-          className={`sm:py-0 relative group`}>
+          className={`sm:py-2 ml:py-3 pl-4 pr-1.5 relative group`}>
           <span>Info</span>
           <img
             src="/assets/icons/cross-info.svg"
-            className={`absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${infoIsOpen && 'opacity-100'}`}
+            className={`absolute inset-0 m-auto w-16 h-10 object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${infoIsOpen && 'opacity-100'}`}
             alt=""
           />
         </button>

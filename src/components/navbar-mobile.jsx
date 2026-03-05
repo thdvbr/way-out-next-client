@@ -8,9 +8,8 @@ import { useUIContext } from '../context/ui-context';
 import { debounce } from '../utils/helpers';
 
 const NavbarMobile = ({ theme = 'light' }) => {
-  const {
-    infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen,
-  } = useUIContext();
+  const { infoIsOpen, setInfoIsOpen, searchIsOpen, setSearchIsOpen } =
+    useUIContext();
   // const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -90,14 +89,21 @@ const NavbarMobile = ({ theme = 'light' }) => {
             className={`flex flex-col ${isDark ? 'mobile-navbar-box-dark' : 'mobile-navbar-box'}`}>
             <Link
               href="/interview"
-              className="relative block py-4 ml-4 mr-8"
+              className="relative inline-block w-full py-4 ml-4 mr-3 group"
               onTouchStart={() => setActiveItem('interviews')}
               onTouchEnd={() => setActiveItem(null)}>
-              <span className="relative inline-block group">
+              <span className="relative inline-block pr-5">
                 Interview
                 <img
                   src="/assets/icons/cross-interviews.svg"
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'interviews' ? 'opacity-100' : 'opacity-0'}`}
+                  style={{
+                    width: '200px',
+                    height: '80px',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                  className={`absolute object-contain pointer-events-none ${activeItem === 'interviews' ? 'opacity-100' : 'opacity-0'}`}
                   alt=""
                 />
               </span>
@@ -105,14 +111,21 @@ const NavbarMobile = ({ theme = 'light' }) => {
 
             <Link
               href="/opinion"
-              className="relative block py-4 ml-4 mr-8"
+              className="relative block w-full py-4 ml-4 mr-3 group"
               onTouchStart={() => setActiveItem('opinions')}
               onTouchEnd={() => setActiveItem(null)}>
-              <span className="relative inline-block group">
+              <span className="relative inline-block pr-1">
                 Opinion
                 <img
                   src="/assets/icons/cross-opinions.svg"
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'opinions' ? 'opacity-100' : 'opacity-0'}`}
+                  style={{
+                    width: '200px',
+                    height: '80px',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                  className={`absolute object-contain pointer-events-none ${activeItem === 'opinions' ? 'opacity-100' : 'opacity-0'}`}
                   alt=""
                 />
               </span>
@@ -120,30 +133,37 @@ const NavbarMobile = ({ theme = 'light' }) => {
 
             <Link
               href="/radio"
-              className="relative block py-4 ml-4 mr-8"
+              className="relative block w-full py-4 ml-4 mr-3 group"
               onTouchStart={() => setActiveItem('radio')}
               onTouchEnd={() => setActiveItem(null)}>
-              <span className="relative inline-block group">
+              <span className="relative inline-block pr-1">
                 Radio
                 <img
                   src="/assets/icons/cross-radio.svg"
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'radio' ? 'opacity-100' : 'opacity-0'}`}
+                  style={{
+                    width: '200px',
+                    height: '80px',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                  className={`absolute object-contain pointer-events-none ${activeItem === 'radio' ? 'opacity-100' : 'opacity-0'}`}
                   alt=""
                 />
               </span>
             </Link>
 
             <button
-              className="relative block w-full py-4 ml-4 mr-8 text-left"
+              className="relative block w-full py-4 ml-4 mr-3 text-left group"
               type="button"
               onClick={() => setInfoIsOpen(!infoIsOpen)}
               onTouchStart={() => setActiveItem('info')}
               onTouchEnd={() => setActiveItem(null)}>
-              <span className="relative inline-block group">
+              <span className="relative inline-block pr-2 ">
                 Info
                 <img
                   src="/assets/icons/cross-info.svg"
-                  className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${activeItem === 'info' ? 'opacity-100' : 'opacity-0'}`}
+                  className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${activeItem === 'info' ? 'opacity-100' : 'opacity-0'}`}
                   alt=""
                 />
               </span>
