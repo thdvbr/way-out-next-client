@@ -548,8 +548,9 @@ button:focus {
 
 .drop-cap-letter {
   float: left;
-  font-size: 6rem;
-  margin-top: 0.45em;  
+  font-size: 4em;
+  margin-top: 0.48em; 
+  margin-bottom:0.1em;
   line-height: 0.2;
   padding-right: 0.1em;
   font-weight: bold;
@@ -559,8 +560,9 @@ button:focus {
 @media only screen and (max-width: 499px) {
  .drop-cap-letter {
   float: left;
-  font-size: 4rem;
-  margin-top: 0.45em;  
+  font-size: 3.5em;
+  margin-top: 0.5em;  
+  margin-bottom:0.1em;
   line-height: 0.2;
   padding-right: 0.1em;
   font-weight: bold;

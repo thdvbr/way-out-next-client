@@ -168,7 +168,13 @@ const postComponents = {
     youtube: ({ value }) => {
       const { url } = value;
       const id = getYouTubeId(url);
-      return <LiteYouTubeEmbed id={id} title="YouTube Embed" />;
+      return (
+        <LiteYouTubeEmbed
+          id={id}
+          title="YouTube Embed"
+          poster="maxresdefault"
+        />
+      );
     },
     listicleItem: ({ value }) => <ListicleItem value={value} />,
 
