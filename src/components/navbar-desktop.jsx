@@ -28,10 +28,12 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
   const handleSearchOpen = () => {
     setSearchIsOpen(!searchIsOpen);
   };
+
   useEffect(() => {
     if (!router.asPath.startsWith('/search')) {
       setSearchIsOpen(false);
     }
+    setJoinIsOpen(false);
   }, [router.asPath]);
 
   return (
