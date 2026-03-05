@@ -20,14 +20,19 @@ const RadioItem = ({
     <div className="group radio-preview-block">
       <div className="">
         {heroImage && (
-          <Thumbnail
-            slug={slug}
-            title={title}
-            image={heroImage}
-            mixcloudUrl={mixcloudUrl}
-            width="500"
-            height="500"
-          />
+          <div className="relative w-full" style={{ paddingBottom: '100%' }}>
+            <div className="absolute inset-0">
+              <Thumbnail
+                slug={slug}
+                title={title}
+                image={heroImage}
+                mixcloudUrl={mixcloudUrl}
+                width="500"
+                height="500"
+                fillContainer={true}
+              />
+            </div>
+          </div>
         )}
       </div>
       <div className="flex flex-col flex-grow px-2 pt-2 pb-2 transition-colors duration-200 border-b-2 border-l-2 border-r-2 border-black md:group-hover:bg-yellow radio-preview-text-box">
