@@ -32,7 +32,7 @@ const ListicleItem = ({ value }) => {
             style={{
               position: 'absolute',
               top: '0px',
-              left: '-3px',
+
               transform: 'scale(1.5)',
               transformOrigin: 'center center',
               height: '100%', // add this

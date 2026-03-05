@@ -5,7 +5,7 @@ const SocialLinks = ({ socialLinks }) => {
     {
       name: 'Facebook',
       url: socialLinks?.facebook,
-      crossIcon: '/assets/icons/cross-opinions.svg', // or use text
+      crossIcon: '/assets/icons/cross-facebook.svg', // or use text
     },
     {
       name: 'Email',
