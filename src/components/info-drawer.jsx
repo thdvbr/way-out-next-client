@@ -161,12 +161,12 @@ const InfoDrawer = ({ preview }) => {
             className="fixed w-full h-full overflow-hidden info-box z-60"
             style={
               width > 768
-                ? { right: 0, maxWidth: '42vw' }
+                ? { right: 0, maxWidth: '40vw' }
                 : { right: 0, maxWidth: '100vw' }
             }>
             {/* TODO: Add noise to radial gradiant */}
             <div
-              className="absolute inset-0 p-5 text-black radial-gradient"
+              className="absolute inset-0 p-5 text-black sm:p-16 md:p-12 radial-gradient"
               onTouchMove={isTouch ? handleTouchMove : undefined}
               style={{
                 background: `radial-gradient(farthest-side at ${gradientX}px ${gradientY}px, #FFFF00, #D7D7D7)`,
@@ -184,24 +184,19 @@ const InfoDrawer = ({ preview }) => {
                 }}
               />
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div className="absolute p-3 top-2 sm:top-4 xl:top-10 right-2 sm:right-10 md:right-2 lg:right-8 xl:right-20 ">
-                  <button type="button" onClick={toggleInfo}>
-                    <MdClose size={32} />
-                  </button>
-                </div>
-                <div className="flex p-2 pt-20 sm:p-10 sm:pt-32 md:p-2 lg:p-8 md:pt-24 lg:pt-32 xl:p-20 xl:pt-48">
-                  <div className="w-8/12">
+                <div className="flex" style={{ paddingTop: 0 }}>
+                  <div className="w-8/12 pt-20 pr-6 sm:pt-24">
                     {infoDrawerSection === 'about' && (
-                      <div className="pt-2 text-justify text-14 sm:text-18">
+                      <div className="text-justify">
                         <Content body={about.body} />
                       </div>
                     )}
                     {infoDrawerSection === 'contact' && (
-                      <div className="pt-2 text-justify text-14 sm:text-18">
+                      <div className="text-justify">
                         <Content body={contact.body} />
                         <Link
                           href="/legal"
-                          className="underline font-secondary">
+                          className="underline text-18 font-secondary">
                           Legal
                         </Link>
                       </div>
@@ -233,16 +228,22 @@ const InfoDrawer = ({ preview }) => {
                       </>
                     )}
                   </div>
-                  <div className="w-4/12">
-                    <div className="text-right text-20 sm:text-27 md:text-22 lg:text-27 font-title">
+                  <div className="flex flex-col w-4/12 text-right font-title">
+                    <div className="flex items-start justify-end h-10 sm:h-12 ">
+                      <button
+                        type="button"
+                        onClick={toggleInfo}
+                        className="p-0">
+                        <MdClose size={32} />
+                      </button>
+                    </div>
+                    <div className="flex flex-col items-end justify-end pt-10 mr-1 space-y-6 sm:pt-12 text-24 xl:text-27">
                       <button type="button" onClick={toggleAbout}>
                         {about.title}
                       </button>
-                      <span className="br" />
                       <button type="button" onClick={toggleContact}>
                         {contact.title}
                       </button>
-                      <span className="br" />
                       <button type="button" onClick={toggleStaff}>
                         Staff
                       </button>
