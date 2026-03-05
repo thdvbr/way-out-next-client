@@ -92,6 +92,10 @@ export default function Layout({
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <meta
+            name="description"
+            content="WAY OUT is an independent magazine and platform for artists, eccentrics, and experts."
+          />
           <link rel="icon" href="/favicon.ico" />
           {/* add favicon to directly in the /public folder - favicon.ico or favicon.png */}
         </Head>

@@ -6,9 +6,7 @@ import { UIProvider } from '../context/ui-context';
 import { DataProvider } from '../context/data-context';
 
 function MyApp({ Component, pageProps, router }) {
-  const {
-    pageData, staffData, bottomAds, sideAds, ...rest
-  } = pageProps;
+  const { pageData, staffData, bottomAds, sideAds, ...rest } = pageProps;
   return (
     <>
       <Head>
@@ -30,6 +28,10 @@ function MyApp({ Component, pageProps, router }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
+        <meta
+          name="description"
+          content="WAY OUT is an independent magazine and platform for artists, eccentrics, and experts."
+        />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <AnimatePresence exitBeforeEnter initial={false}>
@@ -38,8 +40,7 @@ function MyApp({ Component, pageProps, router }) {
             pageData={pageData}
             staffData={staffData}
             bottomAds={bottomAds}
-            sideAds={sideAds}
-          >
+            sideAds={sideAds}>
             <Component {...rest} key={router.route} />
           </DataProvider>
         </UIProvider>
