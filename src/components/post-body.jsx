@@ -135,31 +135,39 @@ const postComponents = {
           ? 'w-full sm:w-3/4'
           : 'w-full';
 
+      const imageElement = (
+        <Image
+          src={urlForImage(value.asset)
+            .width(1800)
+            .fit('max')
+            .auto('format')
+            .url()}
+          alt={value.alt || ''}
+          width={dimensions?.width || 800}
+          height={dimensions?.height || 600}
+          sizes={
+            isPortrait
+              ? '(max-width: 640px) 100vw, 50vw'
+              : '(max-width: 640px) 100vw, 75vw'
+          }
+          className="w-full h-auto"
+        />
+      );
+
       return (
         <div className="flex justify-center">
           <div className={`flex-col pt-2 sm:pt-4 ${sizeClass}`}>
-            <Image
-              src={urlForImage(value.asset)
-                .width(1800)
-                .fit('max')
-                .auto('format')
-                .url()}
-              alt={value.alt || ''}
-              width={dimensions?.width || 800}
-              height={dimensions?.height || 600}
-              sizes={
-                isPortrait
-                  ? '(max-width: 640px) 100vw, 50vw'
-                  : '(max-width: 640px) 100vw, 75vw'
-              }
-              className="w-full h-auto"
-            />
+            {value.link ? (
+              <a href={value.link} target="_blank" rel="noopener noreferrer">
+                {imageElement}
+              </a>
+            ) : (
+              imageElement
+            )}
             {value.caption && (
-              <>
-                <p className="my-1 italic font-secondary text-12 ml:text-16 xl:text-20">
-                  {value.caption}
-                </p>
-              </>
+              <p className="my-1 italic font-secondary text-12 ml:text-16 xl:text-20">
+                {value.caption}
+              </p>
             )}
           </div>
         </div>
@@ -174,6 +182,22 @@ const postComponents = {
           title="YouTube Embed"
           poster="maxresdefault"
         />
+      );
+    },
+    mixcloud: ({ value }) => {
+      if (!value?.url) return null;
+      const embedUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=${encodeURIComponent(value.url)}`;
+      return (
+        <div className="my-4">
+          <iframe
+            title="Mixcloud Embed"
+            width="100%"
+            height="120"
+            src={embedUrl}
+            frameBorder="0"
+            allow="autoplay"
+          />
+        </div>
       );
     },
     listicleItem: ({ value }) => <ListicleItem value={value} />,
