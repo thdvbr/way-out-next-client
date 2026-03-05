@@ -49,7 +49,7 @@ const ListicleItem = ({ value }) => {
 
             <img
               src="/assets/icons/handdrawn_scribble.svg"
-              className={`absolute inset-0 left-0 w-full pointer-events-none -top-2 ${!numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
+              className={`absolute inset-0 left-0 w-full pointer-events-none -top-1 ${!numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
               alt=""
             />
           </h3>

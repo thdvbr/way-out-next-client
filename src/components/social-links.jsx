@@ -19,7 +19,7 @@ const SocialLinks = ({ socialLinks }) => {
     },
   ];
   return (
-    <div className="flex items-center justify-center gap-8 text-center underline md:gap-12 font-title text-14 ml:text-16 xl:text-20">
+    <div className="flex items-center justify-center gap-8 text-center underline md:gap-16 font-title text-14 ml:text-16 xl:text-20">
       {platforms.map((platform) => (
         <div key={platform.name} className="relative">
           {platform.url ? (
@@ -35,7 +35,12 @@ const SocialLinks = ({ socialLinks }) => {
               <span>{platform.name}</span>
               <img
                 src={platform.crossIcon}
-                className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                style={{
+                  width: '200px',
+                  height: '20px',
+                  transform: 'scale(1.5)',
+                }}
+                className="absolute inset-0 object-contain pointer-events-none"
                 alt=""
               />
             </div>
