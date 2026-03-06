@@ -42,20 +42,32 @@ export const Index = ({ allPosts, preview }) => {
         contentStyle={{
           color: 'black',
           fontFamily: 'Averia Serif Light Italic',
+          fontWeight: 'bold',
+          flex: '0 0 auto',
+          margin: '0 8px',
         }}
         contentClasses="flex-none"
-        containerClasses="flex flex-row"
-        buttonText="X"
-        buttonStyle={{ color: 'black' }}
-        buttonClasses="mr-3"
+        buttonText="Ok."
+        buttonStyle={{
+          color: 'black',
+          fontFamily: 'Averia Serif Light Italic',
+          textDecoration: 'underline',
+          fontWeight: 'bold',
+        }}
+        buttonClasses="mr-3 flex-none"
         style={{
           backgroundImage:
             'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
-          width: '100vw',
+          //           backgroundSize: 'cover',
+          // backgroundPosition: 'center',
+          width: '100%',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
-        }}
-      >
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '8px',
+        }}>
         Hey, We use
         {' '}
         <a href="/legal" className="underline">

@@ -50,7 +50,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
         <div>
           <Link
             href="/interview"
-            className="relative inline-block px-6 sm:py-2 ml:py-3 group">
+            className="relative inline-block px-6 ml-1 sm:py-2 ml:py-3 group">
             Interview
             <img
               src="/assets/icons/cross-interviews.svg"
@@ -62,7 +62,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
         <div>
           <Link
             href="/opinion"
-            className={`sm:py-2 ml:py-3 relative group inline-block px-2 mr-6`}>
+            className={`sm:py-2 ml:py-3 relative group inline-block px-2 mr-9`}>
             Opinion
             <img
               src="/assets/icons/cross-opinions.svg"
