@@ -56,10 +56,7 @@ export const Index = ({ allPosts, preview }) => {
         }}
         buttonClasses="mr-3 flex-none"
         style={{
-          backgroundImage:
-            'url(/assets/background/ylw_bkgd_noise_card_LARGE.jpg)',
-          //           backgroundSize: 'cover',
-          // backgroundPosition: 'center',
+          backgroundImage: 'url(/assets/background/search_bar_1920px_w.jpg)',
           width: '100%',
           boxShadow: '3px 4px 7px rgba(0, 0, 0, 0.25)',
           textAlign: 'center',
