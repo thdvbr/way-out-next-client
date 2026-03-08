@@ -239,7 +239,8 @@ body {
   }
 
   .preview-block:active .masonry-item-text{
-    background-color:#FFFF00;
+    /* background-color:#FFFF00; */
+      background-image: url(/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
     border-left: 2px solid black;
     border-right:2px solid black;
     border-bottom: 2px solid black;
@@ -332,14 +333,14 @@ body {
 
 @media only screen and (min-width: 500px) {
   .logo-container {
-    width: 9em;
-    height: 8em;
+    width: 10em;
+    height: 8.7em;
     content: url(/assets/logos/way_out_vector_transparent-01_.png);
   }
 
   .logo-container-dark{
-    width: 9em;
-    height: 8em;
+    width: 10em;
+    height: 8.7em;
     content: url(/assets/logos/way_out_vector_transparent-white_black-outline_.png);
   }
 
@@ -349,9 +350,9 @@ body {
   }
   .gif {
     background-image: url(/assets/logos/wayoutgif_alpha04_4.gif);
-    background-size: 9em 8em;
-    width: 9em;
-    height: 8em;
+    background-size: 10em 8.7em;
+    width: 10em;
+    height: 8.7em;
     position: absolute;
     opacity: 0;
   }
@@ -642,9 +643,15 @@ height: 750px;
 }
 } */
 
+.radio-preview-block:hover .radio-preview-text-box {
+    background-image: url(/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
 @media only screen and (max-width: 768px){
 .radio-preview-block:active .radio-preview-text-box{
-  background-color: #FFFF00
+  background-image: url(/assets/background/ylw_bkgd_noise_card_SMALL.jpg);
 }
 
 .radio-preview-block:active .radio-preview-episode-label, 

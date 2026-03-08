@@ -8,7 +8,7 @@ export default function Header({ theme }) {
   const { joinIsOpen, setJoinIsOpen, setInfoIsOpen } = useUIContext();
   return (
     <header>
-      <div className="flex relative flex-wrap -top-10 justify-between pt-16 mb-14 font-main xl:text-22.5 lg:text-17 sm:text-17 xl:pb-6">
+      <div className="flex relative flex-wrap -top-10 sm:mb-16 xl:mb-18 justify-between pt-16 mb-14 font-main xl:text-22.5 lg:text-17 sm:text-17 xl:pb-6">
         <a
           href="https://buy.stripe.com/test_cNibJ1dCzfO93BY7WNfAc00 "
           target="_blank"
@@ -27,7 +27,7 @@ export default function Header({ theme }) {
         </button>
         <Link
           href="/"
-          className="absolute left-0 right-0 flex justify-center top-4 sm:top-7 xl:top-8">
+          className="absolute left-0 right-0 flex justify-center top-4 sm:top-8 xl:top-5">
           <div
             className={
               theme === 'dark' ? 'logo-container-dark' : 'logo-container'
