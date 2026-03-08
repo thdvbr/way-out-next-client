@@ -53,7 +53,11 @@ export default function Footer({ theme = 'light', showPlayer = true }) {
             }}>
             Contact
           </button>
-          <a className="hover:underline" href="mailto:info@wayoutmagazine.com">
+          <a
+            href="https://buy.stripe.com/test_cNibJ1dCzfO93BY7WNfAc00 "
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline">
             Donate
           </a>
           <div className="hidden sm:block">
