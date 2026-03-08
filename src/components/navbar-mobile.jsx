@@ -96,12 +96,12 @@ const NavbarMobile = ({ theme = 'light' }) => {
               <span className="relative inline-block pr-5">
                 Interview
                 <img
-                  src="/assets/icons/cross-interviews.svg"
+                  src="/assets/icons/cross-interviews.png"
                   style={{
-                    width: '200px',
+                    width: '220px',
                     height: '80px',
                     top: '50%',
-                    left: '50%',
+                    left: '40%',
                     transform: 'translate(-50%, -50%)',
                   }}
                   className={`absolute object-contain pointer-events-none ${activeItem === 'interviews' ? 'opacity-100' : 'opacity-0'}`}
@@ -118,7 +118,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               <span className="relative inline-block pr-1">
                 Opinion
                 <img
-                  src="/assets/icons/cross-opinions.svg"
+                  src="/assets/icons/cross-opinions.png"
                   style={{
                     width: '200px',
                     height: '80px',
@@ -140,7 +140,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               <span className="relative inline-block pr-1">
                 Radio
                 <img
-                  src="/assets/icons/cross-radio.svg"
+                  src="/assets/icons/cross-radio.png"
                   style={{
                     width: '200px',
                     height: '80px',
@@ -163,7 +163,7 @@ const NavbarMobile = ({ theme = 'light' }) => {
               <span className="relative inline-block pr-2 ">
                 Info
                 <img
-                  src="/assets/icons/cross-info.svg"
+                  src="/assets/icons/cross-info.png"
                   className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${activeItem === 'info' ? 'opacity-100' : 'opacity-0'}`}
                   alt=""
                 />

@@ -5,17 +5,17 @@ const SocialLinks = ({ socialLinks }) => {
     {
       name: 'Facebook',
       url: socialLinks?.facebook,
-      crossIcon: '/assets/icons/cross-facebook.svg', // or use text
+      crossIcon: '/assets/icons/cross-facebook.png', // or use text
     },
     {
       name: 'Email',
       url: socialLinks?.email ? `mailto:${socialLinks.email}` : null,
-      crossIcon: '/assets/icons/cross-email.svg',
+      crossIcon: '/assets/icons/cross-email.png',
     },
     {
       name: 'Instagram',
       url: socialLinks?.instagram,
-      crossIcon: '/assets/icons/cross-instagram.svg',
+      crossIcon: '/assets/icons/cross-instagram.png',
     },
   ];
   return (

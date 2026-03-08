@@ -12,9 +12,12 @@ import { SideAdImage } from './index';
 const ListicleItem = ({ value }) => {
   const numberIcon =
     parseInt(value.number) % 3 === 0
-      ? '/assets/icons/handdrawn_circle.svg'
-      : '/assets/icons/handdrawn_x.svg';
+      ? '/assets/icons/handdrawn_circle.png'
+      : '/assets/icons/handdrawn_x.png';
   const numberHovered = parseInt(value.number) % 2 !== 0;
+  const numberIconScale = parseInt(value.number) % 3 === 0 ? 1.3 : 1.7;
+  const numberIconLeft = parseInt(value.number) % 3 === 0 ? 50 : 70;
+
   return (
     <div className="my-12 listicle-item">
       <hr className="mb-2 border-black sm:mb-4" />
@@ -23,7 +26,9 @@ const ListicleItem = ({ value }) => {
         {/* Number box - own hover state */}
         <div className={`relative flex-shrink-0 overflow-visible sm:p-1`}>
           <div className="px-1 py-1 bg-darkyellow">
-            <span className="font-bold text-22 sm:text-27 lg:text-33 font-title">
+            <span
+              style={{ transform: 'translateY(2px)', display: 'inline-block' }}
+              className="font-bold text-22 sm:text-27 lg:text-33 font-title">
               {value.number}
             </span>
           </div>
@@ -31,12 +36,13 @@ const ListicleItem = ({ value }) => {
             src={numberIcon}
             style={{
               position: 'absolute',
-              top: '0px',
-
-              transform: 'scale(1.5)',
+              top: '50%',
+              left: `${numberIconLeft}%`,
+              transform: `translate(-50%, -50%) scale(${numberIconScale})`,
               transformOrigin: 'center center',
-              height: '100%', // add this
-              width: 'auto', // add this
+              width: 'auto',
+              height: 'auto',
+              zIndex: 10,
             }}
             className={`absolute pointer-events-none ${numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
             alt=""
@@ -45,10 +51,14 @@ const ListicleItem = ({ value }) => {
         {/* Title - own hover state */}
         <div className={`relative flex-1 overflow-visible`}>
           <h3 className="flex-1 relative inline-block font-bold leading-tight text-22.5 font-title sm:text-27 lg:text-37">
-            <span className="">{value.title}</span>
+            <span
+              style={{ transform: 'translateY(2px)', display: 'inline-block' }}
+              className="">
+              {value.title}
+            </span>
 
             <img
-              src="/assets/icons/handdrawn_scribble.svg"
+              src="/assets/icons/handdrawn_scribble.png"
               className={`absolute inset-0 left-0 w-full pointer-events-none -top-1 ${!numberHovered ? 'opacity-0 group-hover:opacity-100' : 'hidden'}`}
               alt=""
             />

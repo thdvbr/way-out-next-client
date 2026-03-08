@@ -53,7 +53,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
             className="relative inline-block px-6 ml-1 sm:py-2 ml:py-3 group">
             Interview
             <img
-              src="/assets/icons/cross-interviews.svg"
+              src="/assets/icons/cross-interviews.png"
               className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/interview' && 'opacity-100'}`}
               alt=""
             />
@@ -65,7 +65,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
             className={`sm:py-2 ml:py-3 relative group inline-block px-2 mr-9`}>
             Opinion
             <img
-              src="/assets/icons/cross-opinions.svg"
+              src="/assets/icons/cross-opinions.png"
               className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/opinion' && 'opacity-100'}`}
               alt=""
             />
@@ -77,7 +77,7 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
             className={`sm:py-2 ml:py-3 px-2 inline-block  relative group`}>
             <span>Radio</span>
             <img
-              src="/assets/icons/cross-radio.svg"
+              src="/assets/icons/cross-radio.png"
               className={`absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${router.pathname == '/radio' && 'opacity-100'}`}
               alt=""
             />
@@ -92,8 +92,8 @@ const NavbarDesktop = ({ theme = 'light', page = '' }) => {
           className={`sm:py-2 ml:py-3 pl-4 pr-1.5 relative group`}>
           <span>Info</span>
           <img
-            src="/assets/icons/cross-info.svg"
-            className={`absolute inset-0 m-auto w-16 h-10 object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${infoIsOpen && 'opacity-100'}`}
+            src="/assets/icons/cross-info.png"
+            className={`absolute inset-0 m-auto w-15 h-10 object-contain opacity-0 group-hover:opacity-100 group-active:opacity-100 pointer-events-none ${infoIsOpen && 'opacity-100'}`}
             alt=""
           />
         </button>

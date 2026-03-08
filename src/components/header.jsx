@@ -13,7 +13,7 @@ export default function Header({ theme }) {
           href="https://buy.stripe.com/test_cNibJ1dCzfO93BY7WNfAc00 "
           target="_blank"
           rel="noopener noreferrer"
-          className="z-50 button-underline">
+          className="z-50 button-underline hover:text-gold">
           Donate
         </a>
         <button
@@ -22,7 +22,7 @@ export default function Header({ theme }) {
             setJoinIsOpen(!joinIsOpen);
             setInfoIsOpen(false);
           }}
-          className="z-50 button-underline">
+          className="z-50 button-underline hover:text-gold">
           Join
         </button>
         <Link
