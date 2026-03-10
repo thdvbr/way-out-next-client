@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import { PortableText } from '@portabletext/react';
 import useWindowWidth from '../../utils/useWindowWidth';
 import {
   RadioLayout,
@@ -24,6 +25,20 @@ import {
   sideAdQuery,
 } from '../../utils/queries';
 import { usePreviewSubscription } from '../../utils/sanity';
+
+const portableTextComponents = {
+  marks: {
+    link: ({ value, children }) => (
+      <a
+        href={value.href}
+        target={value.blank ? '_blank' : '_self'}
+        rel="noopener noreferrer"
+        className="underline hover:text-gold ">
+        {children}
+      </a>
+    ),
+  },
+};
 
 // 1. skeleton, layout
 // 2. bring the data in
@@ -129,7 +144,10 @@ function MobileRadioView({ radio, onPlayClick, showPlayer }) {
         )}
         {/* Description */}
         <div className="mb-6 text-justify font-secondary text-15">
-          <p>{radio.description}</p>
+          <PortableText
+            value={radio.description}
+            components={portableTextComponents}
+          />
         </div>
 
         {/* Tracklist */}
@@ -181,7 +199,10 @@ function DesktopRadioView({ radio, onPlayClick, showPlayer }) {
               />
             </button>
             <div className="flex-1 leading-6 font-secondary text-15 xl:text-20">
-              <p>{radio.description}</p>
+              <PortableText
+                value={radio.description}
+                components={portableTextComponents}
+              />
             </div>
           </div>
 

@@ -253,7 +253,7 @@ const postComponents = {
         : undefined;
       return (
         <a
-          className="underline"
+          className="underline hover:text-gold"
           href={value?.href}
           target={target}
           rel={target === '_blank' ? 'noindex nofollow' : undefined}>
