@@ -30,6 +30,8 @@ function MyApp({ Component, pageProps, router }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
+        {/* remove this line before launch for SEO!! */}
+        <meta name="robots" content="noindex, nofollow" />
         <meta
           name="description"
           content="WAY OUT is an independent magazine and platform for artists, eccentrics, and experts."
