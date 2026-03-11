@@ -33,8 +33,7 @@ export const Radio = ({ allRadioShows, preview, bottomAds }) => {
             bottomAds={bottomAds}
             theme="dark"
             showBottomAd={false}
-            title="Radio — Way Out Mag"
-          >
+            title="Radio — Way Out Mag">
             <Container>
               {allRadioShows && <RadioGrid data={allRadioShows} />}
             </Container>
@@ -63,7 +62,7 @@ export const getStaticProps = async ({ preview = false }) => {
       bottomAds,
       sideAds,
     },
-    revalidate: 10,
+    revalidate: 86400,
   };
 };
 

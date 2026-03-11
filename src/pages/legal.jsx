@@ -49,7 +49,7 @@ export const getStaticProps = async ({ preview = false }) => {
       bottomAds,
       sideAds,
     },
-    revalidate: 10,
+    revalidate: 86400,
   };
 };
 

@@ -219,7 +219,7 @@ export async function getStaticProps({ params, preview = false }) {
       bottomAds,
       sideAds,
     },
-    revalidate: 10,
+    revalidate: 86400,
   };
 }
 
