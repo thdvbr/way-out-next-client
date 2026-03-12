@@ -91,7 +91,9 @@ export default function PostLayout({ preview, children, theme, post }) {
             </Container>
           </div>
           <main className="inset-0 z-0 w-screen">{children}</main>
-          <Subscribe />
+          <div className="mt-10">
+            <Subscribe />
+          </div>
         </div>
         {/* desktop */}
         <div className="hidden sm:block">
@@ -135,7 +137,7 @@ export default function PostLayout({ preview, children, theme, post }) {
           {randomSliceBottomAd && (
             <Container>
               <motion.div
-                className="flex justify-center px-3 mt-10"
+                className="flex justify-center px-2 mt-10"
                 animate={animation}
                 variants={adVariants}
                 initial="hidden">
