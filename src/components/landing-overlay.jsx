@@ -5,14 +5,16 @@ import { useUIContext } from '../context/ui-context';
 
 const OVERLAY_IMAGES = {
   desktop: [
-    '/assets/background/overlay_desktop_test.png',
-    '/assets/background/overlay_desktop_test.png',
-    '/assets/background/overlay_desktop_test.png',
+    '/assets/background/1_desktop_tattoo.png',
+    '/assets/background/2_desktop_tattoo.png',
+    '/assets/background/3_desktop_tattoo.png',
+    '/assets/background/4_desktop_tattoo.png',
+    '/assets/background/5_desktop_tattoo.png',
   ],
   mobile: [
-    '/assets/background/overlay_mobile_test.png',
-    '/assets/background/overlay_mobile_test.png',
-    '/assets/background/overlay_mobile_test.png',
+    '/assets/background/1_mobile_tattoo.png',
+    '/assets/background/2_mobile_tattoo.png',
+    '/assets/background/3_mobile_tattoo.png',
   ],
 };
 
