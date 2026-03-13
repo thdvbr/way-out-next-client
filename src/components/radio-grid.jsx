@@ -12,9 +12,9 @@ const RadioGrid = ({ data }) => {
       variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
       <Container>
         <div className="grid grid-cols-1 gap-4 sm:mt-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data.map((radio) => (
+          {data.map((radio, index) => (
             <div key={radio._id} className="w-full">
-              <RadioItem {...radio} />
+              <RadioItem {...radio} priority={index < 4} />
             </div>
           ))}
         </div>

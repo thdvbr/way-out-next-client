@@ -71,8 +71,8 @@ const MasonryGrid = ({
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
-            {posts.map((post) => (
-              <ItemComponent key={post._id} {...post} />
+            {posts.map((post, index) => (
+              <ItemComponent key={post._id} {...post} priority={index < 4} />
             ))}
           </Masonry>
         </InfiniteScroll>

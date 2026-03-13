@@ -19,6 +19,7 @@ const Thumbnail = ({
   mixcloudUrl, // Radio shows have this field
   mainCategory, // Posts have this field
   fillContainer = false,
+  priority = false,
 }) => {
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder
@@ -55,14 +56,14 @@ const Thumbnail = ({
       style={
         fillContainer
           ? {
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-          }
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+            }
           : {
-            overflow: 'hidden', // ← original
-          }
+              overflow: 'hidden', // ← original
+            }
       }>
       {/* <motion.div whileHover={{ scale: 1.1 }} transition={transition}> */}
       <div style={fillContainer ? { position: 'absolute', inset: 0 } : {}}>
@@ -71,20 +72,21 @@ const Thumbnail = ({
           alt={`Thumbnail for ${title}`}
           placeholder={blurDataURL ? 'blur' : 'empty'}
           blurDataURL={blurDataURL}
+          priority={priority}
           // check for responsive option..
           // sizes={`${width}px, ${height}px`}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           style={
             fillContainer
               ? {
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }
               : {
-                width: '100%',
-                height: 'auto', // ← original
-              }
+                  width: '100%',
+                  height: 'auto', // ← original
+                }
           }
         />
       </div>

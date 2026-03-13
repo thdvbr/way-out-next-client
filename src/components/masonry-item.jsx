@@ -10,6 +10,7 @@ const MasonryItem = ({
   mainCategory,
   mixcloudUrl, // To detect if it's radio
   type,
+  priority = false,
 }) => {
   // Determine if this is a radio show or a post
   const isRadio = !!mixcloudUrl || type === 'radio';
@@ -29,6 +30,7 @@ const MasonryItem = ({
           mainCategory={mainCategory?.title}
           mixcloudUrl={mixcloudUrl}
           type={type}
+          priority={priority}
         />
       </div>
       <div className="max-w-xl py-4 pl-2 pr-5 sm:py-0 sm:pl-0 sm:pr-0 masonry-item-text md:max-w-xs xl:max-w-sm sm:my-0 sm:mr-2 sm:mt-3">

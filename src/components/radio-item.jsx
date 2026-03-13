@@ -13,6 +13,7 @@ const RadioItem = ({
   mixcloudUrl,
   tags,
   slug,
+  priority = false,
   // description,
   episodeLabel,
 }) => {
@@ -30,6 +31,7 @@ const RadioItem = ({
                 width="500"
                 height="500"
                 fillContainer={true}
+                priority={priority}
               />
             </div>
           </div>
