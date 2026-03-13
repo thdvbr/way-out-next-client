@@ -9,7 +9,7 @@ const RelatedGrid = ({ posts }) => (
     exit="exit"
     variants={{ exit: { transition: { staggerChildren: 0.1 } } }}>
     <section className="mt-10 md:mt-14 sm:mx-0">
-      <h2 className="mb-10 text-center font-title text-24 ml:text-40 xl:text-55 md:mb-14">
+      <h2 className="mb-10 text-center font-title text-27 ml:text-40 xl:text-55 md:mb-14">
         Find more
       </h2>
       <div className="grid grid-cols-2 grid-rows-2 sm:grid-cols-4 sm:grid-rows-1 sm:gap-2 ml:gap-4">

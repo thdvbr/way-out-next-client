@@ -29,7 +29,7 @@ const RelatedItem = ({
         <div className="flex items-center justify-between">
           <hr className="float-left related-line" />
           <span
-            className="my-1 font-secondary text-9 sm:text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-7 leading-snug"
+            className="my-1.5 font-secondary text-11 sm:text-11 lg:text-13.5 xl:text-18 xl:leading-10 lg:leading-7 leading-snug"
             style={{ color: '#8a7536' }}>
             {subCategory}
           </span>
@@ -38,12 +38,12 @@ const RelatedItem = ({
           <Link
             as={as}
             href={href}
-            className="block hover:underline font-main-bold text-15 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9">
+            className="block hover:underline font-main-bold text-17 leading-5 sm:text-18 sm:leading-5 md:text-20 md:leading-6 xl:text-29.5 lg:text-22.5 xl:leading-9">
             {/* TODO: leading doesnt work here why?? */}
 
             {title}
           </Link>
-          <p className=" md:mt-1 block font-main-light-italic text-15 sm:text-16 md:text-18 md:leading-6 leading-5 xl:text-25.5 xl:leading-8 lg:text-18.5">
+          <p className=" md:mt-1 block font-main-light-italic text-16 sm:text-16 md:text-18 md:leading-6 leading-5 xl:text-25.5 xl:leading-8 lg:text-18.5">
             {subtitle}
           </p>
         </div>
