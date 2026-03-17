@@ -252,7 +252,7 @@ export const interviewsQuery = `
 }`;
 
 export const stuffWeLikeQuery = `
-*[_type == "post" && mainCategory->title == "Stuff We Like" ] | order(featured desc, publishedAt desc, _updatedAt desc) | [0...8]  {
+*[_type == "post" && mainCategory->title == "Opinion" ] | order(featured desc, publishedAt desc, _updatedAt desc) | [0...8]  {
   ${postPreviewFields}
 }`;
 
@@ -291,7 +291,7 @@ const moreInterviewsQuery = (offset) => `
 }`;
 
 const moreStuffWeLikeQuery = (offset) => `
-*[_type == "post" && mainCategory->title == "Stuff We Like"]
+*[_type == "post" && mainCategory->title == "Opinion"]
 | order(publishedAt desc, _updatedAt desc)
 | [${offset}...${offset + 5}] {
   ${postPreviewFields}
