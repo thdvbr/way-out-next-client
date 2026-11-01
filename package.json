@@ -10,7 +10,7 @@
     "lint --fix": "eslint --color --ext .js --ext .jsx ./src --fix"
   },
   "engines": {
-    "node": "20.x"
+    "node": "26.x"
   },
   "dependencies": {
     "@portabletext/react": "^1.0.4",
