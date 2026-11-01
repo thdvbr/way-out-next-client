@@ -130,7 +130,7 @@ const previewFields = `
   publishedAt,
   featured,
   "slug": slug.current,
-  "previewImage": coalesce(heroImage, previewImage) {
+  "previewImage": coalesce(previewImage, heroImage) {
     ...,
     asset-> {
       _id,
