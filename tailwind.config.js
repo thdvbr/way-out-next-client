@@ -29,7 +29,12 @@ module.exports = {
         yellow: '#FFFF00',
         darkyellow: '#F6EF0D',
         gold: '#8A7536'
-    },
+      },
+      lineHeight: {
+        11: '2.75rem',
+        12: '3rem',
+        14: '3.5rem',
+      },
     },
     fontFamily: {
       main: ['Averia Serif Regular', 'sans-serif'],
