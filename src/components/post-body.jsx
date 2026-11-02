@@ -139,11 +139,13 @@ const postComponents = {
       const isSquare =
         dimensions &&
         Math.abs(dimensions.height - dimensions.width) < dimensions.width * 0.2; // roughly square
-      const sizeClass = isPortrait
-        ? 'w-full sm:w-2/3'
-        : isSquare
-          ? 'w-full sm:w-3/4'
-          : 'w-full';
+      const sizeClass = value.fullWidth
+        ? 'w-full'
+        : isPortrait
+          ? 'w-full sm:w-2/3'
+          : isSquare
+            ? 'w-full sm:w-3/4'
+            : 'w-full';
 
       const imageElement = (
         <Image
@@ -156,9 +158,11 @@ const postComponents = {
           width={dimensions?.width || 800}
           height={dimensions?.height || 600}
           sizes={
-            isPortrait
-              ? '(max-width: 640px) 100vw, 50vw'
-              : '(max-width: 640px) 100vw, 75vw'
+            value.fullWidth
+              ? '(max-width: 640px) 100vw, 100vw'
+              : isPortrait
+                ? '(max-width: 640px) 100vw, 50vw'
+                : '(max-width: 640px) 100vw, 75vw'
           }
           className="w-full h-auto"
         />
